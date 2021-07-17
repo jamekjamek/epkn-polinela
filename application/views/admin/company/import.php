@@ -90,7 +90,7 @@
                             <a href="#!">
                               <h6>Download Format Import Excel Perusahaan</h6>
                             </a>
-                            <p class="text-muted mb-0">Download File template<a href="<?= base_url('assets/uploads/template_company.xlsx') ?>" class="text-blue"> Disini</a>
+                            <p class="text-muted mb-0">Download File template<a href="<?= base_url('assets/uploads/template_company_new.xlsx') ?>" class="text-blue"> Disini</a>
                             </p>
                           </div>
                         </div>

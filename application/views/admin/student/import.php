@@ -54,7 +54,7 @@
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="ik ik-plus-square"></i>Upload Data</button>
-                    <a href="<?= base_url('master/admin/student') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>
+                    <a href="<?= base_url('admin/master/student') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>
                   </form>
                 </div>
                 <div class="col-sm-6">
@@ -85,7 +85,7 @@
                                 <h6>Download Format Import Excel Mahasiswa</h6>
                               </a>
                               <p class="text-muted mb-0">Download File template
-                                <a href="<?= base_url('assets/uploads/template_mahasiswa.xlsx'); ?>" class="text-blue"> Disini</a>
+                                <a href="<?= base_url('assets/uploads/template_mahasiswa_new.xlsx'); ?>" class="text-blue"> Disini</a>
                               </p>
                             </div>
                           </div>

@@ -60,10 +60,10 @@ w<div class="main-content">
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1;
+                                    <?php $j = 1;
                                     foreach ($allcompany as $company) : ?>
                                         <tr>
-                                            <td><?= $i++; ?></td>
+                                            <td><?= $j++; ?></td>
                                             <td><?= $company->name; ?></td>
                                             <td>
                                                 <?php

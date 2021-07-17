@@ -36,8 +36,8 @@ class Admin_config extends CI_Controller
     $selectAjax = array();
     foreach ($results as $row) {
       $selectAjax[]   = [
-        'id'    => $row->regency_id,
-        'text'  => $row->province_name . ' - ' . $row->regency_name
+        'id'    => $row->regency_id . ':' . $row->districs_id,
+        'text'  => $row->province_name . ' - ' . $row->regency_name . ' - ' . $row->districs
       ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($selectAjax));

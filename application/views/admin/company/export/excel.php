@@ -12,6 +12,8 @@ header("Expires:0");
     <thead>
         <tr>
             <th>No</th>
+            <th>ID Kecamatan</th>
+            <th>Nama Kecamatan</th>
             <th>ID Kabupaten</th>
             <th>Kabupaten</th>
             <th>ID Provinsi</th>
@@ -23,6 +25,8 @@ header("Expires:0");
         foreach ($allData as $prodi) : ?>
             <tr>
                 <td><?= $i++; ?></td>
+                <td><?= $prodi->districs_id; ?></td>
+                <td><?= $prodi->districs; ?></td>
                 <td><?= $prodi->regency_id; ?></td>
                 <td><?= $prodi->regency_name; ?></td>
                 <td><?= $prodi->province_id; ?></td>

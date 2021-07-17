@@ -9,6 +9,7 @@ class Admin_company_model extends CI_Model
     $this->table            = 'company';
     $this->tableRegency     = 'regency';
     $this->tableProvince    = 'province';
+    $this->tableDistricts   = 'districts';
   }
 
   public function getAllData()
@@ -53,8 +54,9 @@ class Admin_company_model extends CI_Model
 
   private function _join()
   {
-    $this->db->select('a.*,b.name regency_name,c.name province_name');
+    $this->db->select('a.*,b.name regency_name,c.name province_name,d.name districts_name');
     $this->db->join($this->tableRegency  . ' as b', 'a.regency_id=b.id');
     $this->db->join($this->tableProvince . ' as c', 'a.province_id=c.id');
+    $this->db->join($this->tableDistricts . ' as d', 'a.districts_id=d.id');
   }
 }

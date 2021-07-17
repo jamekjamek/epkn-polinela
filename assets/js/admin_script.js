@@ -126,7 +126,7 @@ $(document).ready(function () {
 
 
 	//COMPANY
-	select2ajax('regency2', 'Cari nama kabupaten atau provinsi');
+	select2ajax('regency2', 'Cari nama kecamatan, kabupaten atau provinsi');
 	$(document).on('click', '.delete-company', function () {
 		var id = $(this).data('id');
 		buttonClickDelete('company', id);

@@ -73,7 +73,7 @@
                   <div class="form-group">
                     <label for="regency">Daerah</label>
                     <select class="get-regency2 form-control <?= form_error('regency') ? 'is-invalid' : ''; ?>" name="regency" id="prregencyodi" style="width: 100%">
-                      <option value="<?= $company->regency_id; ?>"><?= $company->province_name . ' - ' . $company->regency_name; ?></option>
+                      <option value="<?= $company->regency_id; ?>"><?= $company->province_name . ' - ' . $company->regency_name . ' - ' . $company->districts_name; ?></option>
                     </select>
                     <div class="invalid-feedback">
                       <?= form_error('regency'); ?>

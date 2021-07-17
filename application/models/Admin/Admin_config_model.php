@@ -17,6 +17,7 @@ class Admin_config_model extends CI_Model
     $this->tableHistory         = 'history_registration';
     $this->tableKajur           = 'head_of_department';
     $this->tableAcademic        = 'academic_year';
+    $this->tableDistrics        = 'districts';
   }
 
   public function insertUserTable($data)
@@ -66,11 +67,13 @@ class Admin_config_model extends CI_Model
 
   public function getRegencyBy($input = null)
   {
-    $this->db->select('a.id regency_id,a.name regency_name,b.id province_id,b.name province_name');
+    $this->db->select('a.id regency_id,a.name regency_name,b.id province_id,b.name province_name,c.id districs_id, c.name districs');
     $this->db->join($this->tableProvince . ' b', 'a.province_id=b.id');
+    $this->db->join($this->tableDistrics . ' c', 'c.regency_id=a.id');
     if ($input) {
       $this->db->like('a.name', $input);
       $this->db->or_like('b.name', $input);
+      $this->db->or_like('c.name', $input);
       $this->db->limit(10);
     }
     return $this->db->get_where($this->tableRegency . ' a');

@@ -194,6 +194,7 @@ class Admin_students extends CI_Controller
                                 'address'           => $row->getCellAtIndex(4),
                                 'birth_date'        => $row->getCellAtIndex(5),
                                 'no_hp'             => $row->getCellAtIndex(6),
+                                'gender'             => $row->getCellAtIndex(7),
                                 'academic_year_id'  => $academicId,
                                 'status'            => htmlspecialchars('active'),
                             );

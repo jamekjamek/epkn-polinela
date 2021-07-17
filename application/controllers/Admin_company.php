@@ -43,12 +43,16 @@ class Admin_company extends CI_Controller
             pageBackend($this->role, $page, $data);
         } else {
             $this->db->set('id', 'UUID()', FALSE);
-            $regencyId        = htmlspecialchars($this->input->post('regency'));
+            $postRegency      = htmlspecialchars($this->input->post('regency'));
+            $explode          = explode(":", $postRegency);
+            $regencyId        = $explode[0];
+            $districtsId      = $explode[1];
             $cekProv          = $this->Config->cekProv($regencyId);
             $provId           = $cekProv->province_id;
             $dataInput = [
                 'name'          => htmlspecialchars($this->input->post('name')),
                 'address'       => htmlspecialchars($this->input->post('address')),
+                'districts_id'  => $districtsId,
                 'regency_id'    => $regencyId,
                 'province_id'   => $provId,
                 'email'         => htmlspecialchars($this->input->post('email')),
@@ -82,12 +86,16 @@ class Admin_company extends CI_Controller
                 $page = '/admin/company/update';
                 pageBackend($this->role, $page, $data);
             } else {
-                $regencyId        = htmlspecialchars($this->input->post('regency'));
+                $postRegency      = htmlspecialchars($this->input->post('regency'));
+                $explode          = explode(":", $postRegency);
+                $regencyId        = $explode[0];
+                $districtsId      = $explode[1];
                 $cekProv          = $this->Config->cekProv($regencyId);
                 $provId           = $cekProv->province_id;
                 $dataUpdate       = [
                     'name'          => htmlspecialchars($this->input->post('name')),
                     'address'       => htmlspecialchars($this->input->post('address')),
+                    'districts_id'  => $districtsId,
                     'regency_id'    => $regencyId,
                     'province_id'   => $provId,
                     'email'         => htmlspecialchars($this->input->post('email')),
@@ -175,17 +183,17 @@ class Admin_company extends CI_Controller
                 foreach ($sheet->getRowIterator() as $row) {
                     if ($numRow > 1) {
                         $email      = $this->Company->getDataBy(['a.email' => $row->getCellAtIndex(6)])->num_rows();
-
                         if ($email < 1) {
                             $dataInputCompany = array(
                                 'name'          => $row->getCellAtIndex(0),
                                 'address'       => $row->getCellAtIndex(1),
-                                'regency_id'    => $row->getCellAtIndex(2),
-                                'province_id'   => $row->getCellAtIndex(4),
-                                'email'         => $row->getCellAtIndex(6),
-                                'telp'          => $row->getCellAtIndex(7),
-                                'pic'           => $row->getCellAtIndex(8),
-                                'label'         => $row->getCellAtIndex(9),
+                                'districts_id'  => $row->getCellAtIndex(2),
+                                'regency_id'    => $row->getCellAtIndex(4),
+                                'province_id'   => $row->getCellAtIndex(6),
+                                'email'         => $row->getCellAtIndex(8),
+                                'telp'          => $row->getCellAtIndex(9),
+                                'pic'           => $row->getCellAtIndex(10),
+                                'label'         => $row->getCellAtIndex(11),
                                 'status'        => 'verify',
                             );
                             $this->Company->importData($dataInputCompany);
