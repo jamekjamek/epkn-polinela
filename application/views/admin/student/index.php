@@ -56,6 +56,7 @@
                                         <th>Email</th>
                                         <th>Jurusan</th>
                                         <th>Prodi</th>
+                                        <th>Jenis Kelamin</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -70,6 +71,7 @@
                                             <td><?= $student->email; ?></td>
                                             <td><?= $student->major_name; ?></td>
                                             <td><?= $student->prodi_name; ?></td>
+                                            <td><?= $student->gender; ?></td>
                                             <td>
                                                 <?php if ($student->status === 'active') : ?>
                                                     <span class="badge badge-pill badge-success mb-1">Aktif</span>

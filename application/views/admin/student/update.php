@@ -114,6 +114,25 @@
                       <?= form_error('prodi'); ?>
                     </div>
                   </div>
+
+                  <div class="form-group mt-4">
+                    <label for="name">Jenis Kelamin</label>
+                    <div class="form-radio">
+                      <div class="radio radio-inline">
+                        <label>
+                          <input type="radio" name="gender" <?= $student->gender === 'L' ? 'checked="checked"' : ''; ?> value="L">
+                          <i class="helper"></i>Laki-laki
+                        </label>
+                      </div>
+                      <div class="radio radio-inline">
+                        <label>
+                          <input type="radio" name="gender" <?= $student->gender === 'P' ? 'checked="checked"' : ''; ?> value="P">
+                          <i class="helper"></i>Perempuan
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
               <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>

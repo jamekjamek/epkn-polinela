@@ -21,7 +21,7 @@
                <div class="submenu-content">
                   <a href="<?= base_url('admin/config/academic_year') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4) === 'academic_year' ? 'active' : '') ?>">Tahun Akademik</a>
                   <a href="<?= base_url('admin/config/location_period') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'location_period' || $this->uri->segment(4) === 'location_period' ? 'active' : '') ?>">Lokasi</a>
-                  <a href="<?= base_url('admin/config/location_verification') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'location_verification' || $this->uri->segment(4) === 'location_verification' ? 'active' : '') ?>">Verifikasi Lokasi</a>
+                  <!-- <a href="<?= base_url('admin/config/location_verification') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'location_verification' || $this->uri->segment(4) === 'location_verification' ? 'active' : '') ?>">Verifikasi Lokasi</a> -->
                   <a href="<?= base_url('admin/config/registration_period') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'registration_period' || $this->uri->segment(4) === 'registration_period' ? 'active' : '') ?>">Registrasi</a>
                   <a href="<?= base_url('admin/letter') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active' : '') ?>">Surat</a>
                </div>

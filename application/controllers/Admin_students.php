@@ -50,6 +50,7 @@ class Admin_students extends CI_Controller
                 'address'           => htmlspecialchars($this->input->post('address')),
                 'birth_date'        => htmlspecialchars($this->input->post('birthdate')),
                 'no_hp'             => htmlspecialchars($this->input->post('nohp')),
+                'gender'            => htmlspecialchars($this->input->post('gender')),
                 'academic_year_id'  => $academicId,
                 'status'            => htmlspecialchars('active'),
             ];
@@ -99,6 +100,7 @@ class Admin_students extends CI_Controller
                     'address'       => htmlspecialchars($this->input->post('address')),
                     'birth_date'    => htmlspecialchars($this->input->post('birthdate')),
                     'no_hp'         => htmlspecialchars($this->input->post('nohp')),
+                    'gender'        => htmlspecialchars($this->input->post('gender')),
                     'status'        => htmlspecialchars($this->input->post('status')),
                     'updated_at'    => date('Y-m-d H:i:s')
                 ];

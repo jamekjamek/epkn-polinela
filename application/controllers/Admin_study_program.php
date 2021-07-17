@@ -43,7 +43,7 @@ class Admin_study_program extends CI_Controller
             $dataInputProdi = [
                 'name'      => htmlspecialchars($this->input->post('name')),
                 'code'      => htmlspecialchars($this->input->post('code')),
-                'degree'    => htmlspecialchars($this->input->post('degree')),
+                'degree'    => 'D4',
                 'email'     => $email,
                 'major_id'  => htmlspecialchars($this->input->post('major'))
             ];
@@ -90,7 +90,7 @@ class Admin_study_program extends CI_Controller
                 $dataUpdateprodi    = [
                     'name'          => htmlspecialchars($this->input->post('name')),
                     'code'          => htmlspecialchars($this->input->post('code')),
-                    'degree'        => htmlspecialchars($this->input->post('degree')),
+                    'degree'        => 'D4',
                     'email'         => $newEmail,
                     'major_id'      => htmlspecialchars($this->input->post('major')),
                     'updated_at'    => date('Y-m-d H:i:s')
