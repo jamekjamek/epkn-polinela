@@ -41,6 +41,7 @@
                 </div>
                 <div>
                   <?php if ($periode != NULL) : ?>
+                    <a href="#" class="btn btn-success" id="generate-data"><i class="ik ik-plus-square"></i>Generate Data</a>
                     <a href="<?= base_url('admin/registrations/history'); ?>" class="btn btn-warning"><i class="ik ik-plus-square"></i>History</a>
                     <a href="<?= base_url('admin/registrations/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
                   <?php endif; ?>

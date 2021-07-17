@@ -396,6 +396,38 @@ class Admin_registrations extends CI_Controller
     }
 
 
+
+    public function generatedata()
+    {
+        $cekStudentInRegistration   = $this->Registrations->getStudent()->num_rows();
+        $numLeader                  = floor($cekStudentInRegistration / 8);
+        for ($i = 1; $i < $numLeader + 1; $i++) {
+            $rowStudent             = $this->Registrations->getStudent('random')->row();
+            $rowCompany             = $this->Registrations->getCompany('random')->row();
+            $dataPeriode            = $this->Registrations->getDataPeriode()->row();
+            $groupId                = strtotime($dataPeriode->start_time_pkl) . $rowStudent->id;
+            $academic               = $this->Config->getDataAcademicYear(['status' => 1])->row();
+            $academicId             = $academic->id;
+            $this->db->set('id', 'UUID()', FALSE);
+            $dataInsertLeader   = [
+                'group_id'          => $groupId,
+                'company_id'        => $rowCompany->id,
+                'start_date'        => $dataPeriode->start_time_pkl,
+                'finish_date'       => $dataPeriode->finish_time_pkl,
+                'student_id'        => $rowStudent->id,
+                'status'            => 'Ketua',
+                'prodi_id'          => $rowStudent->prodi_id,
+                'group_status'      => 'diverifikasi',
+                'academic_year_id'  => $academicId,
+                'verify_member'     => 'Diterima'
+            ];
+            $insertLeader       = $this->Registrations->insert($dataInsertLeader);
+        }
+        die;
+    }
+
+
+
     //Sementara ga kepake
     public function creategroup()
     {

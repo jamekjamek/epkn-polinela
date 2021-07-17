@@ -125,4 +125,22 @@ class Admin_registrations_model extends CI_Model
     $this->db->limit(1);
     return $this->db->get($this->tableSupervisor)->row();
   }
+
+  public function getStudent($data = null)
+  {
+    $query  = "SELECT * FROM `" . $this->tableStudent . "` `a` WHERE `id` NOT IN (SELECT `student_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak')";
+    if ($data === 'random') {
+      $query .= "ORDER BY RAND() LIMIT 1";
+    }
+    return $this->db->query($query);
+  }
+
+  public function getCompany($data = null)
+  {
+    if ($data === 'random') {
+      $this->db->order_by('rand()');
+      $this->db->limit(1);
+    }
+    return $this->db->get($this->tableCompany);
+  }
 }

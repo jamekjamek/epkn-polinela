@@ -356,6 +356,23 @@ $(document).ready(function () {
 		$('#registration-id').val(id);
 	});
 
+
+	//GENERATE DATA
+	$('#generate-data').on('click', function(){
+		$.ajax({
+			url: `${base_url}admin/registrations/generatedata`,
+			dataType: 'JSON',
+			method: 'POST',
+			// success: (data) => {
+			// 	if (data.status === 'ok') {
+			// 		$('.groupIdResult').html(data.data);
+			// 	} else {
+			// 		alertCustom('Server sedang sibuk', 'warning');
+			// 	}
+			// }
+		});
+	});
+
 	//END REGISTRATION
 
 	//ROOM

@@ -83,18 +83,21 @@ $route['admin/master/room/delete/(:any)']           = 'admin_room/delete/$1';
 
 //REGISTRATIONS
 $route['admin/registrations']                            = 'admin_registrations';
-$route['admin/registrations/add']                        = 'admin_registrations/create';
-$route['admin/registrations/detail/(:any)']              = 'admin_registrations/detail/$1';
-$route['admin/registrations/verification/(:any)/(:num)'] = 'admin_registrations/verification/$1/$2';
-$route['admin/registrations/updatesupervisor/(:any)']    = 'admin_registrations/updatesupervisor/$1';
-$route['admin/registrations/updateanothergroup/(:any)']        = 'admin_registrations/updateanothergroup/$1';
-$route['admin/registrations/addnewmember/(:any)']        = 'admin_registrations/addnewmember/$1';
-$route['admin/registrations/upload/(:any)']              = 'admin_registrations/upload/$1';
+$route['admin/registrations/add']                               = 'admin_registrations/create';
+$route['admin/registrations/detail/(:any)']                     = 'admin_registrations/detail/$1';
+$route['admin/registrations/verification/(:any)/(:num)']        = 'admin_registrations/verification/$1/$2';
+$route['admin/registrations/updatesupervisor/(:any)']           = 'admin_registrations/updatesupervisor/$1';
+$route['admin/registrations/updateanothergroup/(:any)']         = 'admin_registrations/updateanothergroup/$1';
+$route['admin/registrations/addnewmember/(:any)']               = 'admin_registrations/addnewmember/$1';
+$route['admin/registrations/upload/(:any)']                     = 'admin_registrations/upload/$1';
 
 // $route['admin/registrations/member']                = 'admin_registrations/getmember';
 // $route['admin/registrations/addgroup']              = 'admin_registrations/creategroup';
-$route['admin/registrations/history']               = 'admin_registrations/history';
-$route['admin/registrations/historydetail']         = 'admin_registrations/historydetail';
+$route['admin/registrations/history']                           = 'admin_registrations/history';
+$route['admin/registrations/historydetail']                     = 'admin_registrations/historydetail';
+$route['admin/registrations/generatedata']                      = 'admin_registrations/generatedata';
+
+
 
 //ADMIN CONFIG
 $route['config/getprodi']                           = 'admin_config/getprodi';
