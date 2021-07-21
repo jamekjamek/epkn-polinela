@@ -92,20 +92,23 @@ class Admin_config_model extends CI_Model
     if ($leaderId) {
       $query .= "WHERE `a`.`id` != '" . $leaderId . "'";
     }
-    $query .= 'AND `b`.`id` ="' . $prodiId . '" ';
+    if ($prodiId) {
+      $query .= 'AND `b`.`id` ="' . $prodiId . '" ';
+    }
     $query .=      "AND `a`.`id` NOT IN (SELECT `student_id` FROM `" . $this->tableRegistration . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak')";
     return $this->db->query($query);
   }
 
   public function getCompany($input)
   {
-    $query = "SELECT `a`.*,`b`.`name` `regency_name`, `c`.`name` `province_name`
+    $query = "SELECT `a`.*,`b`.`name` `regency_name`, `c`.`name` `province_name`,`d`.`name` `districts_name`
                     FROM `" . $this->tableCompany . "` `a`
                     LEFT JOIN `" . $this->tableRegency . "` `b` ON `a`.`regency_id`=`b`.`id`
                     LEFT JOIN `" . $this->tableProvince . "` `c` ON `b`.`province_id`=`c`.`id`
-                    WHERE (`a`.`name` LIKE '%$input%' ESCAPE '!' OR `b`.`name` LIKE '%$input%' ESCAPE '!' OR `c`.`name` LIKE '%$input%' ESCAPE '!') 
-                    LIMIT 10
+                    LEFT JOIN `" . $this->tableDistrics . "` `d` ON `a`.`districts_id`=`d`.`id`
+                    WHERE (`a`.`name` LIKE '%$input%' ESCAPE '!' OR `b`.`name` LIKE '%$input%' ESCAPE '!' OR `c`.`name` LIKE '%$input%' ESCAPE '!')
         ";
+    $query .=      "AND `a`.`id` NOT IN (SELECT `company_id` FROM `" . $this->tableRegistration . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak')";
     return $this->db->query($query);
   }
 

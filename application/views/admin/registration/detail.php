@@ -70,7 +70,7 @@
                                             <td>Group Status</td>
                                             <td class="text-uppercase">:
                                                 <?php if (@$letter && $leader->group_status === 'dalam_proses_penerimaan') : ?>
-                                                    <button class="btn btn-success verficationprocess" data-id="<?= $leader->id; ?>" data-uri="<?= $this->uri->segment(4); ?>">Proses Verifikasi</button>
+                                                    <button class="btn btn-success verficationprocess" data-id="<?= $leader->group_id; ?>" data-uri="<?= $this->uri->segment(4); ?>">Proses Verifikasi</button>
                                                 <?php else : ?>
                                                     <?= str_replace("_", " ", $leader->group_status); ?>
                                                 <?php endif; ?>
@@ -78,11 +78,11 @@
                                         </tr>
 
                                         <tr>
-                                            <td>Tempat PKL</td>
-                                            <td class="text-uppercase">: <?= $leader->company_name; ?></td>
+                                            <td>Tempat PKN</td>
+                                            <td class="text-uppercase">: <?= $leader->company_name . ', ' . $leader->districts . ', ' . $leader->regency . ', ' . $leader->province; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Waktu PKL</td>
+                                            <td>Waktu PKN</td>
                                             <td>: <?= date('d- F-Y', strtotime($leader->start_date))  . ' s/d ' . date('d- F-Y', strtotime($leader->finish_date)); ?></td>
                                         </tr>
 
@@ -114,11 +114,10 @@
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row" style="padding: 20px;">
                                 <div class="col-sm-12">
-                                    <?php if ($getdata->num_rows() >= $periode->quantity) : ?>
+                                    <?php if ($getdata->num_rows() >= 2) : ?>
                                         <?php if ($leader->group_status === 'diverifikasi') : ?>
                                             <h5 class="text-info">Mohon menunggu <?= $leader->fullname ?> Mendowload berkas-berkas keperluan pkl dan menunggu surat balasan dari <?= $leader->company_name; ?></h5>
                                         <?php endif; ?>
-
                                         <?php if (@$letter) : ?>
                                             <embed src="<?= base_url('assets/uploads/' . $letter->file) ?>" type="application/pdf" height="800px" width="100%">
                                         <?php endif; ?>
@@ -153,7 +152,7 @@
                                             </div>
                                         <?php endif; ?>
                                     <?php else : ?>
-                                        <h5 class="text-info">Mohon menambahkan anggota group PKL terlebih dahulu minimal sesuai dengan periode pembukaan yaitu <?= $periode->quantity - 1; ?> Anggota. Saat ini anggota yang terdaftar berjumlah <?= $getdata->num_rows() - 1; ?> Anggota yang di ketuai oleh <?= $leader->fullname; ?></h5>
+                                        <h5 class="text-info">Mohon menambahkan anggota group PKL terlebih dahulu minimal 1 Anggota. Saat ini anggota yang terdaftar berjumlah <?= $getdata->num_rows() - 1; ?> Anggota yang di ketuai oleh <?= $leader->fullname; ?></h5>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -171,6 +170,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Anggota</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Prodi</th>
                                         <th>Verifikasi Mahasiswa</th>
                                         <th>Status Peserta</th>
                                         <th>Dosen Pembimbing</th>
@@ -184,6 +185,8 @@
                                             <tr>
                                                 <td><?= $i++; ?></td>
                                                 <td><?= $group->fullname; ?></td>
+                                                <td><?= $group->gender; ?></td>
+                                                <td><?= $group->prodi_name; ?></td>
                                                 <td><?= $group->verify_member; ?></td>
                                                 <td><?= $group->status; ?></td>
                                                 <td><?= $group->lecture_name; ?></td>
@@ -229,13 +232,14 @@
                                                                     <?php if ($group->verify_member === 'Ditolak') : ?>
                                                                         Member menolak undangan ketua
                                                                     <?php else : ?>
-                                                                        <button type="button" class="btn btn-info supervisorModal" data-toggle="modal" data-target="#supervisorModal" data-id="<?= $group->id; ?>">
+                                                                        <!-- <button type="button" class="btn btn-info supervisorModal" data-toggle="modal" data-target="#supervisorModal" data-id="<?= $group->id; ?>">
                                                                             <?php if ($group->lecture_name === null) : ?>
                                                                                 Pilih Dosen Pembimbing
                                                                             <?php else : ?>
                                                                                 Ubah Dosen Pembimbing
                                                                             <?php endif; ?>
-                                                                        </button>
+                                                                        </button> -->
+                                                                        Pilih Dosen Pembimbing Dari Ketua
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
@@ -270,6 +274,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama Mahasiswa</th>
+                                <th>Jenis Kelamin</th>
                                 <th>Prodi</th>
                             </tr>
                         </thead>
@@ -278,6 +283,7 @@
                                 <tr>
                                     <td><input type='checkbox' class='member-checkbox' name='member[]' value="<?= $member->id; ?>"></td>
                                     <td><?= $member->fullname; ?></td>
+                                    <td><?= $member->gender; ?></td>
                                     <td><?= $member->prodi_name; ?></td>
                                 </tr>
                             <?php endforeach; ?>

@@ -42,7 +42,8 @@
                                             <?= form_error('company'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <span class="text-info mb-4 resultcompany"></span>
+                                    <!-- <div class="form-group">
                                         <label for="leader">Pilih Prodi</label>
                                         <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%;">
                                             <option></option>
@@ -50,8 +51,8 @@
                                         <div class="invalid-feedback">
                                             <?= form_error('prodi'); ?>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
+                                    </div> -->
+                                    <div class="form-group mt-4">
                                         <label for="leader">Pilih Ketua</label>
                                         <select class="get-leader form-control <?= form_error('leader') ? 'is-invalid' : ''; ?>" name="leader" id="leader" style="width: 100%">
                                             <option value="<?= set_value('leader'); ?>"><?= set_value('leader'); ?></option>

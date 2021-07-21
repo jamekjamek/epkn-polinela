@@ -17,6 +17,9 @@ class Admin_registrations_model extends CI_Model
     $this->tableLecture         = 'lecture';
     $this->tableResponseLetter  = 'response_letter';
     $this->tableSupervisor      = 'supervisor';
+    $this->tableRegency         = 'regency';
+    $this->tableProvince        = 'province';
+    $this->tableDistricts       = 'districts';
   }
 
   public function getAllData()
@@ -51,9 +54,10 @@ class Admin_registrations_model extends CI_Model
     return $this->db->get_where($this->table . ' a', $data);
   }
 
-  public function getLecture()
+  public function getLecture($prodiId)
   {
-    return $this->db->get_where($this->tableLecture);
+    $this->db->where_in('prodi_id', $prodiId);
+    return $this->db->get($this->tableLecture);
   }
 
   public function getDataStudentBy($data)
@@ -73,13 +77,16 @@ class Admin_registrations_model extends CI_Model
 
   private function _join()
   {
-    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,d.id prodi_id,d.name prodi_name,d.code prodi_code, e.name major_name,f.name as lecture_name,g.username pl');
+    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,b.prodi_id prodi_company_id,c.fullname,c.npm,c.gender,c.email student_email,d.id prodi_id,d.name prodi_name,d.code prodi_code, e.name major_name,f.name as lecture_name,g.username pl,i.name districts,j.name regency,k.name province');
     $this->db->join($this->tableCompany . ' b', 'a.company_id=b.id', 'LEFT');
     $this->db->join($this->tableStudent . ' c', 'a.student_id=c.id', 'LEFT');
     $this->db->join($this->tableProdi . ' d', 'c.prodi_id=d.id', 'LEFT');
     $this->db->join($this->tableMajor . ' e', 'd.major_id=e.id', 'LEFT');
     $this->db->join($this->tableLecture . ' f', 'a.lecture_id=f.id', 'LEFT');
     $this->db->join($this->tableSupervisor . ' g', 'a.supervisor_id=g.id', 'LEFT');
+    $this->db->join($this->tableDistricts . ' i', 'b.districts_id=i.id', 'LEFT');
+    $this->db->join($this->tableRegency . ' j', 'b.regency_id=j.id');
+    $this->db->join($this->tableProvince . ' k', 'b.province_id=k.id');
   }
 
   public function getDataHistory()

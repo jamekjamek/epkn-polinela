@@ -210,15 +210,27 @@ $(document).ready(function () {
 
 	// Notify any JS components that the value changed)
 	$('.get-leader').select2(API.getData(function (params) {
-		var prodiId = $('.get-prodi').val();
 		return {
 			search: params.term,
-			prodiId
 		}
 	}))
 
-	select2ajax('companies', 'Cari perusahaan');
-
+	select2ajax('companies', 'Cari desa');
+	$('.get-companies').on('change', function(){
+		var id = $(this).val();
+		$.ajax({
+			url: `${base_url}admin/registrations/getcompany`,
+			type: 'POST',
+			dataType: 'JSON',
+			data: {
+				id:id
+			},
+			success:(result)=>{
+				console.log(result.prodi_name);
+				$('.resultcompany').html(`Desa ini membutuhkan prodi ${result.prodi_name} - ${result.major_name}`);
+			}
+		});
+	});
 
 	//GA KEPAKE SEMENTARA
 	// var leaderValue = null;

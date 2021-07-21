@@ -46,8 +46,8 @@ class Admin_config extends CI_Controller
   public function getleader()
   {
     $input      = $this->input->post('search');
-    $prodiId    = $this->input->post('prodiId');
-    $results    = $this->Config->getStudent($input, $prodiId)->result();
+    // $prodiId    = $this->input->post('prodiId');
+    $results    = $this->Config->getStudent($input)->result();
     $selectAjax = array();
     foreach ($results as $row) {
       $selectAjax[]   = [
@@ -66,7 +66,7 @@ class Admin_config extends CI_Controller
     foreach ($results as $row) {
       $selectAjax[]   = [
         'id'    => $row->id,
-        'text'  => strtoupper($row->name)  . ' - ' . strtoupper($row->regency_name)  . ' - ' . strtoupper($row->province_name)
+        'text'  => strtoupper($row->name)  . ' - ' . strtoupper($row->districts_name) . ' - ' . strtoupper($row->regency_name)  . ' - ' . strtoupper($row->province_name)
       ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($selectAjax));

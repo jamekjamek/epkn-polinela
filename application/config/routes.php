@@ -96,6 +96,7 @@ $route['admin/registrations/upload/(:any)']                     = 'admin_registr
 $route['admin/registrations/history']                           = 'admin_registrations/history';
 $route['admin/registrations/historydetail']                     = 'admin_registrations/historydetail';
 $route['admin/registrations/generatedata']                      = 'admin_registrations/generatedata';
+$route['admin/registrations/getcompany']                        = 'admin_registrations/getcompany';
 
 
 
