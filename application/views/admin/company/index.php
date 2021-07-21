@@ -51,10 +51,9 @@ w<div class="main-content">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Perusahaan</th>
+                                        <th>Desa</th>
                                         <th>Alamat</th>
                                         <th>PIC</th>
-                                        <th>Label</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -72,22 +71,13 @@ w<div class="main-content">
                                                 for ($i = 0; $i < count($cek); $i++) {
                                                     echo '<b>' . $cek[$i] . '<br></b>';
                                                 }
-                                                ?>
+                                                ?><?= $company->districts_name; ?>,
                                                 <?= $company->regency_name; ?>, <?= $company->province_name; ?>
                                             </td>
                                             <td>
                                                 <strong><?= $company->pic; ?></strong>
                                                 <br>
                                                 <?= $company->email; ?> | <?= $company->telp; ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($company->label === 'bersama') : ?>
-                                                    <span class="badge badge-pill badge-info mb-1">Bersama</span>
-                                                <?php elseif ($company->label === 'prodi') : ?>
-                                                    <span class="badge badge-pill badge-info mb-1">PRODI</span>
-                                                <?php else : ?>
-                                                    <span class="badge badge-pill badge-danger mb-1">-</span>
-                                                <?php endif; ?>
                                             </td>
                                             <td>
                                                 <?php if ($company->status === 'verify') : ?>

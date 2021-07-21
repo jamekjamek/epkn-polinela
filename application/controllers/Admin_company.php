@@ -55,6 +55,7 @@ class Admin_company extends CI_Controller
                 'districts_id'  => $districtsId,
                 'regency_id'    => $regencyId,
                 'province_id'   => $provId,
+                'prodi_id'      => htmlspecialchars($this->input->post('prodi')),
                 'email'         => htmlspecialchars($this->input->post('email')),
                 'telp'          => htmlspecialchars($this->input->post('telp')),
                 'pic'           => htmlspecialchars($this->input->post('pic')),
@@ -98,11 +99,12 @@ class Admin_company extends CI_Controller
                     'districts_id'  => $districtsId,
                     'regency_id'    => $regencyId,
                     'province_id'   => $provId,
+                    'prodi_id'      => htmlspecialchars($this->input->post('prodi')),
                     'email'         => htmlspecialchars($this->input->post('email')),
                     'telp'          => htmlspecialchars($this->input->post('telp')),
                     'pic'           => htmlspecialchars($this->input->post('pic')),
                     'label'         => htmlspecialchars($this->input->post('label')),
-                    'status'        => htmlspecialchars($this->input->post('status')),
+                    'status'        => 'verify',
                     'updated_at'    => date('Y-m-d H:i:s')
                 ];
                 $update         = $this->Company->update($dataUpdate, ['id' => $decode]);
@@ -230,9 +232,9 @@ class Admin_company extends CI_Controller
         $this->form_validation->set_rules(
             'email',
             'Email',
-            'trim|required|valid_email' . $is_unique,
+            'trim|valid_email' . $is_unique,
             [
-                'required'      => '%s wajib di isi',
+                // 'required'      => '%s wajib di isi',
                 'valid_email'   => 'Format %s salah'
             ]
         );
@@ -241,9 +243,9 @@ class Admin_company extends CI_Controller
         $this->form_validation->set_rules(
             'telp',
             'Nomor Telpon',
-            'trim|required|numeric|min_length[8]|max_length[14]',
+            'trim|numeric|min_length[8]|max_length[14]',
             [
-                'required'  => '%s wajib di isi',
+                // 'required'  => '%s wajib di isi',
                 'numeric'   => '%s wajib angka'
             ]
         );
@@ -257,14 +259,14 @@ class Admin_company extends CI_Controller
             ]
         );
 
-        $this->form_validation->set_rules(
-            'pic',
-            'Nama PIC',
-            'trim|required',
-            [
-                'required' => '%s wajib di isi',
-            ]
-        );
+        // $this->form_validation->set_rules(
+        //     'pic',
+        //     'Nama PIC',
+        //     'trim|required',
+        //     [
+        //         'required' => '%s wajib di isi',
+        //     ]
+        // );
 
 
 
@@ -272,6 +274,17 @@ class Admin_company extends CI_Controller
             $this->form_validation->set_rules(
                 'regency',
                 'Daerah',
+                'trim|required',
+                [
+                    'required' => '%s wajib di isi',
+                ]
+            );
+        }
+
+        if ($this->input->post('prodi') === "") {
+            $this->form_validation->set_rules(
+                'prodi',
+                'Program Studi',
                 'trim|required',
                 [
                     'required' => '%s wajib di isi',

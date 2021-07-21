@@ -35,15 +35,15 @@
                   <a href="<?= base_url('admin/master/lecture') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'lecture' ? 'active' : '') ?>">Dosen</a>
                   <a href="<?= base_url('admin/master/head-of-program') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'head-of-program' ? 'active' : '') ?>">Ketua Jurusan</a>
                   <a href="<?= base_url('admin/master/head-of-program-study') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'head-of-program-study' ? 'active' : '') ?>">Ketua Program Studi</a>
-                  <a href="<?= base_url('admin/master/company') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'company' ? 'active' : '') ?>">Perusahaan</a>
+                  <a href="<?= base_url('admin/master/company') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'company' ? 'active' : '') ?>">Desa</a>
                   <a href="<?= base_url('admin/master/room') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'room' ? 'active' : '') ?>">Daftar Ruangan</a>
                   <a href="<?= base_url('admin/master/users') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'users' ? 'active' : '') ?>">Data User</a>
-                  <a href="<?= base_url('admin/master/pkl') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'pkl' ? 'active' : '') ?>">Data PKL</a>
+                  <a href="<?= base_url('admin/master/pkl') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'pkl' ? 'active' : '') ?>">Data PKN</a>
                </div>
             </div>
 
             <div class="nav-item <?= ($uri  === 'registrations' ? 'active' : '') ?>">
-               <a href="<?= base_url('admin/registrations') ?>"><i class="ik ik-cast"></i><span>Pendaftaran PKL</span></a>
+               <a href="<?= base_url('admin/registrations') ?>"><i class="ik ik-cast"></i><span>Pendaftaran PKN</span></a>
             </div>
 
             <div class="nav-item <?= ($uri  === 'verification' ? 'active' : '') ?>">

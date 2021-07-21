@@ -312,5 +312,9 @@ $route['ketuplak/pkl']                              = 'ketuplak_pkl';
 $route['ketuplak/pkl/(:any)']                       = 'ketuplak_pkl/index/$1';
 
 
+
+
+$route['test'] = 'admin_registrations/generatedata';
+
 $route['404_override'] = 'err';
 $route['translate_uri_dashes'] = FALSE;

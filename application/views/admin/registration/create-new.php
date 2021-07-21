@@ -34,6 +34,15 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
+                                        <label for="company">Pilih Desa</label>
+                                        <select class="get-companies form-control <?= form_error('company') ? 'is-invalid' : ''; ?>" name="company" id="company" style="width: 100%">
+                                            <option></option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <?= form_error('company'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="leader">Pilih Prodi</label>
                                         <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%;">
                                             <option></option>
@@ -51,15 +60,7 @@
                                             <?= form_error('leader'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="company">Pilih Perusahaan</label>
-                                        <select class="get-companies form-control <?= form_error('company') ? 'is-invalid' : ''; ?>" name="company" id="company" style="width: 100%">
-                                            <option></option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            <?= form_error('company'); ?>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>

@@ -73,13 +73,13 @@
                   <div class="form-group">
                     <label for="regency">Daerah</label>
                     <select class="get-regency2 form-control <?= form_error('regency') ? 'is-invalid' : ''; ?>" name="regency" id="prregencyodi" style="width: 100%">
-                      <option value="<?= $company->regency_id; ?>"><?= $company->province_name . ' - ' . $company->regency_name . ' - ' . $company->districts_name; ?></option>
+                      <option value="<?= $company->regency_id . ':' . $company->districts_id; ?>"><?= $company->province_name . ' - ' . $company->regency_name . ' - ' . $company->districts_name; ?></option>
                     </select>
                     <div class="invalid-feedback">
                       <?= form_error('regency'); ?>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="name">Label</label>
                     <div class="form-radio">
                       <div class="radio radio-inline">
@@ -101,8 +101,8 @@
                         </label>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
+                  </div> -->
+                  <!-- <div class="form-group">
                     <label for="name">Status</label>
                     <div class="form-radio">
                       <div class="radio radio-inline">
@@ -117,6 +117,15 @@
                           <i class="helper"></i>Tidak Verifikasi
                         </label>
                       </div>
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="prodi">Pilih Prodi</label>
+                    <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%">
+                      <option value="<?= $company->prodi_id; ?>"><?= $company->major_name . ' - ' . $company->prodi_name; ?></option>
+                    </select>
+                    <div class="invalid-feedback">
+                      <?= form_error('prodi'); ?>
                     </div>
                   </div>
                 </div>

@@ -126,21 +126,49 @@ class Admin_registrations_model extends CI_Model
     return $this->db->get($this->tableSupervisor)->row();
   }
 
-  public function getStudent($data = null)
+  public function getStudent($data = null, $prodi_id = null)
   {
     $query  = "SELECT * FROM `" . $this->tableStudent . "` `a` WHERE `id` NOT IN (SELECT `student_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak')";
+    if ($prodi_id) {
+      $query .= "AND `prodi_id` = '$prodi_id'";
+    }
     if ($data === 'random') {
-      $query .= "ORDER BY RAND() LIMIT 1";
+      $query .= "ORDER BY RAND()";
+    }
+    if ($data === 'randomlimit') {
+      $query .= "ORDER BY RAND() LIMIT 2";
     }
     return $this->db->query($query);
   }
 
   public function getCompany($data = null)
   {
+    $query = "SELECT * FROM `company`";
+    $query .= "WHERE `id` NOT IN (SELECT `company_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak' AND `status` = 'Ketua')";
     if ($data === 'random') {
-      $this->db->order_by('rand()');
+      $query .= "ORDER BY rand() LIMIT 1";
+    }
+    return $this->db->query($query);
+  }
+
+  public function getRegistrationBy($data = null)
+  {
+    if ($data === 'limit') {
+      $this->db->order_by('created_at', 'DESC');
       $this->db->limit(1);
     }
-    return $this->db->get($this->tableCompany);
+    return $this->db->get($this->table);
+  }
+
+  public function getProdiWhereProdiNot($id)
+  {
+    $this->db->order_by('id', 'RAND()');
+    $this->db->limit(3);
+    return $this->db->get_where('prodi', ['id !=' => $id])->result();
+  }
+
+  public function getProdiWhereProdi($id)
+  {
+    return $this->db->get_where('prodi', ['id' => $id])->row();
   }
 }

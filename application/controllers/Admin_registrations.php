@@ -17,8 +17,8 @@ class Admin_registrations extends CI_Controller
         $getAllData     = $this->Registrations->getAllData()->result();
         $dataPeriode    = $this->Registrations->getDataPeriode()->row();
         $data = [
-            'title'                     => 'Data Pendaftaran PKL',
-            'desc'                      => 'Berfungsi untuk melihat Data Pendaftaran PKL',
+            'title'                     => 'Data Pendaftaran PKN',
+            'desc'                      => 'Berfungsi untuk melihat Data Pendaftaran PKN',
             'allRegistrationLeader'     => $getAllData, //Leader,
             'periode'                   => $dataPeriode
         ];
@@ -32,8 +32,8 @@ class Admin_registrations extends CI_Controller
         $this->_validation('leader');
         if ($this->form_validation->run() === false) {
             $data = [
-                'title'         => 'Tambah Pendaftaran PKL',
-                'desc'          => 'Berfungsi untuk menambah Pendaftaran PKL',
+                'title'         => 'Tambah Pendaftaran PKN',
+                'desc'          => 'Berfungsi untuk menambah Pendaftaran PKN',
                 // 'periode'       => $dataPeriode
             ];
             $page = '/admin/registration/create-new';
@@ -74,8 +74,8 @@ class Admin_registrations extends CI_Controller
     {
         $datahistory    = $this->Registrations->getDataHistory()->result();
         $data = [
-            'title'         => 'Data History Pendaftaran PKL',
-            'desc'          => 'Berfungsi untuk melihat history Data Pendaftaran PKL',
+            'title'         => 'Data History Pendaftaran PKN',
+            'desc'          => 'Berfungsi untuk melihat history Data Pendaftaran PKN',
             'datahistory'   => $datahistory
         ];
 
@@ -154,7 +154,7 @@ class Admin_registrations extends CI_Controller
             $cekPeriode                 = $this->Registrations->getDataPeriode()->row();
             $cekCompanyInRegistration   = $this->Registrations->getDataCompanyInRegistration(['company_id' => $companyId], $cekPeriode->start_time, $cekPeriode->finish_time);
             if ($cekCompanyInRegistration->num_rows() > 0) {
-                $this->form_validation->set_message(__FUNCTION__, 'Perusahaan ini sudah terdaftar di kelompok PKL sebelumnya, karena label Prodi');
+                $this->form_validation->set_message(__FUNCTION__, 'Perusahaan ini sudah terdaftar di kelompok PKN sebelumnya, karena label Prodi');
                 return false;
             } else {
                 return true;
@@ -178,8 +178,8 @@ class Admin_registrations extends CI_Controller
             $dataPeriode    = $this->Registrations->getDataPeriode()->row();
             $members        = $this->Config->getStudent(null, $leader->prodi_id, $leader->id)->result();
             $data = [
-                'title'         => 'Detail Pendaftaran PKL',
-                'desc'          => 'Berfungsi untuk melihat detail Pendaftaran PKL',
+                'title'         => 'Detail Pendaftaran PKN',
+                'desc'          => 'Berfungsi untuk melihat detail Pendaftaran PKN',
                 'leader'        => $leader,
                 'periode'       => $dataPeriode,
                 'datamember'    => $members,
@@ -399,31 +399,119 @@ class Admin_registrations extends CI_Controller
 
     public function generatedata()
     {
-        $cekStudentInRegistration   = $this->Registrations->getStudent()->num_rows();
-        $numLeader                  = floor($cekStudentInRegistration / 8);
-        for ($i = 1; $i < $numLeader + 1; $i++) {
-            $rowStudent             = $this->Registrations->getStudent('random')->row();
-            $rowCompany             = $this->Registrations->getCompany('random')->row();
-            $dataPeriode            = $this->Registrations->getDataPeriode()->row();
-            $groupId                = strtotime($dataPeriode->start_time_pkl) . $rowStudent->id;
-            $academic               = $this->Config->getDataAcademicYear(['status' => 1])->row();
-            $academicId             = $academic->id;
-            $this->db->set('id', 'UUID()', FALSE);
-            $dataInsertLeader   = [
-                'group_id'          => $groupId,
-                'company_id'        => $rowCompany->id,
-                'start_date'        => $dataPeriode->start_time_pkl,
-                'finish_date'       => $dataPeriode->finish_time_pkl,
-                'student_id'        => $rowStudent->id,
-                'status'            => 'Ketua',
-                'prodi_id'          => $rowStudent->prodi_id,
-                'group_status'      => 'diverifikasi',
-                'academic_year_id'  => $academicId,
-                'verify_member'     => 'Diterima'
-            ];
-            $insertLeader       = $this->Registrations->insert($dataInsertLeader);
+        $allStudent                 = $this->Registrations->getStudent('random');
+        $looping                    = floor($allStudent->num_rows() / 8); //17 dapetnya 2 kelompok
+
+
+
+        for ($i = 1; $i <= $looping; $i++) {
+            $company                    = $this->Registrations->getCompany('random');
+            if ($company->num_rows() <= 0) {
+                break;
+            }
+            // get prodi dan atau di company wajib limit 4
+            $rowCompany = $company->row();
+            $prodies                    = $this->Registrations->getProdiWhereProdiNot($rowCompany->prodi_id);
+            array_push($prodies, $this->Registrations->getProdiWhereProdi($rowCompany->prodi_id));
+
+            $students = [];
+            array_push($students, array_map(function ($prodi) {
+                $studentsByRandomLimit = $this->Registrations->getStudent('randomlimit', $prodi->id)->result();
+                return array_map(function ($student) {
+                    return $student;
+                }, $studentsByRandomLimit);
+            }, $prodies));
+
+            $dataPeriode                = $this->Registrations->getDataPeriode()->row();
+            $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
+            $academicId                 = $academic->id;
+            $rowCompany                 = $company->row();
+
+            $array_id_leader = rand(0, 7);
+
+
+
+
+            // $leader = $students[$array_id_leader];
+
+            // $groupId                    = strtotime($dataPeriode->start_time_pkl) . ":" . $leader->id;
+
+            // $dataInsert = array_map(function ($student, $index) use ($groupId, $rowCompany, $dataPeriode, $academicId, $array_id_leader) {
+            //     return [
+            //         'group_id'          => $groupId,
+            //         'company_id'        => $rowCompany->id,
+            //         'start_date'        => $dataPeriode->start_time_pkl,
+            //         'finish_date'       => $dataPeriode->finish_time_pkl,
+            //         'student_id'        => $student->id,
+            //         'status'            => ($index == $array_id_leader) ? 'Ketua' : 'Anggota',
+            //         'prodi_id'          => $student->prodi_id,
+            //         'group_status'      => 'diverifikasi',
+            //         'academic_year_id'  => $academicId,
+            //         'verify_member'     => 'Diterima'
+            //     ];
+            // }, $students, array_keys($students));
+
+            // $this->db->insert_batch('registration', $dataInsert);
+            pretty_dump($students);
+
+
+
+            // for ($i = 1; $i <= $looping; $i++) {
+            //     $student                    = $this->Registrations->getStudent('randomlimit');
+            //     $company                    = $this->Registrations->getCompany('random');
+            //     $dataPeriode                = $this->Registrations->getDataPeriode()->row();
+            //     $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
+            //     $academicId                 = $academic->id;
+            //     $row                        = $student->row();
+            //     $rowCompany                 = $company->row();
+            //     $groupId                    = strtotime($dataPeriode->start_time_pkl) . ":" . $row->id;
+            //     $this->db->set('id', 'UUID()', FALSE);
+            //     $dataInsertLeader   = [
+            //         'group_id'          => $groupId,
+            //         'company_id'        => $rowCompany->id,
+            //         'start_date'        => $dataPeriode->start_time_pkl,
+            //         'finish_date'       => $dataPeriode->finish_time_pkl,
+            //         'student_id'        => $row->id,
+            //         'status'            => 'Ketua',
+            //         'prodi_id'          => $row->prodi_id,
+            //         'group_status'      => 'diverifikasi',
+            //         'academic_year_id'  => $academicId,
+            //         'verify_member'     => 'Diterima'
+            //     ];
+            //     pretty_dump($dataInsertLeader);
+            // $insertLeader       = $this->Registrations->insert($dataInsertLeader);
+            // if ($insertLeader > 0) {
+            //     $memberStudent          = $this->Registrations->getStudent('random');
+            //     $dataLeader             = $this->Registrations->getRegistrationBy('limit')->row();
+            //     $j                      = 1;
+            //     foreach ($memberStudent->result() as $member) {
+            //         if ($j < 8) {
+            //             $this->_insertMember($dataLeader, $member);
+            //         }
+            //         $j++;
+            //     }
+            // } else {
+            //     echo "Leader gagal insert";
+            // }
         }
-        die;
+    }
+
+    private function _insertMember($dataLeader, $member)
+    {
+        $this->db->set('id', 'UUID()', FALSE);
+        $dataInsertMember       = [
+            'group_id'          => $dataLeader->group_id,
+            'company_id'        => $dataLeader->company_id,
+            'start_date'        => $dataLeader->start_date,
+            'finish_date'       => $dataLeader->finish_date,
+            'student_id'        => $member->id,
+            'status'            => 'Anggota',
+            'prodi_id'          => $member->prodi_id,
+            'group_status'      => 'diverifikasi',
+            'academic_year_id'  => $dataLeader->academic_year_id,
+            'verify_member'     => 'Diterima'
+        ];
+        $this->Registrations->insert($dataInsertMember);
     }
 
 

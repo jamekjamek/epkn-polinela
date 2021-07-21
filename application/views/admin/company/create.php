@@ -79,7 +79,16 @@
                       <?= form_error('regency'); ?>
                     </div>
                   </div>
-                  <div class="form-group mt-4">
+                  <div class="form-group">
+                    <label for="prodi">Pilih Prodi</label>
+                    <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%">
+                      <option></option>
+                    </select>
+                    <div class="invalid-feedback">
+                      <?= form_error('prodi'); ?>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group mt-4">
                     <label for="name">Label</label>
                     <div class="form-radio">
                       <div class="radio radio-inline">
@@ -95,7 +104,7 @@
                         </label>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>
