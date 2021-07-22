@@ -441,16 +441,15 @@ class Admin_registrations extends CI_Controller
             }
             // get prodi dan atau di company wajib limit 4
             $rowCompany = $company->row();
-            $prodies                    = $this->Registrations->getProdiWhereProdiNot($rowCompany->prodi_id);
+            $prodies = $this->Registrations->getProdiWhereProdiNot($rowCompany->prodi_id);
             array_push($prodies, $this->Registrations->getProdiWhereProdi($rowCompany->prodi_id));
-
             $students = [];
-            array_push($students, array_map(function ($prodi) {
+            foreach ($prodies as $prodi) {
                 $studentsByRandomLimit = $this->Registrations->getStudent('randomlimit', $prodi->id)->result();
-                return array_map(function ($student) {
-                    return $student;
-                }, $studentsByRandomLimit);
-            }, $prodies));
+                foreach ($studentsByRandomLimit as $student) {
+                    array_push($students, $student);
+                }
+            }
 
             $dataPeriode                = $this->Registrations->getDataPeriode()->row();
             $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
@@ -526,6 +525,11 @@ class Admin_registrations extends CI_Controller
         }
     }
 
+    public function generateMhs()
+    {
+        $faker = Faker\Factory::create();
+        echo $faker->name;
+    }
 
 
     public function getcompany()

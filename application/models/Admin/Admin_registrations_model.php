@@ -169,6 +169,7 @@ class Admin_registrations_model extends CI_Model
 
   public function getProdiWhereProdiNot($id)
   {
+    $this->db->where('id IN (SELECT DISTINCT prodi_id from student)');
     $this->db->order_by('id', 'RAND()');
     $this->db->limit(3);
     return $this->db->get_where('prodi', ['id !=' => $id])->result();
