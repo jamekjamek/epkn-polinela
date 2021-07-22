@@ -23,6 +23,10 @@ class ComposerStaticInit20ceb133c5f6c084e5db5d48809ef68e
         array (
             'Mpdf\\' => 5,
         ),
+        'F' => 
+        array (
+            'Faker\\' => 6,
+        ),
         'D' => 
         array (
             'DeepCopy\\' => 9,
@@ -45,6 +49,10 @@ class ComposerStaticInit20ceb133c5f6c084e5db5d48809ef68e
         'Mpdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
+        ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
         'DeepCopy\\' => 
         array (

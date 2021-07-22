@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '972510a554ea21b3aabd31197941b4fc649d5121',
+    'reference' => '4db7a01579c6639680ceeb181341564458cf6561',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '972510a554ea21b3aabd31197941b4fc649d5121',
+      'reference' => '4db7a01579c6639680ceeb181341564458cf6561',
     ),
     'box/spout' => 
     array (
@@ -28,6 +28,15 @@
       array (
       ),
       'reference' => '9bdb027d312b732515b884a341c0ad70372c6295',
+    ),
+    'fzaninotto/faker' => 
+    array (
+      'pretty_version' => 'v1.9.2',
+      'version' => '1.9.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
     ),
     'mpdf/mpdf' => 
     array (
