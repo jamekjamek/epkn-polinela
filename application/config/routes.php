@@ -114,19 +114,7 @@ $route['config/verificationdata']                   = 'Admin_config/data';
 
 //ADMIN PDF TES
 $route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //7.Surat Tugas mahasiswa PKN (F-PAI-030)
-// $route['pdf/permohonanpkl']                         = 'admin_pdf/supplication';
-// $route['pdf/permohonanpkldenganwaktu']              = 'admin_pdf/supplicationWithTime';
-// $route['pdf/amplop']                                = 'admin_pdf/envelope';
-// $route['pdf/pengantardantugastanpabalasan']         = 'admin_pdf/coveringLetterNotReply';
-// $route['pdf/pengantardantugasdenganbalasan']        = 'admin_pdf/pengantardantugasdenganbalasan';
-// $route['pdf/penarikan']                             = 'admin_pdf/penarikan';
-// $route['pdf/laporansupervisipkl']                   = 'admin_pdf/supervisionReport';
-// $route['pdf/nilaisupervisi']                        = 'admin_pdf/nilaisupervisi';
-// $route['pdf/lembarperencanaankegiatanpkl']          = 'admin_pdf/planningSheet';
-// $route['pdf/penilaianmahasiswapembimbinglapang']    = 'admin_pdf/supervisorScore';
-// $route['pdf/logharian']                             = 'admin_pdf/logharian';
-// $route['pdf/nilaidosenpembimbing']                  = 'admin_pdf/guidanceValue';
-// $route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
+$route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
 
 //VERIFICATION
 $route['admin/verification']                        = 'Admin_verification';
