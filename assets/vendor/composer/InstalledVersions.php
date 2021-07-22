@@ -20,8 +20,6 @@ use Composer\Semver\VersionParser;
 
 
 
-
-
 class InstalledVersions
 {
 private static $installed = array (
@@ -32,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '972510a554ea21b3aabd31197941b4fc649d5121',
+    'reference' => '4db7a01579c6639680ceeb181341564458cf6561',
     'name' => '__root__',
   ),
   'versions' => 
@@ -44,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '972510a554ea21b3aabd31197941b4fc649d5121',
+      'reference' => '4db7a01579c6639680ceeb181341564458cf6561',
     ),
     'box/spout' => 
     array (
@@ -54,6 +52,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9bdb027d312b732515b884a341c0ad70372c6295',
+    ),
+    'fzaninotto/faker' => 
+    array (
+      'pretty_version' => 'v1.9.2',
+      'version' => '1.9.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
     ),
     'mpdf/mpdf' => 
     array (
@@ -121,6 +128,7 @@ $packages = array();
 foreach (self::getInstalled() as $installed) {
 $packages[] = array_keys($installed['versions']);
 }
+
 
 if (1 === \count($packages)) {
 return $packages[0];
@@ -285,23 +293,9 @@ return $installed[0]['root'];
 
 
 
-
 public static function getRawData()
 {
-@trigger_error('getRawData only returns the first dataset loaded, which may not be what you expect. Use getAllRawData() instead which returns all datasets for all autoloaders present in the process.', E_USER_DEPRECATED);
-
 return self::$installed;
-}
-
-
-
-
-
-
-
-public static function getAllRawData()
-{
-return self::getInstalled();
 }
 
 
@@ -327,7 +321,6 @@ public static function reload($data)
 self::$installed = $data;
 self::$installedByVendor = array();
 }
-
 
 
 
