@@ -274,6 +274,26 @@ class Admin_registrations extends CI_Controller
         }
     }
 
+    public function changelocation($uri)
+    {
+        $company    = $this->input->post('company');
+        $groupId    = $this->input->post('group-id');
+        $dataUpdate = [
+            'company_id'    => $company,
+            'updated_at'    => date('Y-m-d H:i:s')
+        ];
+        $where      = [
+            'group_id'  => $groupId
+        ];
+        $update     = $this->Registrations->update($dataUpdate, $where);
+        if ($update > 0) {
+            $this->session->set_flashdata('success', 'Data berhasil di update');
+        } else {
+            $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+        }
+        redirect('admin/registrations/detail/' . $uri);
+    }
+
 
     public function verification($stringUrl, $status)
     {

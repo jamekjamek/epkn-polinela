@@ -79,7 +79,13 @@
 
                                         <tr>
                                             <td>Tempat PKN</td>
-                                            <td class="text-uppercase">: <?= $leader->company_name . ', ' . $leader->districts . ', ' . $leader->regency . ', ' . $leader->province; ?></td>
+                                            <td class="text-uppercase">
+                                                : <?= $leader->company_name . ', ' . $leader->districts . ', ' . $leader->regency . ', ' . $leader->province; ?>
+                                                <button type="button" class="btn btn-info change-location" data-toggle="modal" data-target="#change-location" data-id="<?= $leader->group_id; ?>">
+                                                    Ubah
+                                                </button>
+                                            </td>
+
                                         </tr>
                                         <tr>
                                             <td>Waktu PKN</td>
@@ -175,7 +181,7 @@
                                         <th>Verifikasi Mahasiswa</th>
                                         <th>Status Peserta</th>
                                         <th>Dosen Pembimbing</th>
-                                        <th>Aksi</th>
+                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -190,7 +196,7 @@
                                                 <td><?= $group->verify_member; ?></td>
                                                 <td><?= $group->status; ?></td>
                                                 <td><?= $group->lecture_name; ?></td>
-                                                <td>
+                                                <!-- <td>
                                                     <?php if (@$letter && $group->group_status === 'dalam_proses_penerimaan') : ?>
                                                         <?php if ($leader->group_status === 'dalam_proses_penerimaan') : ?>
                                                             Verifikasi Ketua terlebih dahulu
@@ -232,20 +238,20 @@
                                                                     <?php if ($group->verify_member === 'Ditolak') : ?>
                                                                         Member menolak undangan ketua
                                                                     <?php else : ?>
-                                                                        <!-- <button type="button" class="btn btn-info supervisorModal" data-toggle="modal" data-target="#supervisorModal" data-id="<?= $group->id; ?>">
+                                                                        <button type="button" class="btn btn-info supervisorModal" data-toggle="modal" data-target="#supervisorModal" data-id="<?= $group->id; ?>">
                                                                             <?php if ($group->lecture_name === null) : ?>
                                                                                 Pilih Dosen Pembimbing
                                                                             <?php else : ?>
                                                                                 Ubah Dosen Pembimbing
                                                                             <?php endif; ?>
-                                                                        </button> -->
+                                                                        </button>
                                                                         Pilih Dosen Pembimbing Dari Ketua
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -342,6 +348,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="change-location" role="dialog" aria-labelledby="change-locationLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="change-locationLabel">Ubah Lokasi PKL</h5>
+            </div>
+            <form action="<?= base_url('admin/registrations/changelocation/' . $this->uri->segment(4)); ?>" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="group-id" id="group-id" value="">
+                    <select class="get-companies form-control" name="company" id="company" style="width: 100%" required>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

@@ -367,6 +367,11 @@ $(document).ready(function () {
 		let id	= $(this).data('id');
 		$('#registration-id').val(id);
 	});
+	
+	$('.change-location').on('click', function(){
+		let id	= $(this).data('id');
+		$('#group-id').val(id);
+	});
 
 
 	//GENERATE DATA
