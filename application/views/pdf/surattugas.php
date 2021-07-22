@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surat Pengantar dan Surat Tugas Dengan Balasan</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p style="text-align: center;">
+    <strong style="font-size:18px">SURAT TUGAS</strong>
+    <br>
+    <span style="text-align: center; font-weight:bold">Nomor: 123/PL15/KM/2021</span>
+  </p>
+  <p style="text-align: center;">&nbsp;</p>
+  <p style="text-align: left;">Direktur Politeknik Negeri Lampung, memberikan tugas kepada:</p>
+  <table style="border-collapse: collapse; width: 100%; height: 144px; padding:20px" border="1">
+    <thead>
+      <tr style="height: 18px;">
+        <td style="width: 6.96023%; text-align: center; height: 18px;"><strong>No</strong></td>
+        <td style="width: 43.0398%; text-align: center; height: 18px;"><strong>Nama</strong></td>
+        <td style="width: 25%; text-align: center; height: 18px;"><strong>NPM</strong></td>
+        <td style="width: 25%; text-align: center; height: 18px;"><strong>Program Studi</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <?php for ($i = 1; $i <= 8; $i++) : ?>
+        <tr style="height: 18px;">
+          <td style="width: 6.96023%; height: 18px; text-align:center"><?= $i; ?></td>
+          <td style="width: 43.0398%; height: 18px;">&nbsp;</td>
+          <td style="width: 25%; height: 18px;">&nbsp;</td>
+          <td style="width: 25%; height: 18px;">&nbsp;</td>
+        </tr>
+      <?php endfor; ?>
+    </tbody>
+  </table>
+  <p>
+    <span>
+      Untuk melaksanakan Praktik Kerja Nyata (PKN) Tahun 20.. di :
+    </span>
+    <br>
+    <span style="font-weight:bold;">
+      Desa ......., Kecamatan .......... Kabupaten ..........
+    </span>
+    <br>
+    <span style="font-weight:bold;font-style:italic">
+      Terhitung mulai tanggal: ............... s.d. ............... 20..
+    </span>
+    <br>
+    <br>
+    <span>
+      Demikian surat tugas ini dikeluarkan untuk dapat dilaksanakan sebagaimana mestinya .
+    </span>
+
+  </p>
+  <div>
+    <br>
+    <div style="padding-left: 400px;">22 Ferbuari 2021</div>
+    <br>
+    <p style="padding-left: 400px;">
+      <span>
+        a.n Direktur
+      </span>
+      <br>
+      <span>
+        Pembantu Direktur I,
+      </span>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <span>
+        Dwi Puji Hartono
+      </span>
+      <br>
+      <span>
+
+        NIP <span style="font-weight: 400;">197602202000031002</span>
+      </span>
+
+
+    </p>
+    <p style="padding-left: 400px;"></p>
+    <p style="padding-left: 400px;">&nbsp;</p>
+    <p style="padding-left: 400px;">&nbsp;</p>
+    <p style="padding-left: 400px;"></p>
+    <p style="padding-left: 400px;"></p>
+    <div style="padding-left: 440px;">&nbsp;</div>
+  </div>
+</body>
+
+</html>
