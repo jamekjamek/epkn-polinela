@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilai akhir PKN (F-PAI-037)</title>
+    <title>Penilaian dosen pembimbing (F-PAI-038)</title>
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -20,7 +20,7 @@
     <br>
     <br>
     <p style="text-align: center;">
-        <strong style="font-size:14px; text-transform:uppercase">Nilai Akhir</strong>
+        <strong style="font-size:14px; text-transform:uppercase">Lembar Penilaian oleh Dosen Pembimbing</strong>
     </p>
     <table style="width: 70%; height: 59px; padding-left:50px" border="0">
         <tbody>
@@ -44,10 +44,6 @@
                 <td>Tempat PKN </td>
                 <td>: .......................................................</td>
             </tr>
-            <tr>
-                <td>Dosen pembimbing </td>
-                <td>: .......................................................</td>
-            </tr>
         </tbody>
     </table>
     <br>
@@ -64,9 +60,9 @@
         <tbody>
             <tr>
                 <td style="height: 18px; text-align:center">1</td>
-                <td style="height: 18px; padding-left:10px">Pembimbing Lapangan
+                <td style="height: 18px; padding-left:10px">Rencana Kegiatan/Program kerja
                 </td>
-                <td style="height: 18px;text-align:center">40</td>
+                <td style="height: 18px;text-align:center">25</td>
                 <td style="height: 18px;">
                     <!-- Score Here -->
                 </td>
@@ -76,9 +72,9 @@
             </tr>
             <tr>
                 <td style="height: 18px; text-align:center">2</td>
-                <td style="height: 18px; padding-left:10px">Dosen Pendamping
+                <td style="height: 18px; padding-left:10px">Pelaksanaan Kegiatan Program
                 </td>
-                <td style="height: 18px;text-align:center">35</td>
+                <td style="height: 18px;text-align:center">30</td>
                 <td style="height: 18px;">
                     <!-- Score Here -->
                 </td>
@@ -88,8 +84,19 @@
             </tr>
             <tr>
                 <td style="height: 18px; text-align:center">3</td>
-                <td style="height: 18px; padding-left:10px">Ujian</td>
+                <td style="height: 18px; padding-left:10px">Supervisi</td>
                 <td style="height: 18px;text-align:center">25</td>
+                <td style="height: 18px;">
+                    <!-- Score Here -->
+                </td>
+                <td style="height: 18px;">
+                    <!-- Score Here -->
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 18px; text-align:center">3</td>
+                <td style="height: 18px; padding-left:10px">Laporan</td>
+                <td style="height: 18px;text-align:center">20</td>
                 <td style="height: 18px;">
                     <!-- Score Here -->
                 </td>
@@ -110,7 +117,7 @@
             </tr>
         </tbody>
     </table>
-    <p style="padding-left:20px">Nilai akhir PKN : ..............................(.......................) </p>
+    <p style="padding-left:20px">Kisaran Nilai: 0 - 100 </p>
 
     <br>
     <br>
@@ -119,7 +126,7 @@
             <span>Bandar Lampung, ........................ 20....</span>
             <br>
             <span>
-                Ketua Jurusan,
+                Dosen Pembimbing,
             </span>
             <br>
             <br>
