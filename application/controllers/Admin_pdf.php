@@ -111,9 +111,9 @@ class Admin_pdf extends CI_Controller
     $dataBody           = [];
     $body               = $this->load->view('pdf/penilaianujian', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
-    $mpdf->SetTitle("Formulir penilaian supervisi PKN (F-PAI-035)");
+    $mpdf->SetTitle("Formulir penilaian ujian PKN (F-PAI-036)");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($body);
-    $mpdf->Output('Formulir penilaian supervisi PKN (F-PAI-035).pdf', 'I');
+    $mpdf->Output('Formulir penilaian ujian PKN (F-PAI-036).pdf', 'I');
   }
 }
