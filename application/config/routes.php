@@ -115,6 +115,7 @@ $route['config/verificationdata']                   = 'Admin_config/data';
 //ADMIN PDF TES
 $route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //7.Surat Tugas mahasiswa PKN (F-PAI-030)
 $route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
+$route['pdf/penilaianpembimbinglapang']             = 'admin_pdf/penilaianpembimbinglapang'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
 
 //VERIFICATION
 $route['admin/verification']                        = 'Admin_verification';
