@@ -120,6 +120,7 @@ $route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervis
 $route['pdf/penilaiansupervisi']                    = 'admin_pdf/penilaiansupervisi'; //12.Formulir penilaian supervisi PKN (F-PAI-035)
 $route['pdf/penilaianujian']                        = 'admin_pdf/penilaianujian'; //13.Formulir penilaian ujian PKN (F-PAI-036)
 $route['pdf/nilaiakhir']                            = 'admin_pdf/nilaiakhir'; //14.Nilai akhir PKN (F-PAI-037)
+$route['pdf/penilaiandosenpembimbing']              = 'admin_pdf/penilaiandosenpembimbing'; //15.Penilaian dosen pembimbing (F-PAI-038)
 
 //VERIFICATION
 $route['admin/verification']                        = 'Admin_verification';

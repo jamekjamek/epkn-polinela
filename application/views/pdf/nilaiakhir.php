@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilai akhir PKN (F-PAI-037)</title>
+    <title>Penilaian dosen pembimbing (F-PAI-038)</title>
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;

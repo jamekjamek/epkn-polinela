@@ -134,4 +134,22 @@ class Admin_pdf extends CI_Controller
     $mpdf->WriteHTML($body);
     $mpdf->Output('Nilai akhir PKN (F-PAI-037).pdf', 'I');
   }
+
+  public function penilaiandosenpembimbing()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    // $mpdf->SetHTMLFooter($footer);
+    $dataBody           = [];
+    $body               = $this->load->view('pdf/penilaiandosenpembimbing', $dataBody, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("15.Penilaian dosen pembimbing (F-PAI-038)");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($body);
+    $mpdf->Output('15.Penilaian dosen pembimbing (F-PAI-038).pdf', 'I');
+  }
 }
