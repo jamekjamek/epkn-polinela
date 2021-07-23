@@ -80,4 +80,40 @@ class Admin_pdf extends CI_Controller
     $mpdf->WriteHTML($body);
     $mpdf->Output('Laporan Supervisi PKN (F-PAI-034).pdf', 'I');
   }
+
+  public function penilaiansupervisi()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    // $mpdf->SetHTMLFooter($footer);
+    $dataBody           = [];
+    $body               = $this->load->view('pdf/penilaiansupervisi', $dataBody, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Formulir penilaian supervisi PKN (F-PAI-035)");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($body);
+    $mpdf->Output('Formulir penilaian supervisi PKN (F-PAI-035).pdf', 'I');
+  }
+
+  public function penilaianujian()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    // $mpdf->SetHTMLFooter($footer);
+    $dataBody           = [];
+    $body               = $this->load->view('pdf/penilaianujian', $dataBody, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Formulir penilaian supervisi PKN (F-PAI-035)");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($body);
+    $mpdf->Output('Formulir penilaian supervisi PKN (F-PAI-035).pdf', 'I');
+  }
 }

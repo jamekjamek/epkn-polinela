@@ -117,6 +117,8 @@ $route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //
 $route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
 $route['pdf/penilaianpembimbinglapang']             = 'admin_pdf/penilaianpembimbinglapang'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
 $route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervisi'; //11.Laporan Supervisi PKN (F-PAI-034)
+$route['pdf/penilaiansupervisi']                    = 'admin_pdf/penilaiansupervisi'; //12.Formulir penilaian supervisi PKN (F-PAI-035)
+$route['pdf/penilaianujian']                        = 'admin_pdf/penilaianujian'; //13.Formulir penilaian ujian PKN (F-PAI-036)
 
 //VERIFICATION
 $route['admin/verification']                        = 'Admin_verification';
