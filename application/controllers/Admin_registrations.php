@@ -7,7 +7,7 @@ class Admin_registrations extends CI_Controller
         parent::__construct();
         $this->load->model('Admin/Admin_registrations_model', 'Registrations');
         $this->load->model('Admin/Admin_config_model', 'Config');
-        $this->load->model('Admin/Admin_company_model', 'Company');
+        $this->load->model('Admin/Admin_village_model', 'Company');
         $this->role         = 'admin';
         $this->redirect     = 'admin/registrations';
         cek_login('Admin');

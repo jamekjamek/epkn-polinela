@@ -20,16 +20,7 @@ var mySwal = {
 			confirmButtonText: "verifikasi",
 		}).then(callbackResult);
 	},
-	// approvalDialog : function(text='', callbackResult){
-	//     Swal.fire({
-	//         text: text,
-	//         icon: 'info',
-	//         showDenyButton: true,
-	//         confirmButtonColor: '#3085d6',
-	//         confirmButtonText: 'Terima',
-	//         denyButtonText: `Tolak`,
-	//     }).then(callbackResult)
-	// },
+
 	approvalDialog: function (title = "", buttons, willOpen) {
 		let containerbuttons = $("<div>").addClass("text-center");
 		containerbuttons.append(buttons);

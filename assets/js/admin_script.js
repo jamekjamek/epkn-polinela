@@ -34,7 +34,7 @@ $(document).ready(function () {
 		deleteQuestion(url, "Yakin akan menghapus data ini ?");
 	}
 
-	
+
 	//select2ajax
 	function select2ajax(route, text) {
 		$('.get-' + route + '').select2({
@@ -73,12 +73,12 @@ $(document).ready(function () {
 			allowOutsideClick: false,
 			allowEscapeKey: false
 		}).then((result) => {
-			var href	= "";
+			var href = "";
 			if (result.isConfirmed) {
-				href	= `${url}1`
+				href = `${url}1`
 				// document.location.href = url;
-			}else{
-				href    = `${url}0`
+			} else {
+				href = `${url}0`
 				// alert('false');
 			}
 			document.location.href = href;
@@ -136,27 +136,27 @@ $(document).ready(function () {
 		placeholder: "Cari tahun akademik"
 	});
 
-	$("#academicyearyearpkladmin").on("change", function(){
+	$("#academicyearyearpkladmin").on("change", function () {
 		var id = $(this).val();
-		document.location.href = `${base_url}admin/master/pkl/${id}`
+		document.location.href = `${base_url}admin/master/pkn/${id}`
 	});
 
 	$("#academicyearpudir").select2({
-		placeholder:"Cari tahun akademik"
+		placeholder: "Cari tahun akademik"
 	});
 
-	$("#academicyearpudir").on("change", function(){
+	$("#academicyearpudir").on("change", function () {
 		var id = $(this).val();
-		document.location.href = `${base_url}pudir/pkl/${id}`
+		document.location.href = `${base_url}pudir/pkn/${id}`
 	});
-	
+
 	$("#academicyearketuplak").select2({
-		placeholder:"Cari tahun akademik"
+		placeholder: "Cari tahun akademik"
 	});
 
-	$("#academicyearketuplak").on("change", function(){
+	$("#academicyearketuplak").on("change", function () {
 		var id = $(this).val();
-		document.location.href = `${base_url}ketuplak/pkl/${id}`
+		document.location.href = `${base_url}ketuplak/pkn/${id}`
 	});
 
 	$(document).on('click', '.deleteletterconfig', function () {
@@ -216,16 +216,16 @@ $(document).ready(function () {
 	}))
 
 	select2ajax('companies', 'Cari desa');
-	$('.get-companies').on('change', function(){
+	$('.get-companies').on('change', function () {
 		var id = $(this).val();
 		$.ajax({
-			url: `${base_url}admin/registrations/getcompany`,
+			url: `${base_url}admin/registrations/getvillage`,
 			type: 'POST',
 			dataType: 'JSON',
 			data: {
-				id:id
+				id: id
 			},
-			success:(result)=>{
+			success: (result) => {
 				console.log(result.prodi_name);
 				$('.resultcompany').html(`Desa ini membutuhkan prodi ${result.prodi_name} - ${result.major_name}`);
 			}
@@ -321,7 +321,7 @@ $(document).ready(function () {
 	// })
 	//END GA KEPAKE
 
-	$(".verficationprocess").on('click', function(){
+	$(".verficationprocess").on('click', function () {
 		var id = $(this).data("id");
 		var uri = $(this).data("uri");
 		var url = `${base_url}admin/registrations/verification/${id}:${uri}/`
@@ -331,12 +331,12 @@ $(document).ready(function () {
 	$('.get-lecture-supervisor').select2({
 		placeholder: 'Cari nama Dosen'
 	});
-	
-	$('.moveGroup').on('click', function(){
-		let id	= $(this).data('student');
+
+	$('.moveGroup').on('click', function () {
+		let id = $(this).data('student');
 		$('#id').val(id);
 	});
-	
+
 	$('.get-another-group').select2({
 		placeholder: 'Cari nama Ketua group'
 	});
@@ -363,19 +363,19 @@ $(document).ready(function () {
 		})
 	});
 
-	$('.supervisorModal').on('click', function(){
-		let id	= $(this).data('id');
+	$('.supervisorModal').on('click', function () {
+		let id = $(this).data('id');
 		$('#registration-id').val(id);
 	});
-	
-	$('.change-location').on('click', function(){
-		let id	= $(this).data('id');
+
+	$('.change-location').on('click', function () {
+		let id = $(this).data('id');
 		$('#group-id').val(id);
 	});
 
 
 	//GENERATE DATA
-	$('#generate-data').on('click', function(){
+	$('#generate-data').on('click', function () {
 		$.ajax({
 			url: `${base_url}admin/registrations/generatedata`,
 			dataType: 'JSON',
@@ -468,7 +468,7 @@ $(document).ready(function () {
 	});
 
 	$("#document").select2({
-		placeholder:"Cari dokumen"
+		placeholder: "Cari dokumen"
 	})
 	/*END ADMIN PAGE */
 
@@ -596,8 +596,8 @@ $(document).ready(function () {
 		placeholder: 'Cari nama Dosen atau Jurusan'
 	});
 
-	$('.kajur-checkbox').on('click', function(){
-		var id	= $(this).data('id');
+	$('.kajur-checkbox').on('click', function () {
+		var id = $(this).data('id');
 		if ($(this).is(":checked")) {
 			data = {
 				id: id,
@@ -609,14 +609,14 @@ $(document).ready(function () {
 				status: 0
 			}
 		}
-		
+
 		$.ajax({
 			url: `${base_url}admin/master/head-of-program/update`,
 			dataType: 'JSON',
 			method: 'POST',
 			data: data,
 			success: (data) => {
-				if(data === '0'){
+				if (data === '0') {
 					alertCustom('Server sedang sibuk', 'warning');
 				}
 			}
@@ -629,8 +629,8 @@ $(document).ready(function () {
 		placeholder: 'Cari nama Dosen atau Jurusan'
 	});
 
-	$('.kaprodi-checkbox').on('click', function(){
-		var id	= $(this).data('id');
+	$('.kaprodi-checkbox').on('click', function () {
+		var id = $(this).data('id');
 		if ($(this).is(":checked")) {
 			data = {
 				id: id,
@@ -642,14 +642,14 @@ $(document).ready(function () {
 				status: 0
 			}
 		}
-		
+
 		$.ajax({
 			url: `${base_url}admin/master/head-of-program-study/update`,
 			dataType: 'JSON',
 			method: 'POST',
 			data: data,
 			success: (data) => {
-				if(data === '0'){
+				if (data === '0') {
 					alertCustom('Server sedang sibuk', 'warning');
 				}
 			}
@@ -657,13 +657,69 @@ $(document).ready(function () {
 	});
 
 
-	$("#academicyearyearpkl").on("change", function(){
+	$("#academicyearyearpkl").on("change", function () {
 		var id = $(this).val();
-		document.location.href = `${base_url}major/persentasepkl/${id}`
+		document.location.href = `${base_url}major/persentasepk/${id}`
 	});
 
 	$("#academicyearyearpkl").select2({
-			placeholder: 'Cari nama Dosen atau Jurusan'
+		placeholder: 'Cari nama Dosen atau Jurusan'
 	})
 	//================================END KAJUR PAGE
+
+	// jution
+	$('.modalViewPdfId').on('click', function () {
+		let guidebookId = $(this).data('log');
+		$('#modalViewPdfIdLabel').html(`Buku Panduan ${guidebookId}`);
+		$.ajax({
+			url: `${base_url}admin/guidebook/detail`,
+			dataType: 'JSON',
+			method: 'POST',
+			data: {
+				guidebookId: guidebookId
+			},
+			success: (data) => {
+				if (data.status === 'ok') {
+					$('.viewPdfResult').html(data.data);
+				} else {
+					alertCustom('Server sedang sibuk', 'warning');
+				}
+			}
+		})
+	});
+
+	$('#change-guidebook').on('show.bs.modal', function (event) {
+		var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+		var modal = $(this)
+		modal.find('#id').attr("value", div.data('id'));
+	});
+
+	$('.modalViewPlanning').on('click', function () {
+		let guidebookId = $(this).data('log');
+		$('#modalViewPlanningLabel').html(`Capaian Pembelajaran ${guidebookId}`);
+		$.ajax({
+			url: `${base_url}admin/master/planning_attachment/detail`,
+			dataType: 'JSON',
+			method: 'POST',
+			data: {
+				guidebookId: guidebookId
+			},
+			success: (data) => {
+				if (data.status === 'ok') {
+					$('.modalViewPlanningResult').html(data.data);
+				} else {
+					alertCustom('Server sedang sibuk', 'warning');
+				}
+			}
+		})
+	});
+
+	$('#change-planning').on('show.bs.modal', function (event) {
+		var div = $(event.relatedTarget)
+		var modal = $(this)
+		modal.find('#id').attr("value", div.data('id'));
+		modal.find('#prodi').attr("value", div.data('prodi'));
+	});
+
+
 });

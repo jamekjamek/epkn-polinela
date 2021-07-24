@@ -7,7 +7,7 @@ $route['default_controller']                        = 'auth/login';
 $route['auth']                                      = 'auth/login';
 $route['auth/changedefault']                        = 'auth/changepasswordfromdefault';
 
-/* ================ADMIN ROLE======================== */
+/* ================================== ADMIN ROLE ================================== */
 
 //ADMIN
 $route['admin/dashboard']                           = 'admin_dashboard/index';
@@ -18,19 +18,6 @@ $route['admin/config/academic_year']                = 'admin_academic_year';
 $route['admin/config/academic_year/add']            = 'admin_academic_year/create';
 $route['admin/config/academic_year/edit/(:any)']    = 'admin_academic_year/update/$1';
 $route['admin/config/academic_year/delete/(:any)']  = 'admin_academic_year/delete/$1';
-
-//PERIODE
-$route['admin/config/(:any)']                       = 'admin_periode/index/$1';
-$route['admin/config/add/(:any)']                   = 'admin_periode/create/$1';
-$route['admin/config/edit/(:any)/(:any)']           = 'admin_periode/update/$1/$2';
-
-
-//LETTER
-$route['admin/letter']                              = 'admin_letter';
-$route['admin/letter/add']                          = 'admin_letter/add';
-$route['admin/letter/logo']                         = 'admin_letter/uploadlogo';
-$route['admin/letter/detail/(:any)']                = 'admin_letter/detail/$1';
-$route['admin/master/letter/delete/(:any)']         = 'admin_letter/delete/$1';
 
 //MASTER DATA
 //MAJOR
@@ -65,20 +52,14 @@ $route['admin/master/lecture/import']               = 'admin_lecture/import'; //
 $route['admin/master/lecture/importlecture']        = 'admin_lecture/importlecture'; //action
 
 //COMPANY
-$route['admin/master/company']                      = 'admin_company';
-$route['admin/master/company/add']                  = 'admin_company/create';
-$route['admin/master/company/exportRegency']        = 'admin_company/exportRegency';
-$route['admin/master/company/edit/(:any)']          = 'admin_company/update/$1';
-$route['admin/master/company/delete/(:any)']        = 'admin_company/delete/$1';
-$route['admin/master/company/import']               = 'admin_company/import';
-$route['admin/master/company/importcompany']        = 'admin_company/importcompany'; //action
-$route['admin/master/company/export']               = 'admin_company/export';
-
-//ROOM
-$route['admin/master/room']                         = 'admin_room';
-$route['admin/master/room/add']                     = 'admin_room/create';
-$route['admin/master/room/edit/(:any)']             = 'admin_room/update/$1';
-$route['admin/master/room/delete/(:any)']           = 'admin_room/delete/$1';
+$route['admin/master/village']                      = 'admin_village';
+$route['admin/master/village/add']                  = 'admin_village/create';
+$route['admin/master/village/exportRegency']        = 'admin_village/exportRegency';
+$route['admin/master/village/edit/(:any)']          = 'admin_village/update/$1';
+$route['admin/master/village/delete/(:any)']        = 'admin_village/delete/$1';
+$route['admin/master/village/import']               = 'admin_village/import';
+$route['admin/master/village/importvillage']        = 'admin_village/importvillage'; //action
+$route['admin/master/village/export']               = 'admin_village/export';
 
 
 //REGISTRATIONS
@@ -92,13 +73,10 @@ $route['admin/registrations/addnewmember/(:any)']               = 'admin_registr
 $route['admin/registrations/upload/(:any)']                     = 'admin_registrations/upload/$1';
 $route['admin/registrations/changelocation/(:any)']             = 'admin_registrations/changelocation/$1';
 
-// $route['admin/registrations/member']                = 'admin_registrations/getmember';
-// $route['admin/registrations/addgroup']              = 'admin_registrations/creategroup';
 $route['admin/registrations/history']                           = 'admin_registrations/history';
 $route['admin/registrations/historydetail']                     = 'admin_registrations/historydetail';
 $route['admin/registrations/generatedata']                      = 'admin_registrations/generatedata';
-$route['admin/registrations/getcompany']                        = 'admin_registrations/getcompany';
-
+$route['admin/registrations/getvillage']                        = 'admin_registrations/getvillage';
 
 
 //ADMIN CONFIG
@@ -139,44 +117,34 @@ $route['admin/master/head-of-program-study/update'] = 'Admin_head_program_study/
 $route['admin/master/users']                        = 'Admin_users';
 $route['admin/master/users/update/(:any)/(:any)']   = 'Admin_users/update/$1/$2';
 
-
-$route['admin/master/pkl']                          = 'Admin_pkl';
-$route['admin/master/pkl/(:any)']                   = 'Admin_pkl/index/$1';
-/*=================END ADMIN ROLE======================*/
+$route['admin/master/pkn']                          = 'Admin_pkn';
+$route['admin/master/pkn/(:any)']                   = 'Admin_pkn/index/$1';
 
 
-/* ================SEKJUR ROLE======================== */
-$route['major/dashboard']                           = 'Major_dashboard';
-$route['major/verification']                        = 'Major_verification';
+//GUIDEBOOK
+$route['admin/guidebook']                           = 'admin_guidebook';
+$route['admin/guidebook/add']                       = 'admin_guidebook/create';
+$route['admin/guidebook/detail']                    = 'admin_guidebook/detail';
+
+// Kesediaan penerimaan
+$route['admin/report_reception']                    = 'Admin_report_reception';
+$route['admin/report_reception/detail/(:any)']      = 'Admin_report_reception/detail/$1';
 
 
-$route['major/persentasepkl']                       = 'Major_persentasepkl';
-$route['major/persentasepkl/(:any)']                = 'Major_persentasepkl/index/$1';
-/* ================END SEKJUR ROLE======================== */
+// PLANNING ATTACHMENT
+$route['admin/master/planning_attachment']          = 'admin_planning_attachment';
+$route['admin/master/planning_attachment/add']      = 'admin_planning_attachment/create';
+$route['admin/master/planning_attachment/detail']   = 'admin_planning_attachment/detail';
 
 
 
 
+/* ================================== STUDENT ROLE ================================== */
 
-
-/* ================MAHASISWA ROLE======================== */
 $route['mahasiswa/dashboard']                       = 'mahasiswa_dashboard';
-$route['mahasiswa/company']                         = 'mahasiswa_company';
-$route['mahasiswa/company/add']                     = 'mahasiswa_company/create';
-$route['mahasiswa/company/edit/(:any)/edit']        = 'mahasiswa_company/update/$1/edit';
-
-$route['mahasiswa/registration']                    = 'mahasiswa_registration';
-$route['mahasiswa/registration/add']                = 'mahasiswa_registration/create';
-$route['mahasiswa/registration/member']             = 'mahasiswa_registration/getMember';
-$route['mahasiswa/registration/addgroup']           = 'mahasiswa_registration/createGroup';
-$route['mahasiswa/config/getcompanyregis']          = 'mahasiswa_registration/getCompany';
 
 $route['mahasiswa/document']                        = 'mahasiswa_document';
 $route['mahasiswa/document/update']                 = 'mahasiswa_document/edit';
-
-$route['mahasiswa/registration/invited']            = 'mahasiswa_registration/invited';
-$route['mahasiswa/registration/uploaded']           = 'mahasiswa_registration/uploaded';
-$route['mahasiswa/registration/addnewmember']       = 'mahasiswa_registration/addnewmember';
 
 $route['mahasiswa/planning']                        = 'mahasiswa_planning';
 $route['mahasiswa/planning/add']                    = 'mahasiswa_planning/create';
@@ -190,22 +158,18 @@ $route['mahasiswa/daily/log/edit/(:any)/edit']      = 'mahasiswa_daily/logUpdate
 $route['mahasiswa/daily/check_point']               = 'mahasiswa_daily/checkPoint';
 $route['mahasiswa/daily/check_point/add']           = 'mahasiswa_daily/checkPointCreate';
 
-
 $route['mahasiswa/profile']                         = 'mahasiswa_profile';
 
 $route['mahasiswa/config/getcapaian']               = 'mahasiswa_planning/getCapaian';
 $route['mahasiswa/config/getsubcapaian']            = 'mahasiswa_planning/getSubCapaian';
 
-$route['mahasiswa/data_pkl']                        = 'mahasiswa_data_pkl';
-$route['mahasiswa/data_pkl/uploaded']               = 'mahasiswa_data_pkl/upload';
+$route['mahasiswa/data_pkn']                        = 'mahasiswa_data_pkn';
+$route['mahasiswa/data_pkn/uploaded']               = 'mahasiswa_data_pkn/upload';
 
 
 
 
-/*=================END MAHASISWA ROLE======================*/
-
-
-
+/* ================================== PRODI ROLE ================================== */
 
 
 //KAPRODI
@@ -213,35 +177,28 @@ $route['mahasiswa/data_pkl/uploaded']               = 'mahasiswa_data_pkl/upload
 $route['prodi/dashboard']                           = 'kaprodi_dashboard/index';
 
 // Location CRUD Routes
-$route['prodi/pkl_location']                        = 'kaprodi_pkl_location/index';
-$route['prodi/pkl_location/create']                 = 'kaprodi_pkl_location/create';
-$route['prodi/pkl_location/edit/(:any)']            = 'kaprodi_pkl_location/edit/$1';
-$route['prodi/pkl_location/update/(:any)']          = 'kaprodi_pkl_location/update/$1';
-$route['prodi/pkl_location/store']                  = 'kaprodi_pkl_location/store';
-$route['prodi/pkl_location/delete/(:any)']          = 'kaprodi_pkl_location/destroy/$1';
-$route['prodi/pkl_location/verifikasi/(:any)']      = 'kaprodi_pkl_location/verifikasi/$1';
+$route['prodi/pkn_location']                        = 'kaprodi_pkn_location/index';
 
-$route['prodi/pkl_verifikasi/verifikasi/(:any)']    = 'kaprodi_pkl_registration/verifikasi/$1';
-$route['prodi/pkl_registrasi/period/(:any)']        = 'kaprodi_pkl_registration/index/$1';
-$route['prodi/pkl_registrasi']                      = 'kaprodi_pkl_registration/index';
-$route['prodi/pkl_registrasi/uploaded']             = 'kaprodi_pkl_registration/uploaded';
+$route['prodi/pkn_registrasi/period/(:any)']        = 'kaprodi_pkn_registration/index/$1';
+$route['prodi/pkn_registrasi']                      = 'kaprodi_pkn_registration/index';
 
-$route['prodi/pkl_group_activity']                        = 'kaprodi_pkl_group_activity/index';
-$route['prodi/pkl_group_activity/detail/(:any)']          = 'kaprodi_pkl_group_activity/detail/$1';
-$route['prodi/pkl_group_activity/dailylog/(:any)']        = 'kaprodi_pkl_group_activity/memberDailyLog/$1';
-$route['prodi/pkl_group_activity/present/(:any)']         = 'kaprodi_pkl_group_activity/memberPresent/$1';
-$route['prodi/pkl_group_activity/final_score/(:any)']      = 'kaprodi_pkl_group_activity/memberFinalScore/$1';
+$route['prodi/pkn_group_activity']                  = 'kaprodi_pkn_group_activity/index';
+$route['prodi/pkn_group_activity/detail/(:any)']    = 'kaprodi_pkn_group_activity/detail/$1';
+$route['prodi/pkn_group_activity/dailylog/(:any)']  = 'kaprodi_pkn_group_activity/memberDailyLog/$1';
+$route['prodi/pkn_group_activity/present/(:any)']   = 'kaprodi_pkn_group_activity/memberPresent/$1';
+$route['prodi/pkn_group_activity/final_score/(:any)'] = 'kaprodi_pkn_group_activity/memberFinalScore/$1';
 // AJAX API
-$route['prodi/pkl_location/regency']['get']                 = 'kaprodi_pkl_location/getRegecy';
-$route['prodi/pkl_location/province']['get']                = 'kaprodi_pkl_location/getProvince';
-$route['prodi/pkl_registrasi/academic_year']['get']         = 'kaprodi_pkl_registration/getPklAcademicYear';
-$route['prodi/pkl_registrasi/lecture']['get']               = 'kaprodi_pkl_registration/getLecture';
-$route['prodi/pkl_registrasi/approval']['post']             = 'kaprodi_pkl_registration/approvalAPI';
-$route['prodi/pkl_registrasi/location/(:any)']['get']       = 'kaprodi_pkl_registration/getPklLocation/$1';
-$route['prodi/pkl_registrasi/location']['post']             = 'kaprodi_pkl_registration/changeLocation';
+$route['prodi/pkn_location/regency']['get']          = 'kaprodi_pkn_location/getRegecy';
+$route['prodi/pkn_location/province']['get']         = 'kaprodi_pkn_location/getProvince';
+$route['prodi/pkn_registrasi/academic_year']['get']  = 'kaprodi_pkn_registration/getPklAcademicYear';
+$route['prodi/pkn_registrasi/lecture']['get']        = 'kaprodi_pkn_registration/getLecture';
+$route['prodi/pkn_registrasi/approval']['post']      = 'kaprodi_pkn_registration/approvalAPI';
+$route['prodi/pkn_registrasi/location/(:any)']['get'] = 'kaprodi_pkn_registration/getPklLocation/$1';
+$route['prodi/pkn_registrasi/location']['post']       = 'kaprodi_pkn_registration/changeLocation';
 
 
-/*=================ROLE LECTURE======================*/
+/* ================================== LECTURE ROLE ================================== */
+
 $route['dosen/dashboard']                           = 'lecture_dashboard';
 
 $route['dosen/planning']                            = 'lecture_planning';
@@ -256,35 +213,35 @@ $route['dosen/report_supervision/detail/(:any)']    = 'lecture_report/detailRepo
 $route['dosen/report_reception']                    = 'lecture_report/reportReception';
 $route['dosen/report_reception/academic_year/(:any)'] = 'lecture_report/reportReception/$1';
 
-$route['dosen/data_pkl']                            = 'lecture_data_pkl';
-$route['dosen/data_pkl/academic_year/(:any)']       = 'lecture_data_pkl/index/$1';
-$route['dosen/data_pkl/assessment/(:any)']          = 'lecture_data_pkl/assessment/$1';
-$route['dosen/data_pkl/assessment/supervision/(:any)'] = 'lecture_data_pkl/saveAssesmentSupervision/$1';
-$route['dosen/data_pkl/assessment/guidance/(:any)'] = 'lecture_data_pkl/saveAssesmentGuidance/$1';
-$route['dosen/data_pkl/assessment/test_score/(:any)'] = 'lecture_data_pkl/saveAssesmentFinalTest/$1';
-
+$route['dosen/data_pkn']                            = 'lecture_data_pkn';
+$route['dosen/data_pkn/academic_year/(:any)']       = 'lecture_data_pkn/index/$1';
+$route['dosen/data_pkn/assessment/(:any)']          = 'lecture_data_pkn/assessment/$1';
+$route['dosen/data_pkn/assessment/supervision/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervision/$1';
+$route['dosen/data_pkn/assessment/guidance/(:any)'] = 'lecture_data_pkn/saveAssesmentGuidance/$1';
+$route['dosen/data_pkn/assessment/test_score/(:any)'] = 'lecture_data_pkn/saveAssesmentFinalTest/$1';
 
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
-$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_data_pkl/dailyLog/$1';
+$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_activity/dailyLog/$1';
 $route['dosen/activity/attendance']                 = 'lecture_activity/attendance';
 $route['dosen/activity/attendance/academic_year/(:any)']  = 'lecture_activity/attendance/$1';
 
 
-/*=================ROLE SUPERVISOR======================*/
+/* ================================= SUPERVISOR ROLE ================================= */
+
 $route['supervisor/dashboard']                      = 'supervisor_dashboard';
 
 $route['supervisor/planning']                       = 'supervisor_planning';
 $route['supervisor/planning/detail/(:any)']         = 'supervisor_planning/detail/$1';
 $route['supervisor/planning/verification/(:any)/(:any)'] = 'supervisor_planning/verification/$1/$2';
 
-$route['supervisor/activity/daily_log']                      = 'supervisor_activity/dailyLog';
+$route['supervisor/activity/daily_log']             = 'supervisor_activity/dailyLog';
 $route['supervisor/daily_log/verification/(:any)/(:any)'] = 'supervisor_activity/verificationDailyLog/$1/$2';
-$route['supervisor/activity/attendance']                     = 'supervisor_activity/attendance';
+$route['supervisor/activity/attendance']            = 'supervisor_activity/attendance';
 $route['supervisor/attendance/verification/(:any)/(:any)'] = 'supervisor_activity/verificationAttendance/$1/$2';
 
-$route['supervisor/data_pkl']                       = 'supervisor_data_pkl';
-$route['supervisor/data_pkl/assessment/(:any)']     = 'supervisor_data_pkl/assessment/$1';
-$route['supervisor/data_pkl/assessment/save/(:any)'] = 'supervisor_data_pkl/save/$1';
+$route['supervisor/data_pkn']                       = 'supervisor_data_pkn';
+$route['supervisor/data_pkn/assessment/(:any)']     = 'supervisor_data_pkn/assessment/$1';
+$route['supervisor/data_pkn/assessment/save/(:any)'] = 'supervisor_data_pkn/save/$1';
 
 $route['supervisor/report_reception']               = 'supervisor_report';
 $route['supervisor/report_reception/add']           = 'supervisor_report/add';
@@ -296,19 +253,18 @@ $route['supervisor/quesioner/add']                  = 'supervisor_quesioner/inse
 $route['supervisor/quesioner/(:any)/edit']          = 'supervisor_quesioner/$1/edit';
 
 
+/* ================================== PUDIR ROLE ================================== */
 
-/*=================PUDIR ROLE======================*/
 $route['pudir/dashboard']                           = 'pudir_dashboard';
-$route['pudir/pkl']                                 = 'pudir_pkl';
-$route['pudir/pkl/(:any)']                          = 'pudir_pkl/index/$1';
+$route['pudir/pkn']                                 = 'pudir_pkn';
+$route['pudir/pkn/(:any)']                          = 'pudir_pkn/index/$1';
 
 
-/*=================KETUPLAK ROLE======================*/
+/* ================================== KETUPLAK ROLE ================================== */
+
 $route['ketuplak/dashboard']                        = 'ketuplak_dashboard';
-$route['ketuplak/pkl']                              = 'ketuplak_pkl';
-$route['ketuplak/pkl/(:any)']                       = 'ketuplak_pkl/index/$1';
-
-
+$route['ketuplak/pkn']                              = 'ketuplak_pkn';
+$route['ketuplak/pkn/(:any)']                       = 'ketuplak_pkn/index/$1';
 
 
 $route['test'] = 'admin_registrations/generatedata';

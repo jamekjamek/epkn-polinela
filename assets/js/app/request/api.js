@@ -4,7 +4,7 @@ var myAPI = {
 	getRegency: function (success, error) {
 		$.ajax({
 			type: "GET",
-			url: base_url + "prodi/pkl_location/regency",
+			url: base_url + "prodi/pkn_location/regency",
 			dataType: "JSON",
 			success,
 			error,
@@ -13,7 +13,7 @@ var myAPI = {
 	getProvince: function (success, error) {
 		$.ajax({
 			type: "GET",
-			url: base_url + "prodi/pkl_location/province",
+			url: base_url + "prodi/pkn_location/province",
 			dataType: "JSON",
 			success,
 			error,
@@ -22,7 +22,7 @@ var myAPI = {
 	getLecture: function (success, error) {
 		$.ajax({
 			type: "GET",
-			url: base_url + "prodi/pkl_registrasi/lecture",
+			url: base_url + "prodi/pkn_registrasi/lecture",
 			dataType: "JSON",
 			success,
 			error,
@@ -31,7 +31,7 @@ var myAPI = {
 	getAcademicYear: function (success, error) {
 		$.ajax({
 			type: "GET",
-			url: base_url + "prodi/pkl_registrasi/academic_year",
+			url: base_url + "prodi/pkn_registrasi/academic_year",
 			dataType: "JSON",
 			success,
 			error,
@@ -40,7 +40,7 @@ var myAPI = {
 	getLocationRegistrationNotInGroup: function (param, success, error) {
 		$.ajax({
 			type: "GET",
-			url: base_url + "prodi/pkl_registrasi/location/" + param,
+			url: base_url + "prodi/pkn_registrasi/location/" + param,
 			dataType: "JSON",
 			success,
 			error,
@@ -49,7 +49,7 @@ var myAPI = {
 	postApprovalRegistration: function (data, success, error) {
 		$.ajax({
 			type: "POST",
-			url: base_url + "prodi/pkl_registrasi/approval",
+			url: base_url + "prodi/pkn_registrasi/approval",
 			dataType: "JSON",
 			data: data,
 			success,
@@ -59,7 +59,7 @@ var myAPI = {
 	postChangeLocation: function (data, success, error) {
 		$.ajax({
 			type: "POST",
-			url: base_url + "prodi/pkl_registrasi/location",
+			url: base_url + "prodi/pkn_registrasi/location",
 			dataType: "JSON",
 			data: data,
 			success,

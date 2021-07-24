@@ -1,6 +1,8 @@
 <?php
 $queryProfileCheck = "SELECT * FROM student WHERE email != '' AND address != '' AND birth_date != '' AND no_hp != '' AND npm = '" . $this->session->userdata('user') . "'";
 $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
+
+$guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row();
 ?>
 <div class="main-content">
   <div class="container-fluid">
@@ -40,6 +42,18 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
             <div class="latest-update-box">
               <div class="row pt-20 pb-30">
                 <div class="col-auto text-right update-meta pr-0">
+                  <i class="b-success update-icon ring"></i>
+                </div>
+                <div class="col pl-5">
+                  <a href="#!">
+                    <h6>Buku Panduan PKL</h6>
+                  </a>
+                  <a href="<?= site_url('assets/uploads/guidebook/' . $guidebook->file) ?>">
+                    <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKL</button></a>
+                </div>
+              </div>
+              <div class="row pt-20 pb-30">
+                <div class="col-auto text-right update-meta pr-0">
                   <i class="b-primary update-icon ring"></i>
                 </div>
                 <div class="col pl-5">
@@ -50,15 +64,35 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
                     <table class="table">
                       <tr>
                         <td>Pendaftaran Grup PKL</td>
-                        <td>: <?= date('d-m-Y', strtotime($registration->start_time)) ?> s.d <?= date('d-m-Y', strtotime($registration->finish_time)) ?></td>
+                        <td>:
+                          <?php if ($registration != null) : ?>
+                            <?= date('d-m-Y', strtotime(@$registration->start_time)) ?> s.d <?= date('d-m-Y', strtotime(@$registration->finish_time)) ?>
+                          <?php
+                          else :
+                            echo 'Pendaftaran belum di buka';
+                          endif ?>
+                        </td>
                       </tr>
                       <tr>
                         <td>Kuota Anggota Grup</td>
-                        <td>: minimal <?= $registration->quantity ?> orang</td>
+                        <td>:
+                          <?php if ($registration != null) : ?>
+                            minimal <?= @$registration->quantity ?> orang
+                          <?php
+                          else :
+                            echo 'Pendaftaran belum di buka';
+                          endif ?>
+                        </td>
                       </tr>
                       <tr>
                         <td>Pendaftaran Lokasi Baru PKL</td>
-                        <td>: <?= date('d-m-Y', strtotime($location->start_time)) ?> s.d <?= date('d-m-Y', strtotime($location->finish_time)) ?></td>
+                        <td>:
+                          <?php if ($location != null) : ?>
+                            <?= date('d-m-Y', strtotime(@$location->start_time)) ?> s.d <?= date('d-m-Y', strtotime(@$location->finish_time)) ?>
+                          <?php else :
+                            echo 'Pendaftaran belum di buka';
+                          endif ?>
+                        </td>
                       </tr>
                     </table>
                   </div>
@@ -72,7 +106,7 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
                   <a href="#!">
                     <h6>Rincian Anggota Grup PKL & Status</h6>
                   </a>
-                  <?php if ($group_id != null) : ?>
+                  <?php if ($check != null) : ?>
                     <div class="col-12 table-responsive mt-3">
                       <table class="table">
                         <thead>
@@ -89,15 +123,8 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
                         <tbody>
                           <?php
                           $i = 1;
-                          $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,d.id prodi_id,d.name prodi_name,d.code prodi_code, e.name major_name,f.name as lecture_name,g.username pl,h.file');
-                          $this->db->join('company b', 'a.company_id=b.id', 'LEFT');
-                          $this->db->join('student c', 'a.student_id=c.id', 'LEFT');
-                          $this->db->join('prodi d', 'c.prodi_id=d.id', 'LEFT');
-                          $this->db->join('major e', 'd.major_id=e.id', 'LEFT');
-                          $this->db->join('lecture f', 'a.lecture_id=f.id', 'LEFT');
-                          $this->db->join('supervisor g', 'a.supervisor_id=g.id', 'LEFT');
-                          $this->db->join('response_letter h', 'h.registration_group_id=a.group_id', 'LEFT');
-                          $registrations = $this->db->get_where('registration a', ['a.group_id' => $group_id['group_id'], 'a.verify_member' => 'Diterima'])->result();
+                          $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
+                          $registrations = $this->Registration->getAll($check->group_id)->result();
                           foreach ($registrations as $registration) :
                           ?>
                             <tr>
@@ -111,10 +138,10 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
                               <td><?= $registration->company_name; ?></td>
                               <td>
                                 <span class="badge badge-pill badge-primary mb-1">
-                                  <?= date('d-m-Y', strtotime($registration->start_date)) ?>
+                                  <?= date('d-m-Y', strtotime($registration->start_time_pkl)) ?>
                                 </span>
                                 s.d <span class="badge badge-pill badge-success mb-1">
-                                  <?= date('d-m-Y', strtotime($registration->finish_date)) ?>
+                                  <?= date('d-m-Y', strtotime($registration->finish_time_pkl)) ?>
                                 </span>
                               </td>
                               <td>

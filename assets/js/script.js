@@ -10,59 +10,6 @@ $(document).ready(function () {
 			position: 'top-right'
 		})
 	}
-	/* Student Start */
-	const kabupten_id = $('#kabupaten_id').val();
-	const company_id = $('#company_id').val();
-
-	if (company_id) {
-		$.ajax({
-			type: "POST",
-			url: base_url + "mahasiswa_company/getByIdCompany",
-			data: {
-				company_id: company_id
-			},
-			dataType: "JSON",
-			success: function (response) {
-				$('[name="province_id"]').val(response.province_id).trigger('change');
-				$('[name="kabupaten"]').val(response.regency_id).trigger('change');
-			}
-		});
-	}
-
-	$('#province').change(function () {
-		var id = $(this).val();
-		if (kabupten_id) {
-			data = {
-				id: id,
-				kabupaten: kabupten_id
-			}
-		} else {
-			data = {
-				id: id,
-			}
-		}
-		$.ajax({
-			type: "POST",
-			url: base_url + "mahasiswa_company/regency",
-			data: data,
-			dataType: "JSON",
-			success: function (response) {
-				$('#regency').html(response);
-			}
-		});
-	});
-
-	$('.get-province').select2({
-		placeholder: 'Cari nama provinsi'
-	});
-
-	$('.get-regency').select2({
-		placeholder: 'Cari nama kabupaten'
-	});
-
-	$('.get-company').select2({
-		placeholder: 'Cari nama perusahaan'
-	});
 
 	$('.get-student').select2({
 		placeholder: 'Cari nama mahasiswa'
@@ -82,117 +29,6 @@ $(document).ready(function () {
 			position: 'top-right'
 		})
 	}
-
-	//select2ajax
-	function select2ajax(route, text) {
-		$('.get-' + route + '').select2({
-			placeholder: text,
-			ajax: {
-				url: `${base_url}mahasiswa/config/get${route}`,
-				dataType: 'JSON',
-				type: 'POST',
-				data: function (params) {
-					return {
-						search: params.term
-					}
-				},
-				processResults: function (data) {
-					return {
-						results: data
-					}
-				},
-				cache: true
-			},
-			minimumInputLength: 3,
-		})
-	}
-
-	//REGISTRATION
-	select2ajax('companyregis', 'Cari perusahaan');
-	var companyValue = null;
-	var leaderValue = $('#leader').val();
-	var prodiId = $('#prodi').val();
-	$('#search-member-registration').on('click', () => {
-		companyValue = $('.get-companyregis').val();
-		if (companyValue === "") {
-			alertCustom('Pilih perusahaan terlebih dahulu', 'warning');
-		} else {
-			$.ajax({
-				url: `${base_url}mahasiswa/registration/member`,
-				dataType: "JSON",
-				method: "POST",
-				data: {
-					leaderId: leaderValue,
-					prodiId: prodiId
-				},
-				beforeSend: () => {
-					$('.loadinggif').removeClass('d-none');
-				},
-				success: (data) => {
-					$('.dt-responsive').removeClass('d-none');
-					$('.loadinggif').addClass('d-none');
-					$("#member-table-list").DataTable();
-					$('#get-data-member-registration').html(data);
-				}
-			});
-		}
-	});
-
-	$('#btn-save-registration').on('click', () => {
-		var quantity = $('#btn-save-registration').data('quantity');
-
-		var startDate = $('#get-start-date').val();
-		var finishDate = $('#get-finish-date').val();
-		var companyId = $('.get-companyregis').val();
-		var memberId = [];
-		$(':checkbox:checked').each(function (i) {
-			memberId[i] = $(this).val();
-		});
-		if (startDate === "" || finishDate === "" || companyId === "") {
-			alertCustom('Lengkapi form pengisian', 'warning');
-		} else {
-
-			if (memberId.length + 1 < quantity) {
-				alertCustom('jumlah per kelompok melebihi kuota', 'warning');
-			} else {
-				if (finishDate < startDate || finishDate == startDate) {
-					alertCustom('Cek kembali pengisian tanggal', 'warning');
-				} else {
-					var data = {
-						leaderId: leaderValue,
-						companyId: companyId,
-						memberId: memberId,
-						startDate: startDate,
-						finishDate: finishDate
-					};
-					$.ajax({
-						url: `${base_url}mahasiswa/registration/addgroup`,
-						dataType: "JSON",
-						method: "POST",
-						data: data,
-						beforeSend: () => {
-							alertCustom('Data sedang kami proses, mohon tunggu', 'success');
-						},
-						success: (data) => {
-							if (data.message === 'success') {
-								alertCustom('Data Berhasil di simpan, mohon tunggu sebentar', 'success');
-								setTimeout(function () {
-									window.location.href = `${base_url}config/historyadd`;
-								}, 3000);
-							} else if (data.message === 'failedmember') {
-								alertCustomI('Penyimpanan data anggota gagal', 'warning');
-								setTimeout(function () {
-									window.location.href = `${base_url}mahasiswa/registration`;
-								}, 3000);
-							} else {
-								alertCustom('Server sedang sibuk, silahkan coba lagi', 'error');
-							}
-						}
-					});
-				}
-			}
-		}
-	});
 
 	$('.modalLogId').on('click', function () {
 		let logId = $(this).data('log');
@@ -219,8 +55,10 @@ $(document).ready(function () {
 		$("#time_in, #time_out").hide()
 		if ($(this).val() == "H") {
 			$("#time_in, #time_out").show();
+			$("#note").hide();
 		} else {
 			$("#time_in, #time_out").hide();
+			$("#note").show();
 		}
 	});
 
@@ -265,10 +103,11 @@ $(document).ready(function () {
 
 	$(".verified").on('click', function () {
 		var id = $(this).data("id");
+		var groupId = $(this).data("groupid");
 		var uri = $(this).data("uri");
-		var role = $(this).data("role");
-		var menu = $(this).data("menu");
-		var url = `${base_url}${role.toLowerCase()}/${menu}/verification/${id}:${uri}/`
+		// var role = $(this).data("role");
+		// var menu = $(this).data("menu");
+		var url = `${base_url}dosen/data_pkl/assessment/pushed/${id}:${uri}:${groupId}/`
 		verification(url)
 	});
 
@@ -385,9 +224,9 @@ $(document).ready(function () {
 		i = document.supervisorForm.jumlah_2.value = (b * 1) * (0.3 * 1);
 		j = document.supervisorForm.jumlah_3.value = (c * 1) * (0.1 * 1);
 		k = document.supervisorForm.jumlah_4.value = (d * 1) * (0.1 * 1);
-		l = document.supervisorForm.jumlah_5.value = (d * 1) * (0.1 * 1);
-		m = document.supervisorForm.jumlah_6.value = (d * 1) * (0.1 * 1);
-		n = document.supervisorForm.jumlah_7.value = (d * 1) * (0.1 * 1);
+		l = document.supervisorForm.jumlah_5.value = (e * 1) * (0.1 * 1);
+		m = document.supervisorForm.jumlah_6.value = (f * 1) * (0.1 * 1);
+		n = document.supervisorForm.jumlah_7.value = (g * 1) * (0.1 * 1);
 		document.supervisorForm.total.value = (h * 1) + (i * 1) + (j * 1) + (k * 1) + (l * 1) + (m * 1) + (n * 1);
 	}
 
@@ -428,4 +267,21 @@ $(document).ready(function () {
 		var id = $(this).data('id');
 		buttonClickDelete('report_reception', id);
 	});
+
+	checkAll = (ele) => {
+		var checkboxes = document.getElementsByTagName('input');
+		if (ele.checked) {
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].type == 'checkbox') {
+					checkboxes[i].checked = true;
+				}
+			}
+		} else {
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].type == 'checkbox') {
+					checkboxes[i].checked = false;
+				}
+			}
+		}
+	}
 });
