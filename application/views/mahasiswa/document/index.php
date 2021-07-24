@@ -63,8 +63,10 @@
                 </thead>
                 <tbody>
                   <?php
-                  // die(var_dump($file));
-                  if ($isCheck != null && $isCheck['group_status'] != 'belum_diverifikasi' || $isCheck['group_status'] != 'ditolak') : ?>
+
+                  use Mpdf\Tag\P;
+
+                  if ($attendance != null) : ?>
                     <tr>
                       <td>1</td>
                       <td>Amplop Surat Permohonan</td>
@@ -87,7 +89,11 @@
                       </td>
                     </tr>
                   <?php
-                  endif;
+                  else : ?>
+                    <tr>
+                      <td colspan="3">Data belum tersedia</td>
+                    </tr>
+                  <?php endif;
                   if (@$isCheckWith != null) : ?>
                     <?php if (@$file != null) : ?>
                       <tr>

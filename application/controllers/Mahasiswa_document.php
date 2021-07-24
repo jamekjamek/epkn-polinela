@@ -21,6 +21,7 @@ class Mahasiswa_document extends CI_Controller
       'desc'          => 'Berfungsi untuk melihat berkas kegiatan PKN',
       'documents'     =>  $this->Documents->list(),
       'isCheck'       =>  $this->Registration->list()->row_array(),
+      'attendance'    =>  $this->Documents->attendance()->row(),
       'isCheckWith'   =>  $this->Documents->isCheckWithVerifiedMajor()->row(),
       'file'          =>  $this->Documents->responseLetterFile()->row(),
     ];

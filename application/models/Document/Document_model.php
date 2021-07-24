@@ -24,6 +24,7 @@ class Document_model extends CI_Model
     $this->tableCheckPoint = 'check_point';
     $this->tableSupervisor = 'supervisor';
     $this->tableWillingness = 'willingness_to_accept';
+    $this->tableListCheckValidation = 'list_check_validation';
   }
 
   public function list()
@@ -184,5 +185,12 @@ class Document_model extends CI_Model
   public function getHeadOfStudyProgram($id)
   {
     return $this->db->query("SELECT registration.id, lecture.name as lecture_name, lecture.nip FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN head_of_study_program ON head_of_study_program.lecture_id = lecture.id WHERE registration.id = '$id'");
+  }
+
+  public function attendance()
+  {
+    $this->db->select('list_check_validation.*');
+    $this->db->join($this->tableStudent, 'student.id=list_check_validation.student_id');
+    return $this->db->get_where($this->tableListCheckValidation, ['student.npm' => $this->session->userdata('user')]);
   }
 }
