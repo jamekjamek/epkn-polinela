@@ -34,9 +34,6 @@
         <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
           <div class="authentication-form mx-auto">
             <img src="<?= base_url('assets/') ?>img/auth/pkn-logo.png" alt="pkn-logo" width="339px">
-            <div class="logo-centered">
-              <a href="">
-            </div>
             <h3>Sign In to PKN Polinela Apps</h3>
             <?= $this->session->flashdata('error_login'); ?>
             <form action="" method="POST">
