@@ -528,7 +528,7 @@ class Admin_registrations extends CI_Controller
 
 
 
-    public function getcompany()
+    public function getvillage()
     {
         $id         = $this->input->post('id');
         $company    = $this->Company->getDataBy(['a.id' => $id])->row();

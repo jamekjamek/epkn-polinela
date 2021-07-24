@@ -7,6 +7,7 @@ class Mahasiswa_document extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Document/Document_model', 'Documents');
+    $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
     $this->load->model('Auth_model', 'Auth');
     $this->role = 'Mahasiswa';
     cek_login('Mahasiswa');
@@ -16,11 +17,12 @@ class Mahasiswa_document extends CI_Controller
   public function index()
   {
     $data = [
-      'title'         => 'Berkas Kegiatan PKL',
-      'desc'          => 'Berfungsi untuk melihat berkas kegiatan PKL',
+      'title'         => 'Berkas Kegiatan PKN',
+      'desc'          => 'Berfungsi untuk melihat berkas kegiatan PKN',
       'documents'     =>  $this->Documents->list(),
-      'isCheck'       =>  $this->Documents->isCheck(),
-      'file'          =>  $this->Documents->responseLetterFile(),
+      'isCheck'       =>  $this->Registration->list()->row_array(),
+      'isCheckWith'   =>  $this->Documents->isCheckWithVerifiedMajor()->row(),
+      'file'          =>  $this->Documents->responseLetterFile()->row(),
     ];
     $page = '/mahasiswa/document/index';
     pageBackend($this->role, $page, $data);

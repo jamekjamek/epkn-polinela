@@ -23,11 +23,6 @@
         </div>
       </div>
     </div>
-    <?php if ($this->session->flashdata('success')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
-    <?php elseif ($this->session->flashdata('error')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
-    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -43,13 +38,7 @@
                 Hanya <strong>Ketua Grup</strong> yang dapat melihat dan mendownload
               </li>
               <li>
-                Langkah awal untuk melakukan download berkas, pastikan <strong>Ketua Grup</strong> mengklik tombol <button class="btn btn-secondary"><i class="ik ik-check-circle"></i>Konfirmasi</button>
-              </li>
-              <li>
-                Tombol akan muncul ketika pendaftaran PKL sudah di verifikasi oleh <strong>Ketua Program Studi</strong>
-              </li>
-              <li>
-                Setelah itu silahkan download berkas yang diperlukan
+                Silahkan download berkas yang diperlukan dnegan mengklik tombol <strong>UNDUH </strong>pada tabel di bawah.
               </li>
             </ol>
           </div>
@@ -59,47 +48,78 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header d-block">
-            <div class="d-flex flex-grow-1 min-width-zero card-content">
-              <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                <h3 class="text-uppercase"><?= $title; ?></h3>
-                <?php if ($isCheck != null && $isCheck['group_status'] == 'diverifikasi') : ?>
-                  <form action="<?= base_url('mahasiswa/document/update'); ?>" method="POST">
-                    <input type="hidden" value="<?= $isCheck['group_id'] ?>" name="group_id">
-                    <button type="submit" class="btn btn-secondary"><i class="ik ik-check-circle"></i>Konfirmasi</button>
-                  </form>
-                <?php endif ?>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="dt-responsive">
-                <table id="scr-vtr-dynamic" class="table table-hover nowrap">
-                  <thead>
+          <div class="card-header">
+            <h3 class="text-uppercase"><?= $title; ?></h3>
+          </div>
+          <div class="card-body">
+            <div class="dt-responsive">
+              <table id="scr-vtr-dynamic" class="table table-hover nowrap">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Dokumen</th>
+                    <th>Download</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  // die(var_dump($file));
+                  if ($isCheck != null && $isCheck['group_status'] != 'belum_diverifikasi' || $isCheck['group_status'] != 'ditolak') : ?>
                     <tr>
-                      <th>No</th>
-                      <th>Nama Dokumen</th>
-                      <th>Download</th>
+                      <td>1</td>
+                      <td>Amplop Surat Permohonan</td>
+                      <td>
+                        <a href="<?= site_url('pdf/amplop') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($documents as $document) :
-                    ?>
+                    <tr>
+                      <td>2</td>
+                      <td>Surat Permohonan PKL</td>
+                      <td>
+                        <a href="<?= site_url('pdf/permohonanpkl') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Lampiran Surat Permohonan PKL</td>
+                      <td>
+                        <a href="#" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
+                  <?php
+                  endif;
+                  if (@$isCheckWith != null) : ?>
+                    <?php if (@$file != null) : ?>
                       <tr>
-                        <td><?= $i++ ?></td>
-                        <td><?= $document->name ?></td>
+                        <td>4</td>
+                        <td>Surat Pengantar dan Surat Tugas dengan Balasan</td>
                         <td>
-                          <?php if ($isCheck != null && $isCheck['group_status'] == 'dalam_proses_penerimaan' || $isCheck['group_status'] == 'diterima') : ?>
-                            <a href="<?= site_url($document->link) ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
-                          <?php else : echo '<small class="text-mute">Anda belum melakukan Konfirmasi</small>';
-                          endif ?>
+                          <a href="<?= site_url('pdf/pengantardantugasdenganbalasan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                         </td>
                       </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
-              </div>
+                    <?php
+                    else : ?>
+                      <tr>
+                        <td>4</td>
+                        <td>Surat Pengantar dan Surat Tugas dengan Tanpa Balasan</td>
+                        <td>
+                          <a href="<?= site_url('pdf/pengantardantugasbalasan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                        </td>
+                      </tr>
+                    <?php endif ?>
+                  <?php endif;
+                  if ($isCheck['pushed'] == 1) : ?>
+                    <tr>
+                      <td>5</td>
+                      <td>Surat Penarikan</td>
+                      <td>
+                        <a href="<?= site_url('pdf/penarikan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
+
+                  <?php endif ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
