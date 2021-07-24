@@ -127,7 +127,7 @@
                                         <?php if (@$letter) : ?>
                                             <embed src="<?= base_url('assets/uploads/' . $letter->file) ?>" type="application/pdf" height="800px" width="100%">
                                         <?php endif; ?>
-                                        <?php if ($leader->group_status === 'dalam_proses_penerimaan' && !@$letter) : ?>
+                                        <?php if ($leader->group_status === 'diterima' && !@$letter) : ?>
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <h5 class="text-uppercase">Upload Surat Balasan</h5>

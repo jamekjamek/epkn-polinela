@@ -57,7 +57,7 @@ class Admin_registrations extends CI_Controller
                 'student_id'        => $leaderId,
                 'status'            => 'Ketua',
                 'prodi_id'          => $prodiId,
-                'group_status'      => 'dalam_proses_penerimaan',
+                'group_status'      => 'diterima',
                 'academic_year_id'  => $academicId,
                 'verify_member'     => 'Diterima'
             ];
