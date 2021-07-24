@@ -33,10 +33,8 @@
         </div>
         <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
           <div class="authentication-form mx-auto">
-            <div class="logo-centered">
-              <a href=""><img src="<?= base_url('assets/') ?>img/auth/portal-pkl.jpg" alt=""></a>
-            </div>
-            <h3>Set New Password to PKL Polinela Apps</h3>
+            <img src="<?= base_url('assets/') ?>img/auth/pkn-logo.png" alt="pkn-logo" width="339px">
+            <h3 class="mt-2">Set New Password to PKN Polinela Apps</h3>
             <form action="" method="POST">
               <!-- <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
                 value="<?= $this->security->get_csrf_hash(); ?>"> -->
