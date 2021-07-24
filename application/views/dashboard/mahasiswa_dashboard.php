@@ -20,7 +20,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
       </div>
     </div>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Halo <?= $showName['fullname'] ?>!</strong> Selamat datang di aplikasi E-PKL.
+      <strong>Halo <?= $showName['fullname'] ?>!</strong> Selamat datang di aplikasi E-PKN.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="ik ik-x"></i>
       </button>
@@ -49,53 +49,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                     <h6>Buku Panduan PKL</h6>
                   </a>
                   <a href="<?= site_url('assets/uploads/guidebook/' . $guidebook->file) ?>">
-                    <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKL</button></a>
-                </div>
-              </div>
-              <div class="row pt-20 pb-30">
-                <div class="col-auto text-right update-meta pr-0">
-                  <i class="b-primary update-icon ring"></i>
-                </div>
-                <div class="col pl-5">
-                  <a href="#!">
-                    <h6>Periode Pendaftaran</h6>
-                  </a>
-                  <div class="col-6 table-responsive mt-3">
-                    <table class="table">
-                      <tr>
-                        <td>Pendaftaran Grup PKL</td>
-                        <td>:
-                          <?php if ($registration != null) : ?>
-                            <?= date('d-m-Y', strtotime(@$registration->start_time)) ?> s.d <?= date('d-m-Y', strtotime(@$registration->finish_time)) ?>
-                          <?php
-                          else :
-                            echo 'Pendaftaran belum di buka';
-                          endif ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Kuota Anggota Grup</td>
-                        <td>:
-                          <?php if ($registration != null) : ?>
-                            minimal <?= @$registration->quantity ?> orang
-                          <?php
-                          else :
-                            echo 'Pendaftaran belum di buka';
-                          endif ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Pendaftaran Lokasi Baru PKL</td>
-                        <td>:
-                          <?php if ($location != null) : ?>
-                            <?= date('d-m-Y', strtotime(@$location->start_time)) ?> s.d <?= date('d-m-Y', strtotime(@$location->finish_time)) ?>
-                          <?php else :
-                            echo 'Pendaftaran belum di buka';
-                          endif ?>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
+                    <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKN</button></a>
                 </div>
               </div>
               <div class="row">
@@ -104,7 +58,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                 </div>
                 <div class="col pl-5">
                   <a href="#!">
-                    <h6>Rincian Anggota Grup PKL & Status</h6>
+                    <h6>Rincian Anggota Grup PKN & Status</h6>
                   </a>
                   <?php if ($check != null) : ?>
                     <div class="col-12 table-responsive mt-3">
@@ -113,11 +67,9 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                           <tr>
                             <th>No</th>
                             <th>Anggota</th>
-                            <th>Perusahaan</th>
-                            <th>Waktu PKL</th>
-                            <th>Verifikasi Prodi</th>
-                            <th>Verifikasi Anggota</th>
-                            <th>File</th>
+                            <th>Desa</th>
+                            <th>Waktu PKN</th>
+                            <th>Surat Balasan</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -138,39 +90,20 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                               <td><?= $registration->company_name; ?></td>
                               <td>
                                 <span class="badge badge-pill badge-primary mb-1">
-                                  <?= date('d-m-Y', strtotime($registration->start_time_pkl)) ?>
+                                  <?= date('d-m-Y', strtotime($registration->start_date)) ?>
                                 </span>
                                 s.d <span class="badge badge-pill badge-success mb-1">
-                                  <?= date('d-m-Y', strtotime($registration->finish_time_pkl)) ?>
+                                  <?= date('d-m-Y', strtotime($registration->finish_date)) ?>
                                 </span>
                               </td>
                               <td>
-                                <?php if ($registration->group_status == 'belum_terverifikasi') {
-                                  echo '<span class="badge badge-pill badge-secondary mb-1">Pendaftaran Belum Diverfikasi</span>';
-                                } else if ($registration->group_status == 'diverifikasi') {
-                                  echo '<span class="badge badge-pill badge-info mb-1">Pendaftaran Diverfikasi</span>';
-                                } else if ($registration->group_status == 'dalam_proses_penerimaan') {
-                                  echo '<span class="badge badge-pill badge-info mb-1">Proses Konfirmasi Perusahaan/span>';
-                                } else if ($registration->group_status == 'diterima') {
-                                  echo '<span class="badge badge-pill badge-success mb-1">Pendaftaran Diterima</span>';
-                                } else {
-                                  echo '<span class="badge badge-pill badge-danger mb-1">Pendaftaran Ditolak</span>';
-                                }
-                                ?>
-                              </td>
-                              <td>
-                                <?php if ($registration->verify_member == 'Diterima') {
-                                  echo '<span class="badge badge-pill badge-success mb-1">Diterima</span>';
-                                } else if ($registration->verify_member == 'Ditolak') {
-                                  echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
-                                } else if ($registration->verify_member == 'Pending') {
-                                  echo '<span class="badge badge-pill badge-secondary mb-1">Pending</span>';
-                                } else {
-                                }
-                                ?>
-                              </td>
-                              <td>
-                                <a href="<?= site_url('assets/upload/' . $registration->file) ?>" target="_blank"><?= $registration->file ?></a>
+                                <?php if ($registration->status == 'Ketua') {
+                                  if ($registration->file) {
+                                    echo $registration->file;
+                                  } else {
+                                    echo '<button type="" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#upload-letter">UPLOAD</button>';
+                                  }
+                                } ?>
                               </td>
                             </tr>
                           <?php endforeach; ?>
@@ -178,7 +111,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                       </table>
                     </div>
                   <?php else :
-                    echo '<small class="text-mute">Anda belum melakukan pendaftaran / belum terdaftar sebagai anggota grup</small>';
+                    echo '<small class="text-mute">Anda belum melakukan belum terdaftar sebagai anggota grup manapun</small>';
                   endif; ?>
                 </div>
               </div>

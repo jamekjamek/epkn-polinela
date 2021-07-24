@@ -7,7 +7,6 @@ class Mahasiswa_dashboard extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
-    $this->load->model('Mahasiswa/Mahasiswa_Company_model', 'Company');
     $this->load->model('Auth_model', 'Auth');
     $this->role = 'mahasiswa';
     cek_login('Mahasiswa');
@@ -17,10 +16,8 @@ class Mahasiswa_dashboard extends CI_Controller
   {
     $data = [
       'title'         => 'Dashboard',
-      'desc'          => 'Sistem Informasi PKL Politeknik Negeri Lampung',
-      'group_id'      => $this->Registration->list()->row_array(),
-      'registration'  => $this->Registration->getDataPeriode()->row(),
-      'location'      => $this->Company->getDataPeriode()->row(),
+      'desc'          => 'Sistem Informasi PKN Politeknik Negeri Lampung',
+      'check'         => $this->Registration->list()->row(),
       'showName'      => $this->Auth->showNameLogin()
     ];
     $page = '/dashboard/mahasiswa_dashboard';

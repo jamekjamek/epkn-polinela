@@ -153,71 +153,19 @@ class Admin_config extends CI_Controller
   public function data()
   {
     $studentId          = $this->input->post('studentId');
-    $kompensasi         = $this->input->post('kompensasi');
-    $bebastanggungan    = $this->input->post('bebastanggungan');
-    $kelulusan          = $this->input->post('kelulusan');
-    $kehadiran          = $this->input->post('kehadiran');
-    $kehadrianadmin             = $this->input->post('kehadiranadmin');
-
+    $kehadrianadmin     = $this->input->post('kehadiranadmin');
     $status     = [];
     $query      = null;
-    if ($kompensasi === '1') {
+    if ($kehadrianadmin === '1') {
       $this->db->set('id', 'UUID()', FALSE);
       $insert     = [
         'student_id'    => $studentId,
-        'v_kompensasi'  => $kompensasi,
+        'v_kehadiran_admin'  => $kehadrianadmin,
       ];
       $query = $this->Config->insert($this->tableVerification, $insert);
-    } else if ($kompensasi === '0') {
-      $query = $this->Config->delete($this->tableVerification, ['student_id' => $studentId]);
     } else {
-      if ($bebastanggungan) {
-        $dataUpdate = [
-          'v_bebastanggungan' => $bebastanggungan,
-          'updated_at'        => date('Y-m-d H:i:s')
-        ];
-
-        $where  = [
-          'student_id'        => $studentId,
-        ];
-        $query = $this->Config->update($this->tableVerification, $dataUpdate, $where);
-      }
-
-      if ($kelulusan) {
-        $dataUpdate = [
-          'v_kelulusan'       => $kelulusan,
-          'updated_at'        => date('Y-m-d H:i:s')
-        ];
-        $where  = [
-          'student_id'        => $studentId,
-        ];
-        $query = $this->Config->update($this->tableVerification, $dataUpdate, $where);
-      }
-
-      if ($kehadiran) {
-        $dataUpdate = [
-          'v_kehadiran'       => $kehadiran,
-          'updated_at'        => date('Y-m-d H:i:s')
-        ];
-        $where  = [
-          'student_id'        => $studentId,
-        ];
-        $query = $this->Config->update($this->tableVerification, $dataUpdate, $where);
-      }
+      $query = $this->Config->delete($this->tableVerification, ['student_id' => $studentId]);
     }
-
-    if ($kehadrianadmin) {
-      $dataUpdate = [
-        'v_kehadiran_admin' => $kehadrianadmin,
-        'updated_at'        => date('Y-m-d H:i:s')
-      ];
-
-      $where  = [
-        'student_id'        => $studentId,
-      ];
-      $query = $this->Config->update($this->tableVerification, $dataUpdate, $where);
-    }
-
     if ($query > 0) {
       $status['message']  = 'success';
     } else {

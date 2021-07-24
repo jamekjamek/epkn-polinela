@@ -84,20 +84,14 @@
                         <td><?= $i; ?></td>
                         <td><?= $student->fullname; ?></td>
                         <td>
-                          <?php if ($student->id === @$list->student_id && @$list->v_bebastanggungan === '1' && $list->v_kompensasi === '1' && @$list->v_kehadiran === '1' && @$list->v_kelulusan === '1') : ?>
-                            <ul id="datacek<?= $i; ?>" data-id="<?= $student->id ?>">
-                              <li>
-                                <div class="form-group form-check" style="font-size: 16px;">
-                                  <input type="checkbox" class="form-check-input kehadiranadmin" id="kehadiranadmin<?= $i; ?>" <?= ($student->id === @$list->student_id && @$list->v_kehadiran_admin === '1') ? 'checked' : ''; ?>>
-                                  <label class="form-check-label" for="kehadiranadmin<?= $i; ?>">Kehadiran</label>
-                                </div>
-                              </li>
-                            </ul>
-                          <?php else : ?>
-                            <span class="badge badge-danger">
-                              Jurusan belum memverifikasi
-                            </span>
-                          <?php endif; ?>
+                          <ul id="datacek<?= $i; ?>" data-id="<?= $student->id ?>">
+                            <li style="list-style: none;">
+                              <div class="form-group form-check" style="font-size: 16px;">
+                                <input type="checkbox" class="form-check-input kehadiranadmin" id="kehadiranadmin<?= $i; ?>" <?= ($student->id === @$list->student_id && @$list->v_kehadiran_admin === '1') ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="kehadiranadmin<?= $i; ?>">Kehadiran</label>
+                              </div>
+                            </li>
+                          </ul>
                         </td>
                       </tr>
                     <?php $i++;
