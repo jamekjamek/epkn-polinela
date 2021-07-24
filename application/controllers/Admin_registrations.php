@@ -329,48 +329,50 @@ class Admin_registrations extends CI_Controller
         $lecture    = $this->input->post('lecture');
         $id         = $this->input->post('registration-id');
         $rowData    = $this->Registrations->getDataBy(['a.id' => $id])->row();
-        // if ($rowData->supervisor_id === null) {
-        //     $lastSuperVisor = $this->Registrations->lastSupervisorData($rowData->prodi_code);
-        //     $lastSuperVisor = $this->Registrations->lastSupervisorData($rowData->prodi_code);
-        //     if ($lastSuperVisor) {
-        //         $arrayusername = explode('_', $lastSuperVisor->username);
-        //         $index = (int) $arrayusername[2];
-        //         $arrayusername[2] = $index + 1;
-        //         $strnewsupervisor = implode('_', $arrayusername);
-        //     } else {
-        //         $strnewsupervisor = 'pl_' . $rowData->prodi_code . '_1';
-        //     }
 
-        //     //Insert Supervisor
-        //     $this->db->set('id', 'UUID()', FALSE);
-        //     $dataInsertSupervisor   = [
-        //         'username'      => $strnewsupervisor,
-        //         'company_id'    => $rowData->company_id,
-        //     ];
-        //     $this->db->insert('supervisor', $dataInsertSupervisor);
-        //     //Insert user pl
-        //     $this->db->set('id', 'UUID()', FALSE);
-        //     $dataInsertUserPL   = [
-        //         'username'      => $strnewsupervisor,
-        //         'password'      => password_hash('123456', PASSWORD_DEFAULT),
-        //         'role_id'       => '775b0fa8-b7a8-11eb-a91e-0cc47abcfaa6',
-        //     ];
-        //     $this->db->insert('user', $dataInsertUserPL);
-
-        //     $cekSuperVisor  = $this->db->get_where('supervisor', ['username' => $strnewsupervisor])->row();
+        if ($rowData->supervisor_id === null) {
+            $lastSuperVisor = $this->Registrations->lastSupervisorData();
+            if ($lastSuperVisor) {
+                $arrayusername = explode('_', $lastSuperVisor->username);
+                $index = (int) $arrayusername[1];
+                $arrayusername[1] = $index + 1;
+                $strnewsupervisor = implode('_', $arrayusername);
+            } else {
+                $strnewsupervisor = 'pl_1';
+            }
 
 
-        //     $updateSuperVisorId = [
-        //         'supervisor_id' => $cekSuperVisor->id,
-        //         'updated_at'    => date('Y-m-d H:i:s'),
-        //     ];
 
-        //     $where  = [
-        //         'group_id'      => $rowData->group_id
-        //     ];
+            //Insert Supervisor
+            $this->db->set('id', 'UUID()', FALSE);
+            $dataInsertSupervisor   = [
+                'username'      => $strnewsupervisor,
+                'company_id'    => $rowData->company_id,
+            ];
+            $this->db->insert('supervisor', $dataInsertSupervisor);
+            //Insert user pl
+            $this->db->set('id', 'UUID()', FALSE);
+            $dataInsertUserPL   = [
+                'username'      => $strnewsupervisor,
+                'password'      => password_hash('123456', PASSWORD_DEFAULT),
+                'role_id'       => '775b0fa8-b7a8-11eb-a91e-0cc47abcfaa6',
+            ];
+            $this->db->insert('user', $dataInsertUserPL);
 
-        //     $this->db->update('registration', $updateSuperVisorId, $where);
-        // }
+            $cekSuperVisor  = $this->db->get_where('supervisor', ['username' => $strnewsupervisor])->row();
+
+
+            $updateSuperVisorId = [
+                'supervisor_id' => $cekSuperVisor->id,
+                'updated_at'    => date('Y-m-d H:i:s'),
+            ];
+
+            $where  = [
+                'group_id'      => $rowData->group_id
+            ];
+
+            $this->db->update('registration', $updateSuperVisorId, $where);
+        }
 
 
 

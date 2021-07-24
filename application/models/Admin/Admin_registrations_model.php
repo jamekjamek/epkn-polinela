@@ -124,10 +124,9 @@ class Admin_registrations_model extends CI_Model
     return $this->db->get_where($this->tableResponseLetter, $data);
   }
 
-  public function lastSupervisorData($prodicode)
+  public function lastSupervisorData()
   {
     $this->db->select('*');
-    $this->db->like('username', 'pl_' . $prodicode);
     $this->db->order_by('created_at', 'DESC');
     $this->db->limit(1);
     return $this->db->get($this->tableSupervisor)->row();
