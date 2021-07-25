@@ -26,23 +26,23 @@
         <tbody>
             <tr>
                 <td>Nama Mahasiswa</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->fullname ?> </td>
             </tr>
             <tr>
                 <td>NPM</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->npm ?></td>
             </tr>
             <tr>
                 <td>Jurusan </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->major_name ?></td>
             </tr>
             <tr>
                 <td>Program Studi </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->prodi_name ?></td>
             </tr>
             <tr>
                 <td>Tempat PKN </td>
-                <td>: .......................................................</td>
+                <td>: Desa <?= $student->company_name ?></td>
             </tr>
         </tbody>
     </table>
@@ -63,11 +63,11 @@
                 <td style="height: 18px; padding-left:10px">Rencana Kegiatan/Program kerja
                 </td>
                 <td style="height: 18px;text-align:center">25</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $guidance->nilai_1 ?>
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $guidance->nilaitertimbang_1 ?>
                 </td>
             </tr>
             <tr>
@@ -75,33 +75,33 @@
                 <td style="height: 18px; padding-left:10px">Pelaksanaan Kegiatan Program
                 </td>
                 <td style="height: 18px;text-align:center">30</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $guidance->nilai_2 ?>
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $guidance->nilaitertimbang_2 ?>
                 </td>
             </tr>
             <tr>
                 <td style="height: 18px; text-align:center">3</td>
                 <td style="height: 18px; padding-left:10px">Supervisi</td>
                 <td style="height: 18px;text-align:center">25</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $guidance->nilai_3 ?>
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $guidance->nilaitertimbang_3 ?>
                 </td>
             </tr>
             <tr>
-                <td style="height: 18px; text-align:center">3</td>
+                <td style="height: 18px; text-align:center">4</td>
                 <td style="height: 18px; padding-left:10px">Laporan</td>
                 <td style="height: 18px;text-align:center">20</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $guidance->nilai_4 ?>
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $guidance->nilaitertimbang_4 ?>
                 </td>
             </tr>
 
@@ -109,10 +109,9 @@
                 <td style="height: 18px; text-align:center; font-weight:bold;" colspan="2">Total</td>
                 <td style="height: 18px;text-align:center">100</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $guidance->nilai_total ?>
                 </td>
             </tr>
         </tbody>
@@ -123,7 +122,8 @@
     <br>
     <div>
         <p style="padding-left: 400px;">
-            <span>Bandar Lampung, ........................ 20....</span>
+            <span>Bandar Lampung, <?= date('d F Y', strtotime($guidance->created_at)) ?>
+            </span>
             <br>
             <span>
                 Dosen Pembimbing,
@@ -134,11 +134,11 @@
             <br>
             <br>
             <span>
-                __________________________
+                <?= $student->lecture_name ?>
             </span>
             <br>
             <span>
-                NIP______________________
+                NIP <?= $student->nip ?>
             </span>
 
 

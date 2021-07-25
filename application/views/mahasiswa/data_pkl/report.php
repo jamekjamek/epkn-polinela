@@ -8,7 +8,7 @@
       <th>Video PKN</th>
       <td>
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+          <iframe class="embed-responsive-item" src="<?= $file->youtube_link ?>" allowfullscreen></iframe>
         </div>
       </td>
     </tr>

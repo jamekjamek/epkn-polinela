@@ -6,6 +6,7 @@ class Admin_pdf extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Document/Document_model', 'Documents');
+    $this->load->model('Lecture/Lecture_data_pkn_model', 'DataPkl');
     $this->footer = '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 50px; height:80px">';
   }
 
@@ -147,8 +148,18 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
-    // $mpdf->SetHTMLFooter($footer);
-    $dataBody           = [];
+    $mpdf->SetHTMLFooter($footer);
+    $majorH = $this->Documents->getStudentData($decodeId)->row();
+    $dataBody           = [
+      'degree'      => $this->DataPkl->checkStudentDegree(['registration_id' => $decodeId])->row(),
+      'student'     => $this->Documents->getStudentData($decodeId)->row(),
+      'major'       => $this->Documents->getHeadOfDepartement($majorH->major_id)->row(),
+      'prodi'       => $this->Documents->getHeadOfStudyProgram($decodeId)->row(),
+      'guidance'    => $this->DataPkl->getByIdGuidanceValue(['registration_id' => $decodeId])->row(),
+      'testScore'   => $this->DataPkl->getByIdTestScore(['registration_id' => $decodeId])->row(),
+      'finalScore'  => $this->DataPkl->getVFInalScore(['registration_id' => $decodeId])->row(),
+      'HM'          => $this->DataPkl->getByIdFinalScore(['registration_id' => $decodeId])->row(),
+    ];
     $body               = $this->load->view('pdf/penilaianujian', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Formulir penilaian ujian PKN (F-PAI-036)");
@@ -166,8 +177,18 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
-    // $mpdf->SetHTMLFooter($footer);
-    $dataBody           = [];
+    $mpdf->SetHTMLFooter($footer);
+    $majorH = $this->Documents->getStudentData($decodeId)->row();
+    $dataBody           = [
+      'degree'      => $this->DataPkl->checkStudentDegree(['registration_id' => $decodeId])->row(),
+      'student'     => $this->Documents->getStudentData($decodeId)->row(),
+      'major'       => $this->Documents->getHeadOfDepartement($majorH->major_id)->row(),
+      'prodi'       => $this->Documents->getHeadOfStudyProgram($decodeId)->row(),
+      'guidance'    => $this->DataPkl->getByIdGuidanceValue(['registration_id' => $decodeId])->row(),
+      'testScore'   => $this->DataPkl->getByIdTestScore(['registration_id' => $decodeId])->row(),
+      'finalScore'  => $this->DataPkl->getVFInalScore(['registration_id' => $decodeId])->row(),
+      'HM'          => $this->DataPkl->getByIdFinalScore(['registration_id' => $decodeId])->row(),
+    ];
     $body               = $this->load->view('pdf/nilaiakhir', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Nilai akhir PKN (F-PAI-037)");
@@ -185,8 +206,18 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
-    // $mpdf->SetHTMLFooter($footer);
-    $dataBody           = [];
+    $mpdf->SetHTMLFooter($footer);
+    $majorH = $this->Documents->getStudentData($decodeId)->row();
+    $dataBody           = [
+      'degree'      => $this->DataPkl->checkStudentDegree(['registration_id' => $decodeId])->row(),
+      'student'     => $this->Documents->getStudentData($decodeId)->row(),
+      'major'       => $this->Documents->getHeadOfDepartement($majorH->major_id)->row(),
+      'prodi'       => $this->Documents->getHeadOfStudyProgram($decodeId)->row(),
+      'guidance'    => $this->DataPkl->getByIdGuidanceValue(['registration_id' => $decodeId])->row(),
+      'testScore'   => $this->DataPkl->getByIdTestScore(['registration_id' => $decodeId])->row(),
+      'finalScore'  => $this->DataPkl->getVFInalScore(['registration_id' => $decodeId])->row(),
+      'HM'          => $this->DataPkl->getByIdFinalScore(['registration_id' => $decodeId])->row(),
+    ];
     $body               = $this->load->view('pdf/penilaiandosenpembimbing', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("15.Penilaian dosen pembimbing (F-PAI-038)");

@@ -7,7 +7,7 @@ class Lecture_planning extends CI_Controller
     parent::__construct();
     $this->role = 'Dosen';
     $this->load->model('Lecture/Lecture_planning_model', 'Plannings');
-    $this->load->model('Lecture/Lecture_data_pkl_model', 'DataPkl');
+    $this->load->model('Lecture/Lecture_data_pkn_model', 'DataPkl');
     cek_login('Dosen');
     $this->redirecUrl = 'dosen/planning';
   }

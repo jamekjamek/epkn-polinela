@@ -41,7 +41,7 @@
             <a href=" <?= site_url('mahasiswa/daily/check_point') ?>"><i class="ik ik-paperclip"></i><span>Absensi</span></a>
           </div>
           <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' ? 'active' : '') ?>">
-            <a href=" <?= site_url('mahasiswa/data_pkn') ?>"><i class="ik ik-airplay"></i><span>Rekap PKN</span></a>
+            <a href=" <?= site_url('mahasiswa/data_pkn') ?>"><i class="ik ik-airplay"></i><span>Laporan & Nilai PKN</span></a>
           </div>
           <div class="nav-item <?= ($this->uri->segment(2) === 'quesioner' ? 'active' : '') ?>">
             <?php if (@$result != null) { ?>
