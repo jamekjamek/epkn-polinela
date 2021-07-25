@@ -433,6 +433,9 @@ class Admin_registrations extends CI_Controller
         $looping                    = floor($allStudent->num_rows() / 8); //17 dapetnya 2 kelompok
 
 
+        $dataPeriode                = $this->Registrations->getDataPeriode()->row();
+        $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
+        $academicId                 = $academic->id;
 
         for ($i = 1; $i <= $looping; $i++) {
             $company                    = $this->Registrations->getCompany('random');
@@ -441,47 +444,41 @@ class Admin_registrations extends CI_Controller
             }
             // get prodi dan atau di company wajib limit 4
             $rowCompany = $company->row();
-            $prodies = $this->Registrations->getProdiWhereProdiNot($rowCompany->prodi_id);
-            array_push($prodies, $this->Registrations->getProdiWhereProdi($rowCompany->prodi_id));
-            $students = [];
-            foreach ($prodies as $prodi) {
-                $studentsByRandomLimit = $this->Registrations->getStudent('randomlimit', $prodi->id)->result();
-                foreach ($studentsByRandomLimit as $student) {
-                    array_push($students, $student);
+
+            $groupStudent = $this->generateMemberGroup($rowCompany);
+
+            // check L jika kurang dari 2
+            $studentMale = array_map(function ($student) {
+                if ($student->gender === 'L') {
+                    return $student;
                 }
+            }, $groupStudent);
+
+            if (count($studentMale) < 2) {
+                $groupStudent = $this->generateMemberGroup($rowCompany);
             }
 
-            $dataPeriode                = $this->Registrations->getDataPeriode()->row();
-            $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
-            $academicId                 = $academic->id;
-            $rowCompany                 = $company->row();
+            $leader = $groupStudent[0];
 
-            $array_id_leader = rand(0, 7);
+            $groupId                    = strtotime($dataPeriode->start_time_pkl) . ":" . $leader->id;
+            // pretty_dump($groupId);
+            $dataInsert = array_map(function ($student, $index) use ($groupId, $rowCompany, $dataPeriode, $academicId) {
+                return [
+                    'group_id'          => $groupId,
+                    'company_id'        => $rowCompany->id,
+                    'start_date'        => $dataPeriode->start_time_pkl,
+                    'finish_date'       => $dataPeriode->finish_time_pkl,
+                    'student_id'        => $student->id,
+                    'status'            => ($index == 0) ? 'Ketua' : 'Anggota',
+                    'prodi_id'          => $student->prodi_id,
+                    'group_status'      => 'diverifikasi',
+                    'academic_year_id'  => $academicId,
+                    'verify_member'     => 'Diterima'
+                ];
+            }, $groupStudent, array_keys($groupStudent));
 
-
-
-
-            // $leader = $students[$array_id_leader];
-
-            // $groupId                    = strtotime($dataPeriode->start_time_pkl) . ":" . $leader->id;
-
-            // $dataInsert = array_map(function ($student, $index) use ($groupId, $rowCompany, $dataPeriode, $academicId, $array_id_leader) {
-            //     return [
-            //         'group_id'          => $groupId,
-            //         'company_id'        => $rowCompany->id,
-            //         'start_date'        => $dataPeriode->start_time_pkl,
-            //         'finish_date'       => $dataPeriode->finish_time_pkl,
-            //         'student_id'        => $student->id,
-            //         'status'            => ($index == $array_id_leader) ? 'Ketua' : 'Anggota',
-            //         'prodi_id'          => $student->prodi_id,
-            //         'group_status'      => 'diverifikasi',
-            //         'academic_year_id'  => $academicId,
-            //         'verify_member'     => 'Diterima'
-            //     ];
-            // }, $students, array_keys($students));
-
-            // $this->db->insert_batch('registration', $dataInsert);
-            pretty_dump($students);
+            $this->db->insert_batch('registration', $dataInsert);
+            // pretty_dump($dataInsert);
 
 
 
@@ -525,10 +522,93 @@ class Admin_registrations extends CI_Controller
         }
     }
 
-    public function generateMhs()
+    private function generateMemberGroup($company)
     {
-        $faker = Faker\Factory::create();
-        echo $faker->name;
+        $prodies = $this->Registrations->getProdiWhereProdiNot($company->prodi_id);
+        array_push($prodies, $this->Registrations->getProdiWhereProdi($company->prodi_id));
+        $students = [];
+        foreach ($prodies as $prodi) {
+            $studentsByRandomLimit = $this->Registrations->getStudent('randomlimit', $prodi->id)->result();
+            foreach ($studentsByRandomLimit as $student) {
+                array_push($students, $student);
+            }
+        }
+        return $students;
+    }
+
+    public function generateMhs($value)
+    {
+        $this->load->model('Admin/Admin_students_model', 'Student');
+        $this->load->model('Admin/Admin_config_model', 'Config');
+
+        $genders = array('L', 'P');
+        $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6', 'e181dc4a-db7c-11eb-9096-0cc47abcfaa6', 'f5be70c5-db7c-11eb-9096-0cc47abcfaa6', '07be469e-db7d-11eb-9096-0cc47abcfaa6', '15539eaf-db7d-11eb-9096-0cc47abcfaa6');
+
+        $academic_year = 'eab698c8-da76-11eb-9096-0cc47abcfaa6';
+
+
+        for ($i = 0; $i < $value; $i++) {
+
+            $faker = Faker\Factory::create();
+
+            $this->db->set('id', 'UUID()', FALSE);
+            $npm = $faker->randomNumber(8, $strict = false);
+
+            $dataInputStudent = [
+                'fullname'          => htmlspecialchars($faker->name),
+                'npm'               => $npm,
+                'email'             => htmlspecialchars($faker->freeEmail),
+                'prodi_id'          => htmlspecialchars($prodies[array_rand($prodies)]),
+                'address'           => htmlspecialchars($faker->address),
+                'birth_date'        => htmlspecialchars($faker->date($format = 'Y-m-d', $max = '2002-01-01')),
+                'no_hp'             => htmlspecialchars($faker->phoneNumber),
+                'gender'            => htmlspecialchars($genders[array_rand($genders)]),
+                'academic_year_id'  => $academic_year,
+                'status'            => htmlspecialchars('active'),
+            ];
+            $insertStudent      = $this->Student->insert($dataInputStudent);
+            if ($insertStudent > 0) {
+                $this->db->set('id', 'UUID()', FALSE);
+                $dataInsertUser = [
+                    'username'  => $npm,
+                    'password'  => password_hash('123456', PASSWORD_DEFAULT),
+                    'role_id'   => '775b0cb4-b7a8-11eb-a91e-0cc47abcfaa6',
+                ];
+                $insertUser = $this->Config->insertUserTable($dataInsertUser);
+            }
+        }
+    }
+
+    public function generateCompany($value)
+    {
+        $this->load->model('Admin/Admin_company_model', 'Company');
+
+        $genders = array('L', 'P');
+        $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6', 'e181dc4a-db7c-11eb-9096-0cc47abcfaa6', 'f5be70c5-db7c-11eb-9096-0cc47abcfaa6', '07be469e-db7d-11eb-9096-0cc47abcfaa6', '15539eaf-db7d-11eb-9096-0cc47abcfaa6');
+
+        $academic_year = 'eab698c8-da76-11eb-9096-0cc47abcfaa6';
+
+
+        for ($i = 0; $i < $value; $i++) {
+
+            $faker = Faker\Factory::create();
+
+            $this->db->set('id', 'UUID()', FALSE);
+            $dataInput = [
+                'name'          => htmlspecialchars($faker->company),
+                'address'       => htmlspecialchars($faker->address),
+                'districts_id'  => 1101010,
+                'regency_id'    => 1101,
+                'province_id'   => 11,
+                'prodi_id'      => htmlspecialchars($prodies[array_rand($prodies)]),
+                'email'         => htmlspecialchars($faker->email),
+                'telp'          => htmlspecialchars($faker->phoneNumber),
+                'pic'           => htmlspecialchars(''),
+                'label'         => htmlspecialchars(''),
+                'status'        => 'verify',
+            ];
+            $insertCompany      = $this->Company->insert($dataInput);
+        }
     }
 
 
