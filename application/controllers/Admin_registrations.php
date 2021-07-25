@@ -480,48 +480,36 @@ class Admin_registrations extends CI_Controller
             }, $groupStudent, array_keys($groupStudent));
 
             $this->db->insert_batch('registration', $dataInsert);
-            // pretty_dump($dataInsert);
-
-
-
-            // for ($i = 1; $i <= $looping; $i++) {
-            //     $student                    = $this->Registrations->getStudent('randomlimit');
-            //     $company                    = $this->Registrations->getCompany('random');
-            //     $dataPeriode                = $this->Registrations->getDataPeriode()->row();
-            //     $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
-            //     $academicId                 = $academic->id;
-            //     $row                        = $student->row();
-            //     $rowCompany                 = $company->row();
-            //     $groupId                    = strtotime($dataPeriode->start_time_pkl) . ":" . $row->id;
-            //     $this->db->set('id', 'UUID()', FALSE);
-            //     $dataInsertLeader   = [
-            //         'group_id'          => $groupId,
-            //         'company_id'        => $rowCompany->id,
-            //         'start_date'        => $dataPeriode->start_time_pkl,
-            //         'finish_date'       => $dataPeriode->finish_time_pkl,
-            //         'student_id'        => $row->id,
-            //         'status'            => 'Ketua',
-            //         'prodi_id'          => $row->prodi_id,
-            //         'group_status'      => 'diverifikasi',
-            //         'academic_year_id'  => $academicId,
-            //         'verify_member'     => 'Diterima'
-            //     ];
-            //     pretty_dump($dataInsertLeader);
-            // $insertLeader       = $this->Registrations->insert($dataInsertLeader);
-            // if ($insertLeader > 0) {
-            //     $memberStudent          = $this->Registrations->getStudent('random');
-            //     $dataLeader             = $this->Registrations->getRegistrationBy('limit')->row();
-            //     $j                      = 1;
-            //     foreach ($memberStudent->result() as $member) {
-            //         if ($j < 8) {
-            //             $this->_insertMember($dataLeader, $member);
-            //         }
-            //         $j++;
-            //     }
-            // } else {
-            //     echo "Leader gagal insert";
-            // }
         }
+
+        $getData     = $this->Registrations->getAllData()->result();
+        if ($getData != null) {
+            $result['status'] = 'ok';
+            $output     = "";
+            $i = 1;
+            foreach ($getData as $leader) {
+                $this->db->where('status !=', 'Ketua');
+                $member = $this->db->get_where('registration', ['group_id' => $leader->group_id])->num_rows();
+                $output     .= "
+                <tr>
+                    <td>$i</td>
+                    <td>$leader->status</td>
+                    <td>$leader->company_name</td>
+                    <td>" . date('d-m-Y', strtotime($leader->start_date)) . ' - ' . date('d-m-Y', strtotime($leader->finish_date)) . "</td>
+                    <td>" . $leader->npm . ' - ' . $leader->fullname . ' - ' . $leader->prodi_name . "</td>
+                    <td>
+                        <a href='" . base_url('admin/registrations/detail/' . encodeEncrypt($leader->id)) . "' class='btn btn-link'>$member Anggota</a>
+                    </td>
+                </tr>
+            ";
+            }
+            $result['data']   = $output;
+        } else {
+            $result['status'] = 'bad';
+            $result['data']   = null;
+        }
+
+        $this->output->set_content_type('application/json')->set_output(json_encode($result));
     }
 
     private function generateMemberGroup($company)
