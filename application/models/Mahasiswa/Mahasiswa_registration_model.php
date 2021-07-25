@@ -39,7 +39,7 @@ class Mahasiswa_registration_model extends CI_Model
 
   private function _joinTable()
   {
-    $this->db->select('registration.*, company.name as company_name,company.pic, student.npm,student.fullname, student.status as student_status, prodi.name as prodi_name, lecture.name as lecture_name, academic_year.name as academic_year, academic_year.status as academic_year_status');
+    $this->db->select('registration.*, company.name as company_name,company.pic, student.npm,student.fullname, student.status as student_status, prodi.name as prodi_name, lecture.nip, lecture.name as lecture_name, academic_year.name as academic_year, academic_year.status as academic_year_status');
     $this->db->join($this->tableCompany, 'company.id=registration.company_id');
     $this->db->join($this->studentTable, 'student.id=registration.student_id');
     $this->db->join($this->tableProdi, 'prodi.id=registration.prodi_id');

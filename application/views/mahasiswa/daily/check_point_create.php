@@ -24,6 +24,21 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header d-block">
+            <h3 class="text-uppercase">Informasi</h3>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>Untuk absensi di lakukan pada hari pelaksanaan PKN</li>
+              <li>Tanggal absensi menyesuikan pada saat membuat kehadiran, apabila pada tanggal tertentu tidak melakukan absensi maka di anggap tidak hadir/tidak ada keterangan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header d-block">
@@ -51,19 +66,19 @@
                 <div class="col-md-4" id="time_in" style="display: none;">
                   <div class="form-group has-error">
                     <label for="time_in">Jam Masuk</label>
-                    <input type="time" class="form-control <?= form_error('time_in') ? 'is-invalid' : ''; ?>" id="time_in" placeholder="Jam masuk" name="time_in">
-                    <div class="invalid-feedback">
-                      <?= form_error('time_in'); ?>
-                    </div>
+                    <input type="time" class="form-control" id="time_in" placeholder="Jam masuk" name="time_in">
                   </div>
                 </div>
                 <div class="col-md-4" id="time_out" style="display: none;">
                   <div class="form-group has-error">
                     <label for="time_out">Jam Selesai</label>
-                    <input type="time" class="form-control <?= form_error('time_out') ? 'is-invalid' : ''; ?>" id="time_out" placeholder="Jam selesai" name="time_out">
-                    <div class="invalid-feedback">
-                      <?= form_error('time_out'); ?>
-                    </div>
+                    <input type="time" class="form-control" id="time_out" placeholder="Jam selesai" name="time_out">
+                  </div>
+                </div>
+                <div class="col-md-4" id="note" style="display: none;">
+                  <div class="form-group has-error">
+                    <label for="note">Keterangan</label>
+                    <input type="text" class="form-control" id="note" placeholder="Keterangan" name="note">
                   </div>
                 </div>
               </div>

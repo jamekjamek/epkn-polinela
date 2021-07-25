@@ -22,7 +22,7 @@
   <p style="text-align: center;">
     <strong style="font-size:18px">SURAT TUGAS</strong>
     <br>
-    <span style="text-align: center; font-weight:bold">Nomor: 123/PL15/KM/2021</span>
+    <span style="text-align: center; font-weight:bold">Nomor: <?= $settingletter->letter_number; ?></span>
   </p>
   <p style="text-align: center;">&nbsp;</p>
   <p style="text-align: left;">Direktur Politeknik Negeri Lampung, memberikan tugas kepada:</p>
@@ -36,27 +36,30 @@
       </tr>
     </thead>
     <tbody>
-      <?php for ($i = 1; $i <= 8; $i++) : ?>
+      <?php $i = 1;
+      foreach ($students as $student) : ?>
         <tr style="height: 18px;">
-          <td style="width: 6.96023%; height: 18px; text-align:center"><?= $i; ?></td>
-          <td style="width: 43.0398%; height: 18px;">&nbsp;</td>
-          <td style="width: 25%; height: 18px;">&nbsp;</td>
-          <td style="width: 25%; height: 18px;">&nbsp;</td>
+          <td style="width: 6.96023%; height: 18px; text-align:center"><?= $i++; ?></td>
+          <td style="width: 43.0398%; height: 18px;"><?= $student->student ?></td>
+          <td style="width: 25%; height: 18px; text-align:center"><?= $student->npm ?></td>
+          <td style="width: 25%; height: 18px;"><?= $student->prodi_name ?></td>
         </tr>
-      <?php endfor; ?>
+      <?php endforeach; ?>
     </tbody>
   </table>
   <p>
+    <?php $regency = strtolower($row->address) ?>
+    <?php $distric = strtolower($row->district_name) ?>
     <span>
-      Untuk melaksanakan Praktik Kerja Nyata (PKN) Tahun 20.. di :
+      Untuk melaksanakan Praktik Kerja Nyata (PKN) Tahun <?= date('d F ', strtotime($row->finish_date)) ?> di :
     </span>
     <br>
     <span style="font-weight:bold;">
-      Desa ......., Kecamatan .......... Kabupaten ..........
+      Desa <?= $row->company_name ?>, Kecamatan <?= ucwords($distric) ?> <?= ucwords($regency) ?>
     </span>
     <br>
     <span style="font-weight:bold;font-style:italic">
-      Terhitung mulai tanggal: ............... s.d. ............... 20..
+      Terhitung mulai tanggal: <?= date('d F ', strtotime($row->start_date)) ?> s.d. <?= date('d F ', strtotime($row->finish_date)) ?> <?= date('Y', strtotime($row->finish_date)) ?>
     </span>
     <br>
     <br>
@@ -67,7 +70,7 @@
   </p>
   <div>
     <br>
-    <div style="padding-left: 400px;">22 Ferbuari 2021</div>
+    <div style="padding-left: 400px;"><?= date('d F Y') ?></div>
     <br>
     <p style="padding-left: 400px;">
       <span>

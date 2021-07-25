@@ -16,11 +16,12 @@
             <div class="nav-item <?= ($uri  === 'dashboard' ? 'active' : '') ?>">
                <a href="<?= base_url('admin/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
             </div>
-            <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4)  === 'academic_year' || $this->uri->segment(2)  === 'guidebook' || $this->uri->segment(3)  === 'guidebook' ? 'active open' : '') ?>">
+            <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4)  === 'academic_year' || $this->uri->segment(2)  === 'guidebook' || $this->uri->segment(3)  === 'guidebook' || $this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active open' : '') ?>">
                <a href="javascript:void(0)"><i class="ik ik-settings"></i><span>Konfigurasi</span></a>
                <div class="submenu-content">
                   <a href="<?= base_url('admin/config/academic_year') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4) === 'academic_year' ? 'active' : '') ?>">Tahun Akademik</a>
                   <a href="<?= base_url('admin/guidebook') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'guidebook' || $this->uri->segment(2) === 'guidebook' ? 'active' : '') ?>">Buku Panduan</a>
+                  <a href="<?= base_url('admin/letter') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active' : '') ?>">Surat</a>
                </div>
             </div>
             <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'major' || $this->uri->segment(3) === 'prodi' || $this->uri->segment(3) === 'student' || $this->uri->segment(3) === 'lecture' || $this->uri->segment(3) === 'village' || $this->uri->segment(3) === 'head-of-program' || $this->uri->segment(3) === 'head-of-program-study' || $this->uri->segment(3) === 'users' || $this->uri->segment(3)  === 'planning_attachment' || $this->uri->segment(4) === 'planning_attachment' ? 'active open' : '') ?>">

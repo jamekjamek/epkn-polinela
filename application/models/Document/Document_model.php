@@ -12,6 +12,7 @@ class Document_model extends CI_Model
     $this->tableRegistration  = 'registration';
     $this->tableCompany       = 'company';
     $this->tableRegency       = 'regency';
+    $this->tableDistric       = 'districts';
     $this->tableStudent       = 'student';
     $this->tableProdi         = 'prodi';
     $this->tableMajor         = 'major';
@@ -58,9 +59,10 @@ class Document_model extends CI_Model
 
   public function getRegistrationDataBy($data, $leader = null)
   {
-    $this->db->select('a.*,b.name company_name,c.name as address,d.fullname as student,d.npm,d.email student_email,e.name prodi_name,f.name as academicyear');
+    $this->db->select('a.*,b.name company_name,g.name as district_name,c.name as address,d.fullname as student,d.npm,d.email student_email,e.name prodi_name,f.name as academicyear');
     $this->db->join($this->tableCompany . ' b', 'a.company_id=b.id', 'LEFT');
     $this->db->join($this->tableRegency . ' c', 'b.regency_id=c.id', 'LEFT');
+    $this->db->join($this->tableDistric . ' g', 'g.regency_id=c.id', 'LEFT');
     $this->db->join($this->tableStudent . ' d', 'a.student_id=d.id', 'LEFT');
     $this->db->join($this->tableProdi . ' e', 'd.prodi_id=e.id', 'LEFT');
     $this->db->join($this->tableAcademic . ' f', 'a.academic_year_id=f.id', 'LEFT');
@@ -72,6 +74,7 @@ class Document_model extends CI_Model
     } else {
       $this->db->order_by('d.npm', 'ASC');
     }
+    $this->db->group_by('d.npm');
     return $this->db->get($this->tableRegistration . ' a');
   }
 
@@ -87,7 +90,7 @@ class Document_model extends CI_Model
 
   public function getPlanningBy()
   {
-    $query = "SELECT planning.*,student.fullname, student.npm,major.name as major_name,prodi.name as prodi_name, company.name as company_name, company.pic, lecture.nip, lecture.name as lecture_name FROM planning JOIN registration on registration.id=planning.registration_id JOIN student on student.id=registration.student_id JOIN prodi ON prodi.id=student.prodi_id JOIN major ON major.id=prodi.major_id JOIN company on company.id=registration.company_id JOIN lecture on lecture.id=registration.lecture_id WHERE student.npm =" . $this->session->userdata('user');
+    $query = "SELECT planning.*,student.fullname, student.npm,major.name as major_name,prodi.name as prodi_name, company.name as company_name, company.pic, lecture.nip, lecture.name as lecture_name FROM planning JOIN registration on registration.id=planning.registration_id JOIN student on student.id=registration.student_id JOIN prodi ON prodi.id=student.prodi_id JOIN major ON major.id=prodi.major_id JOIN company on company.id=registration.company_id JOIN lecture on lecture.id=registration.lecture_id WHERE planning.approval = 1 AND student.npm =" . $this->session->userdata('user');
     return $this->db->query($query);
   }
 

@@ -10,13 +10,14 @@ class Mahasiswa_daily_model extends CI_Model
     $this->tableCheckPoint = 'check_point';
     $this->tableRegistration = 'registration';
     $this->tableStudent = 'student';
+    $this->tableCompany = 'company';
   }
 
   public function dailyList()
   {
     $this->_logJoin();
     $this->db->where('student.npm', $this->session->userdata('user'));
-    return $this->db->get($this->tableDailyLog)->result();
+    return $this->db->get($this->tableDailyLog);
   }
 
   public function getDataLogBy($id)
@@ -65,9 +66,10 @@ class Mahasiswa_daily_model extends CI_Model
 
   private function _logJoin()
   {
-    $this->db->select('*');
+    $this->db->select('daily_log.*,company.pic');
     $this->db->join($this->tableRegistration, 'registration.id=daily_log.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
+    $this->db->join($this->tableCompany, 'company.id=registration.company_id');
   }
 
   private function _cpJoin()

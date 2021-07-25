@@ -18,7 +18,7 @@
           <a href=" <?= site_url('dosen/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'planning' ? 'active' : '') ?>">
-          <a href=" <?= site_url('dosen/planning') ?>"><i class="ik ik-book"></i><span>Capaian Pembelajaran</span></a>
+          <a href=" <?= site_url('dosen/planning') ?>"><i class="ik ik-book"></i><span>Program</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'report_supervision' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/report_supervision') ?>"><i class="ik ik-clipboard"></i><span>Laporan Supervisi</span></a>

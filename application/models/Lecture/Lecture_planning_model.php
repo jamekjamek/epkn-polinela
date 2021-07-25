@@ -26,6 +26,7 @@ class Lecture_planning_model extends CI_Model
 
   public function update($data, $where)
   {
+    // die(var_dump($where));
     $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
   }

@@ -32,6 +32,21 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header d-block">
+            <h3 class="text-uppercase">Informasi</h3>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>Untuk absensi di lakukan pada hari pelaksanaan PKN</li>
+              <li>Tanggal absensi menyesuikan pada saat membuat kehadiran, apabila pada tanggal tertentu tidak melakukan absensi maka di anggap tidak hadir/tidak ada keterangan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header d-block">
             <div class="d-flex flex-grow-1 min-width-zero card-content">
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
@@ -58,6 +73,7 @@
                       <th>Jam Masuk</th>
                       <th>Jam Keluar</th>
                       <th>Kehadiran</th>
+                      <th>Keterangan</th>
                       <th>Validasi Supervisor</th>
                     </tr>
                   </thead>
@@ -71,6 +87,7 @@
                         <td><?= $cp->time_in ?></td>
                         <td><?= $cp->time_out ?></td>
                         <td><?= $cp->attendance ?></td>
+                        <td><?= $cp->note ?></td>
                         <td>
                           <?= ($cp->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
                         </td>

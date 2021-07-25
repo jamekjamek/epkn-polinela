@@ -4,7 +4,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
 <div class="main-content">
   <div class="container-fluid">
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Halo <strong> <?= $showName->lecture_name ?>!</strong> Selamat datang di aplikasi E-PKL Politeknik Negeri Lampung
+      Halo <strong> <?= $showName->lecture_name ?>!</strong> Selamat datang di aplikasi E-PKN Politeknik Negeri Lampung
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="ik ik-x"></i>
       </button>

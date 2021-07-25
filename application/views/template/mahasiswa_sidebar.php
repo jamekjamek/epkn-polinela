@@ -31,8 +31,8 @@
               <a href=" <?= site_url('mahasiswa/document') ?>"><i class="ik ik-file-text"></i><span>Berkas PKN</span></a>
             </div>
           <?php endif ?>
-          <div class="nav-item <?= ($this->uri->segment(2) === 'planning' ? 'active' : '') ?>">
-            <a href=" <?= site_url('mahasiswa/planning') ?>"><i class="ik ik-check-circle"></i><span>Perencanaan Kegiatan</span></a>
+          <div class="nav-item <?= ($this->uri->segment(2) === 'program' ? 'active' : '') ?>">
+            <a href=" <?= site_url('mahasiswa/program') ?>"><i class="ik ik-check-circle"></i><span>Program</span></a>
           </div>
           <div class="nav-item <?= ($this->uri->segment(3) === 'log' ? 'active' : '') ?>">
             <a href=" <?= site_url('mahasiswa/daily/log') ?>"><i class="ik ik-activity"></i><span>Jurnal Harian</span></a>
@@ -40,8 +40,8 @@
           <div class="nav-item <?= ($this->uri->segment(3) === 'check_point' ? 'active' : '') ?>">
             <a href=" <?= site_url('mahasiswa/daily/check_point') ?>"><i class="ik ik-paperclip"></i><span>Absensi</span></a>
           </div>
-          <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkl' ? 'active' : '') ?>">
-            <a href=" <?= site_url('mahasiswa/data_pkl') ?>"><i class="ik ik-airplay"></i><span>Data PKL</span></a>
+          <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' ? 'active' : '') ?>">
+            <a href=" <?= site_url('mahasiswa/data_pkn') ?>"><i class="ik ik-airplay"></i><span>Rekap PKN</span></a>
           </div>
           <div class="nav-item <?= ($this->uri->segment(2) === 'quesioner' ? 'active' : '') ?>">
             <?php if (@$result != null) { ?>

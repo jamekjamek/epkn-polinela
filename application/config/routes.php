@@ -19,6 +19,11 @@ $route['admin/config/academic_year/add']            = 'admin_academic_year/creat
 $route['admin/config/academic_year/edit/(:any)']    = 'admin_academic_year/update/$1';
 $route['admin/config/academic_year/delete/(:any)']  = 'admin_academic_year/delete/$1';
 
+//LETTER
+$route['admin/letter']                              = 'admin_letter';
+$route['admin/letter/add']                          = 'admin_letter/add';
+$route['admin/letter/detail/(:any)']                = 'admin_letter/detail/$1';
+
 //MASTER DATA
 //MAJOR
 $route['admin/master/major']                        = 'admin_major';
@@ -91,6 +96,7 @@ $route['prodi/config/historyapproval/(:any)']       = 'admin_config/historyappro
 $route['config/verificationdata']                   = 'Admin_config/data';
 
 //ADMIN PDF TES
+$route['pdf/amplop']                                = 'admin_pdf/amplop';
 $route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //7.Surat Tugas mahasiswa PKN (F-PAI-030)
 $route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
 $route['pdf/penilaianpembimbinglapang']             = 'admin_pdf/penilaianpembimbinglapang'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
@@ -99,8 +105,10 @@ $route['pdf/penilaiansupervisi']                    = 'admin_pdf/penilaiansuperv
 $route['pdf/penilaianujian']                        = 'admin_pdf/penilaianujian'; //13.Formulir penilaian ujian PKN (F-PAI-036)
 $route['pdf/nilaiakhir']                            = 'admin_pdf/nilaiakhir'; //14.Nilai akhir PKN (F-PAI-037)
 $route['pdf/penilaiandosenpembimbing']              = 'admin_pdf/penilaiandosenpembimbing'; //15.Penilaian dosen pembimbing (F-PAI-038)
-
+$route['pdf/suratpenarikan']                        = 'admin_pdf/suratpenarikan';
 //VERIFICATION
+$route['pdf/lembarperencanaankegiatanpkl']          = 'admin_pdf/planningSheet';
+
 $route['admin/verification']                        = 'Admin_verification';
 
 //KETUA JURUSAN
@@ -146,9 +154,9 @@ $route['mahasiswa/dashboard']                       = 'mahasiswa_dashboard';
 $route['mahasiswa/document']                        = 'mahasiswa_document';
 $route['mahasiswa/document/update']                 = 'mahasiswa_document/edit';
 
-$route['mahasiswa/planning']                        = 'mahasiswa_planning';
-$route['mahasiswa/planning/add']                    = 'mahasiswa_planning/create';
-$route['mahasiswa/planning/edit/(:any)/edit']       = 'mahasiswa_planning/update/$1/edit';
+$route['mahasiswa/program']                        = 'mahasiswa_program';
+$route['mahasiswa/program/add']                    = 'mahasiswa_program/create';
+$route['mahasiswa/program/edit/(:any)/edit']       = 'mahasiswa_program/update/$1/edit';
 
 $route['mahasiswa/daily/log']                       = 'mahasiswa_daily/logIndex';
 $route['mahasiswa/daily/log/add']                   = 'mahasiswa_daily/logCreate';
@@ -160,12 +168,13 @@ $route['mahasiswa/daily/check_point/add']           = 'mahasiswa_daily/checkPoin
 
 $route['mahasiswa/profile']                         = 'mahasiswa_profile';
 
-$route['mahasiswa/config/getcapaian']               = 'mahasiswa_planning/getCapaian';
-$route['mahasiswa/config/getsubcapaian']            = 'mahasiswa_planning/getSubCapaian';
+$route['mahasiswa/config/getcapaian']               = 'mahasiswa_program/getCapaian';
+$route['mahasiswa/config/getsubcapaian']            = 'mahasiswa_program/getSubCapaian';
 
 $route['mahasiswa/data_pkn']                        = 'mahasiswa_data_pkn';
 $route['mahasiswa/data_pkn/uploaded']               = 'mahasiswa_data_pkn/upload';
 
+$route['mahasiswa/quesioner']                       = 'quesioner';
 
 
 
@@ -204,7 +213,7 @@ $route['dosen/dashboard']                           = 'lecture_dashboard';
 $route['dosen/planning']                            = 'lecture_planning';
 $route['dosen/planning/academic_year/(:any)']       = 'lecture_planning/index/$1';
 $route['dosen/planning/detail/(:any)']              = 'lecture_planning/detail/$1';
-$route['dosen/planning/verification/(:any)/(:any)'] = 'lecture_planning/verification/$1/$2';
+$route['dosen/planning/verification/(:any)']        = 'lecture_planning/verification/$1';
 
 $route['dosen/report_supervision']                  = 'lecture_report/reportSupervision';
 $route['dosen/report_supervision/academic_year/(:any)'] = 'lecture_report/reportSupervision/$1';
@@ -212,18 +221,22 @@ $route['dosen/report_supervision/edit/(:any)/edit'] = 'lecture_report/updateRepo
 $route['dosen/report_supervision/detail/(:any)']    = 'lecture_report/detailReportSupervision/$1';
 $route['dosen/report_reception']                    = 'lecture_report/reportReception';
 $route['dosen/report_reception/academic_year/(:any)'] = 'lecture_report/reportReception/$1';
+$route['dosen/report_reception/detail/(:any)']      = 'lecture_report/detailReception/$1';
 
 $route['dosen/data_pkn']                            = 'lecture_data_pkn';
 $route['dosen/data_pkn/academic_year/(:any)']       = 'lecture_data_pkn/index/$1';
 $route['dosen/data_pkn/assessment/(:any)']          = 'lecture_data_pkn/assessment/$1';
 $route['dosen/data_pkn/assessment/supervision/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervision/$1';
+$route['dosen/data_pkn/assessment/pushed/(:any)/(:any)'] = 'lecture_data_pkn/pushed/$1/$2';
 $route['dosen/data_pkn/assessment/guidance/(:any)'] = 'lecture_data_pkn/saveAssesmentGuidance/$1';
 $route['dosen/data_pkn/assessment/test_score/(:any)'] = 'lecture_data_pkn/saveAssesmentFinalTest/$1';
 
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
-$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_activity/dailyLog/$1';
+$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_data_pkn/dailyLog/$1';
 $route['dosen/activity/attendance']                 = 'lecture_activity/attendance';
 $route['dosen/activity/attendance/academic_year/(:any)']  = 'lecture_activity/attendance/$1';
+
+$route['dosen/quesioner']                           = 'quesioner';
 
 
 /* ================================= SUPERVISOR ROLE ================================= */

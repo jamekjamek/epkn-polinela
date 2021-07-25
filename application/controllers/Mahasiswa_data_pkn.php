@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mahasiswa_data_pkl extends CI_Controller
+class Mahasiswa_data_pkn extends CI_Controller
 {
   public function __construct()
   {

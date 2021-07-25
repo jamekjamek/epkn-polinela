@@ -36,9 +36,9 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
                 <?php
-                if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
+                if ($check != null && $check->group_status == 'diterima') : ?>
                   <div class="btn-group" role="group">
-                    <a href="<?= base_url('mahasiswa/planning/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
+                    <a href="<?= base_url('mahasiswa/program/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
                     <a href="<?= base_url('pdf/lembarperencanaankegiatanpkl'); ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i>Export</a>
                   </div>
                 <?php endif ?>
@@ -65,10 +65,10 @@
                       <td><?= $i++; ?></td>
                       <td><strong><?= $planning->npm; ?></strong> <br> <?= $planning->fullname ?></td>
                       <td>
-                        <strong>Capaian :</strong>
+                        <strong>Program :</strong>
                         <?= $planning->learning_achievement; ?>
                         <br>
-                        <strong>Sub Capaian :</strong>
+                        <strong>Sub Kegiatan :</strong>
                         <?= $planning->learning_achievement_sub; ?>
                       </td>
                       <td><?= $planning->time_qty; ?></td>
@@ -83,7 +83,7 @@
                       </td>
                       <td>
                         <?php if ($planning->approval == 0 || $planning->approval == 2) : ?>
-                          <a href="<?= base_url('mahasiswa/planning/edit/' . $this->encrypt->encode($planning->id, keyencrypt()) . '/edit') ?>" class="btn btn-icon btn-success" title="Edit"><i class="ik ik-edit"></i></a>
+                          <a href="<?= base_url('mahasiswa/program/edit/' . $this->encrypt->encode($planning->id, keyencrypt()) . '/edit') ?>" class="btn btn-icon btn-success" title="Edit"><i class="ik ik-edit"></i></a>
                         <?php endif ?>
                       </td>
                     </tr>

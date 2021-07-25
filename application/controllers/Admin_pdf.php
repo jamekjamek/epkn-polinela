@@ -9,6 +9,19 @@ class Admin_pdf extends CI_Controller
     $this->footer = '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 50px; height:80px">';
   }
 
+  public function amplop()
+  {
+    $mpdf   = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' =>  [241, 104], 'default_font_size' => 10, ['orientation' => 'L']]);
+    $data = [
+      'getAmplopByLeader'     =>  $this->Documents->getEnvelopeByLeader(),
+    ];
+    $view   = $this->load->view('pdf/amplop', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Amplop");
+    $mpdf->WriteHTML($view);
+    $mpdf->Output('Amplop.pdf', 'I');
+  }
+
   public function surattugas()
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
@@ -18,7 +31,17 @@ class Admin_pdf extends CI_Controller
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
-    $dataBody           = [];
+    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30f0f-db92-11eb-9096-0cc47abcfaa6'])->row();
+    $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
+    $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
+    $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
+    $dataBody           = [
+      'settingletter' => $settingLetter,
+      'row'           => $rowRegistration,
+      'students'      => $dataRegistration,
+      'kaprodi'       => $dataKaprodi
+    ];
     $body               = $this->load->view('pdf/surattugas', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Surat Tugas");
@@ -36,7 +59,17 @@ class Admin_pdf extends CI_Controller
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
-    $dataBody           = [];
+    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30eb7-db92-11eb-9096-0cc47abcfaa6'])->row();
+    $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
+    $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
+    $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
+    $dataBody           = [
+      'settingletter' => $settingLetter,
+      'row'           => $rowRegistration,
+      'students'      => $dataRegistration,
+      'kaprodi'       => $dataKaprodi
+    ];
     $body               = $this->load->view('pdf/suratpengantar', $dataBody, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Surat Pengantar");
@@ -151,5 +184,49 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($body);
     $mpdf->Output('15.Penilaian dosen pembimbing (F-PAI-038).pdf', 'I');
+  }
+
+  public function suratpenarikan()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 10]);
+    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30fa3-db92-11eb-9096-0cc47abcfaa6'])->row();
+    $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
+    $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
+    $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
+    // var_dump($dataKaprodi);
+    // die;
+    $template           = [
+      'header' => $settingLetter,
+    ];
+    $templatePdf        = $this->load->view('pdf/template', $template, true);
+
+    $mpdf->SetHTMLHeader($templatePdf);
+    $mpdf->SetHTMLFooter($this->footer);
+
+    $data               = [
+      'settingletter' => $settingLetter,
+      'row'           => $rowRegistration,
+      'students'      => $dataRegistration,
+      'kaprodi'       => $dataKaprodi
+    ];
+    $view   = $this->load->view('pdf/penarikan', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Surat Penarikan");
+    $mpdf->WriteHTML($view);
+    $mpdf->Output('Surat Penarikan', 'I');
+  }
+
+  public function planningSheet()
+  {
+    $mpdf   = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' =>  'A4-P']);
+    $data = [
+      'getPlanningBy'   =>  $this->Documents->getPlanningBy()->row(),
+      'getPlanningList' =>  $this->Documents->getPlanningBy()->result(),
+    ];
+    $view   = $this->load->view('pdf/lembarperencanaankegiatanpkl', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->WriteHTML($view);
+    $mpdf->Output('Program', 'I');
   }
 }

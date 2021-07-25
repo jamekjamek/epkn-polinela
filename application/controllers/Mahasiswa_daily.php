@@ -7,6 +7,7 @@ class Mahasiswa_daily extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Mahasiswa/Mahasiswa_daily_model', 'Daily');
+    $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
     $this->role = 'Mahasiswa';
     cek_login('Mahasiswa');
     $this->redirectDailyLog = 'mahasiswa/daily/log';
@@ -18,8 +19,8 @@ class Mahasiswa_daily extends CI_Controller
     $data = [
       'title'         => 'Data Log Harian',
       'desc'          => 'Berfungsi untuk melihat data log harian PKL',
-      'dailyLogs'     => $this->Daily->dailyList(),
-      'isCheck'       => $this->Daily->isCheck()->row()
+      'dailyLogs'     => $this->Daily->dailyList()->result(),
+      'isCheck'         => $this->Registration->list()->row(),
     ];
     $page = '/mahasiswa/daily/log';
     pageBackend($this->role, $page, $data);
@@ -32,7 +33,7 @@ class Mahasiswa_daily extends CI_Controller
       $data = [
         'title'         => 'Tambah Data Log Harian',
         'desc'          => 'Berfungsi untuk menambah data log harian PKL',
-        'isCheck'       => $this->Daily->isCheck()->row_array(),
+        'isCheck'         => $this->Registration->list()->row_array(),
       ];
       $page = '/mahasiswa/daily/log_create';
       pageBackend($this->role, $page, $data);
@@ -61,7 +62,7 @@ class Mahasiswa_daily extends CI_Controller
         'title'   => 'Ubah Data Log Harian',
         'desc'    => 'Berfungsi untuk mengupdate data log harian PKL',
         'log'     => $log,
-        'isCheck' => $this->Daily->isCheck()->row_array(),
+        'isCheck'         => $this->Registration->list()->row_array(),
       ];
       $page       = '/mahasiswa/daily/log_update';
       pageBackend($this->role, $page, $data);
@@ -82,13 +83,16 @@ class Mahasiswa_daily extends CI_Controller
   {
     $data = $this->input->post();
     $daily = [
-      'registration_id'           => $data['registration_id'],
-      'learning_achievement'      => $data['learning_achievement'],
-      'learning_achievement_sub'  => $data['learning_achievement_sub'],
-      'implementation_date'       => htmlspecialchars($data['implementation_date']),
-      'tool'                      => htmlspecialchars($data['tool']),
-      'description'               => $data['description'],
-      'comment'                   => $data['comment'],
+      'registration_id'       => $data['registration_id'],
+      'learning_achievement'  => $data['learning_achievement'],
+      'topic'                 => $data['topic'],
+      'tool'                  => htmlspecialchars($data['tool']),
+      'implement_place'       => htmlspecialchars($data['implement_place']),
+      'implementation_date'   => htmlspecialchars($data['implementation_date']),
+      'qty'                   => htmlspecialchars($data['qty']),
+      'procedure'             => $data['procedure'],
+      'description'           => $data['description'],
+      'comment'               => $data['comment'],
     ];
     if ($id) {
       $output     = $this->Daily->update($daily, $id);
@@ -109,6 +113,7 @@ class Mahasiswa_daily extends CI_Controller
         $output     .= "
                 <tr>
                     <td>#</td>
+                    <td>" . $log->procedure . "</td>
                     <td>" . $log->description . "</td>
                     <td>" . $log->comment . "</td>
                 </tr>
@@ -130,8 +135,7 @@ class Mahasiswa_daily extends CI_Controller
       'desc'          => 'Berfungsi untuk melihat data kehadiran PKL',
       'checkPoints'    => $this->Daily->checkPointList(),
       'btnCheck'      => $this->Daily->btnCheckAttendance()->row_array(),
-      'isCheck'       => $this->Daily->isCheck()->row()
-
+      'isCheck'         => $this->Registration->list()->row(),
     ];
     $page = '/mahasiswa/daily/check_point';
     pageBackend($this->role, $page, $data);
@@ -144,7 +148,7 @@ class Mahasiswa_daily extends CI_Controller
       $data = [
         'title'         => 'Tambah Data Kehadiran',
         'desc'          => 'Berfungsi untuk menambah data kehadiran PKL',
-        'isCheck'       => $this->Daily->isCheck()->row_array(),
+        'isCheck'         => $this->Registration->list()->row_array(),
       ];
       $page = '/mahasiswa/daily/check_point_create';
       pageBackend($this->role, $page, $data);
@@ -180,8 +184,8 @@ class Mahasiswa_daily extends CI_Controller
       );
 
       $this->form_validation->set_rules(
-        'learning_achievement_sub',
-        'Sub perencanaan kegiatan',
+        'topic',
+        'Materi',
         'trim|required',
         [
           'required'      => '%s wajib diisi',
@@ -189,8 +193,26 @@ class Mahasiswa_daily extends CI_Controller
       );
 
       $this->form_validation->set_rules(
+        'implement_place',
+        'Tempat pelaksanaan',
+        'required',
+        [
+          'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
+        'qty',
+        'Jumlah peserta',
+        'required',
+        [
+          'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
         'implementation_date',
-        'Tanggal',
+        'Tanggal pelaksanaan',
         'required',
         [
           'required'      => '%s wajib diisi',
@@ -203,6 +225,15 @@ class Mahasiswa_daily extends CI_Controller
         'trim|required',
         [
           'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
+        'procedure',
+        'Prosedur pelasaksanaan',
+        'trim|required',
+        [
+          'required'      => '%s wajib diisi'
         ]
       );
 
@@ -236,8 +267,8 @@ class Mahasiswa_daily extends CI_Controller
       );
 
       $this->form_validation->set_rules(
-        'learning_achievement_sub',
-        'Sub perencanaan kegiatan',
+        'topic',
+        'Materi',
         'trim|required',
         [
           'required'      => '%s wajib diisi',
@@ -245,8 +276,26 @@ class Mahasiswa_daily extends CI_Controller
       );
 
       $this->form_validation->set_rules(
+        'implement_place',
+        'Tempat pelaksanaan',
+        'required',
+        [
+          'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
+        'qty',
+        'Jumlah peserta',
+        'required',
+        [
+          'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
         'implementation_date',
-        'Tanggal',
+        'Tanggal pelaksanaan',
         'required',
         [
           'required'      => '%s wajib diisi',
@@ -259,6 +308,15 @@ class Mahasiswa_daily extends CI_Controller
         'trim|required',
         [
           'required'      => '%s wajib diisi',
+        ]
+      );
+
+      $this->form_validation->set_rules(
+        'procedure',
+        'Prosedur pelasaksanaan',
+        'trim|required',
+        [
+          'required'      => '%s wajib diisi'
         ]
       );
 

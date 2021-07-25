@@ -33,9 +33,9 @@
             <form action="" method="POST">
               <input type="hidden" name="registration_id" id="registration_id" value="<?= $isCheck['id'] ?>">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group has-error">
-                    <label for="learning_achievement">Capain Pembelajaran</label>
+                    <label for="learning_achievement">Kegiatan</label>
                     <select class="get-capaian form-control <?= form_error('learning_achievement') ? 'is-invalid' : ''; ?>" name="learning_achievement" id="learning_achievement" style="width: 100%">
                       <option></option>
                     </select>
@@ -44,30 +44,16 @@
                       <?= form_error('learning_achievement'); ?>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6">
                   <div class="form-group has-error">
-                    <label for="learning_achievement_sub">Sub Capaian Pembelajaran</label>
-                    <select class="get-subcapaian form-control <?= form_error('learning_achievement_sub') ? 'is-invalid' : ''; ?>" name="learning_achievement_sub" id="learning_achievement_sub" style="width: 100%">
-                      <option></option>
-                    </select>
-                    <small class="text-mute">Apabila data tidak ada di pencarian, silahkan ketik saja kemudian pilih yang terketik</small>
+                    <label for="topic">Materi</label>
+                    <textarea name="topic" class="form-control html-editor <?= form_error('topic') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
                     <div class="invalid-feedback">
-                      <?= form_error('learning_achievement_sub'); ?>
+                      <?= form_error('topic'); ?>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group has-error">
-                    <label for="email">Tanggal Pelaksanaan</label>
-                    <input type="date" class="form-control <?= form_error('implementation_date') ? 'is-invalid' : ''; ?>" id="implementation_date" placeholder="Tanggal pelaksanaan" name="implementation_date">
-                    <div class="invalid-feedback">
-                      <?= form_error('implementation_date'); ?>
-                    </div>
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <div class="form-group has-error">
                     <label for="tool">Alat dan Bahan</label>
@@ -77,9 +63,45 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-group has-error">
+                    <label for="email">Tanggal Pelaksanaan</label>
+                    <input type="date" class="form-control <?= form_error('implementation_date') ? 'is-invalid' : ''; ?>" id="implementation_date" placeholder="Tanggal pelaksanaan" name="implementation_date">
+                    <div class="invalid-feedback">
+                      <?= form_error('implementation_date'); ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group has-error">
+                    <label for="implement_place">Tempat Pelaksanaan</label>
+                    <input type="text" class="form-control <?= form_error('implement_place') ? 'is-invalid' : ''; ?>" id="implement_place" placeholder="Tempat pelaksanaa kegiatan" name="implement_place">
+                    <div class="invalid-feedback">
+                      <?= form_error('implement_place'); ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group has-error">
+                    <label for="qty">Jumlah Peserta</label>
+                    <input type="number" class="form-control <?= form_error('qty') ? 'is-invalid' : ''; ?>" id="qty" placeholder="Jumla peserta" name="qty">
+                    <div class="invalid-feedback">
+                      <?= form_error('qty'); ?>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="form-group has-error">
-                <label for="description">Prosedur</label>
+                <label for="procedure">Prosedur</label>
+                <textarea name="procedure" class="form-control html-editor <?= form_error('procedure') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
+                <div class="invalid-feedback">
+                  <?= form_error('procedure'); ?>
+                </div>
+              </div>
+              <div class="form-group has-error">
+                <label for="description">Hasil Pelaksanaan</label>
                 <textarea name="description" class="form-control html-editor <?= form_error('description') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
                 <div class="invalid-feedback">
                   <?= form_error('description'); ?>

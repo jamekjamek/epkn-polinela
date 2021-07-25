@@ -26,8 +26,8 @@ class Auth_model extends CI_Model
         return $this->db->query($query)->row_array();
         break;
       case 'Dosen':
-        $query = "SELECT lecture.name as lecture_name FROM lecture WHERE nip = '" . $this->session->userdata('user') . "'";
-        return $this->db->query($query)->row_array();
+        $query = "SELECT lecture.id, lecture.name as lecture_name FROM lecture WHERE nip = '" . $this->session->userdata('user') . "'";
+        return $this->db->query($query);
         break;
       case 'Supervisor':
         $query = "SELECT company.pic FROM company JOIN supervisor ON supervisor.company_id=company.id WHERE supervisor.username = '" . $this->session->userdata('user') . "'";

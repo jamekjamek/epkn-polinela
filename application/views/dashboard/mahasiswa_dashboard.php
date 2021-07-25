@@ -67,9 +67,9 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                           <tr>
                             <th>No</th>
                             <th>Anggota</th>
+                            <th>Dosen Pembimbing</th>
                             <th>Desa</th>
-                            <th>Waktu PKN</th>
-                            <th>Surat Balasan</th>
+                            <th>Waktu Pelaksanaan</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -87,7 +87,14 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                                 <?= $registration->fullname ?> -
                                 <?= $registration->status ?>
                               </td>
-                              <td><?= $registration->company_name; ?></td>
+                              <td>
+                                <?= $registration->nip ?> <br>
+                                <?= $registration->lecture_name ?>
+                              </td>
+                              <td>
+                                <?= $registration->company_name; ?> <br>
+                                <strong><?= $registration->pic; ?></strong>
+                              </td>
                               <td>
                                 <span class="badge badge-pill badge-primary mb-1">
                                   <?= date('d-m-Y', strtotime($registration->start_date)) ?>
@@ -95,15 +102,6 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                                 s.d <span class="badge badge-pill badge-success mb-1">
                                   <?= date('d-m-Y', strtotime($registration->finish_date)) ?>
                                 </span>
-                              </td>
-                              <td>
-                                <?php if ($registration->status == 'Ketua') {
-                                  if ($registration->file) {
-                                    echo $registration->file;
-                                  } else {
-                                    echo '<button type="" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#upload-letter">UPLOAD</button>';
-                                  }
-                                } ?>
                               </td>
                             </tr>
                           <?php endforeach; ?>

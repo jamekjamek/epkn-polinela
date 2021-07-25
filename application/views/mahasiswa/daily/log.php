@@ -36,58 +36,62 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
                 <?php
-                // var_dump($isCheck);
-                // die;
                 if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
-                  <a href="<?= site_url('mahasiswa/daily/log/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
+                  <div class="btn-group">
+                    <a href="<?= site_url('mahasiswa/daily/log/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
+                    <a href="<?= site_url('pdf/logharian') ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                  </div>
                 <?php endif ?>
-
               </div>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                  <thead>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Kegiatan</th>
+                    <th>Tempat Pelaksanaan</th>
+                    <th>Tanggal Pelaksanaan</th>
+                    <th>Jumlah Peserta</th>
+                    <th>Alat dan Bahan</th>
+                    <th>Validasi Supervisor</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $i = 1;
+                  foreach ($dailyLogs as $log) :
+                  ?>
                     <tr>
-                      <th>No</th>
-                      <th>Capain Pembelajaran</th>
-                      <th>Tanggal Pelaksanaan</th>
-                      <th>Alat dan Bahan</th>
-                      <th>Validasi Supervisor</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($dailyLogs as $log) :
-                    ?>
-                      <tr>
-                        <td><?= $i++ ?></td>
-                        <td>
-                          <strong>Capaian Pembelajaran :</strong> <br>
-                          <?= $log->learning_achievement ?>
-                          <hr>
-                          <strong>Sb Capain Pembelajaran : </strong> <br>
-                          <?= $log->learning_achievement_sub ?>
-                        </td>
-                        <td><?= $log->implementation_date ?></td>
-                        <td><?= $log->tool ?></td>
-                        <td>
-                          <?= ($log->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
-                        </td>
-                        <td>
-                          <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-warning modalLogId" data-toggle="modal" data-target="#modalLogId" data-log="<?= $log->id; ?>"><i class="ik ik-eye"></i><span>Detail</span></button>
-                            <a href="<?= site_url('mahasiswa/daily/log/edit/' . $this->encrypt->encode($log->id, keyencrypt()) . '/edit') ?>" class="btn btn-success"><i class="ik ik-edit"></i><span>Edit</span></a>
+                      <td><?= $i++ ?></td>
+                      <td>
+                        <strong>Kegiatan :</strong> <br>
+                        <?= $log->learning_achievement ?>
+                        <hr>
+                        <strong>Materi : </strong> <br>
+                        <?= $log->topic ?>
+                      </td>
+                      <td><?= $log->implement_place ?></td>
+                      <td><?= date('d-m-Y', strtotime($log->implementation_date)) ?></td>
+                      <td><?= $log->qty ?></td>
+                      <td><?= $log->tool ?></td>
+                      <td>
+                        <?= ($log->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
+                      </td>
+                      <td>
+                        <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-warning modalLogId" data-toggle="modal" data-target="#modalLogId" data-log="<?= $log->id; ?>"><i class="ik ik-eye"></i><span>Detail</span></button>
+                          <a href="<?= site_url('mahasiswa/daily/log/edit/' . $this->encrypt->encode($log->id, keyencrypt()) . '/edit') ?>" class="btn btn-success"><i class="ik ik-edit"></i><span>Edit</span></a>
 
-                          </div>
-                        </td>
-                      </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
-              </div>
+                        </div>
+                      </td>
+                    </tr>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -111,6 +115,7 @@
                 <tr>
                   <th>#</th>
                   <th>Prosedur</th>
+                  <th>Hasil Pelaksanaan</th>
                   <th>Komentar</th>
                 </tr>
               </thead>

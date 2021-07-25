@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mahasiswa_planning_model extends CI_Model
+class Mahasiswa_program_model extends CI_Model
 {
   public function __construct()
   {
@@ -36,6 +36,7 @@ class Mahasiswa_planning_model extends CI_Model
 
   public function update($data, $where)
   {
+    $this->db->set('updated_at', date('Y-m-d H:i:s'));
     $this->db->update($this->table, $data, ['id' => $where]);
     return $this->db->affected_rows();
   }

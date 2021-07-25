@@ -53,45 +53,81 @@
           </div>
           <div class="card-body">
             <div class="dt-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Capaian</th>
-                    <th>Sub Capaian</th>
-                    <th>Jumlah Jam</th>
-                    <th>Persetujuan</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i = 1;
-                  foreach ($plannings as $row) : ?>
+              <form name="myform" action='<?= site_url('dosen/planning/verification/' . $this->uri->segment(4)); ?>' method="POST">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
                     <tr>
-                      <td><?= $i++; ?></td>
-                      <td><?= $row->learning_achievement; ?></td>
-                      <td><?= $row->learning_achievement_sub; ?></td>
-                      <td><?= $row->time_qty; ?></td>
-                      <td>
-                        <?php if ($row->approval == 0) {
-                          echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
-                        } else if ($row->approval == 2) {
-                          echo '<span class="badge badge-pill badge-info mb-1">Diverifikasi Dosen Pembimbing</span>';
-                        } else if ($row->approval == 1) {
-                          echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
-                        } else {
-                          echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
-                        } ?>
-                      </td>
-                      <td>
-                        <?php if ($row->approval == 0) : ?>
-                          <button class="btn btn-success verified" data-id="<?= $row->id; ?>" data-uri="<?= $this->uri->segment(4); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="planning">Verifikasi</button>
-                        <?php endif ?>
-                      </td>
+                      <th>No</th>
+                      <th>Program</th>
+                      <th>Sub Kegiatan</th>
+                      <th>Jumlah Jam</th>
+                      <th>Persetujuan</th>
+                      <th>Aksi</th>
                     </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1;
+                    foreach ($plannings as $row) : ?>
+                      <tr>
+                        <?php if ($row->approval == 0) : ?>
+                          <input type="hidden" name="planning[]" value="<?= $row->id; ?>">
+                        <?php endif ?>
+                        <td><?= $i++; ?></td>
+                        <td><?= $row->learning_achievement; ?></td>
+                        <td><?= $row->learning_achievement_sub; ?></td>
+                        <td><?= $row->time_qty; ?></td>
+                        <td>
+                          <?php if ($row->approval == 0) {
+                            echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
+                          } else if ($row->approval == 2) {
+                            echo '<span class="badge badge-pill badge-info mb-1">Diverifikasi Dosen Pembimbing</span>';
+                          } else if ($row->approval == 1) {
+                            echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
+                          } else {
+                            echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
+                          } ?>
+                        </td>
+                        <td>
+                          <?php if ($row->approval == 0) : ?>
+                            <div class="checkbox-zoom zoom-primary">
+                              <label>
+                                <input type="checkbox" value="2" name="approval[]">
+                                <span class="cr">
+                                  <i class="cr-icon ik ik-check txt-primary"></i>
+                                </span>
+                                <span>Verifikasi</span>
+                              </label>
+                            </div>
+                            <div class="checkbox-zoom zoom-danger">
+                              <label>
+                                <input type="checkbox" value="3" name="approval[]">
+                                <span class="cr">
+                                  <i class="cr-icon ik ik-check txt-danger"></i>
+                                </span>
+                                <span>Tolak</span>
+                              </label>
+                            </div>
+                          <?php endif ?>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                  <?php if ($row->approval == 0) : ?>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <button class="btn btn-success" name="yes" value="yes" type="submit">Simpan</button>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  <?php endif ?>
+                </table>
+              </form>
             </div>
           </div>
         </div>

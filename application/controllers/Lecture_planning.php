@@ -15,9 +15,9 @@ class Lecture_planning extends CI_Controller
   public function index($academic_year_id = null)
   {
     $data = [
-      'title'         => 'Data Capaian',
+      'title'         => 'Data Program',
       'academicyear'  => $academic_year_id,
-      'desc'          => 'Berfungsi untuk menampilkan data capaian',
+      'desc'          => 'Berfungsi untuk menampilkan data program',
       'dataPkl'      => $this->DataPkl->list($academic_year_id)->result(),
     ];
     $page = '/lecture/planning/index';
@@ -31,15 +31,15 @@ class Lecture_planning extends CI_Controller
     if ($planning) {
       $plannings    = $this->Plannings->list(['planning.registration_id' => $decode])->result();
       $data = [
-        'title'     => 'Detail Data Capaian Mahasiswa PKL',
-        'desc'      => 'Berfungsi untuk melihat detail data capaian PKL',
+        'title'     => 'Detail Data Program',
+        'desc'      => 'Berfungsi untuk melihat detail data program',
         'planning'  => $planning,
         'plannings' => $plannings,
       ];
       $page = '/lecture/planning/detail';
       pageBackend($this->role, $page, $data);
     } else {
-      $this->session->set_flashdata('error', 'Maaf data capaian belum tersedia');
+      $this->session->set_flashdata('error', 'Maaf data program belum tersedia');
       redirect($this->redirecUrl, 'refresh');
       if (isset($_SESSION['error'])) {
         unset($_SESSION['error']);
@@ -47,29 +47,24 @@ class Lecture_planning extends CI_Controller
     }
   }
 
-  public function verification($stringUrl, $status)
+  public function verification($id)
   {
-    $explode    = explode(":", $stringUrl);
-    $id         = $explode[0];
-    $uri        = $explode[1];
-    if ($status === '1') {
-      $approval    = 2; // verifikasi dosen pembimbing
-    } else {
-      $approval    = 0;
+    $approval = $this->input->post('approval');
+    $planning = $this->input->post('planning');
+    pretty_dump($planning);
+    $this->db->trans_start();
+    for ($i = 0; $i < count($approval); $i++) {
+      $data = [
+        'approval'  => $approval[$i]
+      ];
+      $update =  $this->Plannings->update($data, ['id' => $planning[$i]]);
     }
-    $dataUpdate = [
-      'approval'    => $approval,
-      'updated_at'  => date('Y-m-d H:i:s')
-    ];
-    $where      = [
-      'id'    => $id,
-    ];
-    $update     = $this->Plannings->update($dataUpdate, $where);
+    $this->db->trans_complete();
     if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil di update');
+      $this->session->set_flashdata('success', 'Data berhasil disimpan');
     } else {
       $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
     }
-    redirect($this->redirecUrl . '/detail/' . $uri);
+    redirect($this->redirecUrl . '/detail/' . $id);
   }
 }

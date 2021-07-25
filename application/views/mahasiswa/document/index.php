@@ -63,29 +63,26 @@
                 </thead>
                 <tbody>
                   <?php
-
-                  use Mpdf\Tag\P;
-
                   if ($attendance != null) : ?>
                     <tr>
                       <td>1</td>
-                      <td>Amplop Surat Permohonan</td>
+                      <td>Amplop Surat</td>
                       <td>
                         <a href="<?= site_url('pdf/amplop') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>Surat Permohonan PKL</td>
+                      <td>Surat Pengantar</td>
                       <td>
-                        <a href="<?= site_url('pdf/permohonanpkl') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                        <a href="<?= site_url('pdf/suratpengantar') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
                     <tr>
                       <td>3</td>
-                      <td>Lampiran Surat Permohonan PKL</td>
+                      <td>Surat Tugas</td>
                       <td>
-                        <a href="#" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                        <a href="<?= site_url('pdf/surattugas') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
                   <?php
@@ -93,26 +90,6 @@
                     <tr>
                       <td colspan="3">Data belum tersedia</td>
                     </tr>
-                  <?php endif;
-                  if (@$isCheckWith != null) : ?>
-                    <?php if (@$file != null) : ?>
-                      <tr>
-                        <td>4</td>
-                        <td>Surat Pengantar dan Surat Tugas dengan Balasan</td>
-                        <td>
-                          <a href="<?= site_url('pdf/pengantardantugasdenganbalasan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
-                        </td>
-                      </tr>
-                    <?php
-                    else : ?>
-                      <tr>
-                        <td>4</td>
-                        <td>Surat Pengantar dan Surat Tugas dengan Tanpa Balasan</td>
-                        <td>
-                          <a href="<?= site_url('pdf/pengantardantugasbalasan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
-                        </td>
-                      </tr>
-                    <?php endif ?>
                   <?php endif;
                   if ($isCheck['pushed'] == 1) : ?>
                     <tr>

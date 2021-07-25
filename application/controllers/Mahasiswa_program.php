@@ -1,25 +1,25 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mahasiswa_planning extends CI_Controller
+class Mahasiswa_program extends CI_Controller
 {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Mahasiswa/Mahasiswa_planning_model', 'Planning');
+    $this->load->model('Mahasiswa/Mahasiswa_program_model', 'Planning');
     $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
     $this->role = 'Mahasiswa';
     cek_login('Mahasiswa');
+    $this->redirect = ('mahasiswa/program');
   }
 
   public function index()
   {
     $data = [
-      'title'         => 'Data Perencanaan Kegiatan PKL',
-      'desc'          => 'Berfungsi untuk melihat data perencanaan kegiatan PKL',
-      'group_id'      => $this->Registration->list()->row_array(),
-      'plannings'     => $this->Planning->list()->result(),
-      'isCheck'       => $this->Planning->isCheck()->row()
+      'title'         => 'Data Program PKN',
+      'desc'          => 'Berfungsi untuk melihat data program PKN',
+      'check'         => $this->Registration->list()->row(),
+      'plannings'     => $this->Planning->list()->result()
     ];
     $page = '/mahasiswa/planning/index';
     pageBackend($this->role, $page, $data);
@@ -30,8 +30,8 @@ class Mahasiswa_planning extends CI_Controller
     $this->_validation('insert');
     if ($this->form_validation->run() === FALSE) {
       $data = [
-        'title'         => 'Tambah Perencanaan Kegiatan PKL',
-        'desc'          => 'Berfungsi untuk menambah data perencanaan kegiatan PKL',
+        'title'         => 'Tambah Program PKN',
+        'desc'          => 'Berfungsi untuk menambah data data program PKN',
         'registration'  => $this->Registration->list()->row_array(),
       ];
       $page = '/mahasiswa/planning/create';
@@ -43,7 +43,7 @@ class Mahasiswa_planning extends CI_Controller
       } else {
         $this->session->set_flashdata('error', '<b>Server sedang sibuk, silahkan coba lagi</b>');
       }
-      redirect('mahasiswa/planning');
+      redirect($this->redirect);
     }
   }
 
@@ -52,13 +52,13 @@ class Mahasiswa_planning extends CI_Controller
     $decryptId      = $this->encrypt->decode($id, keyencrypt());
     $plan           = $this->Planning->getDataById($decryptId);
     if (!$plan) {
-      redirect('mahasiswa/planning');
+      redirect('mahasiswa/program');
     };
     $this->_validation('update');
     if ($this->form_validation->run() == false && $type == 'edit') {
       $data = [
-        'title'         => 'Update Perencanaan Kegiatan PKL',
-        'desc'          => 'Berfungsi untuk merubah data perencanaan kegiatan PKL',
+        'title'         => 'Update Program PKN',
+        'desc'          => 'Berfungsi untuk merubah data data program PKN',
         'plan'          => $plan,
         'registration'  => $this->Registration->list()->row_array(),
       ];
@@ -72,7 +72,7 @@ class Mahasiswa_planning extends CI_Controller
       } else {
         $this->session->set_flashdata('error', '<b>Server sedang sibuk, silahkan coba lagi</b>');
       }
-      redirect('mahasiswa/planning');
+      redirect($this->redirect);
     }
   }
 
