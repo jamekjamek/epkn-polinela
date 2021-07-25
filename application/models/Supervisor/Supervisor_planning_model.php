@@ -14,7 +14,8 @@ class Supervisor_planning_model extends CI_Model
   public function list($id)
   {
     $this->_join();
-    return $this->db->get_where($this->table, $id);
+    $this->db->where($id);
+    return $this->db->get($this->table);
   }
 
   private function _join()

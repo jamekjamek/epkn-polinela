@@ -26,27 +26,27 @@
         <tbody>
             <tr>
                 <td>Nama Mahasiswa</td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->fullname ?> </td>
             </tr>
             <tr>
                 <td>NPM</td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->npm ?> </td>
             </tr>
             <tr>
                 <td>Jurusan </td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->major_name ?></td>
             </tr>
             <tr>
                 <td>Program Studi </td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->prodi_name ?> </td>
             </tr>
             <tr>
                 <td>Waktu Supervisi (hari,tgl) </td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->time ?> </td>
             </tr>
             <tr>
                 <td>Tempat PKN </td>
-                <td>: .......................................................</td>
+                <td>: <?= $data->company_name ?> </td>
             </tr>
         </tbody>
     </table>
@@ -67,12 +67,12 @@
                 <td style="height: 18px; padding-left:10px">Kemajuan pelaksanaan PKN
                     (Persentase rencana kegiatan yang telah dilakukan)
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilai_1 ?>
                 </td>
                 <td style="height: 18px;text-align:center">40</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilaitertimbang_1 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
@@ -80,34 +80,34 @@
                 <td style="height: 18px; padding-left:10px">Pengisian lembar isian kegiatan
                     (Kelengkapan isi lembar isian kegiatan)
                 </td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilai_2 ?>
                 </td>
                 <td style="height: 18px;text-align:center">40</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilaitertimbang_2 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">3</td>
                 <td style="height: 18px; padding-left:10px">Konsultasi/Diskusi</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilai_3 ?>
                 </td>
                 <td style="height: 18px;text-align:center">20</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilaitertimbang_3 ?>
                 </td>
             </tr>
 
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center" colspan="2">Nilai</td>
-                <td style="height: 18px;">
+                <td style="height: 18px; text-align: center;">
                     <!-- Score Here -->
                 </td>
                 <td style="height: 18px;text-align:center">100</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align: center;">
+                    <?= $data->nilai_total ?>
                 </td>
             </tr>
         </tbody>
@@ -128,11 +128,11 @@
             <br>
             <br>
             <span>
-                __________________________
+                <?= $data->lecture_name ?>
             </span>
             <br>
             <span>
-                NIP______________________
+                NIP <?= $data->nip ?>
             </span>
 
 

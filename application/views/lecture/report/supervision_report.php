@@ -32,6 +32,28 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
+            <h3 class="text-uppercase">Informasi</h3>
+          </div>
+          <div class="card-body">
+            <ol>
+              <li>
+                Di bawah ini merupakan data laporan supervisi yang di tampilkan per kelompok PKL
+              </li>
+              <li>
+                Setelah melakukan supervisi, dosen mengisikan hasil laporan supervisi dengan mengklik tombol <button class="btn btn-success"><i class="ik ik-edit" title="Detail"></i><span>Isi Laporan</span></button>
+              </li>
+              <li>
+                Untuk melihat detail hasil isian laporan supervisi, dapat mengklik tombol <button class="btn btn-warning"><i class="ik ik-eye"></i><span>Detail</span></button> dan untuk mendownload hasil isian laporan supervisi, setelah di halaman detail, pilih tombol <button class="btn btn-outline-warning"><i class="ik ik-download-cloud"></i><span>Export</span></button> paling bawah.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
             <h3 class="text-uppercase"><?= $title; ?></h3>
           </div>
           <div class="card-body">

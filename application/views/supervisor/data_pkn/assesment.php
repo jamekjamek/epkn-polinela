@@ -47,22 +47,22 @@
             <h6><?= $detail->address ?></h6>
           </div>
         </div>
-        <a href="<?= site_url('supervisor/data_pkl') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
+        <a href="<?= site_url('supervisor/data_pkn') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
       </div>
       <div class="col-lg-8 col-md-7">
         <div class="card">
           <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="pills-supervisi-tab" data-toggle="pill" href="#supervisi" role="tab" aria-controls="pills-supervisi" aria-selected="false">Supervisi</a>
+              <a class="nav-link active" id="pills-supervisi-tab" data-toggle="pill" href="#supervisi" role="tab" aria-controls="pills-supervisi" aria-selected="false">Nilai</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="supervisi" role="tabpanel" aria-labelledby="pills-supervisi-tab">
               <div class="card-body">
                 <?php if ($supervisor) :
-                  $this->load->view('supervisor/data_pkl/supervision/index');
+                  $this->load->view('supervisor/data_pkn/supervision/index');
                 else :
-                  $this->load->view('supervisor/data_pkl/supervision/add');
+                  $this->load->view('supervisor/data_pkn/supervision/add');
                 endif ?>
               </div>
             </div>

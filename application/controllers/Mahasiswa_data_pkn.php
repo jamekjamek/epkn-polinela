@@ -8,15 +8,15 @@ class Mahasiswa_data_pkn extends CI_Controller
     parent::__construct();
     $this->load->model('Mahasiswa/Mahasiswa_data_pkl_model', 'DataPKL');
     $this->role = 'mahasiswa';
-    $this->redirectUrl = 'mahasiswa/data_pkl';
+    $this->redirectUrl = 'mahasiswa/data_pkn';
     cek_login('Mahasiswa');
   }
 
   public function index()
   {
     $data = [
-      'title'         => 'Data PKL',
-      'desc'          => 'Berfungsi untuk melihat data PKL',
+      'title'         => 'Rekap PKN',
+      'desc'          => 'Berfungsi untuk melihat rekap PKN',
       'detail'        => $this->DataPKL->getDetailValue(),
       'file'          => $this->DataPKL->getFile()->row()
     ];
@@ -34,7 +34,8 @@ class Mahasiswa_data_pkn extends CI_Controller
     if ($this->upload->do_upload('file')) {
       $fileData = $this->upload->data();
       $upload = [
-        'file'        => $fileData['file_name'],
+        'file'            => $fileData['file_name'],
+        'youtube_link'    => $data['youtube_link'],
         'updated_at'  => date('Y-m-d H:i:s')
       ];
       if ($this->DataPKL->upload($upload, ['id' => $data['registration_id']])) {

@@ -15,19 +15,31 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="form-control-label" for="nama_kelas">Tahun Penerimaan</label>
-                <input type=text name="year_accepted" class="form-control" required>
+                <input type="number" name="year_accepted" class="form-control" placeholder="Isikan tahun depan" required>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label class="form-control-label" for="nama_kelas">Bulan Mulai</label>
-                <input type=text name="start_month" class="form-control" required>
+                <select name="start_month" id="" class="form-control" required>
+                  <option value="">-- Bulan --</option>
+                  <?php foreach ($months as $month) :
+                    echo '<option value="' . $month . '">' . $month . '</option>';
+                  endforeach;
+                  ?>
+                </select>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label class="form-control-label" for="nama_kelas">Bulan Selesai</label>
-                <input type=text name="finish_month" class="form-control" required>
+                <select name="finish_month" id="" class="form-control" required>
+                  <option value="">-- Bulan --</option>
+                  <?php foreach ($months as $month) :
+                    echo '<option value="' . $month . '">' . $month . '</option>';
+                  endforeach;
+                  ?>
+                </select>
               </div>
             </div>
           </div>
@@ -37,7 +49,7 @@
           </div>
           <div class="form-group">
             <label class="form-control-label" for="nama_kelas">Jumlah Mahasiswa</label>
-            <input type=text name="qty" class="form-control">
+            <input type="number" name="qty" class="form-control" placeholder="Jumlah mahasiswa">
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>

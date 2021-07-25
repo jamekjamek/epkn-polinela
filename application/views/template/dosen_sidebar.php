@@ -3,7 +3,7 @@
   <div class="sidebar-header">
     <a class="header-brand" href="<?= site_url() ?>">
       <a class="header-brand" href="<?= site_url() ?>">
-        <span class="text">PKL POLINELA</span>
+        <span class="text">PKN POLINELA</span>
       </a>
     </a>
     <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
@@ -26,8 +26,8 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'report_reception' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/report_reception') ?>"><i class="ik ik-share-2"></i><span>Kesediaan Penerimaan</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkl' || $this->uri->segment(3) === 'assessment' ? 'active' : '') ?>">
-          <a href=" <?= site_url('dosen/data_pkl') ?>"><i class="ik ik-trending-up"></i><span>Penilaian</span></a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' || $this->uri->segment(3) === 'assessment' ? 'active' : '') ?>">
+          <a href=" <?= site_url('dosen/data_pkn') ?>"><i class="ik ik-trending-up"></i><span>Penilaian</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'daily_log' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/activity/daily_log') ?>"><i class="ik ik-file-text"></i><span>Jurnal Harian</span></a>

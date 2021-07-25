@@ -14,7 +14,7 @@
         <td><?= $finalScore->result_final_score ?></td>
         <td><?= $finalScore->HM ?></td>
         <td>
-          <a href="" class="btn btn-success"><i class="ik ik-download"></i><span>Export</span></a>
+          <a href="<?= site_url('pdf/nilaidosenpembimbing/' . $this->uri->segment(4)) ?>" class="btn btn-success"><i class="ik ik-download"></i><span>Export</span></a>
         </td>
       </tr>
     </tbody>

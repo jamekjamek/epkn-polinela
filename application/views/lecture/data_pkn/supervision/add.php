@@ -1,4 +1,4 @@
-<form action="<?= site_url('dosen/data_pkl/assessment/supervision/' . $this->uri->segment('4')) ?>" method="POST" name="supervisiForm">
+<form action="<?= site_url('dosen/data_pkn/assessment/supervision/' . $this->uri->segment('4')) ?>" method="POST" name="supervisiForm">
   <input type="hidden" name="registration_id" value="<?= $detail->id ?>">
   <div class="row">
     <div class="col-md-6">
@@ -20,13 +20,13 @@
     <div class="col-md-6">
       <div class="form-group">
         <input type='text' name='nilai_2' placeholder="Pengisian lembar isian kegiatan" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" value="<?php echo trim(@$row["nilai_2"]) ?>" required="" />
-        <small class="text-mute font-italic">Pengisian lembar isian kegiatan (30%)</small>
+        <small class="text-mute font-italic">Pengisian lembar isian kegiatan (40%)</small>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <input type=text name="jumlah_2" value="<?php echo trim(@$row["nilaitertimbang_2"]) ?>" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
-        <small class="text-mute font-italic">Pengisian lembar isian kegiatan (30%)</small>
+        <small class="text-mute font-italic">Pengisian lembar isian kegiatan (40%)</small>
       </div>
     </div>
   </div>
@@ -34,13 +34,13 @@
     <div class="col-md-6">
       <div class="form-group">
         <input type='text' name='nilai_3' placeholder="Konsultasi/Diskusi" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" value="<?php echo trim(@$row["nilai_3"]) ?>" required="" />
-        <small class="text-mute font-italic">Konsultasi/Diskusi (30%)</small>
+        <small class="text-mute font-italic">Konsultasi/Diskusi (20%)</small>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <input type=text name="jumlah_3" value="<?php echo trim(@$row["nilaitertimbang_3"]) ?>" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
-        <small class="text-mute font-italic">Konsultasi/Diskusi (30%)</small>
+        <small class="text-mute font-italic">Konsultasi/Diskusi (20%)</small>
       </div>
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Total Nilai</label>

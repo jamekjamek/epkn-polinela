@@ -107,7 +107,7 @@ $(document).ready(function () {
 		var uri = $(this).data("uri");
 		// var role = $(this).data("role");
 		// var menu = $(this).data("menu");
-		var url = `${base_url}dosen/data_pkl/assessment/pushed/${id}:${uri}:${groupId}/`
+		var url = `${base_url}dosen/data_pkn/assessment/pushed/${id}:${uri}:${groupId}/`
 		verification(url)
 	});
 
@@ -173,19 +173,9 @@ $(document).ready(function () {
 		b = document.supervisiForm.nilai_2.value;
 		c = document.supervisiForm.nilai_3.value;
 		d = document.supervisiForm.jumlah_1.value = (a * 1) * (0.4 * 1);
-		e = document.supervisiForm.jumlah_2.value = (b * 1) * (0.3 * 1);
-		f = document.supervisiForm.jumlah_3.value = (c * 1) * (0.3 * 1);
+		e = document.supervisiForm.jumlah_2.value = (b * 1) * (0.4 * 1);
+		f = document.supervisiForm.jumlah_3.value = (c * 1) * (0.2 * 1);
 		document.supervisiForm.total.value = (d * 1) + (e * 1) + (f * 1);
-	}
-
-	guidanceD3 = () => {
-		a = document.guidanceFormD3.nilai_1.value;
-		b = document.guidanceFormD3.nilai_2.value;
-		c = document.guidanceFormD3.nilai_3.value;
-		d = document.guidanceFormD3.jumlah_1.value = (a * 1) * (0.2 * 1);
-		e = document.guidanceFormD3.jumlah_2.value = (b * 1) * (0.4 * 1);
-		f = document.guidanceFormD3.jumlah_3.value = (c * 1) * (0.4 * 1);
-		document.guidanceFormD3.total.value = (d * 1) + (e * 1) + (f * 1);
 	}
 
 	guidanceD4 = () => {
@@ -193,10 +183,10 @@ $(document).ready(function () {
 		b = document.guidanceFormD4.nilai_2.value;
 		c = document.guidanceFormD4.nilai_3.value;
 		d = document.guidanceFormD4.nilai_4.value;
-		e = document.guidanceFormD4.jumlah_1.value = (a * 1) * (0.2 * 1);
-		f = document.guidanceFormD4.jumlah_2.value = (b * 1) * (0.25 * 1);
-		g = document.guidanceFormD4.jumlah_3.value = (c * 1) * (0.3 * 1);
-		h = document.guidanceFormD4.jumlah_4.value = (d * 1) * (0.25 * 1);
+		e = document.guidanceFormD4.jumlah_1.value = (a * 1) * (0.25 * 1);
+		f = document.guidanceFormD4.jumlah_2.value = (b * 1) * (0.30 * 1);
+		g = document.guidanceFormD4.jumlah_3.value = (c * 1) * (0.25 * 1);
+		h = document.guidanceFormD4.jumlah_4.value = (d * 1) * (0.20 * 1);
 		document.guidanceFormD4.total.value = (e * 1) + (f * 1) + (g * 1) + (h * 1);
 	}
 
@@ -204,12 +194,10 @@ $(document).ready(function () {
 		a = document.testScore.nilai_1.value;
 		b = document.testScore.nilai_2.value;
 		c = document.testScore.nilai_3.value;
-		d = document.testScore.nilai_4.value;
-		e = document.testScore.jumlah_1.value = (a * 1) * (0.4 * 1);
-		f = document.testScore.jumlah_2.value = (b * 1) * (0.30 * 1);
-		g = document.testScore.jumlah_3.value = (c * 1) * (0.2 * 1);
-		h = document.testScore.jumlah_4.value = (d * 1) * (0.1 * 1);
-		document.testScore.total.value = (e * 1) + (f * 1) + (g * 1) + (h * 1);
+		e = document.testScore.jumlah_1.value = (a * 1) * (0.35 * 1);
+		f = document.testScore.jumlah_2.value = (b * 1) * (0.15 * 1);
+		g = document.testScore.jumlah_3.value = (c * 1) * (0.50 * 1);
+		document.testScore.total.value = (e * 1) + (f * 1) + (g * 1);
 	}
 
 	supervisorScore = () => {
@@ -219,15 +207,13 @@ $(document).ready(function () {
 		d = document.supervisorForm.nilai_4.value;
 		e = document.supervisorForm.nilai_5.value;
 		f = document.supervisorForm.nilai_6.value;
-		g = document.supervisorForm.nilai_7.value;
 		h = document.supervisorForm.jumlah_1.value = (a * 1) * (0.2 * 1);
 		i = document.supervisorForm.jumlah_2.value = (b * 1) * (0.3 * 1);
-		j = document.supervisorForm.jumlah_3.value = (c * 1) * (0.1 * 1);
+		j = document.supervisorForm.jumlah_3.value = (c * 1) * (0.2 * 1);
 		k = document.supervisorForm.jumlah_4.value = (d * 1) * (0.1 * 1);
 		l = document.supervisorForm.jumlah_5.value = (e * 1) * (0.1 * 1);
 		m = document.supervisorForm.jumlah_6.value = (f * 1) * (0.1 * 1);
-		n = document.supervisorForm.jumlah_7.value = (g * 1) * (0.1 * 1);
-		document.supervisorForm.total.value = (h * 1) + (i * 1) + (j * 1) + (k * 1) + (l * 1) + (m * 1) + (n * 1);
+		document.supervisorForm.total.value = (h * 1) + (i * 1) + (j * 1) + (k * 1) + (l * 1) + (m * 1);
 	}
 
 	stopCalc = () => {

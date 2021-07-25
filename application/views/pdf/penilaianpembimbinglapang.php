@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Tugas</title>
+    <title>Penilaian Dosen pembimbing lapang</title>
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -28,23 +28,27 @@
         <tbody>
             <tr>
                 <td>Nama Mahasiswa</td>
-                <td>: .................................</td>
+                <td>: <?= $data->fullname ?></td>
             </tr>
             <tr>
                 <td>NPM</td>
-                <td>: .................................</td>
+                <td>: <?= $data->npm ?>
+                <td>
             </tr>
             <tr>
                 <td>Jurusan </td>
-                <td>: .................................</td>
+                <td>: <?= $data->major_name ?>
+                <td>
             </tr>
             <tr>
                 <td>Program Studi </td>
-                <td>: .................................</td>
+                <td>: <?= $data->prodi_name ?>
+                <td>
             </tr>
             <tr>
                 <td>Tempat PKN </td>
-                <td>: .................................</td>
+                <td>: Desa <?= $data->company_name ?>
+                <td>
             </tr>
         </tbody>
     </table>
@@ -63,77 +67,77 @@
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">1</td>
                 <td style="height: 18px; padding-left:10px">Perencanaan Kegiatan</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $data->nilai_1 ?>
                 </td>
                 <td style="height: 18px;text-align:center">20</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $data->nilaitertimbang_1 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">2</td>
                 <td style="height: 18px; padding-left:10px">Pelaksanaan Pekerjaan*</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px;text-align:center">
+                    <?= $data->nilai_2 ?>
                 </td>
                 <td style="height: 18px;text-align:center">30</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilaitertimbang_2 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">3</td>
                 <td style="height: 18px; padding-left:10px">Kerjasama dan Teamwork*</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilai_3 ?>
                 </td>
                 <td style="height: 18px;text-align:center">20</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilaitertimbang_3 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">4</td>
                 <td style="height: 18px; padding-left:10px">Kreativitas*</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilai_4 ?>
                 </td>
                 <td style="height: 18px;text-align:center">10</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilaitertimbang_4 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">5</td>
                 <td style="height: 18px; padding-left:10px">Kedisiplinan*</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilai_5 ?>
                 </td>
                 <td style="height: 18px;text-align:center">10</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilaitertimbang_5 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center">6</td>
                 <td style="height: 18px; padding-left:10px">Sikap*</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilai_6 ?>
+
                 </td>
                 <td style="height: 18px;text-align:center">10</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilaitertimbang_6 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
                 <td style="height: 18px; text-align:center" colspan="2">Nilai</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
                 </td>
                 <td style="height: 18px;text-align:center">100</td>
-                <td style="height: 18px;">
-                    <!-- Score Here -->
+                <td style="height: 18px; text-align:center">
+                    <?= $data->nilai_total ?>
                 </td>
             </tr>
         </tbody>
@@ -156,7 +160,7 @@
             <br>
             <br>
             <span>
-                __________________________
+                <?= $data->pic ?>
             </span>
             <br>
 

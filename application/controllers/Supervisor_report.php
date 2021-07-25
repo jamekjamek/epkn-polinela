@@ -9,6 +9,7 @@ class Supervisor_report extends CI_Controller
     $this->load->model('Supervisor/Supervisor_report_model', 'Report');
     cek_login('Supervisor');
     $this->redirectUrl = 'supervisor/report_reception';
+    $this->month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
   }
 
   public function index()
@@ -19,6 +20,7 @@ class Supervisor_report extends CI_Controller
       'prodi'         => $this->Report->getProdi()->result(),
       'company'       => $this->Report->getMyCompany()->row(),
       'academic_year' => $this->Report->getAcademicYearIsActive()->row(),
+      'months'        => $this->month
     ];
     $page = '/supervisor/report/index';
     pageBackend($this->role, $page, $data);
@@ -61,6 +63,7 @@ class Supervisor_report extends CI_Controller
         'title'         => 'Ubah Data Kesediaan Menerima',
         'desc'          => 'Berfungsi untuk mengupdate data kesediaan menerima',
         'accepted'      => $accepted,
+        'months'        => $this->month
       ];
       $page       = '/supervisor/report/edit';
       pageBackend($this->role, $page, $data);

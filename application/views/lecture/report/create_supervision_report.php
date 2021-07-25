@@ -36,7 +36,16 @@
                 <div class="col-md-6">
                   <div class="form-group has-error">
                     <label for="day">Hari</label>
-                    <input type="text" class="form-control <?= form_error('day') ? 'is-invalid' : ''; ?>" id="day" placeholder="Waktu supervisi" name="day" value="<?= $day ?>">
+                    <select name="day" id="day" class="form-control <?= form_error('day') ? 'is-invalid' : ''; ?>">
+                      <option value="">-- Hari --</option>
+                      <?php foreach ($days as $d) :
+                        if ($day === $d) {
+                          echo '<option value="' . $d . '" selected>' . $d . '</option>';
+                        } else {
+                          echo '<option value="' . $d . '">' . $d . '</option>';
+                        }
+                      endforeach ?>
+                    </select>
                     <div class="invalid-feedback">
                       <?= form_error('day'); ?>
                     </div>
@@ -64,33 +73,24 @@
                 <input type="text" class="form-control" id="general_situation_note" placeholder="Catatan untuk keadaan umum" name="general_situation_note" value="<?= set_value('general_situation_note') ? set_value('general_situation_note') : $supervision->general_situation_note; ?>">
               </div>
               <div class="form-group has-error">
-                <label for="progress">Kemajuan Pelaksanaan PKL</label>
-                <textarea name="progress" class="form-control <?= form_error('progress') ? 'is-invalid' : ''; ?>" id="progress" cols="30" rows="3"><?= set_value('name') ? set_value('progress') : $supervision->progress; ?></textarea>
-                <div class="invalid-feedback">
-                  <?= form_error('progress'); ?>
-                </div>
+                <label for="progress">Kemajuan Pelaksanaan</label>
+                <textarea name="progress" class="form-control" id="progress" cols="30" rows="3"><?= set_value('name') ? set_value('progress') : $supervision->progress; ?></textarea>
               </div>
               <div class="form-group has-error">
-                <label for="progress_note">Catatan Kemajuan Pelaksanaan PKL</label>
+                <label for="progress_note">Catatan Kemajuan Pelaksanaan</label>
                 <input type="text" class="form-control" id="progress_note" placeholder="Catatan untuk kemajuan PKL" name="progress_note" value="<?= set_value('progress_note') ? set_value('progress_note') : $supervision->progress_note; ?>">
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group has-error">
                     <label for="result_problem">Hasil Supervisi (Permasalahan)</label>
-                    <textarea name="result_problem" class="form-control <?= form_error('result_problem') ? 'is-invalid' : ''; ?>" id="result_problem" cols="30" rows="3"><?= set_value('name') ? set_value('result_problem') : $supervision->result_problem; ?></textarea>
-                    <div class="invalid-feedback">
-                      <?= form_error('result_problem'); ?>
-                    </div>
+                    <textarea name="result_problem" class="form-control" id="result_problem" cols="30" rows="3"><?= set_value('name') ? set_value('result_problem') : $supervision->result_problem; ?></textarea>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group has-error">
                     <label for="result_solve">Hasil Supervisi (Pemecahan Masalah)</label>
-                    <textarea name="result_solve" class="form-control <?= form_error('result_solve') ? 'is-invalid' : ''; ?>" id="result_solve" cols="30" rows="3"><?= set_value('result_solve') ? set_value('result_solve') : $supervision->result_solve; ?></textarea>
-                    <div class="invalid-feedback">
-                      <?= form_error('result_solve'); ?>
-                    </div>
+                    <textarea name="result_solve" class="form-control" id="result_solve" cols="30" rows="3"><?= set_value('result_solve') ? set_value('result_solve') : $supervision->result_solve; ?></textarea>
                   </div>
                 </div>
               </div>
@@ -100,10 +100,7 @@
               </div>
               <div class="form-group has-error">
                 <label for="suggestion">Saran</label>
-                <textarea name="suggestion" class="form-control <?= form_error('suggestion') ? 'is-invalid' : ''; ?>" id="suggestion" cols="30" rows="3"><?= set_value('suggestion') ? set_value('suggestion') : $supervision->suggestion; ?></textarea>
-                <div class="invalid-feedback">
-                  <?= form_error('suggestion'); ?>
-                </div>
+                <textarea name="suggestion" class="form-control" id="suggestion" cols="30" rows="3"><?= set_value('suggestion') ? set_value('suggestion') : $supervision->suggestion; ?></textarea>
               </div>
               <div class="form-group has-error">
                 <label for="suggestion_note">Catatan Saran</label>

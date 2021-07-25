@@ -1,10 +1,16 @@
-<form action="<?= site_url('dosen/data_pkl/assessment/test_score/' . $this->uri->segment('4')) ?>" method="POST" name="testScore">
+<form action="<?= site_url('dosen/data_pkn/assessment/test_score/' . $this->uri->segment('4')) ?>" method="POST" name="testScore">
   <input type="hidden" name="registration_id" value="<?= $detail->id ?>">
+  <input type="hidden" name="student_id" value="<?= $detail->student_id ?>">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Hari</label>
-        <input type='text' name='hari' placeholder="Hari ujian" class="form-control" required="" />
+        <select name="hari" id="hari" class="form-control" required>
+          <option value="">-- Hari --</option>
+          <?php foreach ($days as $day) : ?>
+            <option value="<?= $day ?>"><?= $day ?></option>
+          <?php endforeach ?>
+        </select>
       </div>
     </div>
     <div class="col-md-6">
@@ -24,12 +30,8 @@
     <div class="col-md-6">
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Ruangan</label>
-        <select class="form-control select2" name="room_id" id="room_id" style="width: 100%" required>
-          <option value="">Cari ruangan ujian</option>
-          <?php foreach ($rooms as $room) : ?>
-            <option value="<?= $room->id ?>"><?= $room->name ?></option>
-          <?php endforeach ?>
-        </select>
+        <input type="text" name="room" placeholder="Tempat ujian" class="form-control" required="" value="Politeknik Negeri Lampung" />
+        <small class="text-mute font-italic">Silahkan ganti nama ruangan di atas apabila berbeda</small>
       </div>
     </div>
   </div>
@@ -38,56 +40,42 @@
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Nilai</label>
         <input type='text' name='nilai_1' placeholder="Penguasaan Materi" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
-        <small class="text-mute font-italic">Penguasaan Materi (40%)</small>
+        <small class="text-mute font-italic">Penyampaian Materi (35%)</small>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Nilai Tertimbang</label>
         <input type=text name="jumlah_1" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
-        <small class="text-mute font-italic">Penguasaan Materi (40%)</small>
+        <small class="text-mute font-italic">Penyampaian Materi (35%)</small>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <input type='text' name='nilai_2' placeholder="Komunikasi" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
-        <small class="text-mute font-italic">Komunikasi (30%)</small>
+        <input type='text' name='nilai_2' placeholder="Lembar isian kegiatan" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
+        <small class="text-mute font-italic">Lembar Isian Kegiatan (15%)</small>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <input type=text name="jumlah_2" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
-        <small class="text-mute font-italic">Komunikasi (30%)</small>
+        <small class="text-mute font-italic">Lembar Isian Kegiatan (15%)</small>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <input type='text' name='nilai_3' placeholder="Penggunaan Media Presentasi" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
-        <small class="text-mute font-italic">Penggunaan Media Presentasi (20%)</small>
+        <input type='text' name='nilai_3' placeholder="Kemampuan argumentasi" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
+        <small class="text-mute font-italic">Kemampuan Argumentasi (50%)</small>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <input type=text name="jumlah_3" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' required="">
-        <small class="text-mute font-italic">Penggunaan Media Presentasi (20%)</small>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <input type='text' name='nilai_4' placeholder="Penampilan" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" required="" />
-        <small class="text-mute font-italic">Penampilan (10%)</small>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <input type=text name="jumlah_4" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
-        <small class="text-mute font-italic">Penampilan (10%)</small>
+        <small class="text-mute font-italic">Kemampuan Argumentasi (50%)</small>
       </div>
       <div class="form-group">
         <label class="form-control-label" for="nama_kelas">Total Nilai</label>

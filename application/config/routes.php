@@ -99,15 +99,21 @@ $route['config/verificationdata']                   = 'Admin_config/data';
 $route['pdf/amplop']                                = 'admin_pdf/amplop';
 $route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //7.Surat Tugas mahasiswa PKN (F-PAI-030)
 $route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
-$route['pdf/penilaianpembimbinglapang']             = 'admin_pdf/penilaianpembimbinglapang'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
+$route['pdf/penilaianpembimbinglapang/(:any)']      = 'admin_pdf/penilaianpembimbinglapang/$1'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
 $route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervisi'; //11.Laporan Supervisi PKN (F-PAI-034)
-$route['pdf/penilaiansupervisi']                    = 'admin_pdf/penilaiansupervisi'; //12.Formulir penilaian supervisi PKN (F-PAI-035)
-$route['pdf/penilaianujian']                        = 'admin_pdf/penilaianujian'; //13.Formulir penilaian ujian PKN (F-PAI-036)
-$route['pdf/nilaiakhir']                            = 'admin_pdf/nilaiakhir'; //14.Nilai akhir PKN (F-PAI-037)
-$route['pdf/penilaiandosenpembimbing']              = 'admin_pdf/penilaiandosenpembimbing'; //15.Penilaian dosen pembimbing (F-PAI-038)
+$route['pdf/penilaiansupervisi/(:any)']             = 'admin_pdf/penilaiansupervisi/$1'; //12.Formulir penilaian supervisi PKN (F-PAI-035)
+$route['pdf/penilaianujian/(:any)']                 = 'admin_pdf/penilaianujian/$1'; //13.Formulir penilaian ujian PKN (F-PAI-036)
+$route['pdf/nilaiakhir/(:any)']                     = 'admin_pdf/nilaiakhir/$1'; //14.Nilai akhir PKN (F-PAI-037)
+$route['pdf/penilaiandosenpembimbing/(:any)']       = 'admin_pdf/penilaiandosenpembimbing/$1'; //15.Penilaian dosen pembimbing (F-PAI-038)
 $route['pdf/suratpenarikan']                        = 'admin_pdf/suratpenarikan';
 //VERIFICATION
-$route['pdf/lembarperencanaankegiatanpkl']          = 'admin_pdf/planningSheet';
+$route['pdf/lembarperencanaankegiatanpkn']          = 'admin_pdf/planningSheet';
+$route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
+$route['pdf/kesediaanperusahaan/(:any)']            = 'admin_pdf/kesediaanperusahaan/$1';
+
+$route['pdf/penarikan']                             = 'admin_pdf/finishLeter';
+$route['pdf/laporansupervisipkn/(:any)']            = 'admin_pdf/supervisionReport/$1';
+$route['pdf/nilaisupervisi/(:any)']                 = 'admin_pdf/supervisionValue/$1';
 
 $route['admin/verification']                        = 'Admin_verification';
 
@@ -245,12 +251,12 @@ $route['supervisor/dashboard']                      = 'supervisor_dashboard';
 
 $route['supervisor/planning']                       = 'supervisor_planning';
 $route['supervisor/planning/detail/(:any)']         = 'supervisor_planning/detail/$1';
-$route['supervisor/planning/verification/(:any)/(:any)'] = 'supervisor_planning/verification/$1/$2';
+$route['supervisor/planning/verification/(:any)']   = 'supervisor_planning/verification/$1';
 
 $route['supervisor/activity/daily_log']             = 'supervisor_activity/dailyLog';
-$route['supervisor/daily_log/verification/(:any)/(:any)'] = 'supervisor_activity/verificationDailyLog/$1/$2';
+$route['supervisor/daily_log/verification']         = 'supervisor_activity/verificationDailyLog';
 $route['supervisor/activity/attendance']            = 'supervisor_activity/attendance';
-$route['supervisor/attendance/verification/(:any)/(:any)'] = 'supervisor_activity/verificationAttendance/$1/$2';
+$route['supervisor/attendance/verification']        = 'supervisor_activity/verificationAttendance';
 
 $route['supervisor/data_pkn']                       = 'supervisor_data_pkn';
 $route['supervisor/data_pkn/assessment/(:any)']     = 'supervisor_data_pkn/assessment/$1';
@@ -264,6 +270,8 @@ $route['supervisor/report_reception/cancel/(:any)'] = 'supervisor_report/cancel/
 $route['supervisor/quesioner']                      = 'supervisor_quesioner';
 $route['supervisor/quesioner/add']                  = 'supervisor_quesioner/insert';
 $route['supervisor/quesioner/(:any)/edit']          = 'supervisor_quesioner/$1/edit';
+
+$route['supervisor/quesioner']                      = 'quesioner';
 
 
 /* ================================== PUDIR ROLE ================================== */

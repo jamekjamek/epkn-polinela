@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Lecture_data_pkl_model extends CI_Model
+class Lecture_data_pkn_model extends CI_Model
 {
   public function __construct()
   {
@@ -17,6 +17,7 @@ class Lecture_data_pkl_model extends CI_Model
     $this->tableGuidanceValue = 'guidance_value';
     $this->tableTestScore = 'test_score';
     $this->tableFinalScore = 'v_final_score_result_with_hm';
+    $this->tableVFinalScore = 'v_final_score';
     $this->tableProdi = 'prodi';
     $this->tableRoom = 'room';
   }
@@ -69,7 +70,7 @@ class Lecture_data_pkl_model extends CI_Model
 
   public function getTimeSupervisionValue($id)
   {
-    $this->db->select('supervision_value.*, supervision_report.time');
+    $this->db->select('supervision_value.*, supervision_report.time, registration.group_id');
     $this->db->join($this->table, 'registration.id = supervision_value.registration_id');
     $this->db->join($this->tableSupervisionReport, 'supervision_report.registration_group_id=registration.group_id');
     return $this->db->get_where($this->tableSupervisionValue, $id);
@@ -85,6 +86,12 @@ class Lecture_data_pkl_model extends CI_Model
   public function updateSupervisionValue($data, $where)
   {
     $this->db->update($this->tableSupervisionValue, $data, $where);
+    return $this->db->affected_rows();
+  }
+
+  public function pushed($data, $where)
+  {
+    $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
   }
 
@@ -119,22 +126,16 @@ class Lecture_data_pkl_model extends CI_Model
     return $this->db->get_where($this->tableTestScore, $id);
   }
 
-  public function getRoom()
-  {
-    return $this->db->get($this->tableRoom);
-  }
-
-  public function getRoomTestScore($id)
-  {
-    $this->db->select('test_score.room_id,room.name as room_name');
-    $this->db->join($this->tableRoom, 'room.id=test_score.room_id');
-    return $this->db->get_where($this->tableTestScore, $id);
-  }
-
   public function insertFinalTestValue($data)
   {
     $this->db->set('id', 'UUID()', FALSE);
     $this->db->insert($this->tableTestScore, $data);
+    return $this->db->affected_rows();
+  }
+
+  public function graduated($data, $where)
+  {
+    $this->db->update($this->tableStudent, $data, $where);
     return $this->db->affected_rows();
   }
 
@@ -147,5 +148,10 @@ class Lecture_data_pkl_model extends CI_Model
   public function getByIdFinalScore($id)
   {
     return $this->db->get_where($this->tableFinalScore, $id);
+  }
+
+  public function getVFInalScore($id)
+  {
+    return $this->db->get_where($this->tableVFinalScore, $id);
   }
 }

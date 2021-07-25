@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Halo <strong><?= $showName['pic'] ?>!</strong> Selamat datang di aplikasi E-PKL.
+      Halo <strong><?= $showName['pic'] ?>!</strong> Selamat datang di aplikasi E-PKN.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="ik ik-x"></i>
       </button>

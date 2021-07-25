@@ -31,51 +31,88 @@
           </div>
           <div class="card-body">
             <div class="dt-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Mahasiswa</th>
-                    <th>Tanggal</th>
-                    <th>Alat dan Bahan</th>
-                    <th>Deskripsi</th>
-                    <th>Komentar</th>
-                    <th>Validasi</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $i = 1;
-                  foreach ($dailyLog as $row) :
-                  ?>
+              <form name="myform" action='<?= site_url('supervisor/daily_log/verification'); ?>' method="POST">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
                     <tr>
-                      <td><?= $i++; ?></td>
-                      <td>
-                        <strong> <?= $row->npm ?></strong>
-                        <br>
-                        <?= $row->fullname ?>
-                      </td>
-                      <td><?= $row->implementation_date ?></td>
-                      <td><?= $row->tool; ?></td>
-                      <td><?= $row->description; ?></td>
-                      <td><?= $row->comment; ?></td>
-                      <td>
-                        <?php if ($row->validation == 0) {
-                          echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
-                        } else {
-                          echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
-                        } ?>
-                      </td>
-                      <td>
+                      <th>No</th>
+                      <th>Mahasiswa</th>
+                      <th>Tanggal</th>
+                      <th>Alat dan Bahan</th>
+                      <th>Deskripsi</th>
+                      <th>Komentar</th>
+                      <th>Validasi</th>
+                      <th>
+                        <div class="checkbox-zoom zoom-primary">
+                          <label>
+                            <input type="checkbox" onchange="checkAll(this)">
+                            <span class="cr">
+                              <i class="cr-icon ik ik-check txt-primary"></i>
+                            </span>
+                            <span></span>
+                          </label>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($dailyLog as $row) :
+                    ?>
+                      <tr>
                         <?php if ($row->validation == 0) : ?>
-                          <button class="btn btn-success verified" data-id="<?= $row->id; ?>" data-uri="<?= $this->uri->segment(4); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="daily_log">Validasi</button>
+                          <input type="hidden" name="dailyLog[]" value="<?= $row->id; ?>">
                         <?php endif ?>
+                        <td><?= $i++; ?></td>
+                        <td>
+                          <strong> <?= $row->npm ?></strong>
+                          <br>
+                          <?= $row->fullname ?>
+                        </td>
+                        <td><?= $row->implementation_date ?></td>
+                        <td><?= $row->tool; ?></td>
+                        <td><?= $row->description; ?></td>
+                        <td><?= $row->comment; ?></td>
+                        <td>
+                          <?php if ($row->validation == 0) {
+                            echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
+                          } else {
+                            echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
+                          } ?>
+                        </td>
+                        <td>
+                          <?php if ($row->validation == 0) : ?>
+                            <div class="checkbox-zoom zoom-primary">
+                              <label>
+                                <input type="checkbox" value="1" name="approval[]">
+                                <span class="cr">
+                                  <i class="cr-icon ik ik-check txt-primary"></i>
+                                </span>
+                                <span></span>
+                              </label>
+                            </div>
+                          <?php endif ?>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <button class="btn btn-outline-primary" type="submit">Verifikasi</button>
                       </td>
                     </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
+                  </tfoot>
+                </table>
+              </form>
             </div>
           </div>
         </div>

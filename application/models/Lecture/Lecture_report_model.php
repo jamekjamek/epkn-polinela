@@ -14,6 +14,7 @@ class Lecture_report_model extends CI_Model
     $this->tableStudent = 'student';
     $this->tableRegistration = 'registration';
     $this->tableAcademicYear = 'academic_year';
+    $this->tableReception = 'willingness_to_accept';
   }
 
   // laporan supervisi
@@ -56,5 +57,25 @@ class Lecture_report_model extends CI_Model
     $this->db->join($this->tableRegistration, 'registration.group_id=supervision_report.registration_group_id');
     $this->db->join($this->tableLecture, 'lecture.id=registration.lecture_id');
     return $this->db->get_where($this->tableReportSupervision, ['lecture.nip' => $this->session->userdata('user')])->row();
+  }
+
+  public function listReception()
+  {
+    return $this->db->query("SELECT willingness_to_accept.company_id,willingness_to_accept.year_accepted,company.name as company_name FROM willingness_to_accept 
+    JOIN company ON company.id=willingness_to_accept.company_id
+    JOIN registration on registration.company_id=company.id
+    JOIN lecture on lecture.id=registration.lecture_id
+    WHERE lecture.nip = '" . $this->session->userdata('user') . "'
+    GROUP BY willingness_to_accept.company_id");
+  }
+
+  public function detailReception($company_id)
+  {
+    $this->db->select('company.name as company_name,company.address,company.pic,company.telp, willingness_to_accept.*, academic_year.name as academic_year, prodi.name as prodi_name');
+    $this->db->join($this->tableCompany, 'company.id=willingness_to_accept.company_id');
+    $this->db->join($this->tableAcademicYear, 'academic_year.id=willingness_to_accept.academic_year_id');
+    $this->db->join($this->tableProdi, 'willingness_to_accept.prodi_id=prodi.id');
+    $this->db->where('willingness_to_accept.company_id', $company_id);
+    return $this->db->get_where($this->tableReception);
   }
 }

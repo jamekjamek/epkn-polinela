@@ -35,24 +35,14 @@
             <h3 class="text-uppercase"><?= $title; ?></h3>
           </div>
           <div class="card-body">
-            <div class="col-12 table-responsive mt-3">
-              <div class="row mb-4">
-                <div class="col-3">
-                  <label for="name">Tahun Akademik</label>
-                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="data_pkl">
-                    <option value="">-- Pilih Tahun Akademik --</option>
-                  </select>
-                </div>
-              </div>
-            </div>
             <div class="dt-responsive">
               <table id="simpletable" class="table table-hover" style="padding: 20px;">
                 <thead>
                   <tr>
                     <th>No</th>
                     <th>Mahasiswa</th>
-                    <th>Supervisor</th>
-                    <th>Lokasi PKL</th>
+                    <th>Dosen Pembimbing</th>
+                    <th>Lokasi PKN</th>
                     <th>Waktu PKL</th>
                     <th>Aksi</th>
                   </tr>
@@ -70,7 +60,7 @@
                         <?= $row->fullname ?> -
                         <?= $row->status ?>
                       </td>
-                      <td><?= $row->pic ?></td>
+                      <td><?= $row->lecture_name ?></td>
                       <td><?= $row->company_name; ?></td>
                       <td>
                         <span class="badge badge-pill badge-primary mb-1">
@@ -81,11 +71,7 @@
                         </span>
                       </td>
                       <td>
-                        <?php if ($supervision) : ?>
-                          <a href="<?= base_url('dosen/data_pkl/assessment/' . encodeEncrypt($row->id)) ?>" class="btn btn-success"><i class="ik ik-check-square" title="Penilaian PKL"></i><span>Penilaian</span></a>
-                        <?php else : ?>
-                          <button type="button" class="btn btn-success assesment"><i class="ik ik-check-square" title="Penilaian PKL"></i><span>Penilaian</span></button>
-                        <?php endif ?>
+                        <a href="<?= base_url('supervisor/data_pkn/assessment/' . encodeEncrypt($row->id)) ?>" class="btn btn-success"><i class="ik ik-check-square" title="Penilaian PKL"></i><span>Penilaian</span></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>

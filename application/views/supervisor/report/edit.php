@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label" for="nama_kelas">Tahun Penerimaan</label>
-                    <input type=text name="year_accepted" class="form-control <?= form_error('year_accepted') ? 'is-invalid' : ''; ?>" value="<?= $accepted->year_accepted ?>">
+                    <input type="number" name="year_accepted" class="form-control <?= form_error('year_accepted') ? 'is-invalid' : ''; ?>" value="<?= $accepted->year_accepted ?>">
                     <div class="invalid-feedback">
                       <?= form_error('year_accepted'); ?>
                     </div>
@@ -46,7 +46,17 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label class="form-control-label" for="nama_kelas">Bulan Mulai</label>
-                    <input type=text name="start_month" class="form-control <?= form_error('start_month') ? 'is-invalid' : ''; ?>" value="<?= $accepted->start_month ?>">
+                    <select name="start_month" id="" class="form-control <?= form_error('start_month') ? 'is-invalid' : ''; ?>" required>
+                      <option value="">-- Bulan --</option>
+                      <?php foreach ($months as $month) :
+                        if ($accepted->start_month === $month) {
+                          echo '<option value="' . $month . '" selected>' . $month . '</option>';
+                        } else {
+                          echo '<option value="' . $month . '">' . $month . '</option>';
+                        }
+                      endforeach;
+                      ?>
+                    </select>
                     <div class="invalid-feedback">
                       <?= form_error('start_month'); ?>
                     </div>
@@ -55,7 +65,17 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label class="form-control-label" for="nama_kelas">Bulan Selesai</label>
-                    <input type=text name="finish_month" class="form-control <?= form_error('finish_month') ? 'is-invalid' : ''; ?>" value="<?= $accepted->finish_month ?>">
+                    <select name="finish_month" id="" class="form-control <?= form_error('start_month') ? 'is-invalid' : ''; ?>" required>
+                      <option value="">-- Bulan --</option>
+                      <?php foreach ($months as $month) :
+                        if ($accepted->finish_month === $month) {
+                          echo '<option value="' . $month . '" selected>' . $month . '</option>';
+                        } else {
+                          echo '<option value="' . $month . '">' . $month . '</option>';
+                        }
+                      endforeach;
+                      ?>
+                    </select>
                     <div class="invalid-feedback">
                       <?= form_error('finish_month'); ?>
                     </div>

@@ -47,7 +47,7 @@
             <h6><?= $detail->address ?></h6>
           </div>
         </div>
-        <a href="<?= site_url('dosen/data_pkl') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
+        <a href="<?= site_url('dosen/data_pkn') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
       </div>
       <div class="col-lg-8 col-md-7">
         <div class="card">
@@ -69,40 +69,36 @@
             <div class="tab-pane fade show active" id="supervisi" role="tabpanel" aria-labelledby="pills-supervisi-tab">
               <div class="card-body">
                 <?php if ($supervision) :
-                  $this->load->view('lecture/data_pkl/supervision/index');
+                  $this->load->view('lecture/data_pkn/supervision/index');
                 else :
-                  $this->load->view('lecture/data_pkl/supervision/add');
+                  $this->load->view('lecture/data_pkn/supervision/add');
                 endif ?>
               </div>
             </div>
             <div class="tab-pane fade" id="bimbingan" role="tabpanel" aria-labelledby="pills-bimbingan-tab">
               <div class="card-body">
                 <?php if ($guidance) {
-                  $this->load->view('lecture/data_pkl/guidance/index');
+                  $this->load->view('lecture/data_pkn/guidance/index');
                 } else {
-                  if ($degree->degree == 'D3') {
-                    $this->load->view('lecture/data_pkl/guidance/add');
-                  } else {
-                    $this->load->view('lecture/data_pkl/guidance/add_d4');
-                  }
+                  $this->load->view('lecture/data_pkn/guidance/add_d4');
                 } ?>
               </div>
             </div>
             <div class="tab-pane fade" id="ujian" role="tabpanel" aria-labelledby="pills-ujian-tab">
               <div class="card-body">
                 <?php if ($testScore) :
-                  $this->load->view('lecture/data_pkl/final_test/index');
+                  $this->load->view('lecture/data_pkn/final_test/index');
                 else :
-                  $this->load->view('lecture/data_pkl/final_test/add');
+                  $this->load->view('lecture/data_pkn/final_test/add');
                 endif ?>
               </div>
             </div>
             <div class="tab-pane fade" id="nilai-akhir" role="tabpanel" aria-labelledby="pills-nilai-akhir-tab">
               <div class="card-body">
                 <?php if ($finalScore) {
-                  $this->load->view('lecture/data_pkl/final_score/index');
+                  $this->load->view('lecture/data_pkn/final_score/index');
                 } else {
-                  echo '<small class="text-mute">Nilai akhir belum dapat dimunculkan, silahkan isi nilai supervisi, nilai bimbingan dan nilai ujian PKL terlebih dahulu</small>';
+                  echo '<small class="text-mute">Nilai akhir belum dapat dimunculkan, silahkan isi nilai supervisi, nilai bimbingan dan nilai ujian PKN terlebih dahulu</small>';
                 } ?>
               </div>
             </div>

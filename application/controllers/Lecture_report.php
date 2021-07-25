@@ -30,8 +30,8 @@ class Lecture_report extends CI_Controller
     $detail         = $this->Reports->getSupervisionReport(['supervision_report.id' => $decode])->row();
     if ($detail) {
       $data = [
-        'title'     => 'Detail Data Laporan Supervisi PKL',
-        'desc'      => 'Berfungsi untuk melihat detail data laporan supervisi PKL',
+        'title'     => 'Detail Data Laporan Supervisi',
+        'desc'      => 'Berfungsi untuk melihat detail data laporan supervisi',
         'detail'    => $detail,
       ];
       $page = '/lecture/report/detail_supervision_report';
@@ -54,18 +54,27 @@ class Lecture_report extends CI_Controller
       if ($detail->time) {
         $explode    = explode(",", $detail->time);
         $day        = $explode[0];
+        $days       = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
         $date       = date('Y-m-d', strtotime($explode[1]));
+        $data = [
+          'title'         => 'Isi Laporan Supervisi',
+          'desc'          => 'Berfungsi untuk isi hasil laporan supervisi',
+          'supervision'   => $detail,
+          'day'           => $day,
+          'days'          => $days,
+          'date'          => $date
+        ];
       } else {
-        $day        = null;
+        $days       = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
         $date       = null;
+        $data = [
+          'title'         => 'Isi Laporan Supervisi',
+          'desc'          => 'Berfungsi untuk isi hasil laporan supervisi',
+          'supervision'   => $detail,
+          'days'          => $days,
+          'date'          => $date
+        ];
       }
-      $data = [
-        'title'         => 'Isi Laporan Supervisi PKL',
-        'desc'          => 'Berfungsi untuk isi hasil laporan supervisi PKL',
-        'supervision'   => $detail,
-        'day'           => $day,
-        'date'          => $date
-      ];
       $page       = '/lecture/report/create_supervision_report';
       pageBackend($this->role, $page, $data);
     } else {
@@ -129,51 +138,30 @@ class Lecture_report extends CI_Controller
           'required'      => '%s wajib diisi',
         ]
       );
-
-      $this->form_validation->set_rules(
-        'progress',
-        'Kemajuan pelaksanaan pkl',
-        'trim|required',
-        [
-          'required'      => '%s wajib diisi',
-        ]
-      );
-
-      $this->form_validation->set_rules(
-        'result_problem',
-        'Permasahalan',
-        'trim|required',
-        [
-          'required'      => '%s wajib diisi',
-        ]
-      );
-
-      $this->form_validation->set_rules(
-        'result_solve',
-        'Permasahalan',
-        'trim|required',
-        [
-          'required'      => '%s wajib diisi',
-        ]
-      );
-
-      $this->form_validation->set_rules(
-        'result_note',
-        'Pemecahan Masalah',
-        'trim|required',
-        [
-          'required'      => '%s wajib diisi',
-        ]
-      );
-
-      $this->form_validation->set_rules(
-        'suggestion',
-        'Saran',
-        'trim|required',
-        [
-          'required'      => '%s wajib diisi',
-        ]
-      );
     }
+  }
+
+  public function reportReception()
+  {
+    $data = [
+      'title'      => 'Kesediaan Penerimaan Tahun Depan',
+      'desc'       => 'Berfungsi untuk melihat kesediaan penerimaan pkn di tahun depan',
+      'receptions' => $this->Reports->listReception()->result()
+    ];
+    $page = '/lecture/report/reception';
+    pageBackend($this->role, $page, $data);
+  }
+
+  public function detailReception($company_id)
+  {
+    $decodeId = decodeEncrypt($company_id);
+    $data = [
+      'title'   => 'Detail Kesediaan Penerimaan',
+      'desc'    => 'Berfungsi untuk melihat detail kesediaan penerimaan pkn di tahun depan',
+      'detail'  => $this->Reports->detailReception($decodeId)->row(),
+      'data'    => $this->Reports->detailReception($decodeId)->result()
+    ];
+    $page = '/lecture/report/reception_detail';
+    pageBackend($this->role, $page, $data);
   }
 }

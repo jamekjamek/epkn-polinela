@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Supervisor_data_pkl extends CI_Controller
+class Supervisor_data_pkn extends CI_Controller
 {
   public function __construct()
   {
@@ -9,18 +9,18 @@ class Supervisor_data_pkl extends CI_Controller
     $this->load->model('Supervisor/Supervisor_data_pkl_model', 'DataPkl');
     $this->load->model('Supervisor/Supervisor_planning_model', 'Plannings');
     cek_login('Supervisor');
-    $this->redirecUrl = 'supervisor/data_pkl';
+    $this->redirecUrl = 'supervisor/data_pkn';
   }
 
   public function index($academic_year_id = null)
   {
     $data = [
-      'title'         => 'Data PKL',
+      'title'         => 'Data PKN',
       'academicyear'  => $academic_year_id,
-      'desc'          => 'Berfungsi untuk menampilkan data PKL',
+      'desc'          => 'Berfungsi untuk menampilkan data PKN',
       'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
     ];
-    $page = '/supervisor/data_pkl/index';
+    $page = '/supervisor/data_pkn/index';
     pageBackend($this->role, $page, $data);
   }
 
@@ -35,7 +35,7 @@ class Supervisor_data_pkl extends CI_Controller
       'detail'          => $detail,
       'supervisor'      => $supervisor,
     ];
-    $page = '/supervisor/data_pkl/assesment';
+    $page = '/supervisor/data_pkn/assesment';
     pageBackend($this->role, $page, $data);
   }
 
@@ -51,14 +51,12 @@ class Supervisor_data_pkl extends CI_Controller
       'nilai_4'           => $data['nilai_4'],
       'nilai_5'           => $data['nilai_5'],
       'nilai_6'           => $data['nilai_6'],
-      'nilai_7'           => $data['nilai_7'],
       'nilaitertimbang_1' => number_format($data['jumlah_1'], 2, '.', ''),
       'nilaitertimbang_2' => number_format($data['jumlah_2'], 2, '.', ''),
       'nilaitertimbang_3' => number_format($data['jumlah_3'], 2, '.', ''),
       'nilaitertimbang_4' => number_format($data['jumlah_4'], 2, '.', ''),
       'nilaitertimbang_5' => number_format($data['jumlah_5'], 2, '.', ''),
       'nilaitertimbang_6' => number_format($data['jumlah_6'], 2, '.', ''),
-      'nilaitertimbang_7' => number_format($data['jumlah_7'], 2, '.', ''),
       'nilai_total'       => number_format($data['total'], 2, '.', ''),
       'updated_at'        => date('Y-m-d H:i:s')
     ];

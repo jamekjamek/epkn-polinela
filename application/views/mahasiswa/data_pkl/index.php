@@ -59,6 +59,7 @@
                 <table class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
+                      <th rowspan="2">#</th>
                       <th rowspan="2">Dosen Pembimbing</th>
                       <th rowspan="2">Lokasi</th>
                       <th colspan="5" class="text-center">Nilai</th>
@@ -74,6 +75,11 @@
                   </thead>
                   <tbody>
                     <tr>
+                      <td>
+                        <?php if ($detail) : ?>
+                          <button class="btn btn-success" data-toggle="modal" data-target="#download"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+                        <?php endif ?>
+                      </td>
                       <td><?= $detail->lecture_name ?></td>
                       <td><?= $detail->company_name ?></td>
                       <td><?= $detail->supervision_value ?></td>
@@ -91,6 +97,7 @@
                 <table class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
+                      <th rowspan="2">#</th>
                       <th rowspan="2">Dosen Pembimbing</th>
                       <th rowspan="2">Lokasi</th>
                       <th colspan="5" class="text-center">Nilai</th>
@@ -106,6 +113,11 @@
                   </thead>
                   <tbody>
                     <tr>
+                      <td>
+                        <?php if ($detail) : ?>
+                          <button class="btn btn-success" data-toggle="modal" data-target="#download"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+                        <?php endif ?>
+                      </td>
                       <td><?= @$detail->lecture_name ?></td>
                       <td><?= @$detail->company_name ?></td>
                       <td><?= @$detail->supervision_value ?></td>
@@ -120,6 +132,26 @@
               </div>
             <?php } ?>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="download" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterLabel">Silahkan Download</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="btn-group">
+            <a href="<?= site_url('pdf/penilaianmahasiswapembimbinglapang/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-primary" target="_blank">Nilai Pembimbing Lapang</a>
+            <a href="<?= site_url('pdf/nilaisupervisi/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-warning" target="_blank">Nilai Supervisi</a>
+            <a href="<?= site_url('pdf/nilaidosenpembimbing/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-info" target="_blank">Nilai Dosen Pembimbing</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

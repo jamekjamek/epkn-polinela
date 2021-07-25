@@ -37,9 +37,9 @@
           <div class="card-body">
             <ol>
               <li>Di bawah ini merupakan data program studi yang ada di Politeknik Negeri Lampung</li>
-              <li>Perusahaan sebagai pihak untuk mengisi form di bawah ini untuk melakukan pengecekan apakah di tahun depan bersedia menerima mahasiswa kembali untuk PKL</li>
+              <li>Perusahaan sebagai pihak untuk mengisi form di bawah ini untuk melakukan pengecekan apakah di tahun depan bersedia menerima mahasiswa kembali untuk PKN</li>
               <li>Klik tombol <button class="btn btn-success">YA</button> apabila perusahaan Bapak/Ibu bersedia menerima</li>
-              <li>Selanjutnya akan tampil pop-up untuk mengisi data seperti <strong>Tahun Penerimaan, Bulan PKL, Kompentensi Mahasiswa dan Jumlah Mahasiswa</strong></li>
+              <li>Selanjutnya akan tampil pop-up untuk mengisi data seperti <strong>Tahun Penerimaan, Bulan PKN, Kompentensi Mahasiswa dan Jumlah Mahasiswa</strong></li>
               <li>Setelah melakukan pengisian maka tombol <button class="btn btn-primary">UPDATE</button> akan muncul</li>
               <li>Bapak/Ibu dapat melakukan update data apabila ada kesalahan</li>
               <li>Bapak/Ibu dapat membatalkan apabila ternyata perusahaan Bapak/Ibu tidak menerima prodi yang sebelum nya terisi, dengan mengklik tombol <button class="btn btn-danger">BATAL</button></li>
@@ -52,7 +52,14 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header d-block">
-            <h3 class="text-uppercase"><?= $title; ?></h3>
+            <div class="d-flex flex-grow-1 min-width-zero card-content">
+              <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                <h3 class="text-uppercase"><?= $title; ?></h3>
+                <div class="btn-group">
+                  <a href="<?= site_url('pdf/kesediaanperusahaan') ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="table-responsive">

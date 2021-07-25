@@ -15,8 +15,8 @@ class Supervisor_planning extends CI_Controller
   public function index($academic_year_id = null)
   {
     $data = [
-      'title'         => 'Data Capaian Mahasiswa PKL',
-      'desc'          => 'Berfungsi untuk melihat data capaian PKL',
+      'title'         => 'Data Program',
+      'desc'          => 'Berfungsi untuk melihat data program',
       'academicyear'  => $academic_year_id,
       'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
     ];
@@ -31,8 +31,8 @@ class Supervisor_planning extends CI_Controller
     if ($planning) {
       $plannings    = $this->Plannings->list(['planning.registration_id' => $decode])->result();
       $data = [
-        'title'     => 'Detail Capaian Mahasiswa PKL',
-        'desc'      => 'Berfungsi untuk melihat detail capaian PKL',
+        'title'     => 'Detail Data Program',
+        'desc'      => 'Berfungsi untuk melihat detail data program',
         'planning'  => $planning,
         'plannings' => $plannings,
       ];
@@ -47,29 +47,23 @@ class Supervisor_planning extends CI_Controller
     }
   }
 
-  public function verification($stringUrl, $status)
+  public function verification($id)
   {
-    $explode    = explode(":", $stringUrl);
-    $id         = $explode[0];
-    $uri        = $explode[1];
-    if ($status === '1') {
-      $approval    = 1; // verifikasi supervisor
-    } else {
-      $approval    = 3;
+    $approval = $this->input->post('approval');
+    $planning = $this->input->post('planning');
+    $this->db->trans_start();
+    for ($i = 0; $i < count($approval); $i++) {
+      $data = [
+        'approval'  => $approval[$i]
+      ];
+      $update =  $this->Plannings->update($data, ['id' => $planning[$i]]);
     }
-    $dataUpdate = [
-      'approval'    => $approval,
-      'updated_at'  => date('Y-m-d H:i:s')
-    ];
-    $where      = [
-      'id'    => $id,
-    ];
-    $update     = $this->Plannings->update($dataUpdate, $where);
+    $this->db->trans_complete();
     if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil di update');
+      $this->session->set_flashdata('success', 'Data berhasil disimpan');
     } else {
       $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
     }
-    redirect($this->redirecUrl . '/detail/' . $uri);
+    redirect($this->redirecUrl . '/detail/' . $id);
   }
 }

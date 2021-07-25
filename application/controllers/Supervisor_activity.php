@@ -15,33 +15,29 @@ class Supervisor_activity extends CI_Controller
   public function dailyLog()
   {
     $data = [
-      'title'         => 'Data Log Harian Mahasiswa PKL',
-      'desc'          => 'Berfungsi untuk melihat data log harian mahasiswa PKL',
-      'dailyLog'      => $this->Activity->getListDailyLog(),
+      'title'         => 'Data Log Harian Mahasiswa PKN',
+      'desc'          => 'Berfungsi untuk melihat data log harian mahasiswa PKN',
+      'dailyLog'      => $this->Activity->getListDailyLog()->result(),
     ];
     $page = '/supervisor/activity/daily_log';
     pageBackend($this->role, $page, $data);
   }
 
-  public function verificationDailyLog($stringUrl, $status)
+  public function verificationDailyLog()
   {
-    $explode    = explode(":", $stringUrl);
-    $id         = $explode[0];
-    if ($status === '1') {
-      $validation    = 1; // verifikasi supervisor
-    } else {
-      $validation    = 0;
+    $approval = $this->input->post('approval');
+    $dailyLog = $this->input->post('dailyLog');
+
+    $this->db->trans_start();
+    for ($i = 0; $i < count($approval); $i++) {
+      $data = [
+        'validation'  => $approval[$i]
+      ];
+      $update =  $this->Activity->updateDailyLog($data, ['id' => $dailyLog[$i]]);
     }
-    $dataUpdate = [
-      'validation'    => $validation,
-      'updated_at'    => date('Y-m-d H:i:s')
-    ];
-    $where      = [
-      'id'    => $id,
-    ];
-    $update     = $this->Activity->updateDailyLog($dataUpdate, $where);
+    $this->db->trans_complete();
     if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil di update');
+      $this->session->set_flashdata('success', 'Data berhasil disimpan');
     } else {
       $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
     }
@@ -51,33 +47,28 @@ class Supervisor_activity extends CI_Controller
   public function attendance()
   {
     $data = [
-      'title'         => 'Data Kehadiran Mahasiswa PKL',
-      'desc'          => 'Berfungsi untuk melihat data kehadiran mahasiswa PKL',
-      'attendance'    => $this->Activity->getListAttendance(),
+      'title'         => 'Data Kehadiran Mahasiswa PKN',
+      'desc'          => 'Berfungsi untuk melihat data kehadiran mahasiswa PKN',
+      'attendance'    => $this->Activity->getListAttendance()->result(),
     ];
     $page = '/supervisor/activity/attendance';
     pageBackend($this->role, $page, $data);
   }
 
-  public function verificationAttendance($stringUrl, $status)
+  public function verificationAttendance()
   {
-    $explode    = explode(":", $stringUrl);
-    $id         = $explode[0];
-    if ($status === '1') {
-      $validation    = 1; // verifikasi supervisor
-    } else {
-      $validation    = 0;
+    $approval = $this->input->post('approval');
+    $attendance = $this->input->post('attendance');
+    $this->db->trans_start();
+    for ($i = 0; $i < count($approval); $i++) {
+      $data = [
+        'validation'  => $approval[$i]
+      ];
+      $update =  $this->Activity->updateAttendance($data, ['id' => $attendance[$i]]);
     }
-    $dataUpdate = [
-      'validation'    => $validation,
-      'updated_at'    => date('Y-m-d H:i:s')
-    ];
-    $where      = [
-      'id'    => $id,
-    ];
-    $update     = $this->Activity->updateAttendance($dataUpdate, $where);
+    $this->db->trans_complete();
     if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil di update');
+      $this->session->set_flashdata('success', 'Data berhasil disimpan');
     } else {
       $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
     }
