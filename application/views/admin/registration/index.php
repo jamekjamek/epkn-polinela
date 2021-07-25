@@ -51,7 +51,7 @@
           </div>
           <div class="card-body">
             <div class="dt-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
+              <table id="simpletable" class="table table-hover table-registration" style="padding: 20px;">
                 <thead>
                   <tr>
                     <th>No</th>
