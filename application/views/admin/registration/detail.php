@@ -93,7 +93,7 @@
           <div class="card-body">
             <hr>
             <div>
-              <a href="<?= site_url('admin/registration') ?>" class="btn btn-warning"><i class="ik ik-arrow-left"></i>Kembali</a>
+              <a href="<?= site_url('admin/registrations') ?>" class="btn btn-warning"><i class="ik ik-arrow-left"></i>Kembali</a>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">Tambah Anggota</button>
             </div>
             <hr />

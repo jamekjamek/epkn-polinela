@@ -75,10 +75,13 @@
                       <td><?= $leader->npm . ' - ' . $leader->fullname . ' - ' . $leader->prodi_name; ?></td>
                       <td>
                         <?php
-                        $this->db->where('status !=', 'Ketua');
-                        $member = $this->db->get_where('registration', ['group_id' => $leader->group_id])->num_rows();
+                        $this->db->select("count(b.id) AS jumlahmhs, count(case when b.gender='L' then 1 end) as male_cnt, count(case when b.gender='P' then 1 end) as female_cnt");
+                        $this->db->join('student b', 'a.student_id = b.id');
+                        $this->db->where('a.status !=', 'Ketua');
+                        $this->db->group_by("a.group_id");
+                        $member = $this->db->get_where('registration a', ['a.group_id' => $leader->group_id])->row();
                         ?>
-                        <a href="<?= base_url('admin/registrations/detail/' . encodeEncrypt($leader->id)) ?>" class="btn btn-link"><?= $member; ?> Anggota</a>
+                        <a href="<?= base_url('admin/registrations/detail/' . encodeEncrypt($leader->id)) ?>" class="btn btn-link"><?= $member->jumlahmhs; ?> Anggota (<?= $member->male_cnt ?>L, <?= $member->female_cnt ?>P)</a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
