@@ -393,6 +393,7 @@ $(document).ready(function () {
 				$.LoadingOverlay("hide");
 				if (data.status === "ok") {
 					$(".groupIdResult").html(data.data);
+					window.location.reload();
 				} else {
 					alertCustom("Server sedang sibuk", "warning");
 				}

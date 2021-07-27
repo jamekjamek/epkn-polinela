@@ -133,11 +133,15 @@ class Admin_registrations_model extends CI_Model
     return $this->db->get($this->tableSupervisor)->row();
   }
 
-  public function getStudent($data = null, $prodi_id = null)
+  public function getStudent($data, $academicId = null, $prodi_id = null, $gender = null)
   {
-    $query  = "SELECT * FROM `" . $this->tableStudent . "` `a` WHERE `id` NOT IN (SELECT `student_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak')";
+    $academicwhere = ($academicId) ? "AND `academic_year_id` ='$academicId'" : "";
+    $query  = "SELECT * FROM `" . $this->tableStudent . "` `a` WHERE `id` NOT IN (SELECT `student_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak' $academicwhere )";
     if ($prodi_id) {
       $query .= "AND `prodi_id` = '$prodi_id'";
+    }
+    if ($gender) {
+      $query .= "AND `gender` = '$gender'";
     }
     if ($data === 'random') {
       $query .= "ORDER BY RAND()";
@@ -148,12 +152,15 @@ class Admin_registrations_model extends CI_Model
     return $this->db->query($query);
   }
 
-  public function getCompany($data = null)
+  public function getCompany($orderBy = null, $academicId = null)
   {
+    $academicwhere = ($academicId) ? "AND `academic_year_id` ='$academicId'" : "";
     $query = "SELECT * FROM `company`";
-    $query .= "WHERE `id` NOT IN (SELECT `company_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak' AND `status` = 'Ketua')";
-    if ($data === 'random') {
+    $query .= "WHERE `id` NOT IN (SELECT `company_id` FROM `" . $this->table . "` WHERE `verify_member` != 'Ditolak' AND `group_status` != 'ditolak' AND `status` = 'Ketua' $academicwhere )";
+    if ($orderBy === 'random') {
       $query .= "ORDER BY rand() LIMIT 1";
+    } else if ($orderBy === 'prodi') {
+      $query .= "ORDER BY prodi_id DESC LIMIT 1";
     }
     return $this->db->query($query);
   }
@@ -167,16 +174,51 @@ class Admin_registrations_model extends CI_Model
     return $this->db->get($this->table);
   }
 
-  public function getProdiWhereProdiNot($id)
+  public function getProdiIdWhereProdi($id, $academicId, $limit, $isProdi = true)
   {
-    // $this->db->where('id IN (SELECT DISTINCT prodi_id from student)');
-    $this->db->order_by('id', 'RAND()');
-    $this->db->limit(3);
-    return $this->db->get_where('prodi', ['id !=' => $id])->result();
+    $queryisProdi = ($isProdi) ? "a.`prodi_id` = '$id'" : "a.`prodi_id` <> '$id'";
+    $query = "SELECT a.prodi_id, count(a.id) AS jumlahmhs, count(case when a.gender='L' then 1 end) as male_cnt, count(case when a.gender='P' then 1 end) as female_cnt FROM `student` a WHERE a.`id` NOT IN (SELECT student_id FROM `registration` WHERE student_id = a.id AND academic_year_id='$academicId') AND $queryisProdi AND a.`academic_year_id` ='$academicId' AND a.`status` = '-' GROUP BY a.prodi_id ORDER BY jumlahmhs DESC LIMIT $limit";
+    return $this->db->query($query);
   }
 
-  public function getProdiWhereProdi($id)
+  public function getLectureIdByProdiIdLeader($prodi_id, $academicId, $checkinRegisterTable = true)
   {
-    return $this->db->get_where('prodi', ['id' => $id])->row();
+    if ($checkinRegisterTable) {
+      $query = "SELECT
+                  COUNT(b.id) cnt_lecture_used,
+                  a.id
+                FROM
+                  lecture a
+                  LEFT JOIN registration b ON a.id = b.lecture_id
+                WHERE
+                  a.prodi_id = '$prodi_id'
+                  AND b.academic_year_id = '$academicId'
+                GROUP BY
+                  a.id
+                ORDER BY
+                  cnt_lecture_used DESC
+                LIMIT
+                  1";
+    }
+
+    $query = "SELECT
+                a.id
+              FROM
+                lecture a
+              WHERE
+                a.id NOT IN (
+                  SELECT
+                    student_id
+                  FROM
+                    `registration`
+                  WHERE
+                    lecture_id = a.id
+                    AND academic_year_id = '$academicId'
+                )
+              AND 
+              a.prodi_id = '$prodi_id'
+              ORDER BY RAND() LIMIT 1";
+
+    return $this->db->query($query)->row();
   }
 }
