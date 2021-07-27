@@ -13,8 +13,6 @@ class Admin_lecture extends CI_Controller
     $this->load->model('Admin/Admin_config_model', 'Config');
     $this->role         = 'admin';
     $this->redirect     = 'admin/master/lecture';
-
-
     cek_login('Admin');
   }
 
@@ -25,14 +23,12 @@ class Admin_lecture extends CI_Controller
       'desc'          => 'Berfungsi untuk melihat Data Dosen',
       'lectures'      => $this->Lecture->getAllData()->result()
     ];
-
     $page = '/admin/lecture/index';
     pageBackend($this->role, $page, $data);
   }
 
   public function create()
   {
-
     $this->_validation();
     if ($this->form_validation->run() === false) {
       $data = [
@@ -49,8 +45,6 @@ class Admin_lecture extends CI_Controller
       $explode      = explode(":", $postMajor);
       $majorId      = $explode[0];
       $prodiId      = $explode[1];
-
-
       $dataInputLecture = [
         'name'          => htmlspecialchars($this->input->post('name')),
         'nip'           => $nip,
@@ -58,13 +52,14 @@ class Admin_lecture extends CI_Controller
         'major_id'      => $majorId,
         'prodi_id'      => $prodiId
       ];
-      $insertLecture      = $this->Lecture->insert($dataInputLecture);
+      $insertLecture    = $this->Lecture->insert($dataInputLecture);
+      $getRole          = $this->Config->getRoleBy('role', ['name' => 'Dosen']);
       if ($insertLecture > 0) {
         $this->db->set('id', 'UUID()', FALSE);
         $dataInsertUser = [
           'username'  => $nip,
           'password'  => password_hash('123456', PASSWORD_DEFAULT),
-          'role_id'   => '775b0f58-b7a8-11eb-a91e-0cc47abcfaa6',
+          'role_id'   => $getRole->id,
         ];
         $insertUser = $this->Config->insertUserTable($dataInsertUser);
         if ($insertUser > 0) {
@@ -161,7 +156,6 @@ class Admin_lecture extends CI_Controller
       'title'         => 'Import Data Dosen',
       'desc'          => 'Berfungsi untuk menambah banyak Data Dosen',
     ];
-
     $page = '/admin/lecture/import';
     pageBackend($this->role, $page, $data);
   }
@@ -193,12 +187,12 @@ class Admin_lecture extends CI_Controller
                 'major_id'      => $row->getCellAtIndex(3),
               );
               $this->Lecture->importData($dataInputLecture);
+              $getRole            = $this->Config->getRoleBy('role', ['name' => 'Dosen']);
               $dataInputUser  =   [
                 'username'  => $row->getCellAtIndex(1),
                 'password'  => password_hash('123456', PASSWORD_DEFAULT),
-                'role_id'   => '775b1040-b7a8-11eb-a91e-0cc47abcfaa6',
+                'role_id'   => $getRole->id,
               ];
-
               $this->Config->importData($dataInputUser);
             }
           }
@@ -255,7 +249,6 @@ class Admin_lecture extends CI_Controller
         'valid_email'   => 'Format %s salah'
       ]
     );
-
 
     if ($this->input->post('major') === "") {
       $this->form_validation->set_rules(

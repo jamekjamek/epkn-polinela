@@ -43,12 +43,13 @@ class Admin_major extends CI_Controller
       ];
 
       $insertMajor    = $this->Major->insert($dataInsertMajor);
+      $getRole          = $this->Config->getRoleBy('role', ['name' => 'Sekjur']);
       if ($insertMajor > 0) {
         $this->db->set('id', 'UUID()', FALSE);
         $dataInsertUser = [
           'username'  => $email,
           'password'  => password_hash('123456', PASSWORD_DEFAULT),
-          'role_id'   => '775b1040-b7a8-11eb-a91e-0cc47abcfaa6',
+          'role_id'   => $getRole->id,
         ];
         $insertUser = $this->Config->insertUserTable($dataInsertUser);
         if ($insertUser > 0) {

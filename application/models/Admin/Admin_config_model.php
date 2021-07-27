@@ -181,4 +181,10 @@ class Admin_config_model extends CI_Model
   {
     return $this->db->get_where($this->tableProdi, $data);
   }
+
+  // cek role
+  public function getRoleBy($table, $where)
+  {
+    return $this->db->get_where($table, $where)->row();
+  }
 }
