@@ -16,7 +16,7 @@ class Mahasiswa_data_pkn extends CI_Controller
   {
     $data = [
       'title'         => 'Rekap PKN',
-      'desc'          => 'Berfungsi untuk melihat rekap PKN',
+      'desc'          => 'Berfungsi untuk melihat data PKN',
       'detail'        => $this->DataPKL->getDetailValue(),
       'file'          => $this->DataPKL->getFile()->row()
     ];
@@ -35,7 +35,7 @@ class Mahasiswa_data_pkn extends CI_Controller
       $fileData = $this->upload->data();
       $upload = [
         'file'            => $fileData['file_name'],
-        'youtube_link'    => $data['youtube_link'],
+        'youtube_link'    => $fileData['file_name'],
         'updated_at'  => date('Y-m-d H:i:s')
       ];
       if ($this->DataPKL->upload($upload, ['id' => $data['registration_id']])) {

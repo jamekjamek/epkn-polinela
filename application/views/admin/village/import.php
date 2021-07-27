@@ -46,13 +46,13 @@
                 <form action="<?= base_url('admin/master/village/importvillage'); ?>" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>File upload</label>
-                    <input type="file" name="importvillage" accept=".xlsx,.xls" class="file-upload-default">
-                    <div class="input-group col-xs-12">
+                    <input type="file" name="importvillage" accept=".xlsx,.xls" class="form-control">
+                    <!-- <div class="input-group col-xs-12">
                       <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload File Excel">
                       <span class="input-group-append">
                         <button class="file-upload-browse btn btn-primary" type="button">Pilih File</button>
                       </span>
-                    </div>
+                    </div> -->
                   </div>
                   <button type="submit" class="btn btn-primary"><i class="ik ik-plus-square"></i>Upload Data</button>
                   <a href="<?= base_url('admin/master/company') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>

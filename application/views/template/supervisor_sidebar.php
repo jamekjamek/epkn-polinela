@@ -18,19 +18,16 @@
           <a href=" <?= site_url('supervisor/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'planning' || $this->uri->segment(3) === 'detail' ? 'active' : '') ?>">
-          <a href=" <?= site_url('supervisor/planning') ?>"><i class="ik ik-book"></i><span>Progarm</span></a>
+          <a href=" <?= site_url('supervisor/planning') ?>"><i class="ik ik-book"></i><span>Rencana Program</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'daily_log' ? 'active' : '') ?>">
-          <a href=" <?= site_url('supervisor/activity/daily_log') ?>"><i class="ik ik-file-text"></i><span>Jurnal Harian</span></a>
+          <a href=" <?= site_url('supervisor/activity/daily_log') ?>"><i class="ik ik-file-text"></i><span>Verifikasi Jurnal Harian</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'attendance' ? 'active' : '') ?>">
-          <a href=" <?= site_url('supervisor/activity/attendance') ?>"><i class="ik ik-cast"></i><span>Kehadiran Mahasiswa</span></a>
+          <a href=" <?= site_url('supervisor/activity/attendance') ?>"><i class="ik ik-cast"></i><span>Verifikasi Kehadiran Mahasiswa</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkl' || $this->uri->segment(3) === 'assessment' ? 'active' : '') ?>">
-          <a href=" <?= site_url('supervisor/data_pkn') ?>"><i class="ik ik-folder"></i><span>Data PKN</span></a>
-        </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'report_reception' ? 'active' : '') ?>">
-          <a href=" <?= site_url('supervisor/report_reception') ?>"><i class="ik ik-share-2"></i><span>Kesediaan Penerimaan</span></a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' || $this->uri->segment(3) === 'assessment' ? 'active' : '') ?>">
+          <a href=" <?= site_url('supervisor/data_pkn') ?>"><i class="ik ik-folder"></i><span>Penilaian PKN</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'quesioner' ? 'active' : '') ?>">
           <a href=" <?= site_url('supervisor/quesioner') ?>"><i class="ik ik-cast"></i><span>Quesioner</span></a>

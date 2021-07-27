@@ -34,7 +34,6 @@
                   <a href="<?= base_url('admin/master/head-of-program') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'head-of-program' ? 'active' : '') ?>">Ketua Jurusan</a>
                   <a href="<?= base_url('admin/master/head-of-program-study') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'head-of-program-study' ? 'active' : '') ?>">Ketua Program Studi</a>
                   <a href="<?= base_url('admin/master/village') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'village' ? 'active' : '') ?>">Desa</a>
-                  <a href="<?= base_url('admin/master/planning_attachment') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'planning_attachment' || $this->uri->segment(4) === 'planning_attachment' ? 'active' : '') ?>">Capaian Pembelajaran</a>
                   <a href="<?= base_url('admin/master/users') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'users' ? 'active' : '') ?>">Data User</a>
                </div>
             </div>
@@ -42,11 +41,7 @@
                <a href="<?= base_url('admin/registrations') ?>"><i class="ik ik-cast"></i><span>Pendaftaran PKN</span></a>
             </div>
             <div class="nav-item <?= ($this->uri->segment(3) === 'pkn' ? 'active' : '') ?>">
-               <a href="<?= base_url('admin/master/pkn') ?>"><i class="ik ik-activity"></i><span>Rekap PKN</span></a>
-            </div>
-
-            <div class="nav-item <?= ($this->uri->segment(2) === 'report_reception' ? 'active' : '') ?>">
-               <a href=" <?= site_url('admin/report_reception') ?>"><i class="ik ik-share-2"></i><span>Kesediaan Penerimaan PKN <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Di Tahun Depan</span></a>
+               <a href="<?= base_url('admin/master/pkn') ?>"><i class="ik ik-activity"></i><span>Rekap Mahasiswa PKN</span></a>
             </div>
             <div class="nav-item <?= ($uri  === 'verification' ? 'active' : '') ?>">
                <a href="<?= base_url('admin/verification') ?>"><i class="ik ik-clipboard"></i><span>Verifikasi Berkas</span></a>

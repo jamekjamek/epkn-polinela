@@ -49,7 +49,7 @@
                             <span class="cr">
                               <i class="cr-icon ik ik-check txt-primary"></i>
                             </span>
-                            <span></span>
+                            <span>All</span>
                           </label>
                         </div>
                       </th>

@@ -19,8 +19,8 @@ class Admin_pkn extends CI_Controller
         $major      = $this->PKL->getAllMajor()->result();
         $academic   = $this->Config->getDataAcademicYear()->result();
         $data       = [
-            'title'         => 'Rekap PKN Program Studi',
-            'desc'          => 'Berfungsi untuk melihat rekap PKN Program Studi',
+            'title'         => 'Rekap Mahasiswa PKN',
+            'desc'          => 'Berfungsi untuk melihat rekap mahasiswa PKN',
             'academicyear'  => $academic,
             'majors'        => $major
         ];

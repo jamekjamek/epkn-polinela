@@ -56,14 +56,14 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Jurusan</th>
                     <th>Program Studi</th>
                     <th>Jumlah Mahasiswa</th>
-                    <th>Jumlah Diterima</th>
+                    <!-- <th>Jumlah Diterima</th>
                     <th>Jumlah Dalam Proses</th>
                     <th>Jumlah Mahasiswa Lulus</th>
-                    <th>Presentase Diterima</th>
+                    <th>Presentase Diterima</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -84,20 +84,20 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $major->id ?></td>
+                      <!-- <td><?= $major->id ?></td> -->
                       <td><?= $major->name ?></td>
                       <td><?= $major->prodi ?></td>
                       <td><?= $sumStudent ?></td>
-                      <td><?= $sumDiterima; ?></td>
+                      <!-- <td><?= $sumDiterima; ?></td>
                       <td><?= $sumDalamProses; ?></td>
-                      <td><?= $sumGraduated; ?></td>
-                      <td>
+                      <td><?= $sumGraduated; ?></td> -->
+                      <!-- <td>
                         <?php if ($sumDiterima === 0) : ?>
                           0 %
                         <?php else : ?>
                           <?= ($sumDiterima / $sumStudent) * 100 . ' %'; ?>
                         <?php endif; ?>
-                      </td>
+                      </td> -->
                     </tr>
 
                   <?php endforeach; ?>

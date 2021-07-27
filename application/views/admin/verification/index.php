@@ -87,7 +87,7 @@
                           <ul id="datacek<?= $i; ?>" data-id="<?= $student->id ?>">
                             <li style="list-style: none;">
                               <div class="form-group form-check" style="font-size: 16px;">
-                                <input type="checkbox" class="form-check-input kehadiranadmin" id="kehadiranadmin<?= $i; ?>" <?= ($student->id === @$list->student_id && @$list->v_kehadiran_admin === '1') ? 'checked' : ''; ?>>
+                                <input type="checkbox" class="form-check-input kehadiranadmin" id="kehadiranadmin<?= $i; ?> checked" <?= ($student->id === @$list->student_id && @$list->v_kehadiran_admin === '1') ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="kehadiranadmin<?= $i; ?>">Kehadiran</label>
                               </div>
                             </li>
