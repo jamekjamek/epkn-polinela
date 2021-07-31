@@ -230,7 +230,6 @@ class Admin_registrations_model extends CI_Model
   {
     $jumlah = count($data);
     if ($jumlah > 0) {
-      $this->db->set('id', 'UUID()', FALSE);
       $this->db->replace($this->table, $data);
     }
   }
