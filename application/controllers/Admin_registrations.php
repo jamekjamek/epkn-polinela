@@ -771,13 +771,15 @@ class Admin_registrations extends CI_Controller
       $file   = $this->upload->data();
       $reader = ReaderEntityFactory::createXLSXReader();
       $reader->open('assets/uploads/' . $file['file_name']);
-
+      $dataPeriode = $this->Registrations->getDataPeriode()->row();
+      $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
+      $academicId                 = $academic->id;
+      $leaders = [];
       foreach ($reader->getSheetIterator() as $sheet) {
         $numRow = 1;
         foreach ($sheet->getRowIterator() as $row) {
           // get prodi dan atau di company wajib limit 4
           $rowCompany = $row->getCellAtIndex(1);
-          $supervisor = $this->generateNewSupervisor($rowCompany);
           if ($numRow > 1) {
             $dataInputRegister = array(
               'group_id'          => $row->getCellAtIndex(0),
@@ -788,15 +790,40 @@ class Admin_registrations extends CI_Controller
               'status'            => $row->getCellAtIndex(5),
               'prodi_id'          => $row->getCellAtIndex(6),
               'lecture_id'        => $row->getCellAtIndex(7),
-              'supervisor_id'     => $supervisor->id,
-              'academic_year_id'  => $row->getCellAtIndex(8),
+              'academic_year_id'  => $academicId,
             );
             $this->Registrations->importData($dataInputRegister);
+
+            // create supervisor if status == ketua
+            if ($row->getCellAtIndex(5) == 'Ketua') {
+              $id = $this->db->insert_id();
+              array_push($leaders, [
+                'id'            => $id,
+                'student_id'    => $row->getCellAtIndex(4),
+                'old_grp_id'    => $row->getCellAtIndex(0),
+                'group_id'      => $this->db->set('id', 'UUID()', FALSE),
+                'supervisor_id' => $this->generateNewSupervisor($row->getCellAtIndex(1))->id,
+                'company_id' => $row->getCellAtIndex(1)
+              ]);
+            }
           }
           $numRow++;
         }
         $reader->close();
         unlink(FCPATH . 'assets/uploads/' . $file['file_name']);
+        foreach ($leaders as $leader) {
+          // update
+          $this->Registrations->update(
+            [
+              'group_id' => strtotime($dataPeriode->start_time_pkl) . ":" . $leader['student_id'],
+              'supervisor_id' => $leader['supervisor_id'],
+            ],
+            [
+              'group_id' => $leader['old_grp_id'],
+              'company_id' => $leader['company_id']
+            ]
+          );
+        }
         $this->session->set_flashdata('success', 'Import Data Berhasil');
         redirect($this->redirect);
       }
