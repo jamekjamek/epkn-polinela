@@ -38,7 +38,6 @@ class Admin_registrations extends CI_Controller
       $data = [
         'title'         => 'Tambah Pendaftaran PKN',
         'desc'          => 'Berfungsi untuk menambah Pendaftaran PKN',
-        // 'periode'       => $dataPeriode
       ];
       $page = '/admin/registration/create-new';
       pageBackend($this->role, $page, $data);
@@ -51,7 +50,6 @@ class Admin_registrations extends CI_Controller
       $groupId        = strtotime($dataPeriode->start_time_pkl) . $leaderId;
       $academic       = $this->Config->getDataAcademicYear(['status' => 1])->row();
       $academicId     = $academic->id;
-      // $this->db->set('id', 'UUID()', FALSE);
       $dataInsertLeader   = [
         'group_id'          => $groupId,
         'company_id'        => $companyId,

@@ -55,7 +55,7 @@
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
-                          <a href="<?= base_url('admin/recap/adviser'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                          <a href="<?= base_url('admin/recap/supervisor'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
                           <a href="<?= site_url('pdf/pembimbinglapang/' . $this->input->get('prodi')) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export</a>
                         <?php endif; ?>
                       </div>

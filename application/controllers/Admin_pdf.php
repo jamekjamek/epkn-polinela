@@ -405,9 +405,11 @@ class Admin_pdf extends CI_Controller
     $prodi        = $this->input->get('prodi');
     $getProdi     = $this->Recap->getProdiBy($prodi)->row();
     $scoreData    = $this->Recap->getScoringBy($prodi);
+    $row          = $this->Recap->getScoringBy($prodi)->row();
     $data = [
       'prodi'         => $getProdi,
-      'data'          => $scoreData
+      'data'          => $scoreData,
+      'row'           => $row
     ];
     $view           = $this->load->view('pdf/nilaiakhirpklfinal', $data, TRUE);
     $mpdf->SetProtection(array('print'));

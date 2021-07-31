@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Surat Tugas</title>
+  <title>Nilai Akhir PKN</title>
   <style>
     body {
       font-family: 'Times New Roman', Times, serif;
@@ -26,7 +26,7 @@
   <br>
   <br>
   <p style="text-align: center;">
-    <strong style="font-size:18px">NILAI AKHIR PKL</strong>
+    <strong style="font-size:18px">NILAI AKHIR PKN</strong>
     <br>
     <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= $prodi->name; ?></span>
     <br>
@@ -62,7 +62,7 @@
             <td><?= $data_score->supervision_value ?></td>
             <td><?= $data_score->lecture_value ?></td>
             <td><?= $data_score->final_score_value ?></td>
-            <td><?= $data_score->result_final_score ?></td>
+            <td><?= number_format($data_score->result_final_score, 2) ?></td>
             <td><?= $data_score->HM ?></td>
           </tr>
         <?php endforeach; ?>
