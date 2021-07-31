@@ -12,6 +12,7 @@ header("Expires:0");
     <thead>
         <tr>
             <th>No</th>
+            <th>ID</th>
             <th>Desa</th>
             <th>Alamat</th>
             <th>PIC</th>
@@ -24,6 +25,7 @@ header("Expires:0");
         foreach ($allData as $company) : ?>
             <tr>
                 <td><?= $i++; ?></td>
+                <td><?= $company->id; ?></td>
                 <td><?= $company->name; ?></td>
                 <td>
                     <?= $company->regency_name; ?>,<?= $str = $company->address; ?>, <?= $company->province_name; ?>

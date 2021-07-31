@@ -162,6 +162,12 @@ class Admin_config_model extends CI_Model
     return $this->db->affected_rows();
   }
 
+  public function updateStudent($table, $data, $where)
+  {
+    $this->db->update($table, $data, $where);
+    return $this->db->affected_rows();
+  }
+
   public function getDataAcademicYear($data = null)
   {
     if ($data) {

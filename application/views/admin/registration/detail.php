@@ -108,7 +108,7 @@
                     <th>Verifikasi Mahasiswa</th>
                     <th>Status Peserta</th>
                     <th>Dosen Pembimbing</th>
-                    <!-- <th>Aksi</th> -->
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -123,62 +123,9 @@
                         <td><?= $group->verify_member; ?></td>
                         <td><?= $group->status; ?></td>
                         <td><?= $group->lecture_name; ?></td>
-                        <!-- <td>
-                                                    <?php if (@$letter && $group->group_status === 'dalam_proses_penerimaan') : ?>
-                                                        <?php if ($leader->group_status === 'dalam_proses_penerimaan') : ?>
-                                                            Verifikasi Ketua terlebih dahulu
-                                                        <?php else : ?>
-                                                            <button class="btn btn-success verficationprocess" data-id="<?= $group->id; ?>" data-uri="<?= $this->uri->segment(4); ?>">Proses Verifikasi</button>
-                                                        <?php endif; ?>
-                                                    <?php else : ?>
-                                                        <?php if ($group->group_status === 'diverifikasi') : ?>
-                                                            <span class="text-uppercase">
-                                                                <?= str_replace("_", " ", $group->group_status); ?>
-                                                            </span>
-                                                        <?php else : ?>
-                                                            <?php if ($group->group_status === 'ditolak') : ?>
-                                                                <?php
-                                                                $this->db->where('group_status !=', 'ditolak');
-                                                                $ditolak = $this->db->get_where('registration', ['student_id' => $group->student_id]);
-                                                                ?>
-                                                                <?php if ($ditolak->num_rows() > 0) : ?>
-                                                                    <?php if ($ditolak->row()->group_id != $leader->group_id) : ?>
-                                                                        Sudah di pindahkan ke group lain
-                                                                    <?php else : ?>
-                                                                        <span class="text-uppercase">
-                                                                            <button type="button" class="btn btn-warning moveGroup" data-toggle="modal" data-target="#moveGroup" data-id="<?= $group->id; ?>" data-student="<?= $group->student_id; ?>">
-                                                                                Pindahkan Group PKL lain karena <?= str_replace("_", " ", $group->group_status); ?> oleh Perusahaan
-                                                                            </button>
-                                                                        </span>
-                                                                    <?php endif; ?>
-                                                                <?php else : ?>
-                                                                    <span class="text-uppercase">
-                                                                        <button type="button" class="btn btn-warning moveGroup" data-toggle="modal" data-target="#moveGroup" data-id="<?= $group->id; ?>" data-student="<?= $group->student_id; ?>">
-                                                                            Pindahkan Group PKL lain karena <?= str_replace("_", " ", $group->group_status); ?> oleh Perusahaan
-                                                                        </button>
-                                                                    </span>
-                                                                <?php endif; ?>
-                                                            <?php else : ?>
-                                                                <?php if ($leader->group_status === 'dalam_proses_penerimaan') : ?>
-                                                                    Verifikasi Ketua terlebih dahulu
-                                                                <?php else : ?>
-                                                                    <?php if ($group->verify_member === 'Ditolak') : ?>
-                                                                        Member menolak undangan ketua
-                                                                    <?php else : ?>
-                                                                        <button type="button" class="btn btn-info supervisorModal" data-toggle="modal" data-target="#supervisorModal" data-id="<?= $group->id; ?>">
-                                                                            <?php if ($group->lecture_name === null) : ?>
-                                                                                Pilih Dosen Pembimbing
-                                                                            <?php else : ?>
-                                                                                Ubah Dosen Pembimbing
-                                                                            <?php endif; ?>
-                                                                        </button>
-                                                                        Pilih Dosen Pembimbing Dari Ketua
-                                                                    <?php endif; ?>
-                                                                <?php endif; ?>
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-                                                    <?php endif; ?>
-                                                </td> -->
+                        <td>
+                          <button type="button" class="btn btn-danger delete-registration-detail" data-id="<?= encodeEncrypt($group->id) ?>" data-url="<?= $this->uri->segment(4) ?>"><i class=" ik ik-trash"></i>Hapus</button>
+                        </td>
                       </tr>
                     <?php endif; ?>
                   <?php endforeach; ?>

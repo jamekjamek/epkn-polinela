@@ -65,7 +65,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="address">Alamat</label>
-                    <textarea id="address" name="address" class="form-control <?= form_error('address') ? 'is-invalid' : ''; ?>" rows="4" cols="50"><?= set_value('address') ?></textarea>
+                    <textarea id="address" name="address" class="form-control <?= form_error('address') ? 'is-invalid' : ''; ?>" rows="5" cols="50"><?= set_value('address') ?></textarea>
                     <div class="invalid-feedback">
                       <?= form_error('address'); ?>
                     </div>
@@ -81,12 +81,23 @@
                   </div>
                   <div class="form-group">
                     <label for="prodi">Pilih Prodi</label>
-                    <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%">
+                    <select class="get-prodi form-control" name="prodi" id="prodi" style="width: 100%">
                       <option></option>
                     </select>
-                    <div class="invalid-feedback">
-                      <?= form_error('prodi'); ?>
-                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="norek">No Rekening</label>
+                    <input type="number" class="form-control" id="norek" placeholder="Masukan nomor rekening penerima" name="norek" value="<?= set_value('norek') ?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="bank_name">Nama Bank</label>
+                    <input type="text" class="form-control" id="bank_name" placeholder="Masukan nama bank penerima" name="bank_name" value="<?= set_value('bank_name') ?>">
                   </div>
                 </div>
               </div>

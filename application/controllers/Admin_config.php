@@ -159,12 +159,14 @@ class Admin_config extends CI_Controller
     if ($kehadrianadmin === '1') {
       $this->db->set('id', 'UUID()', FALSE);
       $insert     = [
-        'student_id'    => $studentId,
+        'student_id'         => $studentId,
         'v_kehadiran_admin'  => $kehadrianadmin,
       ];
-      $query = $this->Config->insert($this->tableVerification, $insert);
+      $query  = $this->Config->insert($this->tableVerification, $insert);
+      $this->Config->updateStudent('student', ['status' => 'active'], ['id' => $studentId]);
     } else {
       $query = $this->Config->delete($this->tableVerification, ['student_id' => $studentId]);
+      $this->Config->updateStudent('student', ['status' => '-'], ['id' => $studentId]);
     }
     if ($query > 0) {
       $status['message']  = 'success';

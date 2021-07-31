@@ -55,6 +55,7 @@ w<div class="main-content">
                     <th>Alamat</th>
                     <th>Kontak Person</th>
                     <th>Status</th>
+                    <th>Bank</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -85,6 +86,10 @@ w<div class="main-content">
                         <?php else : ?>
                           <span class="badge badge-pill badge-danger mb-1">Tidak Verifikasi</span>
                         <?php endif; ?>
+                      </td>
+                      <td>
+                        <?= $company->norek ?> <br>
+                        <?= $company->bank_name ?>
                       </td>
                       <td>
                         <div class="btn-group" role="group">

@@ -47,6 +47,7 @@
                 <thead>
                   <tr>
                     <th>No</th>
+                    <th>ID</th>
                     <th>Tahun Ajaran</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -57,6 +58,7 @@
                   foreach ($academic_ta as $ta) : ?>
                     <tr>
                       <td><?= $i++; ?></td>
+                      <td><?= $ta->id; ?></td>
                       <td><?= $ta->name; ?></td>
                       <td>
                         <?= ($ta->status === '1' ? '<span class="badge badge-pill badge-success mb-1">Aktif</span>' : '<span class="badge badge-pill badge-danger mb-1">Tidak Aktif</span>') ?>

@@ -14,6 +14,7 @@ header("Expires:0");
     <thead>
         <tr>
             <th>No</th>
+            <th>ID</th>
             <th>NPM</th>
             <th>Nama</th>
             <th>Email</th>
@@ -30,6 +31,7 @@ header("Expires:0");
         foreach ($allData as $student) : ?>
             <tr>
                 <td><?= $i++; ?></td>
+                <td><?= $student->id; ?></td>
                 <td><?= $student->npm; ?></td>
                 <td><?= $student->fullname; ?></td>
                 <td><?= $student->email; ?></td>

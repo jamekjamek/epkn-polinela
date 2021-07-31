@@ -7,6 +7,7 @@ class Admin_pdf extends CI_Controller
     parent::__construct();
     $this->load->model('Document/Document_model', 'Documents');
     $this->load->model('Lecture/Lecture_data_pkn_model', 'DataPkl');
+    $this->load->model('Admin/Admin_recap_model', 'Recap');
     $this->footer = '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 50px; height:80px">';
   }
 
@@ -309,5 +310,97 @@ class Admin_pdf extends CI_Controller
     $mpdf->AddPage();
     $mpdf->WriteHTML($view2);
     $mpdf->Output();
+  }
+
+  public function dosenpembimbing($prodi = null)
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
+    $data               = [
+      'lecturers'   => $this->Recap->getDataLecturerByPeriod($prodi),
+      'row'         => $this->Recap->getDataLecturerGroupBy($prodi)->row(),
+    ];
+    $view           = $this->load->view('pdf/dosenpembimbing', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Dosen Pembimbing PKN");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($view);
+    $mpdf->Output("Dosen_Pembimbing_PKN_" . $data['row']->prodi_name . "_" . $data['row']->academic_year, "I");
+  }
+
+  public function pembimbinglapang($prodi = null)
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
+    $data               = [
+      'supervisors' => $this->Recap->getDataSupervisorByPeriod($prodi),
+      'row'         => $this->Recap->getDataSupervisorGroupBy($prodi)->row(),
+    ];
+    $view           = $this->load->view('pdf/pembimbinglapang', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Pembimbing Lapang PKN");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($view);
+    $mpdf->Output("Pembimbing_Lapang_PKN_" . $data['row']->prodi_name . "_" . $data['row']->academic_year, "I");
+  }
+
+  public function kehadiran($id)
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
+    $attends     = $this->Recap->getAttendanceByRegistrationWithPeriod($id);
+    $attend      = $this->Recap->getAttendanceByRegistrationGroup($id)->row();
+    $data               = [
+      'row'         => $attend,
+      'attendances' => $attends,
+    ];
+    $view           = $this->load->view('pdf/kehadiran', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Data Kehadiran");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($view);
+    $mpdf->Output("Data_Kehadiran_" . $data['row']->company_name . "_" . $data['row']->academic_year . "_" . $data['row']->period, "I");
+  }
+
+  public function nilaiakhirpkl()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 10]);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
+    $prodi        = $this->input->get('prodi');
+    $periodBy     = $this->input->get('periode');
+    $period       = $this->Prodi->getPeriode(['a.id' => $periodBy])->row();
+    $getProdi     = $this->Recap->getProdiBy($prodi)->row();
+    $scoreData    = $this->Recap->getScoringBy($prodi, $periodBy);
+    $data = [
+      'row'           => $period,
+      'prodi'         => $getProdi,
+      'data'          => $scoreData
+    ];
+    $view           = $this->load->view('pdf/nilaiakhirpklfinal', $data, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Nilai Akhir");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($view);
+    $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . $data['data']->row()->period, "I");
   }
 }

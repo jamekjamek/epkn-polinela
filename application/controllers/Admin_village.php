@@ -58,6 +58,8 @@ class Admin_village extends CI_Controller
         'pic'           => htmlspecialchars($this->input->post('pic')),
         'label'         => htmlspecialchars($this->input->post('label')),
         'status'        => 'verify',
+        'norek'         => htmlspecialchars($this->input->post('norek')),
+        'bank_name'     => htmlspecialchars($this->input->post('account_name')),
       ];
       $insertvillage      = $this->Village->insert($dataInput);
       if ($insertvillage > 0) {
@@ -102,6 +104,8 @@ class Admin_village extends CI_Controller
           'pic'           => htmlspecialchars($this->input->post('pic')),
           'label'         => htmlspecialchars($this->input->post('label')),
           'status'        => 'verify',
+          'norek'         => htmlspecialchars($this->input->post('norek')),
+          'bank_name'     => htmlspecialchars($this->input->post('bank_name')),
           'updated_at'    => date('Y-m-d H:i:s')
         ];
         $update         = $this->Village->update($dataUpdate, ['id' => $decode]);
@@ -193,6 +197,8 @@ class Admin_village extends CI_Controller
                 'telp'          => $row->getCellAtIndex(9),
                 'pic'           => $row->getCellAtIndex(10),
                 'label'         => $row->getCellAtIndex(11),
+                'norek'         => $row->getCellAtIndex(12),
+                'bank_name'     => $row->getCellAtIndex(13),
                 'status'        => 'verify',
               );
               $this->village->importData($dataInputvillage);
@@ -261,17 +267,6 @@ class Admin_village extends CI_Controller
       $this->form_validation->set_rules(
         'regency',
         'Daerah',
-        'trim|required',
-        [
-          'required' => '%s wajib di isi',
-        ]
-      );
-    }
-
-    if ($this->input->post('prodi') === "") {
-      $this->form_validation->set_rules(
-        'prodi',
-        'Program Studi',
         'trim|required',
         [
           'required' => '%s wajib di isi',

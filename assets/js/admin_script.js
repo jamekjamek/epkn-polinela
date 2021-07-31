@@ -34,6 +34,16 @@ $(document).ready(function () {
 		deleteQuestion(url, "Yakin akan menghapus data ini ?");
 	}
 
+	function buttonClickDeleteRegistration(id) {
+		var url = base_url + "admin/registration/delete/" + id;
+		deleteQuestion(url, "Yakin akan menghapus data ini ?");
+	}
+
+	function buttonClickDeleteRegistrationAtDetail(id, uri) {
+		var url = `${base_url}admin/registration/delete_at_detail/${id}:${uri}`;
+		deleteQuestion(url, "Yakin akan menghapus anggota grup ini ?");
+	}
+
 	//select2ajax
 	function select2ajax(route, text) {
 		$(".get-" + route + "").select2({
@@ -111,6 +121,17 @@ $(document).ready(function () {
 	$(document).on("click", ".delete-student", function () {
 		var id = $(this).data("id");
 		buttonClickDelete("student", id);
+	});
+
+	$(document).on("click", ".delete-registration", function () {
+		var id = $(this).data("id");
+		buttonClickDeleteRegistration(id);
+	});
+
+	$(document).on("click", ".delete-registration-detail", function () {
+		var id = $(this).data("id");
+		var url = $(this).data("url");
+		buttonClickDeleteRegistrationAtDetail(id, url);
 	});
 
 	//LECTURE

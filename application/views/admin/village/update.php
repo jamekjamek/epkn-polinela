@@ -90,6 +90,20 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="norek">No Rekening</label>
+                    <input type="number" class="form-control" id="norek" placeholder="Masukan nomor rekening penerima" name="norek" value="<?= set_value('norek') ? set_value('norek') : $village->norek; ?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="bank_name">Nama Bank</label>
+                    <input type="text" class="form-control" id="bank_name" placeholder="Masukan nama bank penerima" name="bank_name" value="<?= set_value('bank_name') ? set_value('bank_name') : $village->bank_name; ?>">
+                  </div>
+                </div>
+              </div>
               <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>
               <a href="<?= base_url('admin/master/village') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>
             </form>

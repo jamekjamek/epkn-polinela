@@ -41,6 +41,7 @@
                 </div>
                 <div>
                   <?php if ($periode != NULL) : ?>
+                    <a href="<?= base_url('admin/registrations/import'); ?>" class="btn btn-info"><i class="ik ik-plus-square"></i>Import Excel</a>
                     <button class="btn  <?= (count($allRegistrationLeader) > 0) ? 'btn-dark' : 'btn-success' ?>" id="generate-data" <?= (count($allRegistrationLeader) > 0) ? 'Disabled' : '' ?>><i class="ik ik-plus-square"></i>Generate Data</button>
                     <a href="<?= base_url('admin/registrations/history'); ?>" class="btn btn-warning"><i class="ik ik-plus-square"></i>History</a>
                     <a href="<?= base_url('admin/registrations/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
@@ -58,9 +59,9 @@
                     <th>Status</th>
                     <th>Perusahaan</th>
                     <th>Waktu PKL</th>
-                    <!-- <th>Verifikasi Pendaftaran</th> -->
                     <th>Nama Ketua</th>
                     <th>Anggota</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -82,6 +83,9 @@
                         $member = $this->db->get_where('registration a', ['a.group_id' => $leader->group_id])->row();
                         ?>
                         <a href="<?= base_url('admin/registrations/detail/' . encodeEncrypt($leader->id)) ?>" class="btn btn-link"><?= $member->jumlahmhs; ?> Anggota (<?= $member->male_cnt ?>L, <?= $member->female_cnt ?>P)</a>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-danger delete-registration" data-id="<?= encodeEncrypt($leader->group_id) ?>"><i class=" ik ik-trash"></i>Hapus</button>
                       </td>
                     </tr>
                   <?php endforeach; ?>

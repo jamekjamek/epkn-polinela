@@ -60,7 +60,7 @@ class Admin_village_model extends CI_Model
     $this->db->join($this->tableRegency  . ' as b', 'a.regency_id=b.id');
     $this->db->join($this->tableProvince . ' as c', 'a.province_id=c.id');
     $this->db->join($this->tableDistricts . ' as d', 'a.districts_id=d.id');
-    $this->db->join($this->tableProdi . ' as e', 'a.prodi_id=e.id');
-    $this->db->join($this->tableMajor . ' as f', 'e.major_id=f.id');
+    $this->db->join($this->tableProdi . ' as e', 'a.prodi_id=e.id', 'LEFT');
+    $this->db->join($this->tableMajor . ' as f', 'e.major_id=f.id', 'LEFT');
   }
 }

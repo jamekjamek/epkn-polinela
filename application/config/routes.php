@@ -82,6 +82,11 @@ $route['admin/registrations/history']                           = 'admin_registr
 $route['admin/registrations/historydetail']                     = 'admin_registrations/historydetail';
 $route['admin/registrations/generatedata']                      = 'admin_registrations/generatedata';
 $route['admin/registrations/getvillage']                        = 'admin_registrations/getvillage';
+$route['admin/registrations/import']                            = 'admin_registrations/import';
+$route['admin/registration/importregistration']                 = 'admin_registrations/importregistration';
+$route['admin/registration/delete/(:any)']                      = 'admin_registrations/delete/$1';
+$route['admin/registration/delete_at_detail/(:any)']                      = 'admin_registrations/deleteAtDetail/$1';
+
 
 
 //ADMIN CONFIG
@@ -97,23 +102,31 @@ $route['config/verificationdata']                   = 'Admin_config/data';
 
 //ADMIN PDF TES
 $route['pdf/amplop']                                = 'admin_pdf/amplop';
-$route['pdf/surattugas']                            = 'admin_pdf/surattugas'; //7.Surat Tugas mahasiswa PKN (F-PAI-030)
-$route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar'; //8.Surat Pengantar mahasiswa PKN (F-PAI-031)
-$route['pdf/penilaianpembimbinglapang/(:any)']      = 'admin_pdf/penilaianpembimbinglapang/$1'; //9.Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)
-$route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervisi'; //11.Laporan Supervisi PKN (F-PAI-034)
-$route['pdf/penilaiansupervisi/(:any)']             = 'admin_pdf/penilaiansupervisi/$1'; //12.Formulir penilaian supervisi PKN (F-PAI-035)
-$route['pdf/penilaianujian/(:any)']                 = 'admin_pdf/penilaianujian/$1'; //13.Formulir penilaian ujian PKN (F-PAI-036)
-$route['pdf/nilaiakhir/(:any)']                     = 'admin_pdf/nilaiakhir/$1'; //14.Nilai akhir PKN (F-PAI-037)
-$route['pdf/penilaiandosenpembimbing/(:any)']       = 'admin_pdf/penilaiandosenpembimbing/$1'; //15.Penilaian dosen pembimbing (F-PAI-038)
+$route['pdf/surattugas']                            = 'admin_pdf/surattugas';
+$route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar';
+$route['pdf/penilaianpembimbinglapang/(:any)']      = 'admin_pdf/penilaianpembimbinglapang/$1';
+$route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervisi';
+$route['pdf/penilaiansupervisi/(:any)']             = 'admin_pdf/penilaiansupervisi/$1';
+$route['pdf/penilaianujian/(:any)']                 = 'admin_pdf/penilaianujian/$1';
+$route['pdf/nilaiakhir/(:any)']                     = 'admin_pdf/nilaiakhir/$1';
+$route['pdf/penilaiandosenpembimbing/(:any)']       = 'admin_pdf/penilaiandosenpembimbing/$1';
 $route['pdf/suratpenarikan']                        = 'admin_pdf/suratpenarikan';
-//VERIFICATION
 $route['pdf/lembarperencanaankegiatanpkn']          = 'admin_pdf/planningSheet';
 $route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
 $route['pdf/kesediaanperusahaan/(:any)']            = 'admin_pdf/kesediaanperusahaan/$1';
-
 $route['pdf/penarikan']                             = 'admin_pdf/finishLeter';
 $route['pdf/laporansupervisipkn/(:any)']            = 'admin_pdf/supervisionReport/$1';
 $route['pdf/nilaisupervisi/(:any)']                 = 'admin_pdf/supervisionValue/$1';
+
+$route['pdf/logharian']                             = 'admin_pdf/dailyLog';
+$route['pdf/logharian/(:any)']                      = 'admin_pdf/dailyLog/$1';
+$route['pdf/nilaidosenpembimbing/(:any)']           = 'admin_pdf/guidanceValue/$1';
+$route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
+$route['pdf/kesediaanperusahaan/(:any)']            = 'admin_pdf/kesediaanperusahaan/$1';
+$route['pdf/dosenpembimbing/(:any)']                = 'admin_pdf/dosenpembimbing/$1';
+$route['pdf/pembimbinglapang/(:any)']               = 'admin_pdf/pembimbinglapang/$1';
+$route['pdf/nilaiakhirpkn']                         = 'admin_pdf/nilaiakhirpkl';
+$route['pdf/kehadiran/(:any)']                      = 'admin_pdf/kehadiran/$1';
 
 $route['admin/verification']                        = 'Admin_verification';
 
@@ -150,7 +163,19 @@ $route['admin/master/planning_attachment']          = 'admin_planning_attachment
 $route['admin/master/planning_attachment/add']      = 'admin_planning_attachment/create';
 $route['admin/master/planning_attachment/detail']   = 'admin_planning_attachment/detail';
 
-
+// RECAP
+$route['admin/recap/advisers']                      = 'admin_recap/adviser';
+$route['admin/recap/supervisor']                    = 'admin_recap/supervisor';
+$route['admin/recap/daily_log']                     = 'admin_recap/dailyLog';
+$route['admin/recap/daily_log/detail/(:any)']       = 'admin_recap/dailyLogDetail/$1';
+$route['admin/recap/daily_log/detail_more']         = 'admin_recap/dailyLogDetailMore';
+$route['admin/recap/attendance']                    = 'admin_recap/attendance';
+$route['admin/recap/attendance/detail/(:any)']      = 'admin_recap/attendanceDetail/$1';
+$route['admin/recap/supervision_report']            = 'admin_recap/supervisionReport';
+$route['admin/recap/supervision_report/detail']     = 'admin_recap/supervisionReportDetail';
+$route['admin/recap/pkn']                           = 'Admin_recap/statusPKL';
+$route['admin/recap/pkn/(:any)']                    = 'Admin_recap/statusPKL/$1';
+$route['admin/recap/scoring']                       = 'admin_recap/scoring';
 
 
 /* ================================== STUDENT ROLE ================================== */

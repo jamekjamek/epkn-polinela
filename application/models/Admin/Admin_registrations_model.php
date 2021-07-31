@@ -220,4 +220,29 @@ class Admin_registrations_model extends CI_Model
 
     return $this->db->query($query)->row();
   }
+
+  public function getGroupBy($data)
+  {
+    return $this->db->get_where($this->table, $data);
+  }
+
+  public function importData($data = array())
+  {
+    $jumlah = count($data);
+    if ($jumlah > 0) {
+      $this->db->set('id', 'UUID()', FALSE);
+      $this->db->replace($this->table, $data);
+    }
+  }
+
+  public function getRegisterBy($data)
+  {
+    return $this->db->get_where($this->table, $data);
+  }
+
+  public function delete($data)
+  {
+    $this->db->delete($this->table, $data);
+    return $this->db->affected_rows();
+  }
 }
