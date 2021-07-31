@@ -82,7 +82,7 @@
           </div>
           <div class="card-footer text-right">
             <a href="<?= site_url('dosen/report_supervision') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
-            <a href="<?= site_url('pdf/laporansupervisipkn/' . $this->uri->segment(4)) ?>" class="btn btn-outline-warning" target="_blank"><i class="ik ik-download-cloud"></i><span>Export</span></a>
+            <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($detail->id)) ?>" class="btn btn-outline-warning" target="_blank"><i class="ik ik-download-cloud"></i><span>Export</span></a>
           </div>
         </div>
       </div>

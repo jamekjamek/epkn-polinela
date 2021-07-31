@@ -65,7 +65,11 @@
                       <td><?= $row->npm ?> - <?= $row->fullname ?></td>
                       <td><?= $row->pic ?></td>
                       <td>
-                        <a href="<?= base_url('dosen/activity/daily_log/detail/' . encodeEncrypt($row->id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail"></i><span>Detail</span></a>
+                        <div class="btn-group">
+                          <a href="<?= base_url('dosen/activity/daily_log/detail/' . encodeEncrypt($row->id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail"></i><span>Detail</span></a>
+
+                          <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($row->id)) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                        </div>
                       </td>
                     </tr>
                   <?php endforeach; ?>

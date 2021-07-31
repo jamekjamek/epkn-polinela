@@ -31,6 +31,7 @@ class Supervisor_activity extends CI_Controller
       'title'         => 'Detail Log Harian Mahasiswa PKN',
       'desc'          => 'Berfungsi untuk melihat detail log harian mahasiswa PKN',
       'dailyLog'      => $this->Activity->getListDailyLog(['registration.id' => $decode])->result(),
+      'row'      => $this->Activity->getListDailyLog(['registration.id' => $decode])->row(),
     ];
     $page = '/supervisor/activity/daily_log_detail';
     pageBackend($this->role, $page, $data);

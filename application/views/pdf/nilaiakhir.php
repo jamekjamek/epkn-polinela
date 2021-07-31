@@ -26,27 +26,27 @@
         <tbody>
             <tr>
                 <td>Nama Mahasiswa</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->fullname ?></td>
             </tr>
             <tr>
                 <td>NPM</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->npm ?></td>
             </tr>
             <tr>
                 <td>Jurusan </td>
-                <td>: .......................................................</td>
+                <td>: major_name</td>
             </tr>
             <tr>
                 <td>Program Studi </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->prodi_name ?></td>
             </tr>
             <tr>
                 <td>Tempat PKN </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->company_name ?></td>
             </tr>
             <tr>
                 <td>Dosen pembimbing </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->lecture_name ?></td>
             </tr>
         </tbody>
     </table>
@@ -68,10 +68,10 @@
                 </td>
                 <td style="height: 18px;text-align:center">40</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->supervisor_value ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->supervisor_value_total ?>
                 </td>
             </tr>
             <tr>
@@ -80,10 +80,10 @@
                 </td>
                 <td style="height: 18px;text-align:center">35</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->lecture_value ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->lecture_value_total ?>
                 </td>
             </tr>
             <tr>
@@ -91,10 +91,10 @@
                 <td style="height: 18px; padding-left:10px">Ujian</td>
                 <td style="height: 18px;text-align:center">25</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->final_score_value ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->final_score_value_total ?>
                 </td>
             </tr>
 
@@ -102,21 +102,21 @@
                 <td style="height: 18px; text-align:center; font-weight:bold;" colspan="2">Total</td>
                 <td style="height: 18px;text-align:center">100</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->final_score_value ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $finalScore->supervisor_value ?>
                 </td>
             </tr>
         </tbody>
     </table>
-    <p style="padding-left:20px">Nilai akhir PKN : ..............................(.......................) </p>
+    <p style="padding-left:20px">Nilai akhir PKN : <?= number_format($HM->result_final_score, 2) ?> (<?= $HM->HM ?>) </p>
 
     <br>
     <br>
     <div>
         <p style="padding-left: 400px;">
-            <span>Bandar Lampung, ........................ 20....</span>
+            <span>Bandar Lampung, <?= date('d-m-Y', strtotime($testScore->tgl)) ?></span>
             <br>
             <span>
                 Ketua Jurusan,

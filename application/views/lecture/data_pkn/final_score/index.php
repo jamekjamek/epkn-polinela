@@ -5,7 +5,6 @@
         <th>Tahun Akademik</th>
         <th>Nilai Akhir</th>
         <th>Huruf Mutu</th>
-        <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -13,9 +12,6 @@
         <td><?= $finalScore->academic_year ?></td>
         <td><?= $finalScore->result_final_score ?></td>
         <td><?= $finalScore->HM ?></td>
-        <td>
-          <a href="<?= site_url('pdf/nilaidosenpembimbing/' . $this->uri->segment(4)) ?>" class="btn btn-success"><i class="ik ik-download"></i><span>Export</span></a>
-        </td>
       </tr>
     </tbody>
   </table>

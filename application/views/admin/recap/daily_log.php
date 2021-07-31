@@ -69,7 +69,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Periode PKL</th>
+                      <th>Periode</th>
                       <th>Mahasiswa</th>
                       <th>Program Studi</th>
                       <th>Lokasi PKN</th>
@@ -83,7 +83,7 @@
                     ?>
                       <tr>
                         <td><?= $i; ?></td>
-                        <td><?= $student->academic_year; ?> <?= $student->period; ?></td>
+                        <td><?= $student->academic_year; ?></td>
                         <td>
                           <strong><?= $student->npm; ?></strong> <br>
                           <?= $student->fullname; ?>
@@ -93,7 +93,7 @@
                         <td>
                           <div class="btn-group">
                             <a href="<?= site_url('admin/recap/daily_log/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
-                            <a href="<?= site_url('pdf/logharian/' . $student->registration_id) ?>" class="btn btn-outline-success">EXPORT</a>
+                            <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($student->registration_id)) ?>" target="_blank" class="btn btn-outline-success">Export</a>
                           </div>
                         </td>
                       </tr>

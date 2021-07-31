@@ -54,7 +54,6 @@
             <a href="<?= base_url('admin/recap/daily_log') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'daily_log' ? 'active' : '') ?>">Jurnal Harian</a>
             <a href="<?= base_url('admin/recap/attendance') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'attendance' ? 'active' : '') ?>">Kehadiran</a>
             <a href="<?= base_url('admin/recap/supervision_report') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'supervision_report' ? 'active' : '') ?>">Laporan Supervisi</a>
-            <a href="<?= base_url('admin/recap/pkn') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'pkn' ? 'active' : '') ?>">Status PKN</a>
             <a href="<?= base_url('admin/recap/scoring') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'scoring' ? 'active' : '') ?>">Nilai PKN</a>
           </div>
         </div>

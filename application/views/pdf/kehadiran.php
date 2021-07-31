@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DAFTAR HADIR PKL</title>
+  <title>DAFTAR HADIR PKN</title>
   <style>
     body {
       font-family: 'Times New Roman', Times, serif;
@@ -21,10 +21,11 @@
   <br>
   <br>
   <p style="text-align: center;">
-    <strong style="font-size:18px">DAFTAR HADIR PRATIK KERJA LAPANG (PKL)</strong>
+    <strong style="font-size:18px">DAFTAR HADIR PRATIK KERJA NYATA (PKN)</strong>
     <br>
-    <span style="text-align: center; font-weight:bold; text-transform:uppercase">MAHASISWA POLITEKNIK NEGERI LAMPUNG TAHUN AKADEMIK <?= @$row->academic_year; ?> <?= @$row->period; ?></span>
-    <br>
+    <?php if ($row) : ?>
+      <span style="text-align: center; font-weight:bold; text-transform:uppercase">MAHASISWA POLITEKNIK NEGERI LAMPUNG TAHUN AKADEMIK <?= @$row->academic_year; ?> <?= @$row->period; ?></span>
+      <br>
   </p>
   <table style="margin-left:10px" border="0">
     <tbody>
@@ -65,7 +66,7 @@
         <?php endforeach ?>
       <?php else : ?>
         <tr style="height: 18px;">
-          <td style="height: 50px; text-align:center" colspan="6">
+          <td style="height: 50px; text-align:center" colspan="5">
             <strong>
               Data Masih Kosong
             </strong>
@@ -83,6 +84,11 @@
   <p style="padding-left: 400px;"></p>
   <div style="padding-left: 440px;">&nbsp;</div>
   </div>
+
+<?php
+    else :
+      echo ' <p style="text-align: center; font-size:18px; font-weight:bold; text-transform:uppercase">Data belum tersedia</p>';
+    endif ?>
 </body>
 
 </html>

@@ -39,7 +39,7 @@
                 if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
                   <div class="btn-group">
                     <a href="<?= site_url('mahasiswa/daily/log/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
-                    <a href="<?= site_url('pdf/logharian') ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                    <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($isCheck->id)) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
                   </div>
                 <?php endif ?>
               </div>

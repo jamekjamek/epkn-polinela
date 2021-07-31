@@ -20,7 +20,6 @@
         <td>
           <div class="btn-group">
             <button class="btn btn-info" data-toggle="modal" data-target="#edited"><i class="ik ik-edit"></i><span>Edit</span></button>
-            <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . $this->uri->segment(4)) ?>" class="btn btn-success"><i class="ik ik-download"></i><span>Export</span></a>
           </div>
         </td>
         <td><?= $supervisorScore->nilai_1 ?></td>

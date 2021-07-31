@@ -193,4 +193,14 @@ class Admin_config_model extends CI_Model
   {
     return $this->db->get_where($table, $where)->row();
   }
+
+  public function getHeadOfDepartement($id)
+  {
+    return $this->db->query("SELECT head_of_department.id as head_of_d_id, lecture.name as lecture_name, prodi.id as prodi_id FROM head_of_department JOIN lecture ON lecture.id = head_of_department.lecture_id JOIN major ON major.id = head_of_department.major_id JOIN prodi ON prodi.major_id = major.id WHERE major.id = '$id'");
+  }
+
+  public function getHeadOfStudyProgram($id)
+  {
+    return $this->db->query("SELECT head_of_study_program.id as head_of_sp_id, lecture.name as lecture_name, prodi.id as prodi_id FROM head_of_study_program JOIN lecture ON lecture.id = head_of_study_program.lecture_id JOIN prodi ON prodi.id = head_of_study_program.prodi_id WHERE prodi.id = '$id'");
+  }
 }

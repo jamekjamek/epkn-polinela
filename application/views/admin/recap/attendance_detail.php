@@ -31,7 +31,6 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?> <strong> <?= $row->fullname ?></strong></h3>
               </div>
-              <a href="<?= $this->agent->referrer() ?>" class="btn btn-danger"><i class="ik ik-arrow-left"></i> KEMBALI</a>
             </div>
           </div>
           <div class="card-body">

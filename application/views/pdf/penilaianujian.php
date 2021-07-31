@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Tugas</title>
+    <title>Lembar Penialain Ujian</title>
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -22,38 +22,38 @@
     <p style="text-align: center;">
         <strong style="font-size:14px; text-transform:uppercase">Lembar Penilaian Ujian PKN</strong>
     </p>
-    <table style="width: 70%; height: 59px; padding-left:50px" border="0">
+    <table style="width: 90%; height: 59px; padding-left:50px" border="0">
         <tbody>
             <tr>
                 <td style="font-weight: bold;">Identitas Mahasiswa</td>
             </tr>
             <tr>
                 <td>Nama Mahasiswa</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->fullname ?></td>
             </tr>
             <tr>
                 <td>NPM</td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->npm ?></td>
             </tr>
             <tr>
                 <td>Jurusan </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->major_name ?></td>
             </tr>
             <tr>
                 <td>Program Studi </td>
-                <td>: .......................................................</td>
+                <td>: <?= $student->prodi_name ?></td>
             </tr>
             <tr>
                 <td style="font-weight: bold;">Pelaksanaan Ujian </td>
-                <td>: .......................................................</td>
+                <td></td>
             </tr>
             <tr>
                 <td>Hari/ Tanggal </td>
-                <td>: .......................................................</td>
+                <td>: <?= $testScore->hari ?>, <?= date('d-m-Y', strtotime($testScore->tgl)) ?></td>
             </tr>
             <tr>
                 <td>Waktu/ Ruang </td>
-                <td>: .......................................................</td>
+                <td>: <?= $testScore->waktu ?> / <?= $testScore->room ?></td>
             </tr>
         </tbody>
     </table>
@@ -75,10 +75,10 @@
                 </td>
                 <td style="height: 18px;text-align:center">35</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilai_1 ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilaitertimbang_1 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
@@ -87,10 +87,10 @@
                 </td>
                 <td style="height: 18px;text-align:center">15</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilai_2 ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilaitertimbang_2 ?>
                 </td>
             </tr>
             <tr style="height: 18px;">
@@ -98,10 +98,10 @@
                 <td style="height: 18px; padding-left:10px">Kemampuan Argumentasi</td>
                 <td style="height: 18px;text-align:center">50</td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilai_3 ?>
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilaitertimbang_3 ?>
                 </td>
             </tr>
 
@@ -112,7 +112,7 @@
                     <!-- Score Here -->
                 </td>
                 <td style="height: 18px;">
-                    <!-- Score Here -->
+                    <?= $testScore->nilai_total ?>
                 </td>
             </tr>
         </tbody>
@@ -123,7 +123,7 @@
     <br>
     <div>
         <p style="padding-left: 400px;">
-            <span>Bandar Lampung, ........................ 20....</span>
+            <span>Bandar Lampung, <?= date('d-m-Y', strtotime($testScore->tgl)) ?></span>
             <br>
             <span>
                 Dosen Penguji,
@@ -134,11 +134,11 @@
             <br>
             <br>
             <span>
-                __________________________
+                <?= $student->lecture_name ?>
             </span>
             <br>
             <span>
-                NIP______________________
+                NIP <?= $student->nip ?>
             </span>
 
 

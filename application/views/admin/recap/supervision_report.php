@@ -46,17 +46,6 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label for="prodi">Pilih Periode PKL</label>
-                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
-                          <option></option>
-                          <?php foreach ($allPeriode as $periode) : ?>
-                            <option value="<?= $periode->id; ?>"><?= $periode->title; ?> - <?= $periode->academic ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
                     <div class="col-sm-4">
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
@@ -75,7 +64,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Periode PKL</th>
+                      <th>Periode</th>
                       <th>Program Studi</th>
                       <th>Perusahaan</th>
                       <th>Dosen</th>
@@ -90,7 +79,7 @@
                     ?>
                       <tr>
                         <td><?= $i; ?></td>
-                        <td><?= $group->academic_year; ?> <?= $group->period; ?></td>
+                        <td><?= $group->academic_year; ?></td>
                         <td><?= $group->prodi_name; ?></td>
                         <td><?= $group->company_name; ?></td>
                         <td><?= $group->lecture_name; ?></td>
@@ -105,11 +94,11 @@
                         <td>
                           <div class="btn-group">
                             <?php if ($group->id) : ?>
-                              <button type="button" class="btn btn-outline-info modalLogId" data-toggle="modal" data-target="#modalLogId" data-log="<?= $group->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="recap/supervision_report/detail">DETAIL</button>
-                              <a href="<?= site_url('pdf/laporansupervisipkl/' . encodeEncrypt($group->registration_group_id)) ?>" class="btn btn-outline-success">EXPORT</a>
+                              <button type="button" class="btn btn-outline-info modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $group->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="recap/supervision_report/detail">DETAIL</button>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success">EXPORT</a>
                             <?php else : ?>
                               <button type="button" class="btn btn-outline-info disabled">DETAIL</button>
-                              <a href="<?= site_url('pdf/laporansupervisipkl/' . encodeEncrypt($group->registration_group_id)) ?>" class="btn btn-outline-success disabled">EXPORT</a>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success disabled">EXPORT</a>
                             <?php endif ?>
                           </div>
                         </td>
@@ -125,17 +114,17 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modalLogId" tabindex="-1" role="dialog" aria-labelledby="modalLogIdLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal fade" id="modalLogIdAll" tabindex="-1" role="dialog" aria-labelledby="modalLogIdLabelAll" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-lg mt-0 mb-0" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLogIdLabel">Detail</h5>
+          <h5 class="modal-title" id="modalLogIdLabelAll">Detail</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="table-responsive">
-              <table class="table table-hover logIdResult">
+              <table class="table table-hover logIdResultAll">
 
               </table>
             </div>

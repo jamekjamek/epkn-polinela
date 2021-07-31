@@ -28,8 +28,6 @@
   <p style="text-align: center;">
     <strong style="font-size:18px">NILAI AKHIR PKL</strong>
     <br>
-    <span style="text-align: center; font-weight:bold; text-transform:uppercase">PERIODE <?= $row->title; ?></span>
-    <br>
     <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= $prodi->name; ?></span>
     <br>
     <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= $row->academic; ?></span>

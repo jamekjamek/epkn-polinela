@@ -51,23 +51,12 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label for="prodi">Pilih Periode PKL</label>
-                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
-                          <option></option>
-                          <?php foreach ($allPeriode as $periode) : ?>
-                            <option value="<?= $periode->id; ?>"><?= $periode->title; ?> - <?= $periode->academic ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
                     <div class="col-sm-4">
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
                           <a href="<?= base_url('admin/recap/adviser'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/nilaiakhirpkl?prodi=' . $this->input->get('prodi') . '&periode=' . $this->input->get('periode')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
+                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $this->input->get('prodi') . '&periode=' . $this->input->get('periode')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
                         <?php endif; ?>
                       </div>
                     </div>

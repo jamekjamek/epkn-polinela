@@ -27,7 +27,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="text-uppercase"><?= $title; ?></h3>
+            <h3 class="text-uppercase"><?= $title; ?> <strong> <?= @$row->fullname ?></strong></h3>
           </div>
           <div class="card-body">
             <div class="dt-responsive">
@@ -38,12 +38,11 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Mahasiswa</th>
-                      <th>Tanggal</th>
+                      <th>Kegiatan</th>
                       <th>Alat dan Bahan</th>
-                      <th>Deskripsi</th>
-                      <th>Komentar</th>
+                      <th>Pelaksanaan</th>
                       <th>Validasi</th>
+                      <th>Detail</th>
                       <th>
                         <div class="checkbox-zoom zoom-primary">
                           <label>
@@ -67,15 +66,24 @@
                           <input type="hidden" name="dailyLog[]" value="<?= $row->id; ?>">
                         <?php endif ?>
                         <td><?= $i++; ?></td>
-                        <td>
-                          <strong> <?= $row->npm ?></strong>
-                          <br>
-                          <?= $row->fullname ?>
-                        </td>
-                        <td><?= $row->implementation_date ?></td>
+                        <td><?= $row->learning_achievement ?></td>
                         <td><?= $row->tool; ?></td>
-                        <td><?= $row->description; ?></td>
-                        <td><?= $row->comment; ?></td>
+                        <td>
+                          <ul>
+                            <li>
+                              <strong>Tempat :</strong> <?= $row->implement_place; ?>
+                            </li>
+                            <li>
+                              <strong>Tanggal :</strong><?= $row->implementation_date; ?>
+                            </li>
+                            <li>
+                              <strong>Jumlah Peserta :</strong> <?= $row->qty; ?>
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-warning modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $row->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="activity/daily_log/detail_more"><i class="ik ik-eye"></i><span>Detail</span></button>
+                        </td>
                         <td>
                           <?php if ($row->validation == 0) {
                             echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
@@ -107,7 +115,6 @@
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td></td>
                       <td>
                         <button class="btn btn-outline-primary" type="submit">Verifikasi</button>
                       </td>
@@ -117,6 +124,39 @@
               </form>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalLogIdAll" tabindex="-1" role="dialog" aria-labelledby="modalLogIdLabelAll" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg mt-0 mb-0" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLogIdLabelAll">Detail Daily Log</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Materi</th>
+                    <th>Prosedur</th>
+                    <th>Hasil Pelaksanaan</th>
+                    <th>Komentar</th>
+                  </tr>
+                </thead>
+                <tbody class="logIdResultAll">
+
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

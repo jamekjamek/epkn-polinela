@@ -48,6 +48,7 @@
           </div>
         </div>
         <a href="<?= site_url('dosen/data_pkn') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#downloadall"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
       </div>
       <div class="col-lg-8 col-md-7">
         <div class="card">
@@ -147,6 +148,38 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="downloadall" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterLabel">Silahkan Unduh Nilai</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . $this->uri->segment(4)) ?>" class="btn btn-primary" target="_blank">Nilai Pembimbing Lapang</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= site_url('pdf/penilaiansupervisi/' . $this->uri->segment(4)) ?>" class="btn btn-warning" target="_blank">Nilai Supervisi</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= site_url('pdf/penilaiandosenpembimbing/' . $this->uri->segment(4)) ?>" class="btn btn-info" target="_blank">Nilai Dosen Pembimbing</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= site_url('pdf/penilaianujian/' . $this->uri->segment(4)) ?>" class="btn btn-danger" target="_blank">Nilai Ujian PKN</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= site_url('pdf/nilaiakhir/' . $this->uri->segment(4)) ?>" class="btn btn-secondary" target="_blank">Nilai Akhir PKN</a>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

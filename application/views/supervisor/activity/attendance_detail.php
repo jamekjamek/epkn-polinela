@@ -41,6 +41,7 @@
                       <th>Mahasiswa</th>
                       <th>Tanggal Kehadiran</th>
                       <th>Waktu Kehadiran</th>
+                      <th>Kehadiran</th>
                       <th>Keterangan</th>
                       <th>Validasi</th>
                       <th>
@@ -74,6 +75,7 @@
                         <td><?= date('d-m-Y', strtotime($row->created_at)) ?></td>
                         <td><?= $row->time_in; ?> s.d <?= $row->time_out; ?></td>
                         <td><?= $row->attendance; ?></td>
+                        <td><?= $row->note; ?></td>
                         <td>
                           <?php if ($row->validation == 0) {
                             echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';

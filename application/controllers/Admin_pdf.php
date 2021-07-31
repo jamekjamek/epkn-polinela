@@ -293,7 +293,7 @@ class Admin_pdf extends CI_Controller
     $mpdf                 = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' =>  'A4-P', 'default_font_size' => 10,]);
     $mpdf->SetHTMLFooter($this->footer);
     $data = [
-      'report'     =>  $this->Documents->getSupervisionReport(['supervision_report.registration_group_id' => $decode])->row(),
+      'report'     =>  $this->Recap->getSupervisionReportById($decode)->row(),
     ];
     $view   = $this->load->view('pdf/laporansupervisipkn', $data, TRUE);
     $mpdf->SetProtection(array('print'));
@@ -403,12 +403,9 @@ class Admin_pdf extends CI_Controller
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
     $prodi        = $this->input->get('prodi');
-    $periodBy     = $this->input->get('periode');
-    $period       = $this->Prodi->getPeriode(['a.id' => $periodBy])->row();
     $getProdi     = $this->Recap->getProdiBy($prodi)->row();
-    $scoreData    = $this->Recap->getScoringBy($prodi, $periodBy);
+    $scoreData    = $this->Recap->getScoringBy($prodi);
     $data = [
-      'row'           => $period,
       'prodi'         => $getProdi,
       'data'          => $scoreData
     ];
@@ -420,22 +417,30 @@ class Admin_pdf extends CI_Controller
     $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . $data['data']->row()->period, "I");
   }
 
-  public function lembarisianpkn()
+  public function lembarisianpkn($id)
   {
+    $decodeId = decodeEncrypt($id);
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
     $dataHeader         = [];
 
-    $datapage1          = [];
+    $cover              = $this->Documents->getDailyLog($decodeId)->row();
+    $datapage1          = [
+      'cover'   => $cover,
+    ];
     $bodypage1          = $this->load->view('pdf/lembarisianpkn/1', $datapage1, TRUE);
 
-    $datapage2          = [];
+    $datapage2          = [
+      'cover'   => $cover,
+    ];
     $bodypage2          = $this->load->view('pdf/lembarisianpkn/2', $datapage2, TRUE);
 
-    $datapage3          = [];
-    $bodypage3          = $this->load->view('pdf/lembarisianpkn/3', $datapage3, TRUE);
+    $recap              = $this->Documents->getDailyLog($decodeId)->result();
 
-    $datapage4          = [];
-    $bodypage4          = $this->load->view('pdf/lembarisianpkn/4', $datapage4, TRUE);
+    $datapage3          = [
+      'cover'   => $cover,
+      'recaps'  => $recap
+    ];
+    $bodypage3          = $this->load->view('pdf/lembarisianpkn/3', $datapage3, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("12.Lembar Isian PKN");
     $mpdf->SetDisplayMode('fullpage');
@@ -444,9 +449,12 @@ class Admin_pdf extends CI_Controller
     $mpdf->WriteHTML($bodypage2);
     $mpdf->AddPage();
     $mpdf->WriteHTML($bodypage3);
-    $mpdf->AddPage();
-    $mpdf->WriteHTML($bodypage4);
-
+    $page = $this->Documents->getDailyLog($decodeId)->result();
+    for ($i = 0; $i < count($page); $i++) {
+      $view   = $this->load->view('pdf/lembarisianpkn/4', ['log' => $page[$i]], TRUE);
+      $mpdf->AddPage();
+      $mpdf->WriteHTML($view);
+    }
     $mpdf->Output('12.Lembar Isian PKN.pdf', 'I');
   }
 }

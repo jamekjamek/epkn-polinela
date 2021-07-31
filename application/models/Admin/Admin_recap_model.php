@@ -75,14 +75,14 @@ class Admin_recap_model extends CI_Model
     return $this->db->query("SELECT check_point.*, company.name as company_name, company.address, regency.name as regency, province.name as province, student.fullname, student.npm, prodi.name as prodi_name, major.name as major_name, academic_year.name as academic_year FROM check_point JOIN registration ON registration.id = check_point.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN major on major.id = prodi.major_id JOIN academic_year ON academic_year.id = registration.academic_year_id JOIN company ON company.id = registration.company_id JOIN regency ON regency.id = company.regency_id JOIN province ON province.id = company.province_id WHERE check_point.registration_id = '$id' GROUP BY student.id");
   }
 
-  public function getSupervisionReportByGroup($prodi, $period)
+  public function getSupervisionReportByGroup($prodi)
   {
     return $this->db->query("SELECT registration.prodi_id, prodi.name as prodi_name, lecture.name as lecture_name, company.name as company_name, supervision_report.*, academic_year.name as academic_year FROM supervision_report RIGHT JOIN registration ON registration.group_id = supervision_report.registration_group_id JOIN lecture ON lecture.id = registration.lecture_id JOIN prodi ON prodi.id = lecture.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$prodi' GROUP BY supervision_report.registration_group_id");
   }
 
-  public function getSupervisionReportById($data)
+  public function getSupervisionReportById($id)
   {
-    return $this->db->query("SELECT registration.prodi_id, prodi.name as prodi_name, lecture.name as lecture_name, company.name as company_name, supervision_report.* FROM supervision_report RIGHT JOIN registration ON registration.group_id = supervision_report.registration_group_id JOIN lecture ON lecture.id = registration.lecture_id JOIN prodi ON prodi.id = lecture.prodi_id JOIN company ON company.id = registration.company_id WHERE supervision_report.id = '$data' GROUP BY supervision_report.registration_group_id");
+    return $this->db->query("SELECT registration.prodi_id, major.name as major_name, prodi.name as prodi_name, lecture.name as lecture_name, lecture.nip, company.name as company_name, COUNT(registration.group_id) as studentcount,  supervision_report.* FROM supervision_report RIGHT JOIN registration ON registration.group_id = supervision_report.registration_group_id JOIN lecture ON lecture.id = registration.lecture_id JOIN prodi ON prodi.id = lecture.prodi_id JOIN company ON company.id = registration.company_id JOIN major ON major.id = prodi.major_id WHERE supervision_report.id = '$id' GROUP BY supervision_report.registration_group_id");
   }
 
   public function getAllMajor()
@@ -92,7 +92,7 @@ class Admin_recap_model extends CI_Model
     return $this->db->get($this->tableMajor . ' a');
   }
 
-  public function getScoringBy($prodi, $period)
+  public function getScoringBy($prodi)
   {
     return $this->db->query("SELECT supervision_value.nilai_total as supervision_value, v_final_score.supervisor_value,v_final_score.lecture_value,v_final_score.final_score_value, v_final_score_result_with_hm.*, CASE
     WHEN v_final_score_result_with_hm.HM = 'E' THEN 'Tidak Lulus'
@@ -102,7 +102,7 @@ class Admin_recap_model extends CI_Model
     JOIN v_final_score_result_with_hm ON v_final_score_result_with_hm.registration_id=v_final_score.registration_id
     JOIN supervision_value ON supervision_value.registration_id=v_final_score.registration_id
     JOIN prodi ON prodi.id=v_final_score_result_with_hm.prodi_id
-    WHERE prodi.id = '$prodi' AND v_final_score_result_with_hm.periode_pkl_id = '$period'");
+    WHERE prodi.id = '$prodi'");
   }
 
   public function getProdiBy($prodi)

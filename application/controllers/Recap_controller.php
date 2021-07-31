@@ -1,15 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin_recap extends CI_Controller
+class Recap_controller extends CI_Controller
 {
   public function __construct()
   {
     parent::__construct();
     $this->load->model('Admin/Admin_recap_model', 'Recap');
     $this->load->model('Admin/Admin_config_model', 'Config');
-    $this->role = 'admin';
-    cek_login('Admin');
   }
 
   public function adviser()
