@@ -174,9 +174,10 @@ $route['admin/recap/attendance']                    = 'admin_recap/attendance';
 $route['admin/recap/attendance/detail/(:any)']      = 'admin_recap/attendanceDetail/$1';
 $route['admin/recap/supervision_report']            = 'admin_recap/supervisionReport';
 $route['admin/recap/supervision_report/detail']     = 'admin_recap/supervisionReportDetail';
-$route['admin/recap/pkn']                           = 'admin_recap/statusPKL';
-$route['admin/recap/pkn/(:any)']                    = 'admin_recap/statusPKL/$1';
+$route['admin/recap/status_pkn']                    = 'admin_recap/statusPkn';
+$route['admin/recap/status_pkn/(:any)']             = 'admin_recap/statusPKL/$1';
 $route['admin/recap/scoring']                       = 'admin_recap/scoring';
+$route['admin/recap/video']                         = 'admin_recap/video';
 
 
 /* ================================== STUDENT ROLE ================================== */
@@ -204,6 +205,7 @@ $route['mahasiswa/config/getcapaian']               = 'mahasiswa_program/getCapa
 
 $route['mahasiswa/data_pkn']                        = 'mahasiswa_data_pkn';
 $route['mahasiswa/data_pkn/uploaded']               = 'mahasiswa_data_pkn/upload';
+$route['mahasiswa/data_pkn/upload/update/(:any)']   = 'mahasiswa_data_pkn/uploadUpdate/$1';
 
 $route['mahasiswa/quesioner']                       = 'quesioner';
 
@@ -262,6 +264,7 @@ $route['dosen/data_pkn/assessment/supervision/(:any)'] = 'lecture_data_pkn/saveA
 $route['dosen/data_pkn/assessment/guidance/(:any)'] = 'lecture_data_pkn/saveAssesmentGuidance/$1';
 $route['dosen/data_pkn/assessment/test_score/(:any)'] = 'lecture_data_pkn/saveAssesmentFinalTest/$1';
 $route['dosen/data_pkn/assessment/supervisor/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervisor/$1';
+$route['dosen/data_pkn/view_video']                       = 'recap_controller/video';
 
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
 $route['dosen/activity/daily_log/detail/(:any)']    = 'lecture_activity/dailyLogDetail/$1';

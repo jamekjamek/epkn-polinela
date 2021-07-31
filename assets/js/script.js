@@ -72,6 +72,28 @@ $(document).ready(function () {
 		})
 	});
 
+	$('.view-video').on('click', function () {
+		let logId = $(this).data('log');
+		let role = $(this).data('role');
+		let menu = $(this).data('menu');
+		$('#view-video-label').html(`Detail ${logId}`);
+		$.ajax({
+			url: `${base_url}${role.toString().toLowerCase()}/${menu}`,
+			dataType: 'JSON',
+			method: 'POST',
+			data: {
+				logId: logId
+			},
+			success: (data) => {
+				if (data.status === 'ok') {
+					$('.videoResult').html(data.data);
+				} else {
+					alertCustom('Server sedang sibuk', 'warning');
+				}
+			}
+		})
+	});
+
 	// check point
 	$(".attendance").change(function () {
 		$("#time_in, #time_out").hide()

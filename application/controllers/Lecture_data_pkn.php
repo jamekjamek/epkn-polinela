@@ -232,4 +232,8 @@ class Lecture_data_pkn extends CI_Controller
     }
     redirect($this->redirecUrl . '/assessment/' . encodeEncrypt($decodeId));
   }
+
+  public function video()
+  {
+  }
 }

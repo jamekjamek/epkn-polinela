@@ -31,8 +31,13 @@ class Mahasiswa_data_pkl_model extends CI_Model
 
   public function getFile()
   {
-    $this->db->select('registration.file, registration.updated_at, registration.youtube_link');
+    $this->db->select('registration.id, registration.file, registration.updated_at, registration.youtube_link');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
     return $this->db->get_where($this->table, ['student.npm' => $this->session->userdata('user')]);
+  }
+
+  public function getBy($id)
+  {
+    return $this->db->get_where($this->table, ['id' => $id]);
   }
 }

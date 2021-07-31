@@ -48,7 +48,11 @@
           </div>
         </div>
         <a href="<?= site_url('dosen/data_pkn') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>
-        <button class="btn btn-warning" data-toggle="modal" data-target="#downloadall"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+        <?php if ($finalScore) : ?>
+          <button class="btn btn-warning" data-toggle="modal" data-target="#downloadall"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+        <?php else : ?>
+          <button class="btn btn-warning disabled"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+        <?php endif; ?>
       </div>
       <div class="col-lg-8 col-md-7">
         <div class="card">
@@ -160,23 +164,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . $this->uri->segment(4)) ?>" class="btn btn-primary" target="_blank">Nilai Pembimbing Lapang</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaiansupervisi/' . $this->uri->segment(4)) ?>" class="btn btn-warning" target="_blank">Nilai Supervisi</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaiandosenpembimbing/' . $this->uri->segment(4)) ?>" class="btn btn-info" target="_blank">Nilai Dosen Pembimbing</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaianujian/' . $this->uri->segment(4)) ?>" class="btn btn-danger" target="_blank">Nilai Ujian PKN</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/nilaiakhir/' . $this->uri->segment(4)) ?>" class="btn btn-secondary" target="_blank">Nilai Akhir PKN</a>
-            </li>
-          </ul>
+          <div class="list-group">
+            <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . $this->uri->segment(4)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Pembimbing Lapang</a>
+            <a href="<?= site_url('pdf/penilaiansupervisi/' . $this->uri->segment(4)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Supervisi</a>
+            <a href="<?= site_url('pdf/penilaiandosenpembimbing/' . $this->uri->segment(4)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Dosen Pembimbing</a>
+            <a href="<?= site_url('pdf/penilaianujian/' . $this->uri->segment(4)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Ujian PKN</a>
+            <a href="<?= site_url('pdf/nilaiakhir/' . $this->uri->segment(4)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Akhir PKN</a>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

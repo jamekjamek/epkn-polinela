@@ -57,6 +57,8 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                           <th>Mahasiswa</th>
                           <th>Pembimbing Lapang</th>
                           <th>Periode PKN</th>
+                          <th>Laporan</th>
+                          <th>Video</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -74,6 +76,10 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                             </td>
                             <td><?= $student->pic; ?></td>
                             <td><?= $student->academic_year; ?></td>
+                            <td><?= $student->file; ?></td>
+                            <td>
+                              <button class="btn btn-warning view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($student->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="data_pkn/view_video"><i class="ik ik-youtube"></i></button>
+                            </td>
                           </tr>
                         <?php endforeach; ?>
                       </tbody>
@@ -85,6 +91,24 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="view-video" tabindex="-1" role="dialog" aria-labelledby="view-video-label" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg mt-0 mb-0" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="view-video-label">Video</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9 videoResult">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

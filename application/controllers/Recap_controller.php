@@ -214,4 +214,25 @@ class Recap_controller extends CI_Controller
     $page = '/admin/recap/scoring';
     pageBackend($this->role, $page, $data);
   }
+
+  public function video()
+  {
+    $id         = $this->input->post('logId');
+    $decodeId = decodeEncrypt($id);
+    $getData    = $this->Recap->getYotubeLink($decodeId)->row();
+    if ($getData != null) {
+      $result['status'] = 'ok';
+      $output     = "";
+      $output     .= "
+                  <iframe class='embed-responsive-item' src='" . $getData->youtube_link . "' allowfullscreen></iframe>
+            ";
+
+      $result['data']   = $output;
+    } else {
+      $result['status'] = 'bad';
+      $result['data']   = null;
+    }
+
+    $this->output->set_content_type('application/json')->set_output(json_encode($result));
+  }
 }

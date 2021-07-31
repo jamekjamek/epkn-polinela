@@ -57,7 +57,10 @@
                 if ($btnCheck != null && $dateCurrent == $dateNow) {
                 } else { ?>
                   <?php if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
-                    <a href="<?= site_url('mahasiswa/daily/check_point/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
+                    <div class="btn-group">
+                      <a href="<?= site_url('mahasiswa/daily/check_point/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
+                      <a href="<?= site_url('pdf/kehadiran/' . $isCheck->id) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                    </div>
                   <?php endif ?>
                 <?php } ?>
 

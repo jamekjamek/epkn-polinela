@@ -24,6 +24,22 @@ class Mahasiswa_data_pkn extends CI_Controller
     pageBackend($this->role, $page, $data);
   }
 
+  public function uploadUpdate($id)
+  {
+    $decodeId = decodeEncrypt($id);
+    $update   = $this->DataPKL->getBy($decodeId)->row();
+    if (!$update) {
+      redirect('mahasiswa/data_pkn');
+    };
+    $data = [
+      'title'         => 'Update Data',
+      'desc'          => 'Berfungsi untuk mengupdate data',
+      'update'        => $update,
+    ];
+    $page = '/mahasiswa/data_pkl/upload_update';
+    pageBackend($this->role, $page, $data);
+  }
+
   public function upload()
   {
     $config['upload_path'] = './assets/uploads/laporan/';
@@ -35,7 +51,7 @@ class Mahasiswa_data_pkn extends CI_Controller
       $fileData = $this->upload->data();
       $upload = [
         'file'            => $fileData['file_name'],
-        'youtube_link'    => $fileData['file_name'],
+        'youtube_link'    => $data['youtube_link'],
         'updated_at'  => date('Y-m-d H:i:s')
       ];
       if ($this->DataPKL->upload($upload, ['id' => $data['registration_id']])) {

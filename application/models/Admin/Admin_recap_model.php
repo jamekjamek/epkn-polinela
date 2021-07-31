@@ -116,4 +116,14 @@ class Admin_recap_model extends CI_Model
   {
     return $this->db->query("SELECT lecture.nip, lecture.name as lecture, prodi.name FROM registration JOIN prodi ON prodi.id = registration.prodi_id JOIN head_of_study_program ON head_of_study_program.prodi_id = prodi.id JOIN lecture ON lecture.id = head_of_study_program.lecture_id WHERE head_of_study_program.prodi_id = '$prodi' GROUP BY head_of_study_program.prodi_id");
   }
+
+  public function getYotubeLink($id)
+  {
+    return $this->db->query("SELECT youtube_link FROM registration WHERE id = '$id'");
+  }
+
+  public function getDataStatusPkn($id)
+  {
+    return $this->db->query("SELECT academic_year.name as academic_year, registration.id,registration.file,registration.youtube_link,student.fullname,student.npm,prodi.name as prodi_name FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$id'");
+  }
 }

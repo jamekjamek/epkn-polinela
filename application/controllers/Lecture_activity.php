@@ -31,7 +31,8 @@ class Lecture_activity extends CI_Controller
     $data = [
       'title'         => 'Detail Log Harian Mahasiswa',
       'desc'          => 'Berfungsi untuk menampilkan detail log harian mahasiswa',
-      'dailyLog'      => $this->Activity->getListDailyLog(['registration.id' => $decode])
+      'dailyLog'      => $this->Activity->getListDailyLog(['registration.id' => $decode])->result(),
+      'row'           => $this->Activity->getListDailyLog(['registration.id' => $decode])->row(),
     ];
     $page = '/lecture/activity/daily_log_detail';
     pageBackend($this->role, $page, $data);

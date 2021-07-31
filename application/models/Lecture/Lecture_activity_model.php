@@ -21,7 +21,7 @@ class Lecture_activity_model extends CI_Model
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
     $this->db->join($this->tableLecture, 'lecture.id=registration.lecture_id');
     $this->db->join($this->tableAcademicYear, 'academic_year.id=registration.academic_year_id');
-    return $this->db->get_where($this->tableDailyLog, $id)->result();
+    return $this->db->get_where($this->tableDailyLog, $id);
   }
 
   public function getListAttendance($id)

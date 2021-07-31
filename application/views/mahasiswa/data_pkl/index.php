@@ -115,7 +115,7 @@
                     <tr>
                       <td>
                         <?php if ($detail) : ?>
-                          <button class="btn btn-success" data-toggle="modal" data-target="#download"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
+                          <button class="btn btn-warning" data-toggle="modal" data-target="#download"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
                         <?php endif ?>
                       </td>
                       <td><?= @$detail->lecture_name ?></td>
@@ -144,23 +144,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-primary" target="_blank">Nilai Pembimbing Lapang</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaiansupervisi/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-warning" target="_blank">Nilai Supervisi</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaiandosenpembimbing/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-info" target="_blank">Nilai Dosen Pembimbing</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/penilaianujian/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-danger" target="_blank">Nilai Ujian PKN</a>
-            </li>
-            <li class="list-group-item">
-              <a href="<?= site_url('pdf/nilaiakhir/' . encodeEncrypt(@$detail->registration_id)) ?>" class="btn btn-secondary" target="_blank">Nilai Akhir PKN</a>
-            </li>
-          </ul>
+          <div class="list-group">
+            <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . encodeEncrypt(@$detail->registration_id)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Pembimbing Lapang</a>
+            <a href="<?= site_url('pdf/penilaiansupervisi/' . encodeEncrypt(@$detail->registration_id)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Supervisi</a>
+            <a href="<?= site_url('pdf/penilaiandosenpembimbing/' . encodeEncrypt(@$detail->registration_id)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Dosen Pembimbing</a>
+            <a href="<?= site_url('pdf/penilaianujian/' . encodeEncrypt(@$detail->registration_id)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Ujian PKN</a>
+            <a href="<?= site_url('pdf/nilaiakhir/' . encodeEncrypt(@$detail->registration_id)) ?>" class="list-group-item list-group-item-action" target="_blank">Nilai Akhir PKN</a>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

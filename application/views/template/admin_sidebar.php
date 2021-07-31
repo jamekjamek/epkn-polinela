@@ -46,7 +46,7 @@
         <div class="nav-item <?= ($uri  === 'verification' ? 'active' : '') ?>">
           <a href="<?= base_url('admin/verification') ?>"><i class="ik ik-clipboard"></i><span>Verifikasi Berkas</span></a>
         </div>
-        <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'advisers' || $this->uri->segment(3) === 'daily_log' || $this->uri->segment(3) === 'attendance' || $this->uri->segment(3) === 'supervision_report' || $this->uri->segment(3) === 'pkl' || $this->uri->segment(3) === 'scoring' || $this->uri->segment(3) === 'supervisor' ? 'active open' : '') ?>">
+        <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'advisers' || $this->uri->segment(3) === 'daily_log' || $this->uri->segment(3) === 'attendance' || $this->uri->segment(3) === 'supervision_report' || $this->uri->segment(3) === 'status_pkn' || $this->uri->segment(3) === 'scoring' || $this->uri->segment(3) === 'supervisor' ? 'active open' : '') ?>">
           <a href="javascript:void(0)"><i class="ik ik-server"></i><span>Laporan PKN</span></a>
           <div class="submenu-content">
             <a href="<?= base_url('admin/recap/advisers') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'advisers' ? 'active' : '') ?>">Dosen Pembimbing</a>
@@ -54,6 +54,7 @@
             <a href="<?= base_url('admin/recap/daily_log') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'daily_log' ? 'active' : '') ?>">Jurnal Harian</a>
             <a href="<?= base_url('admin/recap/attendance') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'attendance' ? 'active' : '') ?>">Kehadiran</a>
             <a href="<?= base_url('admin/recap/supervision_report') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'supervision_report' ? 'active' : '') ?>">Laporan Supervisi</a>
+            <a href="<?= base_url('admin/recap/status_pkn') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'status_pkn' ? 'active' : '') ?>">Status PKN</a>
             <a href="<?= base_url('admin/recap/scoring') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'scoring' ? 'active' : '') ?>">Nilai PKN</a>
           </div>
         </div>

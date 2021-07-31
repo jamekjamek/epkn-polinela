@@ -12,5 +12,11 @@
         </div>
       </td>
     </tr>
+    <tr>
+      <td>
+        <a href="<?= site_url('mahasiswa/data_pkn/upload/update/' . encodeEncrypt($file->id)) ?>" class="btn btn-success">Edit</a>
+      </td>
+      <td></td>
+    </tr>
   </table>
 </div>
