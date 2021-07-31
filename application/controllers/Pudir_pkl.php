@@ -18,8 +18,8 @@ class Pudir_pkl extends CI_Controller
         $major      = $this->Config->getAllMajor()->result();
         $academic   = $this->Config->getDataAcademicYear()->result();
         $data       = [
-            'title'         => 'Data PKL',
-            'desc'          => 'Berfungsi untuk melihat Data PKL',
+            'title'         => 'Rekap PKN Program Studi',
+            'desc'          => 'Berfungsi untuk melihat rekap PKN program studi',
             'academicyear'  => $academic,
             'majors'        => $major
         ];

@@ -307,15 +307,15 @@ $route['supervisor/quesioner']                      = 'quesioner';
 /* ================================== PUDIR ROLE ================================== */
 
 $route['pudir/dashboard']                           = 'pudir_dashboard';
-$route['pudir/pkn']                                 = 'pudir_pkn';
-$route['pudir/pkn/(:any)']                          = 'pudir_pkn/index/$1';
+$route['pudir/pkn']                                 = 'pudir_pkl';
+$route['pudir/pkn/(:any)']                          = 'pudir_pkl/index/$1';
 
 
 /* ================================== KETUPLAK ROLE ================================== */
 
 $route['ketuplak/dashboard']                        = 'ketuplak_dashboard';
-$route['ketuplak/pkn']                              = 'ketuplak_pkn';
-$route['ketuplak/pkn/(:any)']                       = 'ketuplak_pkn/index/$1';
+$route['ketuplak/pkn']                              = 'ketuplak_pkl';
+$route['ketuplak/pkn/(:any)']                       = 'ketuplak_pkl/index/$1';
 
 
 $route['test'] = 'admin_registrations/generatedata';

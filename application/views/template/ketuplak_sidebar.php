@@ -17,8 +17,8 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('ketuplak/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'pkl' ? 'active' : '') ?>">
-          <a href=" <?= site_url('ketuplak/pkl') ?>"><i class="ik ik-bar-chart-2"></i><span>Data PKL</span></a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
+          <a href=" <?= site_url('ketuplak/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKL</span></a>
         </div>
       </nav>
     </div>

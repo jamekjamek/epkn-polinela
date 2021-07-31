@@ -8,12 +8,19 @@ class Pudir_dashboard extends CI_Controller
     parent::__construct();
     $this->role = 'Pudir';
     cek_login('Pudir');
+    $this->load->model('Dashboard_model', 'Dashboard');
   }
 
   public function index()
   {
+    $data = [
+      'academic'      => $this->Dashboard->getAcademicYear(),
+      'location'      => $this->Dashboard->getLocation(),
+      'registration'  => $this->Dashboard->getRegistration(),
+      'graduation'    => $this->Dashboard->getGraduation(),
+    ];
     $page = '/dashboard/pudir_dashboard';
-    pageBackend($this->role, $page);
+    pageBackend($this->role, $page, $data);
   }
 }
 
