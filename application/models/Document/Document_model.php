@@ -88,9 +88,9 @@ class Document_model extends CI_Model
     return $this->db->get($this->tableRegistration . ' a');
   }
 
-  public function getPlanningBy()
+  public function getPlanningBy($id)
   {
-    $query = "SELECT planning.*,student.fullname, student.npm,major.name as major_name,prodi.name as prodi_name, company.name as company_name, company.pic, lecture.nip, lecture.name as lecture_name FROM planning JOIN registration on registration.id=planning.registration_id JOIN student on student.id=registration.student_id JOIN prodi ON prodi.id=student.prodi_id JOIN major ON major.id=prodi.major_id JOIN company on company.id=registration.company_id JOIN lecture on lecture.id=registration.lecture_id WHERE planning.approval = 1 AND student.npm =" . $this->session->userdata('user');
+    $query = "SELECT planning.*,student.fullname, student.npm,major.name as major_name,prodi.name as prodi_name, company.name as company_name, company.pic, lecture.nip, lecture.name as lecture_name FROM planning JOIN registration on registration.id=planning.registration_id JOIN student on student.id=registration.student_id JOIN prodi ON prodi.id=student.prodi_id JOIN major ON major.id=prodi.major_id JOIN company on company.id=registration.company_id JOIN lecture on lecture.id=registration.lecture_id WHERE planning.approval = 1 AND registration.group_id = '$id'";
     return $this->db->query($query);
   }
 
@@ -195,5 +195,10 @@ class Document_model extends CI_Model
     $this->db->select('list_check_validation.*');
     $this->db->join($this->tableStudent, 'student.id=list_check_validation.student_id');
     return $this->db->get_where($this->tableListCheckValidation, ['student.npm' => $this->session->userdata('user')]);
+  }
+
+  public function getSupervisorValue($id)
+  {
+    return $this->db->query("SELECT supervisor_score.* FROM supervisor_score JOIN registration ON registration.id = supervisor_score.registration_id JOIN student ON student.id = registration.student_id WHERE student.npm = '$id'");
   }
 }

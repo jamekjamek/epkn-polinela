@@ -12,13 +12,12 @@ class Supervisor_planning extends CI_Controller
     $this->redirecUrl = 'supervisor/planning';
   }
 
-  public function index($academic_year_id = null)
+  public function index()
   {
     $data = [
       'title'         => 'Data Program',
       'desc'          => 'Berfungsi untuk melihat data program',
-      'academicyear'  => $academic_year_id,
-      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->list()->result(),
     ];
     $page = '/supervisor/planning/index';
     pageBackend($this->role, $page, $data);
@@ -27,9 +26,9 @@ class Supervisor_planning extends CI_Controller
   public function detail($id)
   {
     $decode         = decodeEncrypt($id);
-    $planning       = $this->Plannings->list(['planning.registration_id' => $decode])->row();
+    $planning       = $this->Plannings->list(['registration.group_id' => $decode])->row();
     if ($planning) {
-      $plannings    = $this->Plannings->list(['planning.registration_id' => $decode])->result();
+      $plannings    = $this->Plannings->list(['registration.group_id' => $decode])->result();
       $data = [
         'title'     => 'Detail Data Program',
         'desc'      => 'Berfungsi untuk melihat detail data program',

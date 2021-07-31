@@ -23,6 +23,11 @@
         </div>
       </div>
     </div>
+    <?php if ($this->session->flashdata('success')) : ?>
+      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
+    <?php elseif ($this->session->flashdata('error')) : ?>
+      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
+    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -30,86 +35,42 @@
             <h3 class="text-uppercase"><?= $title; ?></h3>
           </div>
           <div class="card-body">
+            <div class="col-12 table-responsive mt-3">
+              <div class="row mb-4">
+                <div class="col-3">
+                  <label for="name">Tahun Akademik</label>
+                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="planning">
+                    <option value="">-- Pilih Tahun Akademik --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div class="dt-responsive">
-              <form name="myform" action='<?= site_url('supervisor/attendance/verification'); ?>' method="POST">
-                <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                  <thead>
+              <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Mahasiswa</th>
+                    <th>Dosen Pembimbing</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $i = 1;
+                  foreach ($dataPkl as $row) :
+                  ?>
                     <tr>
-                      <th>No</th>
-                      <th>Mahasiswa</th>
-                      <th>Tanggal Kehadiran</th>
-                      <th>Waktu Kehadiran</th>
-                      <th>Keterangan</th>
-                      <th>Validasi</th>
-                      <th>
-                        <div class="checkbox-zoom zoom-primary">
-                          <label>
-                            <input type="checkbox" onchange="checkAll(this)">
-                            <span class="cr">
-                              <i class="cr-icon ik ik-check txt-primary"></i>
-                            </span>
-                            <span>All</span>
-                          </label>
-                        </div>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($attendance as $row) :
-                    ?>
-                      <tr>
-                        <?php if ($row->validation == 0) : ?>
-                          <input type="hidden" name="attendance[]" value="<?= $row->id; ?>">
-                        <?php endif ?>
-                        <td><?= $i++; ?></td>
-                        <td>
-                          <strong> <?= $row->npm ?></strong>
-                          <br>
-                          <?= $row->fullname ?>
-                        </td>
-                        <td><?= date('d-m-Y', strtotime($row->created_at)) ?></td>
-                        <td><?= $row->time_in; ?> s.d <?= $row->time_out; ?></td>
-                        <td><?= $row->attendance; ?></td>
-                        <td>
-                          <?php if ($row->validation == 0) {
-                            echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
-                          } else {
-                            echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
-                          } ?>
-                        </td>
-                        <td>
-                          <?php if ($row->validation == 0) : ?>
-                            <div class="checkbox-zoom zoom-primary">
-                              <label>
-                                <input type="checkbox" value="1" name="approval[]">
-                                <span class="cr">
-                                  <i class="cr-icon ik ik-check txt-primary"></i>
-                                </span>
-                                <span></span>
-                              </label>
-                            </div>
-                          <?php endif ?>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td><?= $i++; ?></td>
+                      <td><?= $row->npm ?> - <?= $row->fullname ?></td>
+                      <td><?= $row->lecture_name ?></td>
                       <td>
-                        <button class="btn btn-outline-primary" type="submit">Verifikasi</button>
+                        <a href="<?= base_url('supervisor/activity/attendance/detail/' . encodeEncrypt($row->id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail"></i><span>Detail</span></a>
                       </td>
                     </tr>
-                  </tfoot>
-                </table>
-              </form>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

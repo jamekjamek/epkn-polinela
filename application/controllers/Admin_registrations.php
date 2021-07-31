@@ -526,9 +526,6 @@ class Admin_registrations extends CI_Controller
     } else {
       $strnewsupervisor = 'pl_1';
     }
-
-
-
     //Insert Supervisor
     $this->db->set('id', 'UUID()', FALSE);
     $dataInsertSupervisor   = [
@@ -778,6 +775,9 @@ class Admin_registrations extends CI_Controller
       foreach ($reader->getSheetIterator() as $sheet) {
         $numRow = 1;
         foreach ($sheet->getRowIterator() as $row) {
+          // get prodi dan atau di company wajib limit 4
+          $rowCompany = $row->getCellAtIndex(1);
+          $supervisor = $this->generateNewSupervisor($rowCompany);
           if ($numRow > 1) {
             $dataInputRegister = array(
               'group_id'          => $row->getCellAtIndex(0),
@@ -788,8 +788,8 @@ class Admin_registrations extends CI_Controller
               'status'            => $row->getCellAtIndex(5),
               'prodi_id'          => $row->getCellAtIndex(6),
               'lecture_id'        => $row->getCellAtIndex(7),
-              'supervisor_id'     => $row->getCellAtIndex(8),
-              'academic_year_id'  => $row->getCellAtIndex(9),
+              'supervisor_id'     => $supervisor->id,
+              'academic_year_id'  => $row->getCellAtIndex(8),
             );
             $this->Registrations->importData($dataInputRegister);
           }

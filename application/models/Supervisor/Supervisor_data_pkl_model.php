@@ -16,15 +16,19 @@ class Supervisor_data_pkl_model extends CI_Model
     $this->tableSupervisorScore = 'supervisor_score';
   }
 
-  public function list($academic_year_id)
+  public function list()
   {
     $this->_join();
     $this->db->where('e.username', $this->session->userdata('user'));
-    if ($academic_year_id) {
-      $this->db->where('f.id', $academic_year_id);
-    } else {
-      $this->db->where('f.status', 1);
-    }
+    $this->db->group_by('a.group_id');
+    return $this->db->get($this->table . ' a');
+  }
+
+  public function listByStudent()
+  {
+    $this->_join();
+    $this->db->where('e.username', $this->session->userdata('user'));
+    $this->db->group_by('a.id');
     return $this->db->get($this->table . ' a');
   }
 

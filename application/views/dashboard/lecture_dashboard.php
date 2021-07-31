@@ -40,6 +40,50 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                   <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKL</button></a>
               </div>
             </div>
+            <div class="row">
+              <div class="col-auto text-right update-meta pr-0">
+                <i class="b-danger update-icon ring"></i>
+              </div>
+              <div class="col pl-5">
+                <a href="#!">
+                  <h6>Mahasiswa Bimbingan PKN</h6>
+                </a>
+                <?php if ($students != null) : ?>
+                  <div class="col-12 table-responsive mt-3">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Mahasiswa</th>
+                          <th>Pembimbing Lapang</th>
+                          <th>Periode PKN</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($students as $student) :
+                        ?>
+                          <tr>
+                            <td><?= $i++; ?></td>
+                            <td>
+                              <strong> <?= $student->npm ?></strong>
+                              <br>
+                              <?= $student->fullname ?> -
+                              <?= $student->status ?>
+                            </td>
+                            <td><?= $student->pic; ?></td>
+                            <td><?= $student->academic_year; ?></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                <?php else :
+                  echo '<small class="text-mute">Anda belum terdaftar sebagai dosen pembimbing</small>';
+                endif; ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>

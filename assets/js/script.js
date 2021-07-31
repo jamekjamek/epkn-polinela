@@ -102,12 +102,8 @@ $(document).ready(function () {
 	}
 
 	$(".verified").on('click', function () {
-		var id = $(this).data("id");
 		var groupId = $(this).data("groupid");
-		var uri = $(this).data("uri");
-		// var role = $(this).data("role");
-		// var menu = $(this).data("menu");
-		var url = `${base_url}dosen/data_pkn/assessment/pushed/${id}:${uri}:${groupId}/`
+		var url = `${base_url}dosen/report_supervision/pushed/${groupId}/`
 		verification(url)
 	});
 
@@ -157,7 +153,6 @@ $(document).ready(function () {
 		})
 	}
 	select2WithCreation('capaian', 'Cari capaian pembelajaran');
-	select2WithCreation('subcapaian', 'Cari sub capaian pembelajaran');
 
 	// Penialain Dosen :
 	startCalc = () => {

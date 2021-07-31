@@ -7,6 +7,7 @@ class Lecture_report extends CI_Controller
     parent::__construct();
     $this->role = 'Dosen';
     $this->load->model('Lecture/Lecture_report_model', 'Reports');
+    $this->load->model('Lecture/Lecture_data_pkn_model', 'DataPkl');
     cek_login('Dosen');
     $this->redirecUrlSupervision = 'dosen/report_supervision';
     $this->redirecUrlReception = 'dosen/report_reception';
@@ -163,5 +164,29 @@ class Lecture_report extends CI_Controller
     ];
     $page = '/lecture/report/reception_detail';
     pageBackend($this->role, $page, $data);
+  }
+
+  public function pushed($groupId, $status)
+  {
+    if ($status === '1') {
+      $approval    = 1; // verifikasi penarikan sukses
+    } else {
+      $approval    = 0; // verifikasi penarikan di batalkan
+    }
+    $dataUpdate = [
+      'pushed'       => $approval,
+      'updated_at'  => date('Y-m-d H:i:s')
+    ];
+    $where      = [
+      'group_id'      => $groupId,
+      'group_status'  => 'diterima'
+    ];
+    $update     = $this->DataPkl->pushed($dataUpdate, $where);
+    if ($update > 0) {
+      $this->session->set_flashdata('success', 'Verifikasi penarikan sukses');
+    } else {
+      $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+    }
+    redirect($this->redirecUrlSupervision);
   }
 }

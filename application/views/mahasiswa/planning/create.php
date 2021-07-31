@@ -34,13 +34,13 @@
               <input type="hidden" name="registration_id" value="<?= $registration['id'] ?>">
               <div class="form-group has-error">
                 <label for="learning_achievement">Program</label>
-                <input type="learning_achievement" class="form-control <?= form_error('learning_achievement') ? 'is-invalid' : ''; ?>" id="learning_achievement" placeholder="Capain kegiatan" name="learning_achievement">
+                <input type="learning_achievement" class="form-control <?= form_error('learning_achievement') ? 'is-invalid' : ''; ?>" id="learning_achievement" placeholder="Rencana program" name="learning_achievement">
                 <div class="invalid-feedback">
                   <?= form_error('learning_achievement'); ?>
                 </div>
               </div>
               <div class="form-group has-error">
-                <label for="learning_achievement_sub">Sub Kegiatan</label>
+                <label for="learning_achievement_sub">Sub Program</label>
                 <input type="learning_achievement_sub" class="form-control <?= form_error('learning_achievement_sub') ? 'is-invalid' : ''; ?>" id="learning_achievement_sub" placeholder="Sub capaian kegiatan" name="learning_achievement_sub">
                 <div class="invalid-feedback">
                   <?= form_error('learning_achievement_sub'); ?>

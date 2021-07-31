@@ -27,9 +27,9 @@ class Lecture_planning extends CI_Controller
   public function detail($id)
   {
     $decode         = decodeEncrypt($id);
-    $planning       = $this->Plannings->list(['planning.registration_id' => $decode])->row();
+    $planning       = $this->Plannings->list(['registration.group_id' => $decode])->row();
     if ($planning) {
-      $plannings    = $this->Plannings->list(['planning.registration_id' => $decode])->result();
+      $plannings    = $this->Plannings->list(['registration.group_id' => $decode])->result();
       $data = [
         'title'     => 'Detail Data Program',
         'desc'      => 'Berfungsi untuk melihat detail data program',

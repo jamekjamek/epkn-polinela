@@ -34,7 +34,7 @@ class Lecture_report_model extends CI_Model
 
   private function _joinSupervisonReport()
   {
-    $this->db->select('registration.group_id, company.name company_name, COUNT(registration.group_id) as studentcount, supervision_report.*');
+    $this->db->select('registration.id registration_id,registration.group_id, registration.pushed, company.name company_name, COUNT(registration.group_id) as studentcount, supervision_report.*');
     $this->db->join($this->tableRegistration, 'registration.group_id = supervision_report.registration_group_id', 'RIGHT');
     $this->db->join($this->tableCompany, 'company.id=registration.company_id');
     $this->db->join($this->tableAcademicYear, 'academic_year.id=registration.academic_year_id');

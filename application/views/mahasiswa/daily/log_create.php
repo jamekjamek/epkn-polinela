@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group has-error">
                     <label for="topic">Materi</label>
-                    <textarea name="topic" class="form-control html-editor <?= form_error('topic') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
+                    <textarea name="topic" class="form-control <?= form_error('topic') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
                     <div class="invalid-feedback">
                       <?= form_error('topic'); ?>
                     </div>
@@ -95,21 +95,21 @@
               </div>
               <div class="form-group has-error">
                 <label for="procedure">Prosedur</label>
-                <textarea name="procedure" class="form-control html-editor <?= form_error('procedure') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
+                <textarea name="procedure" class="form-control <?= form_error('procedure') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
                 <div class="invalid-feedback">
                   <?= form_error('procedure'); ?>
                 </div>
               </div>
               <div class="form-group has-error">
                 <label for="description">Hasil Pelaksanaan</label>
-                <textarea name="description" class="form-control html-editor <?= form_error('description') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
+                <textarea name="description" class="form-control <?= form_error('description') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"></textarea>
                 <div class="invalid-feedback">
                   <?= form_error('description'); ?>
                 </div>
               </div>
               <div class="form-group has-error">
                 <label for="description">Komentar</label>
-                <textarea name="comment" class="form-control html-editor <?= form_error('comment') ? 'is-invalid' : ''; ?>" id="comment" cols="30" rows="3"></textarea>
+                <textarea name="comment" class="form-control <?= form_error('comment') ? 'is-invalid' : ''; ?>" id="comment" cols="30" rows="3"></textarea>
                 <div class="invalid-feedback">
                   <?= form_error('comment'); ?>
                 </div>

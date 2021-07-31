@@ -18,9 +18,9 @@ class Mahasiswa_daily extends CI_Controller
   {
     $data = [
       'title'         => 'Data Log Harian',
-      'desc'          => 'Berfungsi untuk melihat data log harian PKL',
+      'desc'          => 'Berfungsi untuk melihat data log harian PKN',
       'dailyLogs'     => $this->Daily->dailyList()->result(),
-      'isCheck'         => $this->Registration->list()->row(),
+      'isCheck'       => $this->Registration->list()->row(),
     ];
     $page = '/mahasiswa/daily/log';
     pageBackend($this->role, $page, $data);

@@ -7,6 +7,7 @@ class Lecture_activity extends CI_Controller
     parent::__construct();
     $this->role = 'Dosen';
     $this->load->model('Lecture/Lecture_activity_model', 'Activity');
+    $this->load->model('Lecture/Lecture_data_pkn_model', 'DataPkl');
     cek_login('Dosen');
     $this->redirecUrlDailyLog = 'dosen/activity/daily_log';
     $this->redirecUrlAttendance = 'dosen/activity/attendance';
@@ -18,9 +19,21 @@ class Lecture_activity extends CI_Controller
       'title'         => 'Data Log Harian Mahasiswa',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data log harian mahasiswa',
-      'dailyLog'      => $this->Activity->getListDailyLog($academic_year_id),
+      'dataPkl'       => $this->DataPkl->listByStudent($academic_year_id)->result(),
     ];
     $page = '/lecture/activity/daily_log';
+    pageBackend($this->role, $page, $data);
+  }
+
+  public function dailyLogDetail($id)
+  {
+    $decode         = decodeEncrypt($id);
+    $data = [
+      'title'         => 'Detail Log Harian Mahasiswa',
+      'desc'          => 'Berfungsi untuk menampilkan detail log harian mahasiswa',
+      'dailyLog'      => $this->Activity->getListDailyLog(['registration.id' => $decode])
+    ];
+    $page = '/lecture/activity/daily_log_detail';
     pageBackend($this->role, $page, $data);
   }
 
@@ -30,9 +43,21 @@ class Lecture_activity extends CI_Controller
       'title'         => 'Data Kehadiran Mahasiswa',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data kehadiran mahasiswa',
-      'attendance'    => $this->Activity->getListAttendance($academic_year_id),
+      'dataPkl'       => $this->DataPkl->listByStudent($academic_year_id)->result(),
     ];
     $page = '/lecture/activity/attendance';
+    pageBackend($this->role, $page, $data);
+  }
+
+  public function attendanceDetail($id)
+  {
+    $decode         = decodeEncrypt($id);
+    $data = [
+      'title'         => 'Detail Kehadiran Mahasiswa',
+      'desc'          => 'Berfungsi untuk menampilkan detail kehadiran mahasiswa',
+      'attendance'    => $this->Activity->getListAttendance(['registration.id' => $decode]),
+    ];
+    $page = '/lecture/activity/attendance_detail';
     pageBackend($this->role, $page, $data);
   }
 }

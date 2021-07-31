@@ -101,6 +101,27 @@ class Admin_pdf extends CI_Controller
     $mpdf->Output('Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032).pdf', 'I');
   }
 
+  public function penilaianpembimbinglapangkosong($id)
+  {
+    $decodeId = decodeEncrypt($id);
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    // $mpdf->SetHTMLFooter($footer);
+    $dataBody           = [
+      'data' => $this->Documents->getBySupervisorScore($decodeId)->row()
+    ];
+    $body               = $this->load->view('pdf/penilaianpembimbinglapangkosong', $dataBody, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032)");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->WriteHTML($body);
+    $mpdf->Output('Formulir penilaian mahasiswa PKN oleh pembimbing lapang PKN (F-PAI-032).pdf', 'I');
+  }
+
   public function laporansupervisi()
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
@@ -230,26 +251,21 @@ class Admin_pdf extends CI_Controller
   public function suratpenarikan()
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 10]);
-    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30fa3-db92-11eb-9096-0cc47abcfaa6'])->row();
+    $dataHeader         = [];
+    $header             = $this->load->view('pdf/header', $dataHeader, true);
+    $mpdf->SetHTMLHeader($header);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
     $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
+
     $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
     $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
-    $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
-    // var_dump($dataKaprodi);
-    // die;
-    $template           = [
-      'header' => $settingLetter,
-    ];
-    $templatePdf        = $this->load->view('pdf/template', $template, true);
-
-    $mpdf->SetHTMLHeader($templatePdf);
-    $mpdf->SetHTMLFooter($this->footer);
-
+    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30fa3-db92-11eb-9096-0cc47abcfaa6'])->row();
     $data               = [
       'settingletter' => $settingLetter,
       'row'           => $rowRegistration,
-      'students'      => $dataRegistration,
-      'kaprodi'       => $dataKaprodi
+      'students'      => $dataRegistration
     ];
     $view   = $this->load->view('pdf/penarikan', $data, TRUE);
     $mpdf->SetProtection(array('print'));
@@ -258,12 +274,12 @@ class Admin_pdf extends CI_Controller
     $mpdf->Output('Surat Penarikan', 'I');
   }
 
-  public function planningSheet()
+  public function planningSheet($id)
   {
     $mpdf   = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' =>  'A4-P']);
     $data = [
-      'getPlanningBy'   =>  $this->Documents->getPlanningBy()->row(),
-      'getPlanningList' =>  $this->Documents->getPlanningBy()->result(),
+      'getPlanningBy'   =>  $this->Documents->getPlanningBy($id)->row(),
+      'getPlanningList' =>  $this->Documents->getPlanningBy($id)->result(),
     ];
     $view   = $this->load->view('pdf/lembarperencanaankegiatanpkl', $data, TRUE);
     $mpdf->SetProtection(array('print'));

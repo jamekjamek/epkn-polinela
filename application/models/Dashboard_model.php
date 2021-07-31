@@ -73,4 +73,14 @@ class Dashboard_model extends CI_Model
     }
     return $query->row();
   }
+
+  public function getGuidanceStudentByLecturer()
+  {
+    return $this->db->query("SELECT registration.status, student.fullname, student.npm,academic_year.name as academic_year, company.name as company_name, company.pic FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE lecture.nip = '" . $this->session->userdata('user') . "'");
+  }
+
+  public function getGuidanceStudentBySupervisor()
+  {
+    return $this->db->query("SELECT registration.status, student.fullname, student.npm,academic_year.name as academic_year, company.name as company_name, company.pic, lecture.name as lecture_name FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN supervisor ON supervisor.id = registration.supervisor_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE supervisor.username = '" . $this->session->userdata('user') . "'");
+  }
 }

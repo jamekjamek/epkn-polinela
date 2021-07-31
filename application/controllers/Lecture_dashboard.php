@@ -20,7 +20,8 @@ class Lecture_dashboard extends CI_Controller
       'location'      => $this->Dashboard->getLocation($lecture->id),
       'registration'  => $this->Dashboard->getRegistration($lecture->id),
       'graduation'    => $this->Dashboard->getGraduation($lecture->id),
-      'showName'      => $this->Auth->showNameLogin()->row()
+      'showName'      => $this->Auth->showNameLogin()->row(),
+      'students'      => $this->Dashboard->getGuidanceStudentByLecturer()->result(),
     ];
     $page = '/dashboard/lecture_dashboard';
     pageBackend($this->role, $page, $data);

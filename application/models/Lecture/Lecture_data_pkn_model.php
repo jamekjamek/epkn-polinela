@@ -31,6 +31,20 @@ class Lecture_data_pkn_model extends CI_Model
     } else {
       $this->db->where('f.status', 1);
     }
+    $this->db->group_by('a.group_id');
+    return $this->db->get($this->table . ' a');
+  }
+
+  public function listByStudent($academic_year_id)
+  {
+    $this->_join();
+    $this->db->where('d.nip', $this->session->userdata('user'));
+    if ($academic_year_id) {
+      $this->db->where('f.id', $academic_year_id);
+    } else {
+      $this->db->where('f.status', 1);
+    }
+    $this->db->group_by('a.id');
     return $this->db->get($this->table . ' a');
   }
 

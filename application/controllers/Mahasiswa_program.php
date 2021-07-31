@@ -15,11 +15,13 @@ class Mahasiswa_program extends CI_Controller
 
   public function index()
   {
+    $groupBy = $this->Planning->groupByCheck()->row();
+    // die(var_dump($groupBy));
     $data = [
       'title'         => 'Data Program PKN',
       'desc'          => 'Berfungsi untuk melihat data program PKN',
-      'check'         => $this->Registration->list()->row(),
-      'plannings'     => $this->Planning->list()->result()
+      'check'         => $groupBy,
+      'plannings'     => $this->Planning->list($groupBy->group_id)->result()
     ];
     $page = '/mahasiswa/planning/index';
     pageBackend($this->role, $page, $data);
@@ -156,27 +158,14 @@ class Mahasiswa_program extends CI_Controller
 
   public function getCapaian()
   {
+    $groupBy = $this->Planning->groupByCheck()->row();
     $input      = $this->input->post('search');
-    $results    = $this->Planning->getCapaian($input)->result();
+    $results    = $this->Planning->getCapaian($groupBy->group_id)->result();
     $selectAjax = array();
     foreach ($results as $row) {
       $selectAjax[]   = [
         'id'    => $row->learning_achievement,
         'text'  => $row->learning_achievement
-      ];
-    }
-    $this->output->set_content_type('application/json')->set_output(json_encode($selectAjax));
-  }
-
-  public function getSubCapaian()
-  {
-    $input      = $this->input->post('search');
-    $results    = $this->Planning->getSubCapaian($input)->result();
-    $selectAjax = array();
-    foreach ($results as $row) {
-      $selectAjax[]   = [
-        'id'    => $row->learning_achievement_sub,
-        'text'  => $row->learning_achievement_sub
       ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($selectAjax));

@@ -92,6 +92,9 @@
                         <div class="btn-group" role="group">
                           <a href="<?= base_url('dosen/report_supervision/edit/' . $this->encrypt->encode($row->group_id, keyencrypt()) . '/edit') ?>" class="btn btn-success" title="Update"><i class="ik ik-edit"></i>Isi Laporan</a>
                           <a href="<?= base_url('dosen/report_supervision/detail/' . encodeEncrypt($row->group_id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail"></i><span>Detail</span></a>
+                          <?php if ($row->time && $row->pushed == 0) : ?>
+                            <button class="btn btn-secondary verified" data-groupid="<?= $row->group_id; ?>"><i class="ik ik-check-square"></i><span> Verifikasi Penarikan</span></button>
+                          <?php endif ?>
                         </div>
                       </td>
                     </tr>

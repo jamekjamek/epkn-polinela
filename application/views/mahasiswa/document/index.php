@@ -32,10 +32,10 @@
           <div class="card-body">
             <ol>
               <li>
-                Di bawah ini adalah berkas-berkas yang diperlukan dalam proses pelaksanaan PKL
+                Di bawah ini adalah berkas-berkas yang diperlukan dalam proses pelaksanaan PKN
               </li>
               <li>
-                Hanya <strong>Ketua Grup</strong> yang dapat melihat dan mendownload
+                Siapapun dalam anggota grup dapat melihat dan mendownload
               </li>
               <li>
                 Silahkan download berkas yang diperlukan dnegan mengklik tombol <strong>UNDUH </strong>pada tabel di bawah.
@@ -93,13 +93,31 @@
                   <?php endif;
                   if ($isCheck['pushed'] == 1) : ?>
                     <tr>
-                      <td>5</td>
+                      <td>4</td>
                       <td>Surat Penarikan</td>
                       <td>
-                        <a href="<?= site_url('pdf/penarikan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                        <a href="<?= site_url('pdf/suratpenarikan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
-
+                  <?php
+                  endif;
+                  if ($supervisorValue) : ?>
+                    <tr>
+                      <td>5</td>
+                      <td>Form Hasil Penilaian Pembimbing Lapang</td>
+                      <td>
+                        <a href="<?= site_url('pdf/penilaianpembimbinglapang') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
+                  <?php
+                  else : ?>
+                    <tr>
+                      <td>5</td>
+                      <td>Form Penilaian Pembimbing Lapang Kosong</td>
+                      <td>
+                        <a href="<?= site_url('pdf/penilaianpembimbinglapangkosong/' . encodeEncrypt($isCheck['id'])) ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
                   <?php endif ?>
                 </tbody>
               </table>

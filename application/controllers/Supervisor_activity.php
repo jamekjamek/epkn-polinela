@@ -7,6 +7,7 @@ class Supervisor_activity extends CI_Controller
     parent::__construct();
     $this->role = 'Supervisor';
     $this->load->model('Supervisor/Supervisor_activity_model', 'Activity');
+    $this->load->model('Supervisor/Supervisor_data_pkl_model', 'DataPkl');
     cek_login('Supervisor');
     $this->redirectUrlDailyLog = 'supervisor/activity/daily_log';
     $this->redirectUrlAttendance = 'supervisor/activity/attendance';
@@ -17,9 +18,21 @@ class Supervisor_activity extends CI_Controller
     $data = [
       'title'         => 'Data Log Harian Mahasiswa PKN',
       'desc'          => 'Berfungsi untuk melihat data log harian mahasiswa PKN',
-      'dailyLog'      => $this->Activity->getListDailyLog()->result(),
+      'dataPkl'       => $this->DataPkl->listByStudent()->result(),
     ];
     $page = '/supervisor/activity/daily_log';
+    pageBackend($this->role, $page, $data);
+  }
+
+  public function dailyLogDetail($id)
+  {
+    $decode         = decodeEncrypt($id);
+    $data = [
+      'title'         => 'Detail Log Harian Mahasiswa PKN',
+      'desc'          => 'Berfungsi untuk melihat detail log harian mahasiswa PKN',
+      'dailyLog'      => $this->Activity->getListDailyLog(['registration.id' => $decode])->result(),
+    ];
+    $page = '/supervisor/activity/daily_log_detail';
     pageBackend($this->role, $page, $data);
   }
 
@@ -49,9 +62,21 @@ class Supervisor_activity extends CI_Controller
     $data = [
       'title'         => 'Data Kehadiran Mahasiswa PKN',
       'desc'          => 'Berfungsi untuk melihat data kehadiran mahasiswa PKN',
-      'attendance'    => $this->Activity->getListAttendance()->result(),
+      'dataPkl'       => $this->DataPkl->listByStudent()->result(),
     ];
     $page = '/supervisor/activity/attendance';
+    pageBackend($this->role, $page, $data);
+  }
+
+  public function attendanceDetail($id)
+  {
+    $decode           = decodeEncrypt($id);
+    $data = [
+      'title'         => 'Detail Kehadiran Mahasiswa PKN',
+      'desc'          => 'Berfungsi untuk melihat detail kehadiran mahasiswa PKN',
+      'attendance'    => $this->Activity->getListAttendance(['registration.id' => $decode])->result(),
+    ];
+    $page = '/supervisor/activity/attendance_detail';
     pageBackend($this->role, $page, $data);
   }
 

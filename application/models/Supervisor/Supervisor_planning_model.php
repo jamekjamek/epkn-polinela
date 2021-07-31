@@ -20,7 +20,7 @@ class Supervisor_planning_model extends CI_Model
 
   private function _join()
   {
-    $this->db->select('planning.id,planning.registration_id,planning.learning_achievement,planning.learning_achievement_sub,planning.time_qty,planning.approval,student.fullname,student.npm');
+    $this->db->select('planning.id,planning.registration_id,registration.group_id,planning.learning_achievement,planning.learning_achievement_sub,planning.time_qty,planning.approval,student.fullname,student.npm');
     $this->db->join($this->tableRegistration, 'registration.id=planning.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
   }

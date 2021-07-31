@@ -3,6 +3,9 @@ $queryProfileCheck = "SELECT * FROM student WHERE email != '' AND address != '' 
 $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
 
 $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row();
+
+$query = "SELECT * FROM student WHERE status = 'active' AND student.npm = '" . $this->session->userdata('user') . "'";
+$result = $this->db->query($query)->row_array();
 ?>
 <div class="main-content">
   <div class="container-fluid">
@@ -37,7 +40,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
         </div>
       </div>
       <div class="card-block">
-        <?php if ($resultQueryProfileCheck) : ?>
+        <?php if ($resultQueryProfileCheck && $result) : ?>
           <div class="scroll-widget">
             <div class="latest-update-box">
               <div class="row pt-20 pb-30">
@@ -121,7 +124,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
           Untuk dapat mengakses semua menu, silahkan lengkapi biodata anda di menu profil yang dapat di akses di link berikut <strong> <a href="' . site_url('mahasiswa/profile') . '">' . site_url('mahasiswa/profile') . '</a></strong>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <i class="ik ik-x"></i>
-          </button>
+          </button> dan pastikan anda hadir pada saat pembekalan PKN dan telah <strong> di verifikasi oleh admin</strong>
         </div>';
         endif ?>
       </div>

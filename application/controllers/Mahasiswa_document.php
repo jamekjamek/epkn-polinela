@@ -17,13 +17,14 @@ class Mahasiswa_document extends CI_Controller
   public function index()
   {
     $data = [
-      'title'         => 'Berkas Kegiatan PKN',
-      'desc'          => 'Berfungsi untuk melihat berkas kegiatan PKN',
-      'documents'     =>  $this->Documents->list(),
-      'isCheck'       =>  $this->Registration->list()->row_array(),
-      'attendance'    =>  $this->Documents->attendance()->row(),
-      'isCheckWith'   =>  $this->Documents->isCheckWithVerifiedMajor()->row(),
-      'file'          =>  $this->Documents->responseLetterFile()->row(),
+      'title'           => 'Berkas Kegiatan PKN',
+      'desc'            => 'Berfungsi untuk melihat berkas kegiatan PKN',
+      'documents'       =>  $this->Documents->list(),
+      'isCheck'         =>  $this->Registration->list()->row_array(),
+      'attendance'      =>  $this->Documents->attendance()->row(),
+      'isCheckWith'     =>  $this->Documents->isCheckWithVerifiedMajor()->row(),
+      'file'            =>  $this->Documents->responseLetterFile()->row(),
+      'supervisorValue' =>  $this->Documents->getSupervisorValue($this->session->userdata('user'))->row(),
     ];
     $page = '/mahasiswa/document/index';
     pageBackend($this->role, $page, $data);

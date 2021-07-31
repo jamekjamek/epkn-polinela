@@ -8,6 +8,7 @@ class Supervisor_dashboard extends CI_Controller
     parent::__construct();
     $this->role = 'Supervisor';
     $this->load->model('Auth_model', 'Auth');
+    $this->load->model('Dashboard_model', 'Dashboard');
     cek_login('Supervisor');
   }
 
@@ -15,8 +16,9 @@ class Supervisor_dashboard extends CI_Controller
   {
     $data = [
       'title'         => 'Dashboard',
-      'desc'          => 'Sistem Informasi PKL Politeknik Negeri Lampung',
-      'showName'      => $this->Auth->showNameLogin()
+      'desc'          => 'Sistem Informasi PKN Politeknik Negeri Lampung',
+      'showName'      => $this->Auth->showNameLogin(),
+      'students'      => $this->Dashboard->getGuidanceStudentBySupervisor()->result(),
     ];
     $page = '/dashboard/supervisor_dashboard';
     pageBackend($this->role, $page, $data);

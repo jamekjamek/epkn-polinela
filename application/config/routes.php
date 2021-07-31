@@ -105,13 +105,14 @@ $route['pdf/amplop']                                = 'admin_pdf/amplop';
 $route['pdf/surattugas']                            = 'admin_pdf/surattugas';
 $route['pdf/suratpengantar']                        = 'admin_pdf/suratpengantar';
 $route['pdf/penilaianpembimbinglapang/(:any)']      = 'admin_pdf/penilaianpembimbinglapang/$1';
+$route['pdf/penilaianpembimbinglapangkosong/(:any)']      = 'admin_pdf/penilaianpembimbinglapangkosong/$1';
 $route['pdf/laporansupervisi']                      = 'admin_pdf/laporansupervisi';
 $route['pdf/penilaiansupervisi/(:any)']             = 'admin_pdf/penilaiansupervisi/$1';
 $route['pdf/penilaianujian/(:any)']                 = 'admin_pdf/penilaianujian/$1';
 $route['pdf/nilaiakhir/(:any)']                     = 'admin_pdf/nilaiakhir/$1';
 $route['pdf/penilaiandosenpembimbing/(:any)']       = 'admin_pdf/penilaiandosenpembimbing/$1';
 $route['pdf/suratpenarikan']                        = 'admin_pdf/suratpenarikan';
-$route['pdf/lembarperencanaankegiatanpkn']          = 'admin_pdf/planningSheet';
+$route['pdf/lembarperencanaankegiatanpkn/(:any)']   = 'admin_pdf/planningSheet/$1';
 $route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
 $route['pdf/kesediaanperusahaan/(:any)']            = 'admin_pdf/kesediaanperusahaan/$1';
 $route['pdf/penarikan']                             = 'admin_pdf/finishLeter';
@@ -200,7 +201,6 @@ $route['mahasiswa/daily/check_point/add']           = 'mahasiswa_daily/checkPoin
 $route['mahasiswa/profile']                         = 'mahasiswa_profile';
 
 $route['mahasiswa/config/getcapaian']               = 'mahasiswa_program/getCapaian';
-$route['mahasiswa/config/getsubcapaian']            = 'mahasiswa_program/getSubCapaian';
 
 $route['mahasiswa/data_pkn']                        = 'mahasiswa_data_pkn';
 $route['mahasiswa/data_pkn/uploaded']               = 'mahasiswa_data_pkn/upload';
@@ -253,18 +253,20 @@ $route['dosen/report_supervision/detail/(:any)']    = 'lecture_report/detailRepo
 $route['dosen/report_reception']                    = 'lecture_report/reportReception';
 $route['dosen/report_reception/academic_year/(:any)'] = 'lecture_report/reportReception/$1';
 $route['dosen/report_reception/detail/(:any)']      = 'lecture_report/detailReception/$1';
+$route['dosen/report_supervision/pushed/(:any)/(:any)']    = 'lecture_report/pushed/$1/$2';
 
 $route['dosen/data_pkn']                            = 'lecture_data_pkn';
 $route['dosen/data_pkn/academic_year/(:any)']       = 'lecture_data_pkn/index/$1';
 $route['dosen/data_pkn/assessment/(:any)']          = 'lecture_data_pkn/assessment/$1';
 $route['dosen/data_pkn/assessment/supervision/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervision/$1';
-$route['dosen/data_pkn/assessment/pushed/(:any)/(:any)'] = 'lecture_data_pkn/pushed/$1/$2';
 $route['dosen/data_pkn/assessment/guidance/(:any)'] = 'lecture_data_pkn/saveAssesmentGuidance/$1';
 $route['dosen/data_pkn/assessment/test_score/(:any)'] = 'lecture_data_pkn/saveAssesmentFinalTest/$1';
 
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
+$route['dosen/activity/daily_log/detail/(:any)']    = 'lecture_activity/dailyLogDetail/$1';
 $route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_data_pkn/dailyLog/$1';
 $route['dosen/activity/attendance']                 = 'lecture_activity/attendance';
+$route['dosen/activity/attendance/detail/(:any)']   = 'lecture_activity/attendanceDetail/$1';
 $route['dosen/activity/attendance/academic_year/(:any)']  = 'lecture_activity/attendance/$1';
 
 $route['dosen/quesioner']                           = 'quesioner';
@@ -279,8 +281,10 @@ $route['supervisor/planning/detail/(:any)']         = 'supervisor_planning/detai
 $route['supervisor/planning/verification/(:any)']   = 'supervisor_planning/verification/$1';
 
 $route['supervisor/activity/daily_log']             = 'supervisor_activity/dailyLog';
+$route['supervisor/activity/daily_log/detail/(:any)'] = 'supervisor_activity/dailyLogDetail/$1';
 $route['supervisor/daily_log/verification']         = 'supervisor_activity/verificationDailyLog';
 $route['supervisor/activity/attendance']            = 'supervisor_activity/attendance';
+$route['supervisor/activity/attendance/detail/(:any)'] = 'supervisor_activity/attendanceDetail/$1';
 $route['supervisor/attendance/verification']        = 'supervisor_activity/verificationAttendance';
 
 $route['supervisor/data_pkn']                       = 'supervisor_data_pkn';

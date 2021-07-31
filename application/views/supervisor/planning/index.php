@@ -40,9 +40,7 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama Mahasiswa</th>
-                    <th>NPM</th>
-                    <th>Prodi</th>
+                    <th>Group ID</th>
                     <th>Dosen Pembimbing</th>
                     <th>Aksi</th>
                   </tr>
@@ -54,12 +52,10 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $row->fullname ?></td>
-                      <td><?= $row->npm ?></td>
-                      <td><?= $row->prodi_name ?></td>
+                      <td><?= $row->group_id ?></td>
                       <td><?= $row->lecture_name ?></td>
                       <td>
-                        <a href="<?= base_url('supervisor/planning/detail/' . encodeEncrypt($row->id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail PKL"></i><span>Detail</span></a>
+                        <a href="<?= base_url('supervisor/planning/detail/' . encodeEncrypt($row->group_id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail PKL"></i><span>Detail</span></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>

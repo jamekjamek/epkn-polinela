@@ -23,6 +23,11 @@
         </div>
       </div>
     </div>
+    <?php if ($this->session->flashdata('success')) : ?>
+      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
+    <?php elseif ($this->session->flashdata('error')) : ?>
+      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
+    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -34,7 +39,7 @@
               <div class="row mb-4">
                 <div class="col-3">
                   <label for="name">Tahun Akademik</label>
-                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="activity/daily_log">
+                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="planning">
                     <option value="">-- Pilih Tahun Akademik --</option>
                   </select>
                 </div>
@@ -46,35 +51,21 @@
                   <tr>
                     <th>No</th>
                     <th>Mahasiswa</th>
-                    <th>Tanggal</th>
-                    <th>Alat dan Bahan</th>
-                    <th>Deskripsi</th>
-                    <th>Komentar</th>
-                    <th>Validasi</th>
+                    <th>Pembimbing Lapang</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   $i = 1;
-                  foreach ($dailyLog as $row) :
+                  foreach ($dataPkl as $row) :
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
+                      <td><?= $row->npm ?> - <?= $row->fullname ?></td>
+                      <td><?= $row->pic ?></td>
                       <td>
-                        <strong> <?= $row->npm ?></strong>
-                        <br>
-                        <?= $row->fullname ?>
-                      </td>
-                      <td><?= $row->implementation_date ?></td>
-                      <td><?= $row->tool; ?></td>
-                      <td><?= $row->description; ?></td>
-                      <td><?= $row->comment; ?></td>
-                      <td>
-                        <?php if ($row->validation == 0) {
-                          echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
-                        } else {
-                          echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
-                        } ?>
+                        <a href="<?= base_url('dosen/activity/daily_log/detail/' . encodeEncrypt($row->id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail"></i><span>Detail</span></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>

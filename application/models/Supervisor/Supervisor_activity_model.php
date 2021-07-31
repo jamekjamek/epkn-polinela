@@ -13,14 +13,14 @@ class Supervisor_activity_model extends CI_Model
     $this->tableSupervisor = 'supervisor';
   }
 
-  public function getListDailyLog()
+  public function getListDailyLog($id)
   {
     $this->db->select('daily_log.*,student.npm,student.fullname');
     $this->db->join($this->tableRegistration, 'registration.id=daily_log.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
     $this->db->join($this->tableSupervisor, 'supervisor.id=registration.supervisor_id');
     $this->db->order_by('daily_log.created_at', 'DESC');
-    return $this->db->get_where($this->tableDailyLog, ['supervisor.username' => $this->session->userdata('user')]);
+    return $this->db->get_where($this->tableDailyLog, $id);
   }
 
   public function updateDailyLog($data, $where)
@@ -29,14 +29,14 @@ class Supervisor_activity_model extends CI_Model
     return $this->db->affected_rows();
   }
 
-  public function getListAttendance()
+  public function getListAttendance($id)
   {
     $this->db->select('check_point.*,student.npm,student.fullname');
     $this->db->join($this->tableRegistration, 'registration.id=check_point.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
     $this->db->join($this->tableSupervisor, 'supervisor.id=registration.supervisor_id');
     $this->db->order_by('check_point.created_at', 'DESC');
-    return $this->db->get_where($this->tableAttendance, ['supervisor.username' => $this->session->userdata('user')]);
+    return $this->db->get_where($this->tableAttendance, $id);
   }
 
   public function updateAttendance($data, $where)

@@ -44,8 +44,8 @@
             <div class="col-md-6">
               <table class="table table-borderless">
                 <tr>
-                  <td>Mahasiswa</td>
-                  <td>: <?= $planning->fullname; ?> - <?= $planning->npm ?></td>
+                  <td>Group ID</td>
+                  <td>: <?= $planning->group_id; ?></td>
                 </tr>
               </table>
               <a href="<?= site_url('supervisor/planning') ?>" class="btn btn-outline-success mx-2"><i class="ik ik-arrow-left"></i> <span> Kembali</span></a>

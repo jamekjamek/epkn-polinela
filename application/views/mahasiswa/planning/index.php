@@ -39,7 +39,7 @@
                 if ($check != null && $check->group_status == 'diterima') : ?>
                   <div class="btn-group" role="group">
                     <a href="<?= base_url('mahasiswa/program/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
-                    <a href="<?= base_url('pdf/lembarperencanaankegiatanpkn'); ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i>Export</a>
+                    <a href="<?= base_url('pdf/lembarperencanaankegiatanpkn/' . $check->group_id); ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i>Export</a>
                   </div>
                 <?php endif ?>
               </div>
@@ -52,7 +52,7 @@
                   <tr>
                     <th>No</th>
                     <th>Mahasiswa</th>
-                    <th>Kegiatan</th>
+                    <th>Program</th>
                     <th>Jumlah Jam</th>
                     <th>Persetujuan & Revisi</th>
                     <th>Aksi</th>

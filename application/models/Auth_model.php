@@ -30,7 +30,7 @@ class Auth_model extends CI_Model
         return $this->db->query($query);
         break;
       case 'Supervisor':
-        $query = "SELECT company.pic FROM company JOIN supervisor ON supervisor.company_id=company.id WHERE supervisor.username = '" . $this->session->userdata('user') . "'";
+        $query = "SELECT supervisor.id, company.pic FROM company JOIN supervisor ON supervisor.company_id=company.id WHERE supervisor.username = '" . $this->session->userdata('user') . "'";
         return $this->db->query($query)->row_array();
         break;
       default:
