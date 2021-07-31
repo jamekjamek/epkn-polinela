@@ -17,21 +17,22 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('prodi/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'pkl_registrasi' ? 'active' : '') ?>">
-          <a href=" <?= site_url('prodi/pkl_registrasi') ?>"><i class="ik ik-check-circle"></i><span>Registrasi Kel
-              PKL </span>
-            <!-- <span class="badge bg-danger">3</span> -->
-          </a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'registrations' ? 'active' : '') ?>">
+          <a href="<?= base_url('prodi/registrations') ?>"><i class="fa fa-users-cog"></i><span>Kelompok PKN</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'pkl_group_activity' ? 'active' : '') ?>">
-          <a href=" <?= site_url('prodi/pkl_group_activity') ?>"><i class="ik ik-file-text"></i><span>PKL Aktivitas Grup</span>
-            <!-- <span class="badge bg-danger">3</span> -->
-          </a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'daily_log' ? 'active' : '') ?>">
+          <a href="<?= base_url('prodi/daily_log') ?>"><i class="fa fa-file"></i><span>Jurnal Harian</span></a>
         </div>
-        <div class="nav-item <?= ($this->uri->segment(2) === 'pkl_location' ? 'active' : '') ?>">
-          <a href=" <?= site_url('prodi/pkl_location') ?>"><i class="ik ik-map"></i><span>Lokasi
-              PKL</span></a>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'attendance' ? 'active' : '') ?>">
+          <a href="<?= base_url('prodi/attendance') ?>"><i class="fa fa-clock"></i>Kehadiran</a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'supervision_report' ? 'active' : '') ?>">
+          <a href="<?= base_url('prodi/supervision_report') ?>"><i class=" fa fa-clipboard"></i>Laporan Supervisi</a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'scoring' ? 'active' : '') ?>">
+          <a href="<?= base_url('prodi/scoring') ?>"><i class="fa fa-graduation-cap"></i>Nilai PKN</a>
+        </div>
+
       </nav>
     </div>
   </div>

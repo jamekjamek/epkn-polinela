@@ -216,27 +216,22 @@ $route['mahasiswa/quesioner']                       = 'quesioner';
 
 //KAPRODI
 //  Add List Routes Prodi here
-$route['prodi/dashboard']                           = 'kaprodi_dashboard/index';
+$route['prodi/dashboard']                     = 'kaprodi_dashboard/index';
 
-// Location CRUD Routes
-$route['prodi/pkn_location']                        = 'kaprodi_pkn_location/index';
-
-$route['prodi/pkn_registrasi/period/(:any)']        = 'kaprodi_pkn_registration/index/$1';
-$route['prodi/pkn_registrasi']                      = 'kaprodi_pkn_registration/index';
-
-$route['prodi/pkn_group_activity']                  = 'kaprodi_pkn_group_activity/index';
-$route['prodi/pkn_group_activity/detail/(:any)']    = 'kaprodi_pkn_group_activity/detail/$1';
-$route['prodi/pkn_group_activity/dailylog/(:any)']  = 'kaprodi_pkn_group_activity/memberDailyLog/$1';
-$route['prodi/pkn_group_activity/present/(:any)']   = 'kaprodi_pkn_group_activity/memberPresent/$1';
-$route['prodi/pkn_group_activity/final_score/(:any)'] = 'kaprodi_pkn_group_activity/memberFinalScore/$1';
-// AJAX API
-$route['prodi/pkn_location/regency']['get']          = 'kaprodi_pkn_location/getRegecy';
-$route['prodi/pkn_location/province']['get']         = 'kaprodi_pkn_location/getProvince';
-$route['prodi/pkn_registrasi/academic_year']['get']  = 'kaprodi_pkn_registration/getPklAcademicYear';
-$route['prodi/pkn_registrasi/lecture']['get']        = 'kaprodi_pkn_registration/getLecture';
-$route['prodi/pkn_registrasi/approval']['post']      = 'kaprodi_pkn_registration/approvalAPI';
-$route['prodi/pkn_registrasi/location/(:any)']['get'] = 'kaprodi_pkn_registration/getPklLocation/$1';
-$route['prodi/pkn_registrasi/location']['post']       = 'kaprodi_pkn_registration/changeLocation';
+$route['prodi/registrations']                 = 'kaprodi_recap/registration';
+$route['prodi/advisers']                      = 'kaprodi_recap/adviser';
+$route['prodi/supervisor']                    = 'kaprodi_recap/supervisor';
+$route['prodi/daily_log']                     = 'kaprodi_recap/dailyLog';
+$route['prodi/daily_log/detail/(:any)']       = 'kaprodi_recap/dailyLogDetail/$1';
+$route['prodi/daily_log/detail_more']         = 'kaprodi_recap/dailyLogDetailMore';
+$route['prodi/attendance']                    = 'kaprodi_recap/attendance';
+$route['prodi/attendance/detail/(:any)']      = 'kaprodi_recap/attendanceDetail/$1';
+$route['prodi/supervision_report']            = 'kaprodi_recap/supervisionReport';
+$route['prodi/supervision_report/detail']     = 'kaprodi_recap/supervisionReportDetail';
+$route['prodi/status_pkn']                    = 'kaprodi_recap/statusPkn';
+$route['prodi/status_pkn/(:any)']             = 'kaprodi_recap/statusPKL/$1';
+$route['prodi/scoring']                       = 'kaprodi_recap/scoring';
+$route['prodi/video']                         = 'recap_controller/video';
 
 
 /* ================================== LECTURE ROLE ================================== */
