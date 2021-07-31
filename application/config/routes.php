@@ -99,6 +99,8 @@ $route['pdf/penilaiansupervisi']                    = 'admin_pdf/penilaiansuperv
 $route['pdf/penilaianujian']                        = 'admin_pdf/penilaianujian'; //13.Formulir penilaian ujian PKN (F-PAI-036)
 $route['pdf/nilaiakhir']                            = 'admin_pdf/nilaiakhir'; //14.Nilai akhir PKN (F-PAI-037)
 $route['pdf/penilaiandosenpembimbing']              = 'admin_pdf/penilaiandosenpembimbing'; //15.Penilaian dosen pembimbing (F-PAI-038)
+$route['pdf/lembarisianpkn']                        = 'admin_pdf/lembarisianpkn'; //12. LEMBAR ISIAN_PKN
+
 
 //VERIFICATION
 $route['admin/verification']                        = 'Admin_verification';
