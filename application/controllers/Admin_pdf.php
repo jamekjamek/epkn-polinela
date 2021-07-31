@@ -419,4 +419,36 @@ class Admin_pdf extends CI_Controller
     $mpdf->WriteHTML($view);
     $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . $data['data']->row()->period, "I");
   }
+
+  public function lembarisianpkn()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $dataHeader         = [];
+
+    $datapage1          = [];
+    $bodypage1          = $this->load->view('pdf/lembarisianpkn/1', $datapage1, TRUE);
+
+    $datapage2          = [];
+    $bodypage2          = $this->load->view('pdf/lembarisianpkn/2', $datapage2, TRUE);
+
+    $datapage3          = [];
+    $bodypage3          = $this->load->view('pdf/lembarisianpkn/3', $datapage3, TRUE);
+
+    $datapage4          = [];
+    $bodypage4          = $this->load->view('pdf/lembarisianpkn/4', $datapage4, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("12.Lembar Isian PKN");
+    $mpdf->SetDisplayMode('fullpage');
+
+
+    $mpdf->WriteHTML($bodypage1);
+    $mpdf->AddPage();
+    $mpdf->WriteHTML($bodypage2);
+    $mpdf->AddPage();
+    $mpdf->WriteHTML($bodypage3);
+    $mpdf->AddPage();
+    $mpdf->WriteHTML($bodypage4);
+
+    $mpdf->Output('12.Lembar Isian PKN.pdf', 'I');
+  }
 }

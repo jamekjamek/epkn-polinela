@@ -128,7 +128,7 @@ $route['pdf/dosenpembimbing/(:any)']                = 'admin_pdf/dosenpembimbing
 $route['pdf/pembimbinglapang/(:any)']               = 'admin_pdf/pembimbinglapang/$1';
 $route['pdf/nilaiakhirpkn']                         = 'admin_pdf/nilaiakhirpkl';
 $route['pdf/kehadiran/(:any)']                      = 'admin_pdf/kehadiran/$1';
-
+$route['pdf/lembarisianpkn']                        = 'admin_pdf/lembarisianpkn'; //12. LEMBAR ISIAN_PKN
 $route['admin/verification']                        = 'Admin_verification';
 
 //KETUA JURUSAN
