@@ -18,7 +18,7 @@ class Lecture_data_pkn extends CI_Controller
       'title'         => 'Data PKN',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data PKN',
-      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->listForScore($academic_year_id)->result(),
       'supervision'   => $this->Report->reportCheck()
     ];
     $page = '/lecture/data_pkn/index';
@@ -36,6 +36,7 @@ class Lecture_data_pkn extends CI_Controller
     $degree           = $this->DataPkl->checkStudentDegree(['registration.id' => $decode])->row();
     $testScoreId      = $this->DataPkl->getByIdTestScore(['registration_id' => $decode])->row();
     $finalScoreId     = $this->DataPkl->getByIdFinalScore(['registration_id' => $decode])->row();
+    $supervisorScore  = $this->DataPkl->getSupervisorScore(['registration_id' => $decode])->row();
     $days       = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
     $data = [
       'title'           => 'Penilaian Dosen Pembimbing',
@@ -48,6 +49,7 @@ class Lecture_data_pkn extends CI_Controller
       'testScore'       => $testScoreId,
       'days'            => $days,
       'finalScore'      => $finalScoreId,
+      'supervisorScore' => $supervisorScore,
     ];
     $page = '/lecture/data_pkn/assesment';
     pageBackend($this->role, $page, $data);
@@ -183,6 +185,45 @@ class Lecture_data_pkn extends CI_Controller
         'status' => 'graduated'
       ];
       $this->DataPkl->graduated($graduated, ['id'   => $data['student_id'],]);
+      if ($result > 0) {
+        $this->session->set_flashdata('success', 'Data berhasil di tambah');
+      } else {
+        $this->session->set_flashdata('error', 'Server Data User Sedang sibuk, silahkan coba lagi');
+      }
+    }
+    redirect($this->redirecUrl . '/assessment/' . encodeEncrypt($decodeId));
+  }
+
+  public function saveAssesmentSupervisor($id)
+  {
+    $decodeId   = decodeEncrypt($id);
+    $data = $this->input->post();
+    $supervisor = [
+      'registration_id'   => $data['registration_id'],
+      'nilai_1'           => $data['nilai_1'],
+      'nilai_2'           => $data['nilai_2'],
+      'nilai_3'           => $data['nilai_3'],
+      'nilai_4'           => $data['nilai_4'],
+      'nilai_5'           => $data['nilai_5'],
+      'nilai_6'           => $data['nilai_6'],
+      'nilaitertimbang_1' => number_format($data['jumlah_1'], 2, '.', ''),
+      'nilaitertimbang_2' => number_format($data['jumlah_2'], 2, '.', ''),
+      'nilaitertimbang_3' => number_format($data['jumlah_3'], 2, '.', ''),
+      'nilaitertimbang_4' => number_format($data['jumlah_4'], 2, '.', ''),
+      'nilaitertimbang_5' => number_format($data['jumlah_5'], 2, '.', ''),
+      'nilaitertimbang_6' => number_format($data['jumlah_6'], 2, '.', ''),
+      'nilai_total'       => number_format($data['total'], 2, '.', ''),
+      'updated_at'        => date('Y-m-d H:i:s')
+    ];
+    if ($data['supervisor_score_id']) {
+      $result = $this->DataPkl->updateSupervisorValue($supervisor, ['id' => $data['supervisor_score_id']]);
+      if ($result > 0) {
+        $this->session->set_flashdata('success', 'Data berhasil di rubah');
+      } else {
+        $this->session->set_flashdata('error', 'Server Data User Sedang sibuk, silahkan coba lagi');
+      }
+    } else {
+      $result = $this->DataPkl->insertSupervisorValue($supervisor);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di tambah');
       } else {

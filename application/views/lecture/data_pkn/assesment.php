@@ -52,9 +52,22 @@
       <div class="col-lg-8 col-md-7">
         <div class="card">
           <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-supervisi-tab" data-toggle="pill" href="#supervisi" role="tab" aria-controls="pills-supervisi" aria-selected="false">Supervisi</a>
-            </li>
+            <!-- cek nilai dari pembimbing lapang  -->
+            <?php if ($supervisorScore) : ?>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-supervisor-score-tab" data-toggle="pill" href="#supervisor-score" role="tab" aria-controls="pills-supervisor-score" aria-selected="false">Pembimbing Lapang</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-supervisi-tab" data-toggle="pill" href="#supervisi" role="tab" aria-controls="pills-supervisi" aria-selected="false">Supervisi</a>
+              </li>
+            <?php else : ?>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-supervisor-score-tab" data-toggle="pill" href="#supervisor-score" role="tab" aria-controls="pills-supervisor-score" aria-selected="false">Pembimbing Lapang</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-supervisi-tab" data-toggle="pill" href="#supervisi" role="tab" aria-controls="pills-supervisi" aria-selected="false">Supervisi</a>
+              </li>
+            <?php endif ?>
             <li class="nav-item">
               <a class="nav-link" id="pills-bimbingan-tab" data-toggle="pill" href="#bimbingan" role="tab" aria-controls="pills-bimbingan" aria-selected="false">Bimbingan</a>
             </li>
@@ -66,15 +79,46 @@
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="supervisi" role="tabpanel" aria-labelledby="pills-supervisi-tab">
-              <div class="card-body">
-                <?php if ($supervision) :
-                  $this->load->view('lecture/data_pkn/supervision/index');
-                else :
-                  $this->load->view('lecture/data_pkn/supervision/add');
-                endif ?>
+            <?php if ($supervisorScore) : ?>
+              <div class="tab-pane fade show active" id="supervisor-score" role="tabpanel" aria-labelledby="pills-supervisor-score-tab">
+                <div class="card-body">
+                  <?php if ($supervisorScore) :
+                    $this->load->view('lecture/data_pkn/supervisor_score/index');
+                  else :
+                    $this->load->view('lecture/data_pkn/supervisor_score/add');
+                  endif ?>
+                </div>
               </div>
-            </div>
+              <div class="tab-pane fade" id="supervisi" role="tabpanel" aria-labelledby="pills-supervisi-tab">
+                <div class="card-body">
+                  <?php if ($supervision) :
+                    $this->load->view('lecture/data_pkn/supervision/index');
+                  else :
+                    $this->load->view('lecture/data_pkn/supervision/add');
+                  endif ?>
+                </div>
+              </div>
+            <?php else : ?>
+              <div class="tab-pane fade show active" id="supervisor-score" role="tabpanel" aria-labelledby="pills-supervisor-score-tab">
+                <div class="card-body">
+                  <?php if ($supervisorScore) :
+                    $this->load->view('lecture/data_pkn/supervisor_score/index');
+                  else :
+                    $this->load->view('lecture/data_pkn/supervisor_score/add');
+                  endif ?>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="supervisi" role="tabpanel" aria-labelledby="pills-supervisi-tab">
+                <div class="card-body">
+                  <?php if ($supervision) :
+                    $this->load->view('lecture/data_pkn/supervision/index');
+                  else :
+                    $this->load->view('lecture/data_pkn/supervision/add');
+                  endif ?>
+                </div>
+              </div>
+            <?php endif ?>
+
             <div class="tab-pane fade" id="bimbingan" role="tabpanel" aria-labelledby="pills-bimbingan-tab">
               <div class="card-body">
                 <?php if ($guidance) {

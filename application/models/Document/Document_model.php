@@ -167,7 +167,7 @@ class Document_model extends CI_Model
 
   public function getBySupervisorScore($id)
   {
-    return $this->db->query("SELECT supervisor_score.*, student.fullname, student.npm, major.name as major_name, prodi.name as prodi_name, company.name as company_name, company.pic FROM supervisor_score JOIN registration ON registration.id = supervisor_score.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN major ON major.id = prodi.major_id JOIN company ON company.id = registration.company_id WHERE supervisor_score.registration_id = '$id'");
+    return $this->db->query("SELECT supervisor_score.*, student.fullname, student.npm, major.name as major_name, prodi.name as prodi_name, company.name as company_name, company.pic FROM supervisor_score RIGHT JOIN registration ON registration.id = supervisor_score.registration_id RIGHT JOIN student ON student.id = registration.student_id RIGHT JOIN prodi ON prodi.id = student.prodi_id RIGHT JOIN major ON major.id = prodi.major_id RIGHT JOIN company ON company.id = registration.company_id WHERE registration.id = '$id'");
   }
 
   public function getSupervisionValue($id)

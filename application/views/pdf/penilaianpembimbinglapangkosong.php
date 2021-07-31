@@ -10,10 +10,15 @@
         body {
             font-family: 'Times New Roman', Times, serif;
         }
+
+        td {
+            padding: 8px;
+        }
     </style>
 </head>
 
 <body>
+    <br>
     <br>
     <br>
     <br>
@@ -150,16 +155,8 @@
                 <?= $data->pic ?>
             </span>
             <br>
-
-
-
         </p>
-        <p style="padding-left: 400px;"></p>
-        <p style="padding-left: 400px;">&nbsp;</p>
-        <p style="padding-left: 400px;">&nbsp;</p>
-        <p style="padding-left: 400px;"></p>
-        <p style="padding-left: 400px;"></p>
-        <div style="padding-left: 440px;">&nbsp;</div>
+
     </div>
 </body>
 

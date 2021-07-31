@@ -12,13 +12,12 @@ class Supervisor_data_pkn extends CI_Controller
     $this->redirecUrl = 'supervisor/data_pkn';
   }
 
-  public function index($academic_year_id = null)
+  public function index()
   {
     $data = [
       'title'         => 'Data PKN',
-      'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data PKN',
-      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->listForScore()->result(),
     ];
     $page = '/supervisor/data_pkn/index';
     pageBackend($this->role, $page, $data);

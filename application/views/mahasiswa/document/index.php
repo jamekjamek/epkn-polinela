@@ -106,7 +106,7 @@
                       <td>5</td>
                       <td>Form Hasil Penilaian Pembimbing Lapang</td>
                       <td>
-                        <a href="<?= site_url('pdf/penilaianpembimbinglapang') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                        <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . encodeEncrypt($isCheck['id'])) ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
                   <?php

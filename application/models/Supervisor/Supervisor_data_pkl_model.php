@@ -16,6 +16,13 @@ class Supervisor_data_pkl_model extends CI_Model
     $this->tableSupervisorScore = 'supervisor_score';
   }
 
+  public function listForScore()
+  {
+    $this->_join();
+    $this->db->where('e.username', $this->session->userdata('user'));
+    return $this->db->get($this->table . ' a');
+  }
+
   public function list()
   {
     $this->_join();

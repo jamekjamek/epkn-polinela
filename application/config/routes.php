@@ -261,6 +261,7 @@ $route['dosen/data_pkn/assessment/(:any)']          = 'lecture_data_pkn/assessme
 $route['dosen/data_pkn/assessment/supervision/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervision/$1';
 $route['dosen/data_pkn/assessment/guidance/(:any)'] = 'lecture_data_pkn/saveAssesmentGuidance/$1';
 $route['dosen/data_pkn/assessment/test_score/(:any)'] = 'lecture_data_pkn/saveAssesmentFinalTest/$1';
+$route['dosen/data_pkn/assessment/supervisor/(:any)'] = 'lecture_data_pkn/saveAssesmentSupervisor/$1';
 
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
 $route['dosen/activity/daily_log/detail/(:any)']    = 'lecture_activity/dailyLogDetail/$1';

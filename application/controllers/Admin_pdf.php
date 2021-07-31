@@ -439,8 +439,6 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("12.Lembar Isian PKN");
     $mpdf->SetDisplayMode('fullpage');
-
-
     $mpdf->WriteHTML($bodypage1);
     $mpdf->AddPage();
     $mpdf->WriteHTML($bodypage2);

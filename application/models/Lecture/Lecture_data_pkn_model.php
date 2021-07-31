@@ -20,6 +20,7 @@ class Lecture_data_pkn_model extends CI_Model
     $this->tableVFinalScore = 'v_final_score';
     $this->tableProdi = 'prodi';
     $this->tableRoom = 'room';
+    $this->tableSupervisorScore = 'supervisor_score';
   }
 
   public function list($academic_year_id)
@@ -32,6 +33,18 @@ class Lecture_data_pkn_model extends CI_Model
       $this->db->where('f.status', 1);
     }
     $this->db->group_by('a.group_id');
+    return $this->db->get($this->table . ' a');
+  }
+
+  public function listForScore($academic_year_id)
+  {
+    $this->_join();
+    $this->db->where('d.nip', $this->session->userdata('user'));
+    if ($academic_year_id) {
+      $this->db->where('f.id', $academic_year_id);
+    } else {
+      $this->db->where('f.status', 1);
+    }
     return $this->db->get($this->table . ' a');
   }
 
@@ -167,5 +180,23 @@ class Lecture_data_pkn_model extends CI_Model
   public function getVFInalScore($id)
   {
     return $this->db->get_where($this->tableVFinalScore, $id);
+  }
+
+  public function getSupervisorScore($id)
+  {
+    return $this->db->get_where($this->tableSupervisorScore, $id);
+  }
+
+  public function insertSupervisorValue($data)
+  {
+    $this->db->set('id', 'UUID()', FALSE);
+    $this->db->insert($this->tableSupervisorScore, $data);
+    return $this->db->affected_rows();
+  }
+
+  public function updateSupervisorValue($data, $where)
+  {
+    $this->db->update($this->tableSupervisorScore, $data, $where);
+    return $this->db->affected_rows();
   }
 }
