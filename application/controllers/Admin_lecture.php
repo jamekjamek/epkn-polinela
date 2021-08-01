@@ -185,6 +185,7 @@ class Admin_lecture extends CI_Controller
                 'nip'           => $row->getCellAtIndex(1),
                 'email'         => $row->getCellAtIndex(2),
                 'major_id'      => $row->getCellAtIndex(3),
+                'prodi_id'      => $row->getCellAtIndex(4),
               );
               $this->Lecture->importData($dataInputLecture);
               $getRole            = $this->Config->getRoleBy('role', ['name' => 'Dosen']);

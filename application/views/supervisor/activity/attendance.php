@@ -35,16 +35,6 @@
             <h3 class="text-uppercase"><?= $title; ?></h3>
           </div>
           <div class="card-body">
-            <div class="col-12 table-responsive mt-3">
-              <div class="row mb-4">
-                <div class="col-3">
-                  <label for="name">Tahun Akademik</label>
-                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="planning">
-                    <option value="">-- Pilih Tahun Akademik --</option>
-                  </select>
-                </div>
-              </div>
-            </div>
             <div class="dt-responsive">
               <table id="simpletable" class="table table-hover" style="padding: 20px;">
                 <thead>

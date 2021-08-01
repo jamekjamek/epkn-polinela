@@ -89,7 +89,7 @@
   <div>
     <br>
     <br>
-    <p style="padding-left: 400px;">
+    <div style="padding-left: 400px;">
       <span>
         a.n Direktur
       </span>
@@ -98,10 +98,7 @@
         Pembantu Direktur I,
       </span>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
       <br>
       <span>
         Dwi Puji Hartono
@@ -113,7 +110,7 @@
       </span>
 
 
-    </p>
+    </div>
     <p style="padding-left: 400px;"></p>
     <p style="padding-left: 400px;">&nbsp;</p>
     <p style="padding-left: 400px;">&nbsp;</p>

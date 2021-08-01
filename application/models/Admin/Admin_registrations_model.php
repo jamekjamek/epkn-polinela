@@ -67,11 +67,9 @@ class Admin_registrations_model extends CI_Model
 
   public function getDataPeriode()
   {
-    $today  = date('Y-m-d');
-    $this->db->where('finish_time >=', $today);
-    $this->db->where('type =', 3);
-    $this->db->limit(1);
-    $this->db->order_by('finish_time', 'ASC');
+    $this->db->select('*');
+    $this->db->join($this->tableAcademicYear, 'academic_year.id=periode.academic_year_id');
+    $this->db->where('academic_year.status', 1);
     return $this->db->get($this->tablePeriode);
   }
 

@@ -56,6 +56,10 @@ class Document_model extends CI_Model
   {
     return $this->db->get_where($this->tableLetterConfig, $data);
   }
+  
+  public function getSuratTugas($data) {
+      return $this->db->query("SELECT student.fullname as student, prodi.name as prodi_name, student.npm FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id WHERE registration.group_id = '$data'");
+  }
 
   public function getRegistrationDataBy($data, $leader = null)
   {
@@ -75,6 +79,8 @@ class Document_model extends CI_Model
       $this->db->order_by('d.npm', 'ASC');
     }
     $this->db->group_by('d.npm');
+    $this->db->group_by('a.id');
+    $this->db->group_by('g.name');
     return $this->db->get($this->tableRegistration . ' a');
   }
 

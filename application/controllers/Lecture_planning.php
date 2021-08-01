@@ -18,7 +18,7 @@ class Lecture_planning extends CI_Controller
       'title'         => 'Data Program',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data program',
-      'dataPkl'      => $this->DataPkl->list($academic_year_id)->result(),
+      'dataPkl'      => $this->DataPkl->listnew($academic_year_id)->result(),
     ];
     $page = '/lecture/planning/index';
     pageBackend($this->role, $page, $data);

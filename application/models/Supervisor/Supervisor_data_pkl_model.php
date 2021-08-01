@@ -20,6 +20,8 @@ class Supervisor_data_pkl_model extends CI_Model
   {
     $this->_join();
     $this->db->where('e.username', $this->session->userdata('user'));
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
     return $this->db->get($this->table . ' a');
   }
 
@@ -31,10 +33,25 @@ class Supervisor_data_pkl_model extends CI_Model
     return $this->db->get($this->table . ' a');
   }
 
+  public function listNew()
+  {
+    $this->_join();
+    $this->db->where('e.username', $this->session->userdata('user'));
+    $this->db->where('a.status', 'Ketua');
+    $this->db->group_by('a.group_id');
+    $this->db->group_by('a.id');
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
+    return $this->db->get($this->table . ' a');
+  }
+
+
   public function listByStudent()
   {
     $this->_join();
     $this->db->where('e.username', $this->session->userdata('user'));
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
     $this->db->group_by('a.id');
     return $this->db->get($this->table . ' a');
   }
@@ -47,13 +64,14 @@ class Supervisor_data_pkl_model extends CI_Model
 
   private function _join()
   {
-    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,c.no_hp,c.address,d.name as lecture_name,e.username pl,g.name prodi_name');
+    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,c.no_hp,c.address,d.name as lecture_name,e.username pl,g.name prodi_name,h.nilai_total as score');
     $this->db->join($this->tableCompany . ' b', 'a.company_id=b.id', 'LEFT');
     $this->db->join($this->tableStudent . ' c', 'a.student_id=c.id', 'LEFT');
     $this->db->join($this->tableLecture . ' d', 'a.lecture_id=d.id', 'LEFT');
     $this->db->join($this->tableSupervisor . ' e', 'a.supervisor_id=e.id', 'LEFT');
     $this->db->join($this->tableAcademicYear . ' f', 'a.academic_year_id=f.id');
     $this->db->join($this->tableProdi . ' g', 'g.id=a.prodi_id');
+    $this->db->join($this->tableSupervisorScore . ' h', 'a.id=h.registration_id', 'LEFT');
   }
 
   public function getBySupervisorScore($id)

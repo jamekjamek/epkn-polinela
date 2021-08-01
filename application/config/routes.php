@@ -19,6 +19,11 @@ $route['admin/config/academic_year/add']            = 'admin_academic_year/creat
 $route['admin/config/academic_year/edit/(:any)']    = 'admin_academic_year/update/$1';
 $route['admin/config/academic_year/delete/(:any)']  = 'admin_academic_year/delete/$1';
 
+//PERIODE
+$route['admin/pkn_period']                          = 'Admin_pkn_period';
+$route['admin/pkn_period/add']                      = 'Admin_pkn_period/create';
+$route['admin/pkn_period/edit/(:any)']              = 'Admin_pkn_period/update/$1';
+
 //LETTER
 $route['admin/letter']                              = 'admin_letter';
 $route['admin/letter/add']                          = 'admin_letter/add';
@@ -124,7 +129,9 @@ $route['pdf/logharian/(:any)']                      = 'admin_pdf/dailyLog/$1';
 $route['pdf/nilaidosenpembimbing/(:any)']           = 'admin_pdf/guidanceValue/$1';
 $route['pdf/kesediaanperusahaan']                   = 'admin_pdf/kesediaanperusahaan';
 $route['pdf/kesediaanperusahaan/(:any)']            = 'admin_pdf/kesediaanperusahaan/$1';
+$route['pdf/dosenpembimbing']                       = 'admin_pdf/dosenpembimbing';
 $route['pdf/dosenpembimbing/(:any)']                = 'admin_pdf/dosenpembimbing/$1';
+$route['pdf/pembimbinglapang']                      = 'admin_pdf/pembimbinglapang';
 $route['pdf/pembimbinglapang/(:any)']               = 'admin_pdf/pembimbinglapang/$1';
 $route['pdf/nilaiakhirpkn']                         = 'admin_pdf/nilaiakhirpkl';
 $route['pdf/kehadiran/(:any)']                      = 'admin_pdf/kehadiran/$1';
@@ -166,7 +173,9 @@ $route['admin/master/planning_attachment/detail']   = 'admin_planning_attachment
 
 // RECAP
 $route['admin/recap/advisers']                      = 'admin_recap/adviser';
+$route['admin/recap/advisers/academic/(:any)']      = 'admin_recap/adviser/$1';
 $route['admin/recap/supervisor']                    = 'admin_recap/supervisor';
+$route['admin/recap/supervisor/academic/(:any)']    = 'admin_recap/supervisor/$1';
 $route['admin/recap/daily_log']                     = 'admin_recap/dailyLog';
 $route['admin/recap/daily_log/detail/(:any)']       = 'admin_recap/dailyLogDetail/$1';
 $route['admin/recap/daily_log/detail_more']         = 'admin_recap/dailyLogDetailMore';
@@ -264,7 +273,7 @@ $route['dosen/data_pkn/view_video']                       = 'recap_controller/vi
 $route['dosen/activity/daily_log']                  = 'lecture_activity/dailyLog';
 $route['dosen/activity/daily_log/detail/(:any)']    = 'lecture_activity/dailyLogDetail/$1';
 $route['dosen/activity/daily_log/detail_more']      = 'recap_controller/dailyLogDetailMore';
-$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_data_pkn/dailyLog/$1';
+$route['dosen/activity/daily_log/academic_year/(:any)']  = 'lecture_activity/dailyLog/$1';
 $route['dosen/activity/attendance']                 = 'lecture_activity/attendance';
 $route['dosen/activity/attendance/detail/(:any)']   = 'lecture_activity/attendanceDetail/$1';
 $route['dosen/activity/attendance/academic_year/(:any)']  = 'lecture_activity/attendance/$1';
@@ -275,6 +284,7 @@ $route['dosen/quesioner']                           = 'quesioner';
 /* ================================= SUPERVISOR ROLE ================================= */
 
 $route['supervisor/dashboard']                      = 'supervisor_dashboard';
+$route['supervisor/profile']                        = 'supervisor_profile';
 
 $route['supervisor/planning']                       = 'supervisor_planning';
 $route['supervisor/planning/detail/(:any)']         = 'supervisor_planning/detail/$1';

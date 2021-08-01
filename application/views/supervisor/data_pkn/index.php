@@ -23,11 +23,6 @@
         </div>
       </div>
     </div>
-    <?php if ($this->session->flashdata('success')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
-    <?php elseif ($this->session->flashdata('error')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
-    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -42,8 +37,7 @@
                     <th>No</th>
                     <th>Mahasiswa</th>
                     <th>Dosen Pembimbing</th>
-                    <th>Lokasi PKN</th>
-                    <th>Waktu PKL</th>
+                    <th>Nilai</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -61,14 +55,12 @@
                         <?= $row->status ?>
                       </td>
                       <td><?= $row->lecture_name ?></td>
-                      <td><?= $row->company_name; ?></td>
                       <td>
-                        <span class="badge badge-pill badge-primary mb-1">
-                          <?= date('d-m-Y', strtotime($row->start_date)) ?>
-                        </span>
-                        s.d <span class="badge badge-pill badge-success mb-1">
-                          <?= date('d-m-Y', strtotime($row->finish_date)) ?>
-                        </span>
+                        <?php if ($row->score) {
+                          echo $row->score;
+                        } else {
+                          echo '<small class="text-muted">Nilai belum diinput</small>';
+                        } ?>
                       </td>
                       <td>
                         <a href="<?= base_url('supervisor/data_pkn/assessment/' . encodeEncrypt($row->id)) ?>" class="btn btn-success"><i class="ik ik-check-square" title="Penilaian PKL"></i><span>Penilaian</span></a>

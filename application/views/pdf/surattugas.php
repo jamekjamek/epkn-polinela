@@ -81,10 +81,7 @@
         Pembantu Direktur I,
       </span>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
       <br>
       <span>
         Dwi Puji Hartono

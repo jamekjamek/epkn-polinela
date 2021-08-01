@@ -23,85 +23,63 @@
         </div>
       </div>
     </div>
-    <?php if ($this->session->flashdata('success')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
-    <?php elseif ($this->session->flashdata('error')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
-    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header d-block">
-            <div class="d-flex flex-grow-1 min-width-zero card-content">
-              <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                <h3 class="text-uppercase"><?= $title; ?></h3>
-              </div>
-            </div>
+            <h3 class="text-uppercase"><?= $title; ?></h3>
           </div>
           <div class="card-body">
-            <div class="row">
-              <div class="col-sm-6">
-                <form action="" method="GET">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="prodi">Pilih Prodi</label>
-                        <select class="get-prodi form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="prodi" id="prodi" style="width: 100%" required>
-                          <option></option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="btn-group">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
-                        <?php if ($this->input->get('prodi')) : ?>
-                          <a href="<?= base_url('admin/recap/supervisor'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/pembimbinglapang/' . $this->input->get('prodi')) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export</a>
-                        <?php endif; ?>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+            <div class="col-12 table-responsive mt-3">
+              <div class="row mb-4">
+                <div class="col-3">
+                  <label for="name">Tahun Akademik</label>
+                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="getacademicyear" id="getacademicyear" data-menu="recap/supervisor" data-role="<?= $this->session->userdata('user') ?>">
+                    <option value="">-- Pilih Tahun Akademik --</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <a href="<?= site_url('pdf/pembimbinglapang/' . $this->uri->segment(5)) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export</a>
+                </div>
               </div>
             </div>
-            <?php if ($this->input->get('prodi')) : ?>
-              <div class="table-responsive">
-                <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                  <thead>
+            <div class="table-responsive">
+              <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Periode PKL</th>
+                    <th>Mahasiswa</th>
+                    <th>Lokasi</th>
+                    <th>Pembimbing Lapang</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $i = 1;
+                  foreach ($supervisors as $supervisor) :
+                  ?>
                     <tr>
-                      <th>No</th>
-                      <th>Periode PKL</th>
-                      <th>Mahasiswa</th>
-                      <th>Lokasi</th>
-                      <th>Pembimbing Lapang</th>
+                      <td><?= $i; ?></td>
+                      <td><?= $supervisor->academic_year; ?></td>
+                      <td>
+                        <strong><?= $supervisor->npm; ?></strong>
+                        <br>
+                        <?= $supervisor->fullname; ?> <br>
+                        <?= $supervisor->prodi_name; ?>
+                      </td>
+                      <td><?= $supervisor->company_name; ?></td>
+                      <td>
+                        <?= $supervisor->pic; ?> <br>
+                        <?= $supervisor->norek; ?> <br>
+                        <?= $supervisor->bank_name; ?>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($supervisors as $supervisor) :
-                    ?>
-                      <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $supervisor->academic_year; ?></td>
-                        <td>
-                          <strong><?= $supervisor->npm; ?></strong>
-                          <br>
-                          <?= $supervisor->fullname; ?>
-                        </td>
-                        <td><?= $supervisor->company_name; ?></td>
-                        <td>
-                          <?= $supervisor->pic; ?> <br>
-                          <?= $supervisor->norek; ?> <br>
-                          <?= $supervisor->bank_name; ?>
-                        </td>
-                      </tr>
-                    <?php $i++;
-                    endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-            <?php endif; ?>
+                  <?php $i++;
+                  endforeach; ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

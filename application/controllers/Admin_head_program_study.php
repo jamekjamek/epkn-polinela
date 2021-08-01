@@ -20,8 +20,8 @@ class Admin_head_program_study extends CI_Controller
     {
         $allKaprodi           = $this->Kaprodi->getAllData()->result();
         $data = [
-            'title'         => 'Data Kepala Program Studi',
-            'desc'          => 'Berfungsi untuk melihat Data Kepala Program Studi',
+            'title'         => 'Data Ketua Program Studi',
+            'desc'          => 'Berfungsi untuk melihat Data Ketua Program Studi',
             'allKaprodi'    => $allKaprodi
         ];
 
@@ -34,8 +34,8 @@ class Admin_head_program_study extends CI_Controller
         $this->_validation();
         if ($this->form_validation->run() === false) {
             $data = [
-                'title'         => 'Tambah Data Kepala Program Studi',
-                'desc'          => 'Berfungsi untuk menambah Data Ketua Jurusan',
+                'title'         => 'Tambah Data Ketua Program Studi',
+                'desc'          => 'Berfungsi untuk menambah Ketua Program Studi',
                 'lectures'      => $this->Kaprodi->getLecture()->result()
             ];
             $page = '/admin/kaprodi/create';

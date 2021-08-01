@@ -62,16 +62,12 @@
                       <th>Sub Kegiatan</th>
                       <th>Jumlah Jam</th>
                       <th>Persetujuan</th>
-                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $i = 1;
                     foreach ($plannings as $row) : ?>
                       <tr>
-                        <?php if ($row->approval == 2) : ?>
-                          <input type="hidden" name="planning[]" value="<?= $row->id; ?>">
-                        <?php endif ?>
                         <td><?= $i++; ?></td>
                         <td><?= $row->learning_achievement; ?></td>
                         <td><?= $row->learning_achievement_sub; ?></td>
@@ -87,45 +83,9 @@
                             echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
                           } ?>
                         </td>
-                        <td>
-                          <?php if ($row->approval == 2) : ?>
-                            <div class="checkbox-zoom zoom-primary">
-                              <label>
-                                <input type="checkbox" value="1" name="approval[]">
-                                <span class="cr">
-                                  <i class="cr-icon ik ik-check txt-primary"></i>
-                                </span>
-                                <span>Verifikasi</span>
-                              </label>
-                            </div>
-                            <div class="checkbox-zoom zoom-danger">
-                              <label>
-                                <input type="checkbox" value="3" name="approval[]">
-                                <span class="cr">
-                                  <i class="cr-icon ik ik-check txt-danger"></i>
-                                </span>
-                                <span>Tolak</span>
-                              </label>
-                            </div>
-                          <?php endif ?>
-                        </td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
-                  <?php if ($row->approval == 2) : ?>
-                    <tfoot>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <button class="btn btn-success" name="yes" value="yes" type="submit">Simpan</button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                  <?php endif ?>
                 </table>
               </form>
             </div>

@@ -108,7 +108,7 @@
                       <td></td>
                       <td></td>
                       <td>
-                        <button class="btn btn-outline-primary" type="submit">Verifikasi</button>
+                        <button class="btn btn-outline-primary" type="submit">Simpan</button>
                       </td>
                     </tr>
                   </tfoot>

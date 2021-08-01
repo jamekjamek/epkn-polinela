@@ -5,9 +5,7 @@ class Lecture_config extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->role = 'Dosen';
     $this->load->model('Lecture/Lecture_config_model', 'Config');
-    cek_login('Dosen');
   }
 
   public function getAcademicYear()

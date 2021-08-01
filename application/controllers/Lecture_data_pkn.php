@@ -70,7 +70,7 @@ class Lecture_data_pkn extends CI_Controller
       'nilai_total'       => number_format($data['total'], 2, '.', ''),
       'updated_at'        => date('Y-m-d H:i:s')
     ];
-    if ($data['supervision_id']) {
+    if (@$data['supervision_id']) {
       $result = $this->DataPkl->updateSupervisionValue($supervision, ['id' => $data['supervision_id']]);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di rubah');
@@ -134,7 +134,7 @@ class Lecture_data_pkn extends CI_Controller
       'nilai_total'       => number_format($data['total'], 2, '.', ''),
       'updated_at'        => date('Y-m-d H:i:s')
     ];
-    if ($data['guidance_id']) {
+    if (@$data['guidance_id']) {
       $result = $this->DataPkl->updateGuidanceValue($guidance, ['id' => $data['guidance_id']]);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di rubah');
@@ -172,7 +172,7 @@ class Lecture_data_pkn extends CI_Controller
       'keterangan'        => $data['keterangan'],
       'updated_at'        => date('Y-m-d H:i:s')
     ];
-    if ($data['final_score_id']) {
+    if (@$data['final_score_id']) {
       $result = $this->DataPkl->updateFinalTestValue($finalTest, ['id' => $data['final_score_id']]);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di rubah');
@@ -215,7 +215,7 @@ class Lecture_data_pkn extends CI_Controller
       'nilai_total'       => number_format($data['total'], 2, '.', ''),
       'updated_at'        => date('Y-m-d H:i:s')
     ];
-    if ($data['supervisor_score_id']) {
+    if (@$data['supervisor_score_id']) {
       $result = $this->DataPkl->updateSupervisorValue($supervisor, ['id' => $data['supervisor_score_id']]);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di rubah');

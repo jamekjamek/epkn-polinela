@@ -46,7 +46,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
               </div>
               <div class="col pl-5">
                 <a href="#!">
-                  <h6>Mahasiswa Bimbingan PKN</h6>
+                  <h6>Mahasiswa Bimbingan PKN Aktif</h6>
                 </a>
                 <?php if ($students != null) : ?>
                   <div class="col-12 table-responsive mt-3">
@@ -56,9 +56,8 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                           <th>No</th>
                           <th>Mahasiswa</th>
                           <th>Pembimbing Lapang</th>
-                          <th>Periode PKN</th>
-                          <th>Laporan</th>
-                          <th>Video</th>
+                          <th>Lokasi</th>
+                          <th>Berkas</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -74,11 +73,23 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                               <?= $student->fullname ?> -
                               <?= $student->status ?>
                             </td>
-                            <td><?= $student->pic; ?></td>
-                            <td><?= $student->academic_year; ?></td>
-                            <td><?= $student->file; ?></td>
                             <td>
-                              <button class="btn btn-warning view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($student->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="data_pkn/view_video"><i class="ik ik-youtube"></i></button>
+                              <?= $student->pic; ?> <br>
+                              Telp : <?= $student->telp; ?>
+                            </td>
+                            <td><?= $student->company_name; ?></td>
+                            <td>
+                              <?php if ($student->file) : ?>
+                                <div class="btn-group">
+                                  <a href="<?= base_url('assets/uploads/laporan/' . $student->file) ?>" class="btn btn-outline-success"><i class="fa fa-file-pdf"></i></a>
+                                  <button class="btn btn-outline-danger view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($student->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="data_pkn/view_video"><i class="ik ik-youtube"></i></button>
+                                </div>
+                              <?php else :  ?>
+                                <div class="btn-group">
+                                  <a href="" class="btn btn-outline-success disabled"><i class="fa fa-file-pdf"></i></a>
+                                  <button class="btn btn-outline-danger view-video disabled"><i class="ik ik-youtube"></i></button>
+                                </div>
+                              <?php endif ?>
                             </td>
                           </tr>
                         <?php endforeach; ?>
@@ -86,7 +97,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                     </table>
                   </div>
                 <?php else :
-                  echo '<small class="text-mute">Anda belum terdaftar sebagai dosen pembimbing</small>';
+                  echo '<small class="text-mute">Anda belum terdaftar sebagai dosen pembimbing atau mahasiswa masih dalam tahap verifikasi pembekalan</small>';
                 endif; ?>
               </div>
             </div>

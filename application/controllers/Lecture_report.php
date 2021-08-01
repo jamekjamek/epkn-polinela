@@ -28,7 +28,7 @@ class Lecture_report extends CI_Controller
   public function detailReportSupervision($id)
   {
     $decode         = decodeEncrypt($id);
-    $detail         = $this->Reports->getSupervisionReport(['supervision_report.id' => $decode])->row();
+    $detail         = $this->Reports->getSupervisionReport($decode)->row();
     if ($detail) {
       $data = [
         'title'     => 'Detail Data Laporan Supervisi',
@@ -49,7 +49,7 @@ class Lecture_report extends CI_Controller
   public function updateReportSupervision($id, $type)
   {
     $decodeId   = $this->encrypt->decode($id, keyencrypt());
-    $detail     = $this->Reports->getSupervisionReport(['supervision_report.group_id' => $decodeId])->row();
+    $detail     = $this->Reports->getSupervisionReport($decodeId)->row();
     $this->_validation('supervision');
     if ($this->form_validation->run() == false && $type == 'edit') {
       if ($detail->time) {

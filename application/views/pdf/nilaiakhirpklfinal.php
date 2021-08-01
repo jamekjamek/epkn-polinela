@@ -84,7 +84,7 @@
     <div style="padding-left: 400px;"><?= date('d F Y') ?></div>
     <p style="padding-left: 400px;">
       <span>
-        Kepala Program Studi
+        Ketua Program Studi
       </span>
       <br>
       <span style="text-transform:capitalize;">

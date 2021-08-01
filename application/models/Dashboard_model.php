@@ -82,7 +82,7 @@ class Dashboard_model extends CI_Model
 
   public function getGuidanceStudentByLecturer()
   {
-    return $this->db->query("SELECT registration.id, registration.status, registration.file, registration.youtube_link, student.fullname, student.npm,academic_year.name as academic_year, company.name as company_name, company.pic FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE lecture.nip = '" . $this->session->userdata('user') . "'");
+    return $this->db->query("SELECT registration.id, registration.status, registration.file, registration.youtube_link, student.fullname, student.npm,academic_year.name as academic_year, company.name as company_name, company.pic, company.telp FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE lecture.nip = '" . $this->session->userdata('user') . "' AND academic_year.status = 1 AND (student.status = 'active' OR student.status = 'graduated') ORDER BY registration.group_id");
   }
 
   public function getGuidanceStudentBySupervisor()

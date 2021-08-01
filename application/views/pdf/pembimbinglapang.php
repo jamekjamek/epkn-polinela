@@ -23,9 +23,7 @@
   <p style="text-align: center;">
     <strong style="font-size:18px">PEMBIMBING LAPANG PKN</strong>
     <br>
-    <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= @$row->prodi_name; ?></span>
-    <br>
-    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= @$row->academic_year; ?></span>
+    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= @$row->name; ?></span>
   </p>
   <p style="text-align: center;">&nbsp;</p>
   <table style="border-collapse: collapse; width: 100%; height: 144px; padding:20px" border="1">
@@ -56,7 +54,7 @@
         <?php endforeach; ?>
       <?php else : ?>
         <tr style="height: 18px;">
-          <td style="height: 50px; text-align:center" colspan="6">
+          <td style="height: 50px; text-align:center" colspan="7">
             <strong>
               Data Masih Kosong
             </strong>

@@ -23,9 +23,7 @@
   <p style="text-align: center;">
     <strong style="font-size:18px">DOSEN PEMBIMBING PKN</strong>
     <br>
-    <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= @$row->prodi_name; ?></span>
-    <br>
-    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= @$row->academic_year; ?></span>
+    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= @$row->name; ?></span>
   </p>
   <p style="text-align: center;">&nbsp;</p>
   <table style="border-collapse: collapse; width: 100%; height: 144px; padding:20px" border="1">
@@ -34,6 +32,7 @@
         <td style="width: 5%; text-align: center; height: 18px;"><strong>No</strong></td>
         <td style="width: 18%; text-align: center; height: 18px;"><strong>Nama</strong></td>
         <td style="width: 10%; text-align: center; height: 18px;"><strong>NPM</strong></td>
+        <td style="width: 20%; text-align: center; height: 18px;"><strong>Program Studi</strong></td>
         <td style="width: 23%; text-align: center; height: 18px;"><strong>Dosen Pembimbing</strong></td>
         <td style="width: 14%; text-align: center; height: 18px;"><strong>NIP</strong></td>
         <td style="width: 20%; text-align: center; height: 18px;"><strong>Tempat PKN</strong></td>
@@ -47,6 +46,7 @@
             <td style="height: 18px; text-align:center"><?= $i++; ?></td>
             <td style="height: 18px; padding:5px"><?= $lecture->fullname; ?></td>
             <td style="height: 18px; text-align:center"><?= $lecture->npm; ?></td>
+            <td style="height: 18px; text-align:center"><?= $lecture->prodi_name; ?></td>
             <td style="height: 18px; text-align:center"><?= $lecture->lecture_name; ?></td>
             <td style="height: 18px; text-align:center"><?= $lecture->nip; ?></td>
             <td style="height: 18px; text-align:center"><?= $lecture->company_name; ?></td>
@@ -54,7 +54,7 @@
         <?php endforeach; ?>
       <?php else : ?>
         <tr style="height: 18px;">
-          <td style="height: 50px; text-align:center" colspan="6">
+          <td style="height: 50px; text-align:center" colspan="7">
             <strong>
               Data Masih Kosong
             </strong>

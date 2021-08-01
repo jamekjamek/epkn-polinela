@@ -33,6 +33,26 @@ class Lecture_data_pkn_model extends CI_Model
       $this->db->where('f.status', 1);
     }
     $this->db->group_by('a.group_id');
+    $this->db->group_by('a.id');
+    return $this->db->get($this->table . ' a');
+  }
+
+  public function listnew($academic_year_id)
+  {
+    $this->_join();
+    $this->db->where('d.nip', $this->session->userdata('user'));
+    if ($academic_year_id) {
+      $this->db->where('f.id', $academic_year_id);
+    } else {
+      $this->db->where('f.status', 1);
+    }
+    $this->db->where('a.status', 'Ketua');
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
+    $this->db->group_by('a.group_id');
+    $this->db->group_by('a.id');
+    $this->db->group_by('g.result_final_score');
+    $this->db->group_by('g.HM');
     return $this->db->get($this->table . ' a');
   }
 
@@ -45,6 +65,8 @@ class Lecture_data_pkn_model extends CI_Model
     } else {
       $this->db->where('f.status', 1);
     }
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
     return $this->db->get($this->table . ' a');
   }
 
@@ -57,7 +79,11 @@ class Lecture_data_pkn_model extends CI_Model
     } else {
       $this->db->where('f.status', 1);
     }
+    $this->db->where('c.status', 'active');
+    $this->db->or_where('c.status', 'graduated');
     $this->db->group_by('a.id');
+    $this->db->group_by('g.result_final_score');
+    $this->db->group_by('g.HM');
     return $this->db->get($this->table . ' a');
   }
 
@@ -69,12 +95,13 @@ class Lecture_data_pkn_model extends CI_Model
 
   private function _join()
   {
-    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,c.no_hp,c.address,d.name as lecture_name,e.username pl');
+    $this->db->select('a.*,b.id company_id, b.pic, b.telp, b.name company_name,c.fullname,c.npm,c.email student_email,c.no_hp,c.address,d.name as lecture_name,e.username pl, g.result_final_score as score, g.HM');
     $this->db->join($this->tableCompany . ' b', 'a.company_id=b.id', 'LEFT');
     $this->db->join($this->tableStudent . ' c', 'a.student_id=c.id', 'LEFT');
     $this->db->join($this->tableLecture . ' d', 'a.lecture_id=d.id', 'LEFT');
     $this->db->join($this->tableSupervisor . ' e', 'a.supervisor_id=e.id', 'LEFT');
     $this->db->join($this->tableAcademicYear . ' f', 'a.academic_year_id=f.id');
+    $this->db->join($this->tableFinalScore . ' g', 'a.id=g.registration_id', 'LEFT');
   }
 
   public function getAcademicYears($searchTerm = null)

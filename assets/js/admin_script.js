@@ -261,95 +261,6 @@ $(document).ready(function () {
 		});
 	});
 
-	//GA KEPAKE SEMENTARA
-	// var leaderValue = null;
-	// $('#search-member-button').on('click', () => {
-	// 	leaderValue = $('.get-leader').val();
-	// 	var prodiId = $('.get-prodi').val();
-	// 	if (leaderValue === "") {
-	// 		// alertCustom('test','warning')
-	// 		alertCustom('Pilih Ketua Terlebih dahulu', 'warning');
-	// 	} else {
-	// 		$.ajax({
-	// 			url: `${base_url}admin/registrations/member`,
-	// 			dataType: "JSON",
-	// 			method: "POST",
-	// 			data: {
-	// 				leaderId: leaderValue,
-	// 				prodiId: prodiId
-	// 			},
-	// 			beforeSend: () => {
-	// 				$('.loadinggif').removeClass('d-none');
-	// 			},
-	// 			success: (data) => {
-	// 				$('.dt-responsive').removeClass('d-none');
-	// 				$('.loadinggif').addClass('d-none');
-	// 				$("#member-table").DataTable();
-	// 				$('#get-data-member').html(data);
-	// 			}
-	// 		});
-	// 	}
-	// });
-
-	// $('#btn-save-register').on('click', () => {
-	// 	var quantity = $('#btn-save-register').data('quantity');
-	// 	var startDate = $('#start-date').val();
-	// 	var finishDate = $('#finish-date').val();
-	// 	var companyId = $('.get-companies').val();
-	// 	var memberId = [];
-	// 	$(':checkbox:checked').each(function (i) {
-	// 		memberId[i] = $(this).val();
-	// 	});
-	// 	if (startDate === "" || finishDate === "" || companyId === "") {
-	// 		alertCustom('Lengkapi form pengisian', 'warning');
-	// 	} else {
-	// 		if (memberId.length + 1 !== quantity) {
-	// 			alertCustom('jumlah per kelompok melebihi kuota', 'warning');
-	// 		} else {
-	// 			if (finishDate < startDate || finishDate == startDate) {
-	// 				alertCustom('Cek kembali pengisian tanggal', 'warning');
-	// 			} else {
-	// 				//cek perusahaan sudah terdaftar atau belum
-
-	// 				var data = {
-	// 					leaderId: leaderValue,
-	// 					companyId: companyId,
-	// 					memberId: memberId,
-	// 					startDate: startDate,
-	// 					finishDate: finishDate
-	// 				};
-	// 				$.ajax({
-	// 					url: `${base_url}admin/registrations/addgroup`,
-	// 					dataType: "JSON",
-	// 					method: "POST",
-	// 					data: data,
-	// 					beforeSend: () => {
-	// 						alertCustom('Data sedang kami proses, mohon tunggu', 'info');
-	// 					},
-	// 					success: (data) => {
-	// 						if (data.message === 'success') {
-	// 							alertCustom('Data Berhasil di simpan, mohon tunggu sebentar', 'success');
-	// 							setTimeout(function () {
-	// 								window.location.href = `${base_url}config/historyadd`;
-	// 							}, 5000);
-	// 						} else if (data.message === 'failedmember') {
-	// 							alertCustom('Penyimpanan data anggota gagal', 'warning');
-	// 							setTimeout(function () {
-	// 								window.location.href = `${base_url}admin/registrations`;
-	// 							}, 5000);
-	// 						} else if (data.message === 'failedcompany') {
-	// 							alertCustom('Perusahaan yang di pilih, hanya khusus prodi dan sudah ada prodi lain yang sudah mendaftar di perusahaan yang di pilih, silahkan pilih perushaan lain', 'warning');
-	// 						} else {
-	// 							alertCustom('Server sedang sibuk, silahkan coba lagi', 'error');
-	// 						}
-	// 					}
-	// 				});
-	// 			}
-	// 		}
-	// 	}
-	// })
-	//END GA KEPAKE
-
 	$(".verficationprocess").on("click", function () {
 		var id = $(this).data("id");
 		var uri = $(this).data("uri");
@@ -752,6 +663,35 @@ $(document).ready(function () {
 		var modal = $(this)
 		modal.find('#id').attr("value", div.data('id'));
 		modal.find('#prodi').attr("value", div.data('prodi'));
+	});
+
+	// academic year
+	// Reload page when get academic year id
+	$("#getacademicyear").on("change", function () {
+		var id = $(this).val();
+		var menu = $(this).data("menu");
+		var role = $(this).data("role");
+		document.location.href = `${base_url}${role.toString().toLowerCase()}/${menu}/academic/${id}`
+	});
+
+	$("#getacademicyear").select2({
+		ajax: {
+			url: `${base_url}lecture_config/getAcademicYear`,
+			type: "GET",
+			dataType: 'JSON',
+			delay: 250,
+			data: function (params) {
+				return {
+					searchTerm: params.term
+				};
+			},
+			processResults: function (response) {
+				return {
+					results: response
+				};
+			},
+			cache: true
+		}
 	});
 
 

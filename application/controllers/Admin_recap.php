@@ -12,26 +12,27 @@ class Admin_recap extends CI_Controller
     cek_login('Admin');
   }
 
-  public function adviser()
+  public function adviser($academic_year_id = null)
   {
-    $prodi        = $this->input->get('prodi');
-    $lecturers    = $this->Recap->getDataLecturer($prodi)->result();
+    $lecturers    = $this->Recap->getDataLecturer($academic_year_id)->result();
     $data = [
-      'title'       => 'Dosen Pembimbing PKN',
-      'desc'        => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
-      'lecturers'   => $lecturers,
+      'title'         => 'Dosen Pembimbing PKN',
+      'academicyear'  => $academic_year_id,
+      'desc'          => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
+      'lecturers'     => $lecturers,
     ];
     $page = '/admin/recap/adviser';
     pageBackend($this->role, $page, $data);
   }
 
-  public function supervisor()
+  public function supervisor($academic_year_id = null)
   {
     $prodi        = $this->input->get('prodi');
-    $supervisors  = $this->Recap->getDataSupervisor($prodi)->result();
+    $supervisors  = $this->Recap->getDataSupervisor($academic_year_id)->result();
     $data = [
       'title'       => 'Pembimbing Lapang PKN',
       'desc'        => 'Berfungsi untuk melihat Data Pembimbing Lapang PKN',
+      'academicyear'  => $academic_year_id,
       'supervisors' => $supervisors
     ];
     $page = '/admin/recap/supervisor';

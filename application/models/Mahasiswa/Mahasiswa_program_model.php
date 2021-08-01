@@ -59,7 +59,6 @@ class Mahasiswa_program_model extends CI_Model
 
   public function getCapaian($id)
   {
-    // SELECT learning_achievement FROM planning JOIN registration ON registration.id=planning.registration_id JOIN student ON student.id=registration.student_id WHERE planning.approval=1 AND student.npm = '18751013' ORDER BY planning.updated_at
     $this->db->select('learning_achievement');
     $this->db->join($this->tableRegistration, 'registration.id=planning.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');

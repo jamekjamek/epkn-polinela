@@ -11,7 +11,7 @@
   </div>
 
   <?php
-  $query = "SELECT * FROM student WHERE status = 'active' AND student.npm = '" . $this->session->userdata('user') . "'";
+  $query = "SELECT * FROM student WHERE (status = 'active' OR status = 'graduated') AND student.npm = '" . $this->session->userdata('user') . "'";
   $result = $this->db->query($query)->row_array();
 
   $queryProfileCheck = "SELECT * FROM student WHERE email != '' AND address != '' AND birth_date != '' AND no_hp != '' AND npm = '" . $this->session->userdata('user') . "'";

@@ -4,7 +4,7 @@ $resultQueryProfileCheck = $this->db->query($queryProfileCheck)->row();
 
 $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row();
 
-$query = "SELECT * FROM student WHERE status = 'active' AND student.npm = '" . $this->session->userdata('user') . "'";
+$query = "SELECT * FROM student WHERE (status = 'active' OR status = 'graduated') AND student.npm = '" . $this->session->userdata('user') . "'";
 $result = $this->db->query($query)->row_array();
 ?>
 <div class="main-content">
@@ -70,6 +70,7 @@ $result = $this->db->query($query)->row_array();
                           <tr>
                             <th>No</th>
                             <th>Anggota</th>
+                            <th>Status Verifikasi</th>
                             <th>Dosen Pembimbing</th>
                             <th>Desa</th>
                             <th>Waktu Pelaksanaan</th>
@@ -89,6 +90,18 @@ $result = $this->db->query($query)->row_array();
                                 <br>
                                 <?= $registration->fullname ?> -
                                 <?= $registration->status ?>
+                              </td>
+                              <td>
+                                <?php
+                                if ($registration->student_status === '-') : ?>
+                                  <span class="badge badge-pill badge-secondary mb-1">Belum Diverifikasi</span>
+                                <?php elseif ($registration->student_status === 'active') : ?>
+                                  <span class="badge badge-pill badge-success mb-1">Lulus Verifikasi</span>
+                                <?php elseif ($registration->student_status === 'graduated') : ?>
+                                  <span class="badge badge-pill badge-primary mb-1">Lulus</span>
+                                <?php else : ?>
+                                  <span class="badge badge-pill badge-danger mb-1">Tidak Aktif</span>
+                                <?php endif; ?>
                               </td>
                               <td>
                                 <?= $registration->nip ?> <br>

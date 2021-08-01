@@ -24,7 +24,7 @@
         <table style="width: 100%;" border="0">
             <tbody>
                 <tr>
-                    <td style="width: 40%;">Bahan dan Alat yang digunakan</td>
+                    <td style="width: 33%;">Bahan dan Alat yang digunakan</td>
                     <td>: </td>
 
                 </tr>
@@ -37,12 +37,12 @@
         <table style="width: 100%;" border="0">
             <tbody>
                 <tr>
-                    <td>Tempat Pelaksanaan</td>
+                    <td style="width: 33%;">Tempat Pelaksanaan</td>
                     <td>: <?= $log->implement_place ?></td>
 
                 </tr>
                 <tr>
-                    <td>Tanggal Pelaksanaan</td>
+                    <td style="width: 33%;">Tanggal Pelaksanaan</td>
                     <td>: <?= date('d F Y', strtotime($log->implementation_date)) ?></td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
         <table style="width: 100%;" border="0">
             <tbody>
                 <tr>
-                    <td>Hasil Pelaksanaan</td>
+                    <td style="width: 33%;">Hasil Pelaksanaan</td>
                     <td>: </td>
 
                 </tr>
@@ -74,7 +74,7 @@
         <table style="width: 100%;" border="0">
             <tbody>
                 <tr>
-                    <td>Komentar</td>
+                    <td style="width: 33%;">Komentar</td>
                     <td>: </td>
 
                 </tr>
@@ -84,7 +84,7 @@
             <?= $log->comment ?>
         </p>
         <p style="padding-left: 400px;">
-            <span><?= $log->regency ?>, <?= date('d F Y', strtotime($log->implementation_date)) ?></span>
+            <span><?= $log->company_name ?>, <?= date('d F Y', strtotime($log->implementation_date)) ?></span>
         </p>
 
         <table style="width: 100%;" border="0">

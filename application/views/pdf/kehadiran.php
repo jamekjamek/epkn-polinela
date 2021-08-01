@@ -51,6 +51,7 @@
         <th>Tanggal</th>
         <th>Kehadiran</th>
         <th>Catatan</th>
+        <th>Verifikasi</th>
       </tr>
     </thead>
     <tbody>
@@ -62,6 +63,12 @@
             <td style="text-align: center;"><?= date('d F Y', strtotime($attends->created_at)) ?></td>
             <td style="text-align: center;"><?= $attends->attendance ?></td>
             <td><?= $attends->note ?></td>
+            <td><?php  if($attends->validation == 1) {
+                echo 'Diverifkasi';
+            } else {
+                echo 'Belum Diverifikasi';
+            }
+            ?></td>
           </tr>
         <?php endforeach ?>
       <?php else : ?>

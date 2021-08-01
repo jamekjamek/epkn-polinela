@@ -91,7 +91,7 @@
                           <?php if ($row->approval == 0) : ?>
                             <div class="checkbox-zoom zoom-primary">
                               <label>
-                                <input type="checkbox" value="2" name="approval[]">
+                                <input type="checkbox" value="1" name="approval[]">
                                 <span class="cr">
                                   <i class="cr-icon ik ik-check txt-primary"></i>
                                 </span>

@@ -1,6 +1,6 @@
 <form action="<?= site_url('dosen/data_pkn/assessment/test_score/' . $this->uri->segment('4')) ?>" method="POST" name="testScore">
   <input type="hidden" name="registration_id" value="<?= $detail->id ?>">
-  <input type="hidden" name="student_id" value="<?= $detail->student_id ?>">
+  <input type="text" name="student_id" value="<?= $detail->student_id ?>">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">

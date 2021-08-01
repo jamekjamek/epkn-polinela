@@ -64,29 +64,6 @@
                       <?= form_error('birthdate'); ?>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="name">Status</label>
-                    <div class="form-radio">
-                      <div class="radio radio-inline">
-                        <label>
-                          <input type="radio" name="status" <?= $student->status === 'active' ? 'checked="checked"' : ''; ?> value="active">
-                          <i class="helper"></i>Aktif
-                        </label>
-                      </div>
-                      <div class="radio radio-inline">
-                        <label>
-                          <input type="radio" name="status" value="not_active" <?= $student->status === 'not_active' ? 'checked="checked"' : ''; ?>>
-                          <i class="helper"></i>Tidak Aktif
-                        </label>
-                      </div>
-                      <div class="radio radio-inline">
-                        <label>
-                          <input type="radio" name="status" value="graduated" <?= $student->status === 'graduated' ? 'checked="checked"' : ''; ?>>
-                          <i class="helper"></i>Lulus
-                        </label>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">

@@ -15,8 +15,8 @@ class Mahasiswa_data_pkn extends CI_Controller
   public function index()
   {
     $data = [
-      'title'         => 'Rekap PKN',
-      'desc'          => 'Berfungsi untuk melihat data PKN',
+      'title'         => 'Laporan & Nilai PKN',
+      'desc'          => 'Berfungsi untuk melihat laporan dan nilai',
       'detail'        => $this->DataPKL->getDetailValue(),
       'file'          => $this->DataPKL->getFile()->row()
     ];

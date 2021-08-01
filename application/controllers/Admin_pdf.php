@@ -36,7 +36,7 @@ class Admin_pdf extends CI_Controller
     $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30f0f-db92-11eb-9096-0cc47abcfaa6'])->row();
     $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
     $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
-    $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    $dataRegistration   = $this->Documents->getSuratTugas($leaderGroupId->group_id)->result();
     $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
     $dataBody           = [
       'settingletter' => $settingLetter,
@@ -76,6 +76,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Surat Pengantar");
     $mpdf->SetDisplayMode('fullpage');
+    $mpdf->Image('assets/img/ttd/ttd_pudir1.png', 0, 0, 210, 297, 'png', '', true, false);
     $mpdf->WriteHTML($body);
     $mpdf->Output('Surat Pengantar.pdf', 'I');
   }
@@ -260,7 +261,8 @@ class Admin_pdf extends CI_Controller
     $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
 
     $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
-    $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    // $dataRegistration   = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id])->result();
+    $dataRegistration   = $this->Documents->getSuratTugas($leaderGroupId->group_id)->result();
     $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30fa3-db92-11eb-9096-0cc47abcfaa6'])->row();
     $data               = [
       'settingletter' => $settingLetter,
@@ -328,7 +330,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->Output();
   }
 
-  public function dosenpembimbing($prodi = null)
+  public function dosenpembimbing($academic = null)
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
     $dataHeader         = [];
@@ -337,19 +339,20 @@ class Admin_pdf extends CI_Controller
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
-    $data               = [
-      'lecturers'   => $this->Recap->getDataLecturerByPeriod($prodi),
-      'row'         => $this->Recap->getDataLecturerGroupBy($prodi)->row(),
+    $academicBy     = $this->Recap->getAcademic($academic)->row();
+    $data = [
+      'lecturers'   => $this->Recap->getDataLecturer($academic),
+      'row'         => $academicBy,
     ];
     $view           = $this->load->view('pdf/dosenpembimbing', $data, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Dosen Pembimbing PKN");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Dosen_Pembimbing_PKN_" . $data['row']->prodi_name . "_" . $data['row']->academic_year, "I");
+    $mpdf->Output("Dosen_Pembimbing_PKN_" . @$data['row']->academic_year, "I");
   }
 
-  public function pembimbinglapang($prodi = null)
+  public function pembimbinglapang($academic = null)
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
     $dataHeader         = [];
@@ -358,16 +361,17 @@ class Admin_pdf extends CI_Controller
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
+    $academicBy     = $this->Recap->getAcademic($academic)->row();
     $data               = [
-      'supervisors' => $this->Recap->getDataSupervisorByPeriod($prodi),
-      'row'         => $this->Recap->getDataSupervisorGroupBy($prodi)->row(),
+      'supervisors' => $this->Recap->getDataSupervisor($academic),
+      'row'         => $academicBy,
     ];
     $view           = $this->load->view('pdf/pembimbinglapang', $data, TRUE);
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("Pembimbing Lapang PKN");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Pembimbing_Lapang_PKN_" . $data['row']->prodi_name . "_" . $data['row']->academic_year, "I");
+    $mpdf->Output("Pembimbing_Lapang_PKN_" . @$data['row']->academic_year, "I");
   }
 
   public function kehadiran($id)
@@ -390,7 +394,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetTitle("Data Kehadiran");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Data_Kehadiran_" . $data['row']->company_name . "_" . $data['row']->academic_year . "_" . $data['row']->period, "I");
+    $mpdf->Output("Data_Kehadiran_" . @$data['row']->company_name . "_" . $data['row']->academic_year . "_" . @$data['row']->period, "I");
   }
 
   public function nilaiakhirpkl()
@@ -416,7 +420,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetTitle("Nilai Akhir");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . $data['data']->row()->period, "I");
+    $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . @$data['data']->row()->period, "I");
   }
 
   public function lembarisianpkn($id)

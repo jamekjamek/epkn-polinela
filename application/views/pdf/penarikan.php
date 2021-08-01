@@ -79,13 +79,12 @@
     </table>
   </div>
   <div style=" text-align: justify; text-justify: inter-word;">
-    <p style="padding-left: 80px;">Selanjutnya mahasiswa tersebut akan menyelesaikan Ujian Praktik Kerja Lapang di Politeknik Negeri Lampung</p>
-    <p style="padding-left: 80px;">Atas bantuan dan kerjasama Bapak/Ibu, Kami ucapkan terima kasih. Semoga kerjasama yang sudah terjalin dengan baik, dapat terus berlanjut di masa mendatang</p>
+    <p style="padding-left: 80px;">Selanjutnya mahasiswa tersebut akan menyelesaikan Ujian Praktik Kerja Nyata di Politeknik Negeri Lampung.</p>
+    <p style="padding-left: 80px;">Atas bantuan dan kerjasama Bapak/Ibu, Kami ucapkan terima kasih. Semoga kerjasama yang sudah terjalin dengan baik, dapat terus berlanjut di masa mendatang.</p>
   </div>
   <p style="padding-left: 80px;">Demikian permohonan kami, atas bantuan dan kerajasamanya diucapkan terimakasih.</p>
   <p style="padding-left: 400px;">a.n Direktur <br>Pembantu Direktur I,</p>
-  <p style="padding-left: 400px;">&nbsp;</p>
-  <p style="padding-left: 400px;">&nbsp;</p>
+  <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
   <p style="padding-left: 400px;">Dwi Puji Hartono <br>NIP <span style="font-weight: 400;">197602202000031002</span></p>
 
 </body>

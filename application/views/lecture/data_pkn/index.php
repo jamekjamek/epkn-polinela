@@ -51,9 +51,8 @@
                   <tr>
                     <th>No</th>
                     <th>Mahasiswa</th>
-                    <th>Supervisor</th>
                     <th>Lokasi PKN</th>
-                    <th>Waktu PKN</th>
+                    <th>Nilai Akhir</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -70,15 +69,13 @@
                         <?= $row->fullname ?> -
                         <?= $row->status ?>
                       </td>
-                      <td><?= $row->pic ?></td>
                       <td><?= $row->company_name; ?></td>
                       <td>
-                        <span class="badge badge-pill badge-primary mb-1">
-                          <?= date('d-m-Y', strtotime($row->start_date)) ?>
-                        </span>
-                        s.d <span class="badge badge-pill badge-success mb-1">
-                          <?= date('d-m-Y', strtotime($row->finish_date)) ?>
-                        </span>
+                        <?php if($row->score) {
+                            echo $row->score . ' ('. $row->HM.')';
+                        } else {
+                            echo '<small class="text-muted">Nilai belum diinput</small>';
+                        } ?>
                       </td>
                       <td>
                         <?php if ($supervision) : ?>

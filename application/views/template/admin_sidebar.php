@@ -16,10 +16,11 @@
         <div class="nav-item <?= ($uri  === 'dashboard' ? 'active' : '') ?>">
           <a href="<?= base_url('admin/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
-        <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4)  === 'academic_year' || $this->uri->segment(2)  === 'guidebook' || $this->uri->segment(3)  === 'guidebook' || $this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active open' : '') ?>">
+        <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4)  === 'academic_year' || $this->uri->segment(2)  === 'pkn_period' || $this->uri->segment(2)  === 'guidebook' || $this->uri->segment(3)  === 'guidebook' || $this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active open' : '') ?>">
           <a href="javascript:void(0)"><i class="ik ik-settings"></i><span>Konfigurasi</span></a>
           <div class="submenu-content">
             <a href="<?= base_url('admin/config/academic_year') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'academic_year' || $this->uri->segment(4) === 'academic_year' ? 'active' : '') ?>">Tahun Akademik</a>
+            <a href="<?= base_url('admin/pkn_period') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'pkn_period' ? 'active' : '') ?>">Periode Pelaksanaan</a>
             <a href="<?= base_url('admin/guidebook') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'guidebook' || $this->uri->segment(2) === 'guidebook' ? 'active' : '') ?>">Buku Panduan</a>
             <a href="<?= base_url('admin/letter') ?>" class="menu-item <?= ($this->uri->segment(2)  === 'letter' || $this->uri->segment(3) === 'letter' ? 'active' : '') ?>">Surat</a>
           </div>
@@ -40,11 +41,11 @@
         <div class="nav-item <?= ($uri  === 'registrations' ? 'active' : '') ?>">
           <a href="<?= base_url('admin/registrations') ?>"><i class="ik ik-cast"></i><span>Pendaftaran PKN</span></a>
         </div>
+        <div class="nav-item <?= ($uri  === 'verification' ? 'active' : '') ?>">
+          <a href="<?= base_url('admin/verification') ?>"><i class="ik ik-clipboard"></i><span>Verifikasi Pembekalan</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'pkn' ? 'active' : '') ?>">
           <a href="<?= base_url('admin/master/pkn') ?>"><i class="ik ik-activity"></i><span>Rekap Mahasiswa PKN</span></a>
-        </div>
-        <div class="nav-item <?= ($uri  === 'verification' ? 'active' : '') ?>">
-          <a href="<?= base_url('admin/verification') ?>"><i class="ik ik-clipboard"></i><span>Verifikasi Berkas</span></a>
         </div>
         <div class="nav-item has-sub <?= ($this->uri->segment(3)  === 'advisers' || $this->uri->segment(3) === 'daily_log' || $this->uri->segment(3) === 'attendance' || $this->uri->segment(3) === 'supervision_report' || $this->uri->segment(3) === 'status_pkn' || $this->uri->segment(3) === 'scoring' || $this->uri->segment(3) === 'supervisor' ? 'active open' : '') ?>">
           <a href="javascript:void(0)"><i class="ik ik-server"></i><span>Laporan PKN</span></a>

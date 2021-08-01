@@ -87,7 +87,12 @@
                       <td><?= $i++; ?></td>
                       <td><?= $row->company_name ?></td>
                       <td><?= $row->studentcount ?></td>
-                      <td><?= $row->time ?></td>
+                      <td>
+                        <?php if ($row->time) {
+                          echo $row->time;
+                        } else {
+                          echo '<small clas="text-muted">Laporan supervisi belum diisi</small>';
+                        } ?></td>
                       <td>
                         <div class="btn-group" role="group">
                           <a href="<?= base_url('dosen/report_supervision/edit/' . $this->encrypt->encode($row->group_id, keyencrypt()) . '/edit') ?>" class="btn btn-success" title="Update"><i class="ik ik-edit"></i>Isi Laporan</a>

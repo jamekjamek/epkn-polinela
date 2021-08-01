@@ -50,7 +50,8 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Group ID</th>
+                    <th>Ketua Grup</th>
+                    <th>Lokasi PKN</th>
                     <th>Dosen Pembimbing Lapang</th>
                     <th>Aksi</th>
                   </tr>
@@ -62,7 +63,8 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $row->group_id ?></td>
+                      <td><?= $row->fullname ?></td>
+                      <td><?= $row->company_name ?></td>
                       <td><?= $row->pic ?></td>
                       <td>
                         <a href="<?= base_url('dosen/planning/detail/' . encodeEncrypt($row->group_id)) ?>" class="btn btn-warning"><i class="ik ik-eye" title="Detail PKL"></i><span>Detail</span></a>

@@ -39,7 +39,7 @@
               <div class="row mb-4">
                 <div class="col-3">
                   <label for="name">Tahun Akademik</label>
-                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="planning">
+                  <select class="form-control" data-selected="<?= $academicyear; ?>" name="academicyear" id="academicyear" data-menu="activity/attendance">
                     <option value="">-- Pilih Tahun Akademik --</option>
                   </select>
                 </div>

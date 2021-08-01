@@ -28,7 +28,7 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="text-uppercase">Upload Laporan PKL</h3>
+              <h3 class="text-uppercase">Upload Laporan PKN</h3>
             </div>
             <div class="card-body">
               <?php

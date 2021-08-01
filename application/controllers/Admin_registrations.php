@@ -113,20 +113,9 @@ class Admin_registrations extends CI_Controller
     $this->output->set_content_type('application/json')->set_output(json_encode($result));
   }
 
-
-
   private function _validation($type)
   {
     if ($type === 'leader') {
-      // $this->form_validation->set_rules(
-      //     'prodi',
-      //     'Program studi',
-      //     'trim|required',
-      //     [
-      //         'required' => '%s wajib diisi'
-      //     ]
-      // );
-
       $this->form_validation->set_rules(
         'leader',
         'Ketua Grup',
@@ -166,7 +155,6 @@ class Admin_registrations extends CI_Controller
     }
   }
 
-
   public function detail($id)
   {
     $decode         = decodeEncrypt($id);
@@ -205,18 +193,14 @@ class Admin_registrations extends CI_Controller
     }
   }
 
-
   public function addnewmember($uri)
   {
     $id         = $this->input->post('id');
     $leader     = $this->Registrations->getDataBy(['a.id' => $id])->row();
-    // var_dump($leader);
-    // die;
     $memberId   = $this->input->post('member');
     if ($memberId !== null) {
       $insert         = 0;
       foreach ($memberId as $member) {
-        // $this->db->set('id', 'UUID()', FALSE);
         $dataInsertMember   = [
           'group_id'          => $leader->group_id,
           'company_id'        => $leader->company_id,
@@ -244,37 +228,6 @@ class Admin_registrations extends CI_Controller
     redirect('admin/registrations/detail/' . $uri);
   }
 
-
-
-
-  public function upload($uri)
-  {
-
-    $config['upload_path'] = './assets/uploads/';
-    $config['allowed_types'] = 'pdf';
-    $config['max_size'] = 3000;
-
-    $this->upload->initialize($config);
-    $data = $this->input->post();
-    if ($this->upload->do_upload('file')) {
-      $fileData = $this->upload->data();
-      $upload = [
-        'letter_number'         => $data['letter_number'],
-        'file'                  => $fileData['file_name'],
-        'registration_group_id' => $data['registration_group_id'],
-      ];
-      if ($this->Registrations->uploaded($upload)) {
-        $this->session->set_flashdata('success', '<p>File <strong>' . $fileData['file_name'] . '</strong> berhasil di simpan!</p>');
-      } else {
-        $this->session->set_flashdata('error', '<p>Gagal! File ' . $fileData['file_name'] . ' tidak berhasil tersimpan!</p>');
-      }
-      redirect('admin/registrations/detail/' . $uri);
-    } else {
-      $this->session->set_flashdata('error', $this->upload->display_errors());
-      redirect('admin/registrations/detail/' . $uri);
-    }
-  }
-
   public function changelocation($uri)
   {
     $company    = $this->input->post('company');
@@ -295,36 +248,6 @@ class Admin_registrations extends CI_Controller
     redirect('admin/registrations/detail/' . $uri);
   }
 
-
-  public function verification($stringUrl, $status)
-  {
-    $explode    = explode(":", $stringUrl);
-    $id         = $explode[0];
-    $uri        = $explode[1];
-    if ($status === '1') {
-      $groupStatus    = 'diterima';
-    } else {
-      $groupStatus    = 'ditolak';
-    }
-    $dataUpdate = [
-      'group_status'  => $groupStatus,
-      'updated_at'    => date('Y-m-d H:i:s')
-    ];
-    $where      = [
-      'group_id'    => $id,
-    ];
-    // var_dump($where);
-    // die;
-    $update     = $this->Registrations->update($dataUpdate, $where);
-    if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil di update');
-    } else {
-      $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
-    }
-    redirect('admin/registrations/detail/' . $uri);
-  }
-
-
   public function updatesupervisor($uri)
   {
     $lecture    = $this->input->post('lecture');
@@ -332,23 +255,16 @@ class Admin_registrations extends CI_Controller
     $rowData    = $this->Registrations->getDataBy(['a.id' => $id])->row();
 
     if ($rowData->supervisor_id === null) {
-      // generate new supervisor
       $cekSuperVisor = $this->generateNewSupervisor($rowData->company_id);
-
       $updateSuperVisorId = [
         'supervisor_id' => $cekSuperVisor->id,
         'updated_at'    => date('Y-m-d H:i:s'),
       ];
-
       $where  = [
         'group_id'      => $rowData->group_id
       ];
-
       $this->db->update('registration', $updateSuperVisorId, $where);
     }
-
-
-
 
     if ($lecture) {
       $dataUpdate = [
@@ -400,26 +316,23 @@ class Admin_registrations extends CI_Controller
     redirect('admin/registrations/detail/' . $uri);
   }
 
-
-
   public function generatedata()
   {
-    $allStudent                 = $this->Registrations->getStudent('random');
-    $looping                    = floor($allStudent->num_rows() / 8); //80 dapetnya 10 kelompok
-    $dataPeriode                = $this->Registrations->getDataPeriode()->row();
-    $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
-    $academicId                 = $academic->id;
+    $allStudent      = $this->Registrations->getStudent('random');
+    $looping         = floor($allStudent->num_rows() / 8);
+    $dataPeriode     = $this->Registrations->getDataPeriode()->row();
+    $academic        = $this->Config->getDataAcademicYear(['status' => 1])->row();
+    $academicId      = $academic->id;
 
     for ($i = 1; $i <= $looping; $i++) {
       $company                    = $this->Registrations->getCompany($orderBy = 'prodi', $academicId);
       if ($company->num_rows() <= 0) {
         break;
       }
-      // get prodi dan atau di company wajib limit 4
+      // get prodi and or on company required limit 4
       $rowCompany = $company->row();
 
       $groupStudent = $this->generateMemberGroup($rowCompany, $academicId);
-      // pretty_dump($groupStudent);
 
       $leader = end($groupStudent);
       // get lecture_id by prodi_id in $leader
@@ -532,28 +445,28 @@ class Admin_registrations extends CI_Controller
     ];
     $this->db->insert('supervisor', $dataInsertSupervisor);
     //Insert user pl
+    $getRole            = $this->Config->getRoleBy('role', ['name' => 'Supervisor']);
     $this->db->set('id', 'UUID()', FALSE);
     $dataInsertUserPL   = [
       'username'      => $strnewsupervisor,
-      'password'      => password_hash('123456', PASSWORD_DEFAULT),
-      'role_id'       => '775b0fa8-b7a8-11eb-a91e-0cc47abcfaa6',
+      'password'      => password_hash('pknpolinela' . date('Y'), PASSWORD_DEFAULT),
+      'role_id'       => $getRole->id,
     ];
     $this->db->insert('user', $dataInsertUserPL);
     sleep(1);
     return $this->db->get_where('supervisor', ['username' => $strnewsupervisor])->row();
   }
 
+  // not implement in modul project just development needed
   public function generateMhs($value)
   {
     $this->load->model('Admin/Admin_students_model', 'Student');
     $this->load->model('Admin/Admin_config_model', 'Config');
 
     $genders = array('L', 'P');
-    // $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6', 'e181dc4a-db7c-11eb-9096-0cc47abcfaa6', 'f5be70c5-db7c-11eb-9096-0cc47abcfaa6', '07be469e-db7d-11eb-9096-0cc47abcfaa6', '15539eaf-db7d-11eb-9096-0cc47abcfaa6');
     $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6');
 
     $academic_year = 'eab698c8-da76-11eb-9096-0cc47abcfaa6';
-
 
     for ($i = 0; $i < $value; $i++) {
 
@@ -591,13 +504,9 @@ class Admin_registrations extends CI_Controller
   public function generateCompany($value)
   {
     $this->load->model('Admin/Admin_company_model', 'Company');
-
-    // $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6', 'e181dc4a-db7c-11eb-9096-0cc47abcfaa6', 'f5be70c5-db7c-11eb-9096-0cc47abcfaa6', '07be469e-db7d-11eb-9096-0cc47abcfaa6', '15539eaf-db7d-11eb-9096-0cc47abcfaa6');
     $prodies = array('f0849f23-db7b-11eb-9096-0cc47abcfaa6', '5028af54-db7c-11eb-9096-0cc47abcfaa6', '59b4e48e-db7c-11eb-9096-0cc47abcfaa6', '6802dd6f-db7c-11eb-9096-0cc47abcfaa6', '7ad2ca47-db7c-11eb-9096-0cc47abcfaa6', '87e4b55f-db7c-11eb-9096-0cc47abcfaa6', '96b9028e-db7c-11eb-9096-0cc47abcfaa6', 'ac7d7e7e-db7c-11eb-9096-0cc47abcfaa6', 'bbed6cb6-db7c-11eb-9096-0cc47abcfaa6', 'cdfcbbcf-db7c-11eb-9096-0cc47abcfaa6');
 
-
     $academic_year = 'eab698c8-da76-11eb-9096-0cc47abcfaa6';
-
 
     for ($i = 0; $i < $value; $i++) {
 
@@ -772,6 +681,8 @@ class Admin_registrations extends CI_Controller
       $dataPeriode = $this->Registrations->getDataPeriode()->row();
       $academic                   = $this->Config->getDataAcademicYear(['status' => 1])->row();
       $academicId                 = $academic->id;
+      // get pkn period is active
+      $dataPeriode    = $this->Registrations->getDataPeriode()->row();
       $leaders = [];
       foreach ($reader->getSheetIterator() as $sheet) {
         $numRow = 1;
@@ -782,22 +693,22 @@ class Admin_registrations extends CI_Controller
             $dataInputRegister = array(
               'group_id'          => $row->getCellAtIndex(0),
               'company_id'        => $row->getCellAtIndex(1),
-              'start_date'        => $row->getCellAtIndex(2),
-              'finish_date'       => $row->getCellAtIndex(3),
-              'student_id'        => $row->getCellAtIndex(4),
-              'status'            => $row->getCellAtIndex(5),
-              'prodi_id'          => $row->getCellAtIndex(6),
-              'lecture_id'        => $row->getCellAtIndex(7),
+              'start_date'        => $dataPeriode->start_time_pkl,
+              'finish_date'       => $dataPeriode->finish_time_pkl,
+              'student_id'        => $row->getCellAtIndex(2),
+              'status'            => $row->getCellAtIndex(3),
+              'prodi_id'          => $row->getCellAtIndex(4),
+              'lecture_id'        => $row->getCellAtIndex(5),
               'academic_year_id'  => $academicId,
             );
             $this->Registrations->importData($dataInputRegister);
 
             // create supervisor if status == ketua
-            if ($row->getCellAtIndex(5) == 'Ketua') {
+            if ($row->getCellAtIndex(3) == 'Ketua') {
               $id = $this->db->insert_id();
               array_push($leaders, [
                 'id'            => $id,
-                'student_id'    => $row->getCellAtIndex(4),
+                'student_id'    => $row->getCellAtIndex(2),
                 'old_grp_id'    => $row->getCellAtIndex(0),
                 'group_id'      => $this->db->set('id', 'UUID()', FALSE),
                 'supervisor_id' => $this->generateNewSupervisor($row->getCellAtIndex(1))->id,

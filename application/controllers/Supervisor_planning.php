@@ -17,7 +17,7 @@ class Supervisor_planning extends CI_Controller
     $data = [
       'title'         => 'Data Program',
       'desc'          => 'Berfungsi untuk melihat data program',
-      'dataPkl'       => $this->DataPkl->list()->result(),
+      'dataPkl'       => $this->DataPkl->listNew()->result(),
     ];
     $page = '/supervisor/planning/index';
     pageBackend($this->role, $page, $data);

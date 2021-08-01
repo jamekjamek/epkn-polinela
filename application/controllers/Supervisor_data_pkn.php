@@ -15,8 +15,8 @@ class Supervisor_data_pkn extends CI_Controller
   public function index()
   {
     $data = [
-      'title'         => 'Data PKN',
-      'desc'          => 'Berfungsi untuk menampilkan data PKN',
+      'title'         => 'Penilaian PKN',
+      'desc'          => 'Berfungsi untuk menampilkan data penilaian PKN',
       'dataPkl'       => $this->DataPkl->listForScore()->result(),
     ];
     $page = '/supervisor/data_pkn/index';
@@ -59,7 +59,7 @@ class Supervisor_data_pkn extends CI_Controller
       'nilai_total'       => number_format($data['total'], 2, '.', ''),
       'updated_at'        => date('Y-m-d H:i:s')
     ];
-    if ($data['supervisor_score_id']) {
+    if (@$data['supervisor_score_id']) {
       $result = $this->DataPkl->update($supervisor, ['id' => $data['supervisor_score_id']]);
       if ($result > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di rubah');

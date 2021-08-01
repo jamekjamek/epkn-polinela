@@ -89,7 +89,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
                     </table>
                   </div>
                 <?php else :
-                  echo '<small class="text-mute">Anda belum terdaftar sebagai dosen pembimbing</small>';
+                  echo '<small class="text-mute">Mahasiswa masih dalam tahap verifikasi pembekalan</small>';
                 endif; ?>
               </div>
             </div>
