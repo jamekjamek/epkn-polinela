@@ -38,7 +38,8 @@
                   <h3 class="text-uppercase"><?= $title; ?></h3>
                 </div>
                 <div>
-                  <a href="<?= base_url('admin/master/lecture/import'); ?>" class="btn btn-success"><i class="ik ik-plus-square"></i>Import</a>
+                  <a href="<?= base_url('admin/master/lecture/export'); ?>" class="btn btn-success"><i class="ik ik-plus-square"></i>Export Data</a>
+                  <a href="<?= base_url('admin/master/lecture/import'); ?>" class="btn btn-info"><i class="ik ik-plus-square"></i>Import</a>
                   <a href="<?= base_url('admin/master/lecture/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
                 </div>
               </div>

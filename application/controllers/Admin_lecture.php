@@ -208,6 +208,16 @@ class Admin_lecture extends CI_Controller
     }
   }
 
+  public function export()
+  {
+    $data   =   [
+      'title'             => 'Data Dosen',
+      'allData'           => $this->Lecture->getAllData()->result()
+    ];
+
+    $this->load->view('admin/lecture/export/excel', $data);
+  }
+
   private function _validation($nip = null, $email = null)
   {
 

@@ -696,15 +696,15 @@ class Admin_registrations extends CI_Controller
               'start_date'        => $dataPeriode->start_time_pkl,
               'finish_date'       => $dataPeriode->finish_time_pkl,
               'student_id'        => $row->getCellAtIndex(2),
-              'status'            => $row->getCellAtIndex(3),
-              'prodi_id'          => $row->getCellAtIndex(4),
+              'status'            => $row->getCellAtIndex(4),
+              'prodi_id'          => $row->getCellAtIndex(3),
               'lecture_id'        => $row->getCellAtIndex(5),
               'academic_year_id'  => $academicId,
             );
             $this->Registrations->importData($dataInputRegister);
 
             // create supervisor if status == ketua
-            if ($row->getCellAtIndex(3) == 'Ketua') {
+            if ($row->getCellAtIndex(4) == 'Ketua') {
               $id = $this->db->insert_id();
               array_push($leaders, [
                 'id'            => $id,

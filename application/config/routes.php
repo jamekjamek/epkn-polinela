@@ -60,6 +60,8 @@ $route['admin/master/lecture/edit/(:any)']          = 'admin_lecture/update/$1';
 $route['admin/master/lecture/delete/(:any)']        = 'admin_lecture/delete/$1';
 $route['admin/master/lecture/import']               = 'admin_lecture/import'; //view
 $route['admin/master/lecture/importlecture']        = 'admin_lecture/importlecture'; //action
+$route['admin/master/lecture/export']               = 'admin_lecture/export'; //action
+
 
 //COMPANY
 $route['admin/master/village']                      = 'admin_village';
