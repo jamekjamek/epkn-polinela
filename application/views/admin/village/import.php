@@ -49,7 +49,7 @@
                     <input type="file" name="importvillage" accept=".xlsx,.xls" class="form-control">
                   </div>
                   <button type="submit" class="btn btn-primary"><i class="ik ik-plus-square"></i>Upload Data</button>
-                  <a href="<?= base_url('admin/master/company') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>
+                  <a href="<?= base_url('admin/master/village') ?>" class="btn btn-danger"><i class="ik ik-skip-back"></i>Kembali</a>
                 </form>
               </div>
               <div class="col-sm-6">

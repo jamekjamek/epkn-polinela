@@ -185,24 +185,22 @@ class Admin_village extends CI_Controller
         $numRow = 1;
         foreach ($sheet->getRowIterator() as $row) {
           if ($numRow > 1) {
-            $email      = $this->Village->getDataBy(['a.email' => $row->getCellAtIndex(6)])->num_rows();
-            if ($email < 1) {
-              $dataInputvillage = array(
-                'name'          => $row->getCellAtIndex(0),
-                'address'       => $row->getCellAtIndex(1),
-                'districts_id'  => $row->getCellAtIndex(2),
-                'regency_id'    => $row->getCellAtIndex(4),
-                'province_id'   => $row->getCellAtIndex(6),
-                'email'         => $row->getCellAtIndex(8),
-                'telp'          => $row->getCellAtIndex(9),
-                'pic'           => $row->getCellAtIndex(10),
-                'label'         => $row->getCellAtIndex(11),
-                'norek'         => $row->getCellAtIndex(12),
-                'bank_name'     => $row->getCellAtIndex(13),
-                'status'        => 'verify',
-              );
-              $this->village->importData($dataInputvillage);
-            }
+
+            $dataInputvillage = array(
+              'name'          => $row->getCellAtIndex(0),
+              'address'       => $row->getCellAtIndex(1),
+              'districts_id'  => $row->getCellAtIndex(2),
+              'regency_id'    => $row->getCellAtIndex(4),
+              'province_id'   => $row->getCellAtIndex(6),
+              'email'         => $row->getCellAtIndex(8),
+              'telp'          => $row->getCellAtIndex(9),
+              'pic'           => $row->getCellAtIndex(10),
+              'label'         => $row->getCellAtIndex(11),
+              'norek'         => $row->getCellAtIndex(12),
+              'bank_name'     => $row->getCellAtIndex(13),
+              'status'        => 'verify',
+            );
+            $this->Village->importData($dataInputvillage);
           }
           $numRow++;
         }
