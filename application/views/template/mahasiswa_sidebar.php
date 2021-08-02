@@ -25,13 +25,13 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('mahasiswa/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'program' ? 'active' : '') ?>">
+          <a href=" <?= site_url('mahasiswa/program') ?>"><i class="ik ik-check-circle"></i><span>Program</span></a>
+        </div>
         <?php if ($resultQueryProfileCheck) : ?>
           <?php if ($result != null) : ?>
             <div class="nav-item <?= ($this->uri->segment(2) === 'document' ? 'active' : '') ?>">
               <a href=" <?= site_url('mahasiswa/document') ?>"><i class="ik ik-file-text"></i><span>Berkas PKN</span></a>
-            </div>
-            <div class="nav-item <?= ($this->uri->segment(2) === 'program' ? 'active' : '') ?>">
-              <a href=" <?= site_url('mahasiswa/program') ?>"><i class="ik ik-check-circle"></i><span>Program</span></a>
             </div>
             <div class="nav-item <?= ($this->uri->segment(3) === 'log' ? 'active' : '') ?>">
               <a href=" <?= site_url('mahasiswa/daily/log') ?>"><i class="ik ik-activity"></i><span>Jurnal Harian</span></a>

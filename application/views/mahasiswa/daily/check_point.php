@@ -50,19 +50,19 @@
             <div class="d-flex flex-grow-1 min-width-zero card-content">
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
-                <?php if ($btnCheck != null) {
-                  $dateNow = date('Y-m-d');
-                  $dateCurrent = date('Y-m-d', strtotime($btnCheck['created_at']));
-                }
-                if ($btnCheck != null && $dateCurrent == $dateNow) {
-                } else { ?>
-                  <?php if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
-                    <div class="btn-group">
+                <div class="btn-group">
+                  <?php if ($btnCheck != null) {
+                    $dateNow = date('Y-m-d');
+                    $dateCurrent = date('Y-m-d', strtotime($btnCheck['created_at']));
+                  }
+                  if ($btnCheck != null && $dateCurrent == $dateNow) {
+                  } else { ?>
+                    <?php if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
                       <a href="<?= site_url('mahasiswa/daily/check_point/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
-                    </div>
-                  <?php endif ?>
-                <?php } ?>
-                    <a href="<?= site_url('pdf/kehadiran/' . $isCheck->id) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                    <?php endif ?>
+                  <?php } ?>
+                  <a href="<?= site_url('pdf/kehadiran/' . $isCheck->id) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                </div>
               </div>
             </div>
             <div class="card-body">
