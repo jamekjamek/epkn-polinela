@@ -176,10 +176,9 @@ class Admin_lecture extends CI_Controller
         $numRow = 1;
         foreach ($sheet->getRowIterator() as $row) {
           if ($numRow > 1) {
-            $email      = $this->Lecture->getDataBy(['a.email' => $row->getCellAtIndex(2)])->num_rows();
+            // $email      = $this->Lecture->getDataBy(['a.email' => $row->getCellAtIndex(2)])->num_rows();
             $nip        = $this->Lecture->getDataBy(['a.nip' => $row->getCellAtIndex(1)])->num_rows();
-
-            if ($email < 1 && $nip < 1) {
+            if ($nip < 1) {
               $dataInputLecture = array(
                 'name'          => $row->getCellAtIndex(0),
                 'nip'           => $row->getCellAtIndex(1),

@@ -48,6 +48,7 @@ class Mahasiswa_daily_model extends CI_Model
 
   public function insertCP($data)
   {
+
     $this->db->insert($this->tableCheckPoint, $data);
     return $this->db->affected_rows();
   }
@@ -77,7 +78,7 @@ class Mahasiswa_daily_model extends CI_Model
     $this->db->join($this->tableRegistration, 'registration.id=check_point.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
   }
-
+  
   public function getRegistrationNotInCurrentCP()
   {
     return $this->db->query("SELECT registration.id FROM registration JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.id NOT IN (SELECT registration_id FROM check_point WHERE DATE(created_at) = CURRENT_DATE) AND academic_year.status = 1 AND registration.group_status = 'diterima' AND CURRENT_DATE <= registration.finish_date")->result();

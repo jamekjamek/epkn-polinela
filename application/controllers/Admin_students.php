@@ -189,12 +189,7 @@ class Admin_students extends CI_Controller
               $dataInputStudent = array(
                 'fullname'          => $row->getCellAtIndex(0),
                 'npm'               => $row->getCellAtIndex(1),
-                'email'             => $row->getCellAtIndex(2),
-                'prodi_id'          => $row->getCellAtIndex(3),
-                'address'           => $row->getCellAtIndex(4),
-                'birth_date'        => $row->getCellAtIndex(5),
-                'no_hp'             => $row->getCellAtIndex(6),
-                'gender'             => $row->getCellAtIndex(7),
+                'prodi_id'          => $row->getCellAtIndex(2),
                 'academic_year_id'  => $academicId
               );
               $this->Student->importData($dataInputStudent);

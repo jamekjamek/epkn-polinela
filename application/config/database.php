@@ -5,7 +5,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
+	'dsn' => '',
 	'hostname' => 'mipdevp.com',
 	'username' => 'mipdevpc_user_pklpolinela',
 	'password' => '123Daftar@@',

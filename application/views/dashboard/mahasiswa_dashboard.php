@@ -24,8 +24,8 @@ $result = $this->db->query($query)->row_array();
     </div>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <p><strong>Halo <?= $showName['fullname'] ?>!</strong> Selamat datang di aplikasi E-PKN.</p>
-      <?php
-      echo '
+      <?php 
+       echo '
     <ul>
         <li>
         Silahkan lengkapi biodata anda di menu profil yang dapat di akses pada link berikut <strong> <a href="' . site_url('mahasiswa/profile') . '">' . site_url('mahasiswa/profile') . '</a></strong>
@@ -37,7 +37,7 @@ $result = $this->db->query($query)->row_array();
         Pastikan sudah mengisi data <strong>Program</strong> dan anda hadir pada saat pembekalan PKN kemudian telah <strong> di verifikasi oleh admin</strong> untuk dapat mengakses semua menu.
         </li>
     </ul>';
-      ?>
+          ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="ik ik-x"></i>
       </button>
@@ -54,96 +54,96 @@ $result = $this->db->query($query)->row_array();
         </div>
       </div>
       <div class="card-block">
-        <div class="scroll-widget">
-          <div class="latest-update-box">
-            <div class="row pt-20 pb-30">
-              <div class="col-auto text-right update-meta pr-0">
-                <i class="b-success update-icon ring"></i>
+          <div class="scroll-widget">
+            <div class="latest-update-box">
+              <div class="row pt-20 pb-30">
+                <div class="col-auto text-right update-meta pr-0">
+                  <i class="b-success update-icon ring"></i>
+                </div>
+                <div class="col pl-5">
+                  <a href="#!">
+                    <h6>Buku Panduan PKL</h6>
+                  </a>
+                  <a href="<?= site_url('assets/uploads/guidebook/' . $guidebook->file) ?>">
+                    <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKN</button></a>
+                </div>
               </div>
-              <div class="col pl-5">
-                <a href="#!">
-                  <h6>Buku Panduan PKL</h6>
-                </a>
-                <a href="<?= site_url('assets/uploads/guidebook/' . $guidebook->file) ?>">
-                  <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKN</button></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-auto text-right update-meta pr-0">
-                <i class="b-danger update-icon ring"></i>
-              </div>
-              <div class="col pl-5">
-                <a href="#!">
-                  <h6>Rincian Anggota Grup PKN & Status</h6>
-                </a>
-                <?php if ($check != null) : ?>
-                  <div class="col-12 table-responsive mt-3">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Anggota</th>
-                          <th>Status Verifikasi</th>
-                          <th>Dosen Pembimbing</th>
-                          <th>Desa</th>
-                          <th>Waktu Pelaksanaan</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $i = 1;
-                        $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
-                        $registrations = $this->Registration->getAll($check->group_id)->result();
-                        foreach ($registrations as $registration) :
-                        ?>
+              <div class="row">
+                <div class="col-auto text-right update-meta pr-0">
+                  <i class="b-danger update-icon ring"></i>
+                </div>
+                <div class="col pl-5">
+                  <a href="#!">
+                    <h6>Rincian Anggota Grup PKN & Status</h6>
+                  </a>
+                  <?php if ($check != null) : ?>
+                    <div class="col-12 table-responsive mt-3">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td><?= $i++; ?></td>
-                            <td>
-                              <strong> <?= $registration->npm ?></strong>
-                              <br>
-                              <?= $registration->fullname ?> -
-                              <?= $registration->status ?>
-                            </td>
-                            <td>
-                              <?php
-                              if ($registration->student_status === '-') : ?>
-                                <span class="badge badge-pill badge-secondary mb-1">Belum Diverifikasi</span>
-                              <?php elseif ($registration->student_status === 'active') : ?>
-                                <span class="badge badge-pill badge-success mb-1">Lulus Verifikasi</span>
-                              <?php elseif ($registration->student_status === 'graduated') : ?>
-                                <span class="badge badge-pill badge-primary mb-1">Lulus</span>
-                              <?php else : ?>
-                                <span class="badge badge-pill badge-danger mb-1">Tidak Aktif</span>
-                              <?php endif; ?>
-                            </td>
-                            <td>
-                              <?= $registration->nip ?> <br>
-                              <?= $registration->lecture_name ?>
-                            </td>
-                            <td>
-                              <?= $registration->company_name; ?> <br>
-                              <strong><?= $registration->pic; ?></strong>
-                            </td>
-                            <td>
-                              <span class="badge badge-pill badge-primary mb-1">
-                                <?= date('d-m-Y', strtotime($registration->start_date)) ?>
-                              </span>
-                              s.d <span class="badge badge-pill badge-success mb-1">
-                                <?= date('d-m-Y', strtotime($registration->finish_date)) ?>
-                              </span>
-                            </td>
+                            <th>No</th>
+                            <th>Anggota</th>
+                            <th>Status Verifikasi</th>
+                            <th>Dosen Pembimbing</th>
+                            <th>Desa</th>
+                            <th>Waktu Pelaksanaan</th>
                           </tr>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                <?php else :
-                  echo '<small class="text-mute">Anda belum melakukan belum terdaftar sebagai anggota grup manapun</small>';
-                endif; ?>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $i = 1;
+                          $this->load->model('Mahasiswa/Mahasiswa_registration_model', 'Registration');
+                          $registrations = $this->Registration->getAll($check->group_id)->result();
+                          foreach ($registrations as $registration) :
+                          ?>
+                            <tr>
+                              <td><?= $i++; ?></td>
+                              <td>
+                                <strong> <?= $registration->npm ?></strong>
+                                <br>
+                                <?= $registration->fullname ?> -
+                                <?= $registration->status ?>
+                              </td>
+                              <td>
+                                <?php
+                                if ($registration->student_status === '-') : ?>
+                                  <span class="badge badge-pill badge-secondary mb-1">Belum Diverifikasi</span>
+                                <?php elseif ($registration->student_status === 'active') : ?>
+                                  <span class="badge badge-pill badge-success mb-1">Lulus Verifikasi</span>
+                                <?php elseif ($registration->student_status === 'graduated') : ?>
+                                  <span class="badge badge-pill badge-primary mb-1">Lulus</span>
+                                <?php else : ?>
+                                  <span class="badge badge-pill badge-danger mb-1">Tidak Aktif</span>
+                                <?php endif; ?>
+                              </td>
+                              <td>
+                                <?= $registration->nip ?> <br>
+                                <?= $registration->lecture_name ?>
+                              </td>
+                              <td>
+                                <?= $registration->company_name; ?> <br>
+                                <strong><?= $registration->pic; ?></strong>
+                              </td>
+                              <td>
+                                <span class="badge badge-pill badge-primary mb-1">
+                                  <?= date('d-m-Y', strtotime($registration->start_date)) ?>
+                                </span>
+                                s.d <span class="badge badge-pill badge-success mb-1">
+                                  <?= date('d-m-Y', strtotime($registration->finish_date)) ?>
+                                </span>
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  <?php else :
+                    echo '<small class="text-mute">Anda belum melakukan belum terdaftar sebagai anggota grup manapun</small>';
+                  endif; ?>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
