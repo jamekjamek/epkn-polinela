@@ -35,7 +35,7 @@ class Document_model extends CI_Model
 
   public function getEnvelopeByLeader()
   {
-    $query = "SELECT registration.company_id, registration.copy_later, company.pic, company.name, company.address, company.telp FROM registration JOIN company ON company.id = registration.company_id JOIN student ON student.id = registration.student_id WHERE registration.status = 'Ketua' AND student.npm = '" . $this->session->userdata('user') . "'";
+    $query = "SELECT registration.company_id, registration.copy_later, company.pic, company.name, company.address, company.telp FROM registration JOIN company ON company.id = registration.company_id JOIN student ON student.id = registration.student_id WHERE student.npm = '" . $this->session->userdata('user') . "'";
     return $this->db->query($query)->row_array();
   }
 
@@ -56,9 +56,10 @@ class Document_model extends CI_Model
   {
     return $this->db->get_where($this->tableLetterConfig, $data);
   }
-  
-  public function getSuratTugas($data) {
-      return $this->db->query("SELECT student.fullname as student, prodi.name as prodi_name, student.npm FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id WHERE registration.group_id = '$data'");
+
+  public function getSuratTugas($data)
+  {
+    return $this->db->query("SELECT student.fullname as student, prodi.name as prodi_name, student.npm FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id WHERE registration.group_id = '$data'");
   }
 
   public function getRegistrationDataBy($data, $leader = null)
@@ -78,9 +79,7 @@ class Document_model extends CI_Model
     } else {
       $this->db->order_by('d.npm', 'ASC');
     }
-    $this->db->group_by('d.npm');
-    $this->db->group_by('a.id');
-    $this->db->group_by('g.name');
+    $this->db->where('d.npm', $this->session->userdata('user'));
     return $this->db->get($this->tableRegistration . ' a');
   }
 

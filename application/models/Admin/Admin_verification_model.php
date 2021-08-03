@@ -12,7 +12,8 @@ class Admin_verification_model extends CI_Model
 
   public function getDataStudent($data)
   {
-    return $this->db->get_where($this->tableStudent, $data);
+
+    return $this->db->order_by('npm', 'ASC')->get_where($this->tableStudent, $data);
   }
 
   public function insert($data)

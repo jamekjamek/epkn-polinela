@@ -83,12 +83,31 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                   <div class="form-group has-error">
                     <label for="no_hp">No Handphone</label>
                     <input type="text" class="form-control <?= form_error('no_hp') ? 'is-invalid' : ''; ?>" id="no_hp" name="no_hp" value="<?= set_value('no_hp') ? set_value('no_hp') : $profile->no_hp; ?>">
                     <div class="invalid-feedback">
                       <?= form_error('no_hp'); ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="name">Jenis Kelamin</label>
+                    <div class="form-radio">
+                      <div class="radio radio-inline">
+                        <label>
+                          <input type="radio" name="gender" <?= $profile->gender === 'L' ? 'checked="checked"' : ''; ?> value="L">
+                          <i class="helper"></i>Laki-laki
+                        </label>
+                      </div>
+                      <div class="radio radio-inline">
+                        <label>
+                          <input type="radio" name="gender" <?= $profile->gender === 'P' ? 'checked="checked"' : ''; ?> value="P">
+                          <i class="helper"></i>Perempuan
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -53,7 +53,7 @@
       </tr>
     </tbody>
   </table>
-
+  <?php $distric = strtolower($row->district_name) ?>
   <p style="text-align: left;padding-left:130px; margin-top:50px">
     <span>
       Yth. <?= $row->copy_later ?>
@@ -64,7 +64,7 @@
     </span>
     <br>
     <span>
-      Kecamatan <?= $row->district_name ?>
+      Kecamatan <?= ucwords($distric) ?>
     </span>
     <br>
     <br>

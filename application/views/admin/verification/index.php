@@ -66,10 +66,11 @@
             </div>
             <?php if ($this->input->get('prodi')) : ?>
               <div class="dt-responsive">
-                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                <table class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>NPM</th>
                       <th>Nama</th>
                       <th>
                         <div class="checkbox-zoom zoom-primary">
@@ -92,6 +93,7 @@
                     ?>
                       <tr>
                         <td><?= $i; ?></td>
+                        <td><?= $student->npm; ?></td>
                         <td><?= $student->fullname; ?></td>
                         <td>
                           <ul id="datacek<?= $i; ?>" data-id="<?= $student->id ?>">

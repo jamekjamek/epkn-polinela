@@ -34,7 +34,8 @@ class Mahasiswa_profile extends CI_Controller
         'email'         => htmlspecialchars($data['email']),
         'address'       => htmlspecialchars($data['address']),
         'birth_date'    => htmlspecialchars($data['birth_date']),
-        'no_hp'         => htmlspecialchars($data['no_hp'])
+        'no_hp'         => htmlspecialchars($data['no_hp']),
+        'gender'        => htmlspecialchars($data['gender']),
       ];
       $update = $this->Profile->update($profile);
       if ($update > 0) {
@@ -93,6 +94,15 @@ class Mahasiswa_profile extends CI_Controller
     $this->form_validation->set_rules(
       'no_hp',
       'No handphone',
+      'trim|required',
+      [
+        'required' => '%s wajib di isi',
+      ]
+    );
+
+    $this->form_validation->set_rules(
+      'gender',
+      'Jenis kelamin',
       'trim|required',
       [
         'required' => '%s wajib di isi',

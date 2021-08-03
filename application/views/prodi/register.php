@@ -79,10 +79,17 @@
                       </td>
                       <td><?= $row->company_name; ?></td>
                       <td>
-                        <div class="btn-group">
-                          <a href="<?= base_url('assets/uploads/laporan/' . $row->file) ?>" class="btn btn-outline-success"><i class="fa fa-file-pdf"></i></a>
-                          <button class="btn btn-outline-danger view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($row->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="video"><i class="ik ik-youtube"></i></button>
-                        </div>
+                        <?php if ($row->file) : ?>
+                          <div class="btn-group">
+                            <a href="<?= base_url('assets/uploads/laporan/' . $row->file) ?>" class="btn btn-outline-success"><i class="fa fa-file-pdf"></i></a>
+                            <button class="btn btn-outline-danger view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($row->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="video"><i class="ik ik-youtube"></i></button>
+                          </div>
+                        <?php else : ?>
+                          <div class="btn-group">
+                            <a href="#" class="btn btn-outline-success disabled"><i class="fa fa-file-pdf"></i></a>
+                            <button class="btn btn-outline-danger view-video disabled"><i class="ik ik-youtube"></i></button>
+                          </div>
+                        <?php endif ?>
                       </td>
                     </tr>
                   <?php $i++;

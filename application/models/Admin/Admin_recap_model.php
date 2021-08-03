@@ -13,7 +13,7 @@ class Admin_recap_model extends CI_Model
 
   public function getAcademic($id)
   {
-    if ($id) {
+    if ($id && $this->session->userdata('role') == 'Admin') {
       $this->db->where('id', $id);
     } else {
       $this->db->where('status', 1);
@@ -24,10 +24,13 @@ class Admin_recap_model extends CI_Model
   public function getDataLecturer($academic_year_id = null)
   {
     $query = "SELECT academic_year.name as academic_year, lecture.prodi_id, prodi.name as prodi_name, lecture.nip, lecture.name as lecture_name, student.fullname, student.npm, company.name as company_name, registration.group_status FROM registration JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN prodi ON prodi.id = student.prodi_id JOIN academic_year ON academic_year.id = registration.academic_year_id";
-    if ($academic_year_id) {
+    if ($academic_year_id && $this->session->userdata('role') == 'Admin') {
       $query .= " WHERE academic_year.id = '$academic_year_id'";
-    } else {
+    } elseif ($this->session->userdata('user') == 'Admin') {
       $query .= " WHERE academic_year.status = 1";
+    } elseif ($academic_year_id && $this->session->userdata('role') == 'Prodi') {
+      $query .= " WHERE registration.prodi_id = '$academic_year_id'";
+      $query .= " AND academic_year.status = 1";
     }
     return $this->db->query($query);
   }
@@ -45,10 +48,13 @@ class Admin_recap_model extends CI_Model
   public function getDataSupervisor($academic_year_id = null)
   {
     $query = "SELECT academic_year.name as academic_year, company.name as company_name, company.pic, company.norek, company.bank_name, prodi.name as prodi_name, student.fullname, student.npm, registration.group_status FROM registration JOIN supervisor ON supervisor.id = registration.supervisor_id JOIN student ON student.id = registration.student_id JOIN company ON company.id = registration.company_id JOIN prodi ON prodi.id = registration.prodi_id JOIN academic_year ON academic_year.id = registration.academic_year_id";
-    if ($academic_year_id) {
+    if ($academic_year_id && $this->session->userdata('role') == 'Admin') {
       $query .= " WHERE academic_year.id = '$academic_year_id'";
-    } else {
+    } elseif ($this->session->userdata('role') == 'Admin') {
       $query .= " WHERE academic_year.status = 1";
+    } elseif ($academic_year_id && $this->session->userdata('role') == 'Prodi') {
+      $query .= " WHERE registration.prodi_id = '$academic_year_id'";
+      $query .= " AND academic_year.status = 1";
     }
     return $this->db->query($query);
   }

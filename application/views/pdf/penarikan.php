@@ -23,7 +23,7 @@
   <table style="width: 100%; height: 59px;" border="0">
     <tbody>
       <tr>
-        <td style="width: 60%;" align="left">
+        <td style="width: 50%;" align="left">
           <table style="width: 100%; height: 59px;" border="0">
             <tbody>
               <tr>
@@ -54,10 +54,28 @@
     </tbody>
   </table>
   <br>
+  <?php $distric = strtolower($row->district_name) ?>
+  <p style="text-align: left;padding-left:100px;">
+    <span>
+      Yth. <?= $row->copy_later ?>
+    </span>
+    <br>
+    <span>
+      <?= $row->company_name ?>
+    </span>
+    <br>
+    <span>
+      Kecamatan <?= ucwords($distric) ?>
+    </span>
+    <br><br>
+    <span>
+      Dengan hormat,
+    </span>
+  </p>
   <div style=" text-align: justify; text-justify: inter-word;">
-    <p style="padding-left: 80px;">Disampaikan dengan hormat, Sehubungan dengan Praktik Kerja Nyata Mahasiswa Politeknik Negeri Lampung yang dilaksanakan di Kelurahan Bapak/Ibu, berakhir pada tanggal <?= date('d F Y', strtotime($row->finish_date)) ?> kami mohon izin untuk menarik kembali mahasiswa berikut:</p>
+    <p style="padding-left: 100px;">Disampaikan dengan hormat, Sehubungan dengan Praktik Kerja Nyata Mahasiswa Politeknik Negeri Lampung yang dilaksanakan di Kelurahan Bapak/Ibu, berakhir pada tanggal <?= date('d F Y', strtotime($row->finish_date)) ?> kami mohon izin untuk menarik kembali mahasiswa berikut:</p>
   </div>
-  <div style="padding-left: 80px;">
+  <div style="padding-left: 100px;">
     <table style="border-collapse: collapse; width: 100%;" border="1">
       <tbody>
         <tr>
@@ -79,12 +97,15 @@
     </table>
   </div>
   <div style=" text-align: justify; text-justify: inter-word;">
-    <p style="padding-left: 80px;">Selanjutnya mahasiswa tersebut akan menyelesaikan Ujian Praktik Kerja Nyata di Politeknik Negeri Lampung.</p>
-    <p style="padding-left: 80px;">Atas bantuan dan kerjasama Bapak/Ibu, Kami ucapkan terima kasih. Semoga kerjasama yang sudah terjalin dengan baik, dapat terus berlanjut di masa mendatang.</p>
+    <p style="padding-left: 100px;">Selanjutnya mahasiswa tersebut akan menyelesaikan Ujian Praktik Kerja Nyata di Politeknik Negeri Lampung.</p>
+    <p style="padding-left: 100px;">Atas bantuan dan kerjasama Bapak/Ibu, Kami ucapkan terima kasih. Semoga kerjasama yang sudah terjalin dengan baik, dapat terus berlanjut di masa mendatang.
+      <br>
+      <br>
+      Demikian permohonan kami, atas bantuan dan kerajasamanya diucapkan terimakasih.
+    </p>
   </div>
-  <p style="padding-left: 80px;">Demikian permohonan kami, atas bantuan dan kerajasamanya diucapkan terimakasih.</p>
   <p style="padding-left: 400px;">a.n Direktur <br>Pembantu Direktur I,</p>
-  <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
+  <img style="padding-left: 400px;" src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
   <p style="padding-left: 400px;">Dwi Puji Hartono <br>NIP <span style="font-weight: 400;">197602202000031002</span></p>
 
 </body>

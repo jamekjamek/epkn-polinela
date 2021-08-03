@@ -231,6 +231,7 @@ class Admin_pdf extends CI_Controller
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
     $majorH = $this->Documents->getStudentData($decodeId)->row();
+
     $dataBody           = [
       'degree'      => $this->DataPkl->checkStudentDegree(['registration_id' => $decodeId])->row(),
       'student'     => $this->Documents->getStudentData($decodeId)->row(),
@@ -242,6 +243,7 @@ class Admin_pdf extends CI_Controller
       'HM'          => $this->DataPkl->getByIdFinalScore(['registration_id' => $decodeId])->row(),
     ];
     $body               = $this->load->view('pdf/penilaiandosenpembimbing', $dataBody, TRUE);
+
     $mpdf->SetProtection(array('print'));
     $mpdf->SetTitle("15.Penilaian dosen pembimbing (F-PAI-038)");
     $mpdf->SetDisplayMode('fullpage');

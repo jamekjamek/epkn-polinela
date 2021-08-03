@@ -17,12 +17,13 @@
   <table style="width: 100%; height: 59px;" border="0">
     <tbody>
       <tr>
-        <td style="width: 19.5775%;"><img src="http://1.bp.blogspot.com/-KT28ePy6kJc/UNLEPC3aBgI/AAAAAAAAIMM/gG9DtCR6BNs/s1600/LOGO+POLITEKNIK+NEGERI+LAMPUNG.png" alt="" width="100" height="100" /></td>
+        <td style="width: 19.5775%;"><img src="<?= base_url('assets/img/logo/logo-new.png') ?>" alt="" width="100" height="100" /></td>
         <td style="text-align: center;">
-          <p style="text-align: center; font-size:18px">KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN</p>
+          <p style="text-align: center; font-size:18px">KEMENTRIAN PENDIDIKAN, KEBUDAYAAN</p>
+          <p style="text-align: center; font-size:18px">RISET, DAN TEKNOLOGI</p>
           <p style="text-align: center; font-size:18px"><strong>POLITEKNIK NEGERI LAMPUNG</strong></p>
-          <p style="text-align: center; font-size:16px">Jl. Soekarno Hatta No. 10, Rajabasa - Bandar Lampung</p>
-          <p style="text-align: center; font-size:12px">Telepon (0721) 703995, Faksimili (0721) 787309</p>
+          <p style="text-align: center; font-size:16px">Jl. Soekarno Hatta Rajabasa Bandar Lampung</p>
+          <p style="text-align: center; font-size:12px">Telepon (0721) 703995 Faksimili (0721) 787309</p>
           <p style="text-align: center; font-size:12px">laman : www.polinela.ac.id</p>
         </td>
       </tr>
