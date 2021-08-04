@@ -42,7 +42,6 @@
                 <div>
                     <a href="<?= base_url('admin/registrations/import'); ?>" class="btn btn-info"><i class="ik ik-plus-square"></i>Import Excel</a>
                     <button class="btn  <?= (count($allRegistrationLeader) > 0) ? 'btn-dark' : 'btn-success' ?>" id="generate-data" <?= (count($allRegistrationLeader) > 0) ? 'Disabled' : '' ?>><i class="ik ik-plus-square"></i>Generate Data</button>
-                    <a href="<?= base_url('admin/registrations/history'); ?>" class="btn btn-warning"><i class="ik ik-plus-square"></i>History</a>
                     <a href="<?= base_url('admin/registrations/add'); ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah</a>
                 </div>
               </div>

@@ -73,15 +73,7 @@
                       <th>NPM</th>
                       <th>Nama</th>
                       <th>
-                        <div class="checkbox-zoom zoom-primary">
-                          <label>
-                            <input type="checkbox" onchange="checkAll(this)">
-                            <span class="cr">
-                              <i class="cr-icon ik ik-check txt-primary"></i>
-                            </span>
-                            <span>All</span>
-                          </label>
-                        </div>
+                        Data
                       </th>
                     </tr>
                   </thead>

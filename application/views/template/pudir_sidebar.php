@@ -3,7 +3,7 @@
   <div class="sidebar-header">
     <a class="header-brand" href="<?= site_url() ?>">
       <a class="header-brand" href="<?= site_url() ?>">
-        <span class="text">PKL POLINELA</span>
+        <span class="text">PKN POLINELA</span>
       </a>
     </a>
     <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>

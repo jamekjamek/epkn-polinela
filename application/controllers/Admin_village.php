@@ -124,9 +124,9 @@ class Admin_village extends CI_Controller
   public function delete($id)
   {
     $decodeId   = decodeEncrypt($id);
-    $village    = $this->village->getDataBy(['a.id' => $decodeId])->row();
+    $village    = $this->Village->getDataBy(['a.id' => $decodeId])->row();
     if ($village) {
-      $deleteprodi    = $this->village->delete(['id' => $decodeId]);
+      $deleteprodi    = $this->Village->delete(['id' => $decodeId]);
       if ($deleteprodi > 0) {
         $this->session->set_flashdata('success', 'Data berhasil di hapus');
       } else {

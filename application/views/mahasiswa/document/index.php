@@ -85,6 +85,13 @@
                         <a href="<?= site_url('pdf/surattugas') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
                       </td>
                     </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Permohonan Penggunaan Aplikasi</td>
+                      <td>
+                        <a href="<?= site_url('pdf/permohonanpenggunaanapp') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
+                      </td>
+                    </tr>
                   <?php
                   else : ?>
                     <tr>
@@ -93,7 +100,7 @@
                   <?php endif;
                   if ($isCheck['pushed'] == 1) : ?>
                     <tr>
-                      <td>4</td>
+                      <td>5</td>
                       <td>Surat Penarikan</td>
                       <td>
                         <a href="<?= site_url('pdf/suratpenarikan') ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>
@@ -103,7 +110,7 @@
                   endif;
                   if ($supervisorValue) : ?>
                     <tr>
-                      <td>5</td>
+                      <td>6</td>
                       <td>Form Hasil Penilaian Pembimbing Lapang</td>
                       <td>
                         <a href="<?= site_url('pdf/penilaianpembimbinglapang/' . encodeEncrypt($isCheck['id'])) ?>" class="btn btn-success" target="_blank"><i class="ik ik-download-cloud"></i><span>UNDUH</span></a>

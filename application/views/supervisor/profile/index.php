@@ -36,7 +36,7 @@
           </div>
           <div class="card-body">
             <form action="" method="POST">
-                <input type="text" class="form-control" name="id" value="<?= set_value('id') ? set_value('id') : $profile->id; ?>">
+                <input type="hidden" class="form-control" name="id" value="<?= set_value('id') ? set_value('id') : $profile->id; ?>">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group has-error">

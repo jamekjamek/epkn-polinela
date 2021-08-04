@@ -28,9 +28,9 @@
   <p style="text-align: center;">
     <strong style="font-size:18px">NILAI AKHIR PKN</strong>
     <br>
-    <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= $prodi->name; ?></span>
+    <span style="text-align: center; font-weight:bold; text-transform:uppercase">PROGRAM STUDI <?= @$prodi->name; ?></span>
     <br>
-    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= $row->academic; ?></span>
+    <span style="text-align: center; font-weight:bold">TAHUN AJARAN <?= @$row->academic; ?></span>
   </p>
   <p style="text-align: center;">&nbsp;</p>
   <table style="border-collapse: collapse; width: 100%; height: 144px; padding:20px" border="1">
@@ -68,7 +68,7 @@
         <?php endforeach; ?>
       <?php else : ?>
         <tr style="height: 18px;">
-          <td style="height: 50px; text-align:center" colspan="5">
+          <td style="height: 50px; text-align:center" colspan="9">
             <strong>
               Data Masih Kosong
             </strong>
@@ -97,10 +97,10 @@
       <br>
       <br>
       <span style="font-weight: bold;">
-        <?= $prodi->lecture; ?>
+        <?= @$prodi->lecture; ?>
       </span>
       <br>
-      <span style="font-weight: bold;"><?= $prodi->nip; ?></span>
+      <span style="font-weight: bold;"><?= @$prodi->nip; ?></span>
 
 
     </p>

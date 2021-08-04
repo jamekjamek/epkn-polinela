@@ -72,8 +72,14 @@
                           <br>
                           <?= $row->fullname ?>
                         </td>
-                        <td><?= date('d-m-Y', strtotime($row->created_at)) ?></td>
-                        <td><?= $row->time_in; ?> s.d <?= $row->time_out; ?></td>
+                        <td><?= date('d-M-Y H:m:s', strtotime($row->created_at)) ?></td>
+                        <td>
+                            <?php if($row->time_in) {
+                            echo $row->time_in . ' s.d ' . $row->time_out;
+                          } else { 
+                          
+                          } ?>
+                        </td>
                         <td><?= $row->attendance; ?></td>
                         <td><?= $row->note; ?></td>
                         <td>
@@ -101,6 +107,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>

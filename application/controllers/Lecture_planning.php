@@ -51,7 +51,6 @@ class Lecture_planning extends CI_Controller
   {
     $approval = $this->input->post('approval');
     $planning = $this->input->post('planning');
-    pretty_dump($planning);
     $this->db->trans_start();
     for ($i = 0; $i < count($approval); $i++) {
       $data = [

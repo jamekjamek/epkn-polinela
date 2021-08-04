@@ -44,6 +44,7 @@
                     <th>Kehadiran</th>
                     <th>Waktu Kehadiran</th>
                     <th>Keterangan</th>
+                    <th>Verifikasi Pembimbing Lapang</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,10 +54,19 @@
                   ?>
                     <tr>
                       <td><?= $i; ?></td>
-                      <td><?= date('d-m-Y', strtotime($student->created_at)); ?></td>
+                      <td><?= date('d-M-Y H:m:s', strtotime($student->created_at)); ?></td>
                       <td><?= $student->attendance; ?></td>
-                      <td><?= $student->time_in ?> s.d <?= $student->time_out ?></td>
+                      <td>
+                          <?php if($student->time_in) {
+                            echo $student->time_in . ' s.d ' . $student->time_out;
+                          } else { 
+                          
+                          } ?>
+                      </td>
                       <td><?= $student->note; ?></td>
+                      <td>
+                          <?= ($student->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
+                      </td>
                     </tr>
                   <?php $i++;
                   endforeach; ?>

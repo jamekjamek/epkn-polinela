@@ -34,10 +34,10 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
               </div>
               <div class="col pl-5">
                 <a href="#!">
-                  <h6>Buku Panduan PKL</h6>
+                  <h6>Buku Panduan PKN</h6>
                 </a>
                 <a href="<?= site_url('assets/uploads/guidebook/' . $guidebook->file) ?>">
-                  <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKL</button></a>
+                  <button class="btn btn-success"><i class="ik ik-download-cloud"></i><span></span>Download Buku Panduan PKN</button></a>
               </div>
             </div>
             <div class="row">

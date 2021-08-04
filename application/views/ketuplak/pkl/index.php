@@ -96,7 +96,7 @@
                         <?php if ($sumDiterima === 0) : ?>
                           0 %
                         <?php else : ?>
-                          <?= ($sumDiterima / $sumStudent) * 100 . ' %'; ?>
+                          <?= number_format(($sumDiterima / $sumStudent),2) * 100 . ' %'; ?>
                         <?php endif; ?>
                       </td>
                     </tr>

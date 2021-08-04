@@ -138,6 +138,7 @@ $route['pdf/pembimbinglapang/(:any)']               = 'admin_pdf/pembimbinglapan
 $route['pdf/nilaiakhirpkn']                         = 'admin_pdf/nilaiakhirpkl';
 $route['pdf/kehadiran/(:any)']                      = 'admin_pdf/kehadiran/$1';
 $route['pdf/lembarisianpkn/(:any)']                 = 'admin_pdf/lembarisianpkn/$1'; //12. LEMBAR ISIAN_PKN
+$route['pdf/permohonanpenggunaanapp']               = 'admin_pdf/permohonanpenggunaanapp';
 $route['admin/verification']                        = 'Admin_verification';
 
 //KETUA JURUSAN

@@ -82,14 +82,14 @@
                           </ul>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-warning modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $row->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="activity/daily_log/detail_more"><i class="ik ik-eye"></i><span>Detail</span></button>
-                        </td>
-                        <td>
                           <?php if ($row->validation == 0) {
                             echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
                           } else {
                             echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
                           } ?>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-warning modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $row->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="activity/daily_log/detail_more"><i class="ik ik-eye"></i><span>Detail</span></button>
                         </td>
                         <td>
                           <?php if ($row->validation == 0) : ?>

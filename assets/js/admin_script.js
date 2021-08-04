@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 	function buttonClickDelete(route, id) {
 		var url = base_url + "admin/master/" + route + "/delete/" + id;
-		deleteQuestion(url, "Yakin akan menghapus data ini ?");
+		deleteQuestion(url, "Yakin akan menghapus data ini ??");
 	}
 
 	function buttonClickDeleteAcademicYear(route, id) {
@@ -144,7 +144,7 @@ $(document).ready(function () {
 	select2ajax("regency2", "Cari nama kecamatan, kabupaten atau provinsi");
 	$(document).on("click", ".delete-company", function () {
 		var id = $(this).data("id");
-		buttonClickDelete("company", id);
+		buttonClickDelete("village", id);
 	});
 
 	$("#academicyearyearpkladmin").select2({

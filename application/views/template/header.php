@@ -5,9 +5,10 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <meta charset="utf-8" />
   <title>PKN - Politeknik Negeri Lampung</title>
+  <link rel="icon" href="<?= base_url('assets/img/logo/logo-new.png') ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta content="" name="description" />
-  <meta content="" name="author" />
+  <meta content="" name="Sistem Informasi Praktik Kerja Nyata Politeknik Negeri Lampung atau disebut dengan E-PKN di buat pada tahun 2021 oleh UP2AI" />
+  <meta content="" name=" Tim UP2AI" />
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
   <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/bootstrap/dist/css/bootstrap.min.css">

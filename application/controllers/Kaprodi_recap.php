@@ -111,7 +111,7 @@ class Kaprodi_recap extends CI_Controller
     $prodi      = $this->Prodi->getByEmail($this->session->user);
     $students   = $this->Recap->getAttendanceByStudent($prodi->id)->result();
     $data = [
-      'title'       => 'Absensi Mahasiswa PKL',
+      'title'       => 'Absensi Mahasiswa PKN',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
       'students'    => $students,
     ];

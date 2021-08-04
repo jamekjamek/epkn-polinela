@@ -396,7 +396,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetTitle("Data Kehadiran");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Data_Kehadiran_" . @$data['row']->company_name . "_" . $data['row']->academic_year . "_" . @$data['row']->period, "I");
+    $mpdf->Output("Data_Kehadiran_" . @$data['row']->company_name . "_" . @$data['row']->academic_year . "_" . @$data['row']->period, "I");
   }
 
   public function nilaiakhirpkl()
@@ -422,7 +422,7 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetTitle("Nilai Akhir");
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->WriteHTML($view);
-    $mpdf->Output("Nilai_Akhir_" . $data['data']->row()->prodi_name . "_" . $data['data']->row()->academic_year . "_" . @$data['data']->row()->period, "I");
+    $mpdf->Output("Nilai_Akhir_" . @$data['data']->row()->prodi_name . "_" . @$data['data']->row()->academic_year . "_" . @$data['data']->row()->period, "I");
   }
 
   public function lembarisianpkn($id)
@@ -464,5 +464,32 @@ class Admin_pdf extends CI_Controller
       $mpdf->WriteHTML($view);
     }
     $mpdf->Output('12.Lembar Isian PKN.pdf', 'I');
+  }
+  
+  public function permohonanpenggunaanapp()
+  {
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+    $footer             =
+      '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
+    $mpdf->SetHTMLFooter($footer);
+    $settingLetter      = $this->Documents->getDataBy(['document_id' => '23e30fa3-db72-11eb-9096-0cc47abcfaa6'])->row();
+    $dataBody           = [
+      'settingletter' => $settingLetter,
+      'row'           => $this->Documents->getSupervisorUser()->row()
+    ];
+    $body               = $this->load->view('pdf/permohonanpenggunaanapp', $dataBody, TRUE);
+    $mpdf->SetProtection(array('print'));
+    $mpdf->SetTitle("Permohonan Penggunaan Aplikasi");
+    $mpdf->SetDisplayMode('fullpage');
+    $mpdf->Image('assets/img/ttd/ttd_pudir1.png', 0, 0, 210, 297, 'png', '', true, false);
+    $mpdf->WriteHTML($body);
+    
+    $pagecount = $mpdf->SetSourceFile('assets/uploads/Lampiran_Penggunaan_App_E_PKN.pdf');
+    for ($i=1; $i<=($pagecount); $i++) {
+        $mpdf->AddPage();
+        $import_page = $mpdf->ImportPage($i);
+        $mpdf->UseTemplate($import_page);
+    }
+    $mpdf->Output('Permohonan_Penggunaan_Aplikasi_E_PKN.pdf', 'I');
   }
 }

@@ -28,7 +28,7 @@ class Lecture_report_model extends CI_Model
     } else {
       $this->db->where('academic_year.status', 1);
     }
-    $this->db->group_by(['registration.group_id', 2, 3, 6]);
+    $this->db->group_by(['registration.group_id']);
     // $this->db->group_by('registration.id');
     // $this->db->group_by('supervision_report.id');
     return $this->db->get($this->tableReportSupervision);
