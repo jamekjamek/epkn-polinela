@@ -67,19 +67,15 @@ class Document_model extends CI_Model
     $this->db->select('a.*,b.name company_name,g.name as district_name,c.name as address,d.fullname as student,d.npm,d.email student_email,e.name prodi_name,f.name as academicyear');
     $this->db->join($this->tableCompany . ' b', 'a.company_id=b.id', 'LEFT');
     $this->db->join($this->tableRegency . ' c', 'b.regency_id=c.id', 'LEFT');
-    $this->db->join($this->tableDistric . ' g', 'g.regency_id=c.id', 'LEFT');
+    $this->db->join($this->tableDistric . ' g', 'g.id=b.districts_id', 'LEFT');
     $this->db->join($this->tableStudent . ' d', 'a.student_id=d.id', 'LEFT');
     $this->db->join($this->tableProdi . ' e', 'd.prodi_id=e.id', 'LEFT');
     $this->db->join($this->tableAcademic . ' f', 'a.academic_year_id=f.id', 'LEFT');
     $this->db->where($data);
     $this->db->where('a.group_status !=', 'ditolak');
     $this->db->where('a.verify_member !=', 'Ditolak');
-    if ($leader) {
-      $this->db->where('a.status', 'Ketua');
-    } else {
-      $this->db->order_by('d.npm', 'ASC');
-    }
     $this->db->where('d.npm', $this->session->userdata('user'));
+    $this->db->order_by('d.npm', 'ASC');
     return $this->db->get($this->tableRegistration . ' a');
   }
 

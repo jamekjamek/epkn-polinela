@@ -36,6 +36,7 @@
           </div>
           <div class="card-body">
             <form action="" method="POST">
+                <input type="hidden" class="form-control" name="user_id" value="<?= set_value('user_id') ? set_value('user_id') : $profile->user_id; ?>">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group has-error">
@@ -114,12 +115,15 @@
               </div>
               <div class="form-group has-error">
                 <label for="address">Alamat</label>
-                <textarea name="address" class="form-control html-editor <?= form_error('address') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3">
-                <?= $profile->address ?>
-                </textarea>
+                <textarea name="address" class="form-control <?= form_error('address') ? 'is-invalid' : ''; ?>" id="address" cols="30" rows="3"><?= $profile->address ?></textarea>
                 <div class="invalid-feedback">
                   <?= form_error('address'); ?>
                 </div>
+              </div>
+              <div class="form-group has-error">
+                <label for="password">Password</label>
+                <input type="password" class="form-control <?= form_error('password') ? 'is-invalid' : ''; ?>" id="password" name="password">
+                <small class="text-mute">Abaikan ini jika tidak ingin ganti password</small>
               </div>
               <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>Simpan</button>
             </form>

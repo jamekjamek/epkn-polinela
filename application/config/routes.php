@@ -249,7 +249,7 @@ $route['prodi/video']                         = 'recap_controller/video';
 /* ================================== LECTURE ROLE ================================== */
 
 $route['dosen/dashboard']                           = 'lecture_dashboard';
-
+$route['dosen/profile']                             = 'lecture_profile';
 $route['dosen/planning']                            = 'lecture_planning';
 $route['dosen/planning/academic_year/(:any)']       = 'lecture_planning/index/$1';
 $route['dosen/planning/detail/(:any)']              = 'lecture_planning/detail/$1';

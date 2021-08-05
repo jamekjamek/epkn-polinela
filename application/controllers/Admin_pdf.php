@@ -37,7 +37,7 @@ class Admin_pdf extends CI_Controller
     $leaderGroupId      = $this->Documents->getUserInRegistration($this->session->userdata('user'))->row();
     $rowRegistration    = $this->Documents->getRegistrationDataBy(['a.group_id' => $leaderGroupId->group_id], 'leader')->row();
     $dataRegistration   = $this->Documents->getSuratTugas($leaderGroupId->group_id)->result();
-    $dataKaprodi        = $this->Documents->getKaprodi($rowRegistration->prodi_id)->row();
+    $dataKaprodi        = $this->Documents->getKaprodi(@$rowRegistration->prodi_id)->row();
     $dataBody           = [
       'settingletter' => $settingLetter,
       'row'           => $rowRegistration,

@@ -21,7 +21,7 @@ class Dashboard_model extends CI_Model
   public function getLocation($id = null)
   {
     if ($this->session->userdata('role') == 'Dosen') {
-      $query = $this->db->query("SELECT COUNT(registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.lecture_id = '$id' AND academic_year.status = 1 GROUP BY registration.company_id");
+      $query = $this->db->query("SELECT COUNT(DISTINCT registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.lecture_id = '$id' AND academic_year.status = 1 GROUP BY registration.lecture_id");
     } else if ($this->session->userdata('role') == 'Prodi') {
       $query = $this->db->query("SELECT COUNT(DISTINCT registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.prodi_id = '$id' AND academic_year.status = 1 GROUP BY registration.company_id");
     } else {

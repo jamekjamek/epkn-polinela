@@ -28,16 +28,45 @@ class Mahasiswa_profile extends CI_Controller
     } else {
       $this->output->set_content_type('application/json')->set_output(json_encode($profile));
       $data = $this->input->post();
-      $profile = [
-        'npm'           => $data['npm'],
-        'fullname'      => htmlspecialchars($data['fullname']),
-        'email'         => htmlspecialchars($data['email']),
-        'address'       => htmlspecialchars($data['address']),
-        'birth_date'    => htmlspecialchars($data['birth_date']),
-        'no_hp'         => htmlspecialchars($data['no_hp']),
-        'gender'        => htmlspecialchars($data['gender']),
-      ];
-      $update = $this->Profile->update($profile);
+      if(password_hash($data['password'], PASSWORD_DEFAULT) == $profile->password) {
+          $profile = [
+            'npm'           => $data['npm'],
+            'fullname'      => htmlspecialchars($data['fullname']),
+            'email'         => htmlspecialchars($data['email']),
+            'address'       => htmlspecialchars($data['address']),
+            'birth_date'    => htmlspecialchars($data['birth_date']),
+            'no_hp'         => htmlspecialchars($data['no_hp']),
+            'gender'        => htmlspecialchars($data['gender']),
+          ];
+          $update = $this->Profile->update($profile);
+      } elseif($data['password'] == '') {
+          $profile = [
+            'npm'           => $data['npm'],
+            'fullname'      => htmlspecialchars($data['fullname']),
+            'email'         => htmlspecialchars($data['email']),
+            'address'       => htmlspecialchars($data['address']),
+            'birth_date'    => htmlspecialchars($data['birth_date']),
+            'no_hp'         => htmlspecialchars($data['no_hp']),
+            'gender'        => htmlspecialchars($data['gender']),
+          ];
+          $update = $this->Profile->update($profile);
+      } else {
+          $profile = [
+            'npm'           => $data['npm'],
+            'fullname'      => htmlspecialchars($data['fullname']),
+            'email'         => htmlspecialchars($data['email']),
+            'address'       => htmlspecialchars($data['address']),
+            'birth_date'    => htmlspecialchars($data['birth_date']),
+            'no_hp'         => htmlspecialchars($data['no_hp']),
+            'gender'        => htmlspecialchars($data['gender']),
+          ];
+          $update = $this->Profile->update($profile);
+          $user = [
+           'id'            => $data['user_id'],
+           'password'      => password_hash($data['password'], PASSWORD_DEFAULT),
+          ];
+          $update = $this->Profile->updateUserPassword($user);
+      }
       if ($update > 0) {
         $this->session->set_flashdata('success', '<b>Ubah data berhasil</b>');
       } else {

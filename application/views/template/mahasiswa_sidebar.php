@@ -25,6 +25,9 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('mahasiswa/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
+          <a href=" <?= site_url('mahasiswa/profile') ?>"><i class="ik ik-user"></i><span>Profil</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'program' ? 'active' : '') ?>">
           <a href=" <?= site_url('mahasiswa/program') ?>"><i class="ik ik-check-circle"></i><span>Program</span></a>
         </div>

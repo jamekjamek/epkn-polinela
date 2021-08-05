@@ -51,7 +51,7 @@
     <?php $regency = strtolower($row->address) ?>
     <?php $distric = strtolower($row->district_name) ?>
     <span>
-      Untuk melaksanakan Praktik Kerja Nyata (PKN) Tahun <?= date('d F ', strtotime($row->finish_date)) ?> di :
+      Untuk melaksanakan Praktik Kerja Nyata (PKN) Tahun <?= date('Y', strtotime($row->finish_date)) ?> di :
     </span>
     <br>
     <span style="font-weight:bold;">
