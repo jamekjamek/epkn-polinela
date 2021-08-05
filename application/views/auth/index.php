@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Login | PKL - Politeknik Negeri Lampung</title>
+  <title>Login | PKN - Politeknik Negeri Lampung</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,7 +61,7 @@
                   </label>
                 </div>
                 <div class="col text-right">
-                  <a href="forgot-password.html">Forgot Password ?</a>
+                  <a href="<?= site_url('auth/forgot_password') ?>">Forgot Password ?</a>
                 </div>
               </div>
               <div class="sign-btn text-center">

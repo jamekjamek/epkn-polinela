@@ -34,6 +34,35 @@ class Auth extends CI_Controller
     pageAuth($page, $data);
   }
 
+  public function forgotPassword()
+  {
+    $page = '/auth/index_forgot';
+    pageAuth($page);
+  }
+
+  public function reset()
+  {
+    $check = $this->Auth->userCheck($this->input->post('username'))->row();
+    if ($check->username == $this->input->post('username')) {
+      $passnew = random_string('alnum', 15);
+      $data = [
+        'password'  =>  password_hash($passnew, PASSWORD_DEFAULT),
+      ];
+      $updateUser = $this->Auth->update($data, $check->id);
+      if ($updateUser > 0) {
+        $this->session->set_flashdata('sukses', 'Silahkan copy password baru anda dibawah ini <br>' . $passnew);
+      } else {
+        $this->session->set_flashdata('error', 'Server Data User Sedang sibuk, silahkan coba lagi');
+      }
+      redirect('auth/forgot_password');
+    } else {
+      $this->session->set_flashdata('error', 'Username ' . $this->input->post('username') . ' tidak ditemukan!');
+      redirect('auth/forgot_password');
+    }
+    $this->output->delete_cache();
+  }
+
+
   public function login()
   {
     $this->_validation();

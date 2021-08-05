@@ -5,6 +5,7 @@ $route['default_controller']                        = 'auth/login';
 
 //AUTH
 $route['auth']                                      = 'auth/login';
+$route['auth/forgot_password']                      = 'auth/forgotPassword';
 $route['auth/changedefault']                        = 'auth/changepasswordfromdefault';
 
 /* ================================== ADMIN ROLE ================================== */

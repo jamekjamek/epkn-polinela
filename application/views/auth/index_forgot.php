@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Login | PKN - Politeknik Negeri Lampung</title>
+  <title>Forgot Password | PKN - Politeknik Negeri Lampung</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,28 +34,26 @@
         <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
           <div class="authentication-form mx-auto">
             <img src="<?= base_url('assets/') ?>img/auth/pkn-logo.png" alt="pkn-logo" width="339px">
-            <h3 class="mt-2">Set New Password to PKN Polinela Apps</h3>
-            <form action="" method="POST">
-              <!-- <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
-                value="<?= $this->security->get_csrf_hash(); ?>"> -->
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Sandi Baru" name="new_password">
-                <div class="text-danger">
-                  <?= form_error('new_password'); ?>
-                  <?= $this->session->flashdata('errorpassword'); ?>
-                </div>
-                <i class="ik ik-lock"></i>
+            <h3 class="mt-2">Forgot Password PKN Polinela Apps</h3>
+            <?php if ($this->session->flashdata('sukses')) { ?>
+              <div class="alert alert-success" role="alert">
+                <?= $this->session->flashdata('sukses') ?>
               </div>
+            <?php } else if ($this->session->flashdata('error')) { ?>
+              <div class="alert alert-danger" role="alert">
+                <?= $this->session->flashdata('error') ?>
+              </div>
+            <?php  } ?>
+            <form action="<?= site_url('auth/reset') ?>" method="POST">
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Ulang Sandi Baru" name="retype_new_password">
-                <div class="text-danger">
-                  <?= form_error('retype_new_password'); ?>
-                  <?= $this->session->flashdata('errorretypepassword'); ?>
-                </div>
+                <input type="text" class="form-control" placeholder="Masukan username anda" name="username">
                 <i class="ik ik-lock"></i>
               </div>
               <div class="sign-btn text-center">
                 <button class="btn btn-theme" type="submit">Continue</button>
+              </div>
+              <div class="sign-btn text-center">
+                <a href="<?= site_url('') ?>">Continue with Login ?</a>
               </div>
             </form>
           </div>
@@ -76,20 +74,11 @@
   <script src="<?= base_url('assets/') ?>dist/js/theme.js"></script>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
-    (function(b, o, i, l, e, r) {
-      b.GoogleAnalyticsObject = l;
-      b[l] || (b[l] =
-        function() {
-          (b[l].q = b[l].q || []).push(arguments)
-        });
-      b[l].l = +new Date;
-      e = o.createElement(i);
-      r = o.getElementsByTagName(i)[0];
-      e.src = 'https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e, r)
-    }(window, document, 'script', 'ga'));
-    ga('create', 'UA-XXXXX-X', 'auto');
-    ga('send', 'pageview');
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+      });
+    }, 2000);
   </script>
 </body>
 
