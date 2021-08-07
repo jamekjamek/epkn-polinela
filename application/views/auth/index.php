@@ -61,7 +61,7 @@
                   </label>
                 </div>
                 <div class="col text-right">
-                  <a href="<?= site_url('auth/forgot_password') ?>">Forgot Password ?</a>
+                  <a href="#">Forgot Password ?</a>
                 </div>
               </div>
               <div class="sign-btn text-center">

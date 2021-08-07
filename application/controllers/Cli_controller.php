@@ -14,7 +14,6 @@ class Cli_controller extends CI_Controller
 
   public function insertAttandance()
   {
-    // check student in registration with academic year now is active and check registration_id not in check point
     $getAllRegistration = $this->Daily->getRegistrationNotInCurrentCP();
     foreach ($getAllRegistration as $attendance) {
       $dataInsert = [

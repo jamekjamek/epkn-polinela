@@ -44,22 +44,4 @@ class Auth_model extends CI_Model
     $this->db->update('user', $data, ['id' => $id]);
     return $this->db->affected_rows();
   }
-
-  public function getUserWithRole($username, $role)
-  {
-    switch ($role) {
-      case 'Mahasiswa':
-        return $this->db->query("SELECT student.email FROM student JOIN user ON user.username = student.npm WHERE user.username = '$username'")->row();
-        break;
-      case 'Dosen':
-        return $this->db->query("SELECT dosen.email FROM lecture JOIN user ON user.username = lecture.nip WHERE user.username = '$username'")->row();
-        break;
-      case 'Prodi':
-        return $this->db->query("SELECT prodi.email FROM prodi JOIN user ON user.username = prodi.email WHERE user.username = '$username'")->row();
-        break;
-      default:
-        return false;
-        break;
-    }
-  }
 }
