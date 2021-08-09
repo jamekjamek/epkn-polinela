@@ -62,7 +62,7 @@
                       <th>Sub Kegiatan</th>
                       <th>Jumlah Jam</th>
                       <th>Persetujuan</th>
-                      <th>Aksi</th>
+                      <th width="20%">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -112,20 +112,18 @@
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
-                  <?php if ($row->approval == 0) : ?>
-                    <tfoot>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <button class="btn btn-success" name="yes" value="yes" type="submit">Simpan</button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                  <?php endif ?>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <button class="btn btn-success" name="yes" value="yes" type="submit">Simpan</button>
+                      </td>
+                    </tr>
+                  </tfoot>
                 </table>
               </form>
             </div>
