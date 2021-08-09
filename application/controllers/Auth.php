@@ -86,6 +86,10 @@ class Auth extends CI_Controller
 
   public function logout()
   {
+    date_default_timezone_set("ASIA/JAKARTA");
+    $date = array('last_login' => date('Y-m-d H:i:s'));
+    $username = $this->session->userdata('user');
+    $this->Auth->logout($date, $username);
     $this->session->sess_destroy();
     redirect(base_url());
   }
