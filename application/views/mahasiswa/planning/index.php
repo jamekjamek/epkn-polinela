@@ -78,12 +78,15 @@
                         } else if ($planning->approval == 1) {
                           echo '<span class="badge badge-pill badge-info mb-1">Diverifikasi Dosen Pembimbing</span>';
                         } else {
-                          echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
+                          echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
                         } ?>
                       </td>
                       <td>
-                        <?php if ($planning->approval == 0 || $planning->approval == 2) : ?>
+                        <?php if ($planning->approval == 0) : ?>
+                        <div class="btn-group">
                           <a href="<?= base_url('mahasiswa/program/edit/' . $this->encrypt->encode($planning->id, keyencrypt()) . '/edit') ?>" class="btn btn-icon btn-success" title="Edit"><i class="ik ik-edit"></i></a>
+                          <button type="button" class="btn btn-icon btn-danger delete-program" data-id="<?= encodeEncrypt($planning->id) ?>"><i class=" ik ik-trash"></i></button>
+                        </div>  
                         <?php endif ?>
                       </td>
                     </tr>

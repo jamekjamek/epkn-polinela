@@ -5,6 +5,7 @@ $route['default_controller']                        = 'auth/login';
 
 //AUTH
 $route['auth']                                      = 'auth/login';
+$route['auth/login_page']                           = 'auth/login_page';
 $route['auth/forgot_password']                      = 'auth/forgotPassword';
 $route['auth/changedefault']                        = 'auth/changepasswordfromdefault';
 
@@ -203,6 +204,7 @@ $route['mahasiswa/document/update']                 = 'mahasiswa_document/edit';
 $route['mahasiswa/program']                        = 'mahasiswa_program';
 $route['mahasiswa/program/add']                    = 'mahasiswa_program/create';
 $route['mahasiswa/program/edit/(:any)/edit']       = 'mahasiswa_program/update/$1/edit';
+$route['mahasiswa/program/delete/(:any)']          = 'mahasiswa_program/delete/$1';
 
 $route['mahasiswa/daily/log']                       = 'mahasiswa_daily/logIndex';
 $route['mahasiswa/daily/log/add']                   = 'mahasiswa_daily/logCreate';

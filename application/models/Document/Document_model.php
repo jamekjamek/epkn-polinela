@@ -207,9 +207,8 @@ class Document_model extends CI_Model
   {
     return $this->db->query("SELECT districts.name as districts, regency.name as regency, province.name as province, daily_log.*, student.fullname, student.npm, major.name as major_name, prodi.name as prodi_name, company.name as company_name, company.pic, lecture.nip, lecture.name as lecture_name FROM daily_log JOIN registration ON registration.id = daily_log.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN major ON major.id = prodi.major_id JOIN company ON company.id = registration.company_id JOIN lecture ON lecture.id = registration.lecture_id JOIN regency ON regency.id = company.regency_id JOIN province ON province.id = company.province_id JOIN districts ON districts.id = company.districts_id WHERE daily_log.registration_id = '$id'");
   }
-
-  public function getSupervisorUser()
-  {
-    return $this->db->query("SELECT company.name as company_name, supervisor.username FROM supervisor JOIN company ON company.id = supervisor.company_id JOIN registration ON registration.company_id = company.id JOIN student ON student.id = registration.student_id WHERE student.npm = '" . $this->session->userdata('user') . "'");
+  
+  public function getSupervisorUser() {
+      return $this->db->query("SELECT company.name as company_name, supervisor.username FROM supervisor JOIN company ON company.id = supervisor.company_id JOIN registration ON registration.company_id = company.id JOIN student ON student.id = registration.student_id WHERE student.npm = '".$this->session->userdata('user')."'");
   }
 }

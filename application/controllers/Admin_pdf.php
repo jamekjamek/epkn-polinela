@@ -335,9 +335,9 @@ class Admin_pdf extends CI_Controller
   public function dosenpembimbing($academic = null)
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
-    $dataHeader         = [];
-    $header             = $this->load->view('pdf/header', $dataHeader, true);
-    $mpdf->SetHTMLHeader($header);
+    // $dataHeader         = [];
+    // $header             = $this->load->view('pdf/header', $dataHeader, true);
+    // $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
@@ -357,9 +357,9 @@ class Admin_pdf extends CI_Controller
   public function pembimbinglapang($academic = null)
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
-    $dataHeader         = [];
-    $header             = $this->load->view('pdf/header', $dataHeader, true);
-    $mpdf->SetHTMLHeader($header);
+    // $dataHeader         = [];
+    // $header             = $this->load->view('pdf/header', $dataHeader, true);
+    // $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);

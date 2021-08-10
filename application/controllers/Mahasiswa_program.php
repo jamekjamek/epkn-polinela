@@ -93,6 +93,24 @@ class Mahasiswa_program extends CI_Controller
     }
     return $output;
   }
+  
+  public function delete($id)
+  {
+    $decodeId   = decodeEncrypt($id);
+    $program    = $this->Planning->getDataById($decodeId);
+    if ($program) {
+      $deleteprogram    = $this->Planning->delete($decodeId);
+      if ($deleteprogram > 0) {
+        $this->session->set_flashdata('success', 'Data berhasil di hapus');
+      } else {
+        $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+      }
+    } else {
+      $this->session->set_flashdata('error', 'Data yang anda masukan tidak ada');
+    }
+    redirect($this->redirect);
+  }
+
 
   private function _validation($type = '')
   {

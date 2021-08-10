@@ -28,6 +28,11 @@ $(document).ready(function () {
 		var url = base_url + "admin/master/" + route + "/delete/" + id;
 		deleteQuestion(url, "Yakin akan menghapus data ini ??");
 	}
+	
+	function buttonClickDeleteProgram(route, id) {
+		var url = base_url + "mahasiswa/" + route + "/delete/" + id;
+		deleteQuestion(url, "Yakin akan menghapus data ini ??");
+	}
 
 	function buttonClickDeleteAcademicYear(route, id) {
 		var url = base_url + "admin/config/" + route + "/delete/" + id;
@@ -121,6 +126,11 @@ $(document).ready(function () {
 	$(document).on("click", ".delete-student", function () {
 		var id = $(this).data("id");
 		buttonClickDelete("student", id);
+	});
+	
+	$(document).on("click", ".delete-program", function () {
+		var id = $(this).data("id");
+		buttonClickDeleteProgram("program", id);
 	});
 
 	$(document).on("click", ".delete-registration", function () {

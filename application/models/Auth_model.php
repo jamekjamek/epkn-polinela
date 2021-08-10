@@ -44,10 +44,11 @@ class Auth_model extends CI_Model
     $this->db->update('user', $data, ['id' => $id]);
     return $this->db->affected_rows();
   }
-
+  
   public function logout($date, $username)
   {
     $this->db->where('username', $username);
     $this->db->update('user', $date);
+      
   }
 }

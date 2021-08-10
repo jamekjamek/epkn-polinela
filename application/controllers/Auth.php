@@ -86,6 +86,7 @@ class Auth extends CI_Controller
 
   public function logout()
   {
+      
     date_default_timezone_set("ASIA/JAKARTA");
     $date = array('last_login' => date('Y-m-d H:i:s'));
     $username = $this->session->userdata('user');
@@ -203,5 +204,9 @@ class Auth extends CI_Controller
         redirect(strtolower($session->name)  . '/dashboard');
       }
     }
+  }
+  
+  public function login_page() {
+      $this->load->view('auth/new_index');
   }
 }

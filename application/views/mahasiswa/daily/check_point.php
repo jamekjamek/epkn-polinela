@@ -76,7 +76,7 @@
                       <th>Jam Keluar</th>
                       <th>Kehadiran</th>
                       <th>Keterangan</th>
-                      <th>Validasi Supervisor</th>
+                      <th>Validasi Pembimbing Lapang</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,8 +86,8 @@
                       <tr>
                         <td><?= $i++ ?></td>
                         <td><?= date('d-M-Y', strtotime($cp->created_at)) ?></td>
-                        <td><?= $cp->time_in ?></td>
-                        <td><?= $cp->time_out ?></td>
+                        <td><?= ($cp->attendance == "H") ? $cp->time_in : "-" ?></td>
+                        <td><?= ($cp->attendance == "H") ? $cp->time_out : "-" ?></td>
                         <td><?= $cp->attendance ?></td>
                         <td><?= $cp->note ?></td>
                         <td>

@@ -74,7 +74,7 @@ class Mahasiswa_daily_model extends CI_Model
 
   private function _cpJoin()
   {
-    $this->db->select('*');
+    $this->db->select('check_point.*');
     $this->db->join($this->tableRegistration, 'registration.id=check_point.registration_id');
     $this->db->join($this->tableStudent, 'student.id=registration.student_id');
   }

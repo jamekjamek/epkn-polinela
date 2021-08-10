@@ -56,7 +56,8 @@
                       <option value="H">H</option>
                       <option value="I">I</option>
                       <option value="S">S</option>
-                      <option value="A">A</option>
+                      <!--<option value="A">A</option>-->
+                      <option value="L">L</option>
                     </select>
                     <div class="invalid-feedback">
                       <?= form_error('attendance'); ?>

@@ -74,11 +74,9 @@
                         <td><?= $row->time_qty; ?></td>
                         <td>
                           <?php if ($row->approval == 0) {
-                            echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi Dosen Pembimbing</span>';
-                          } else if ($row->approval == 2) {
-                            echo '<span class="badge badge-pill badge-info mb-1">Diverifikasi Dosen Pembimbing</span>';
+                            echo '<span class="badge badge-pill badge-secondary mb-1">Belum Diverikasi</span>';
                           } else if ($row->approval == 1) {
-                            echo '<span class="badge badge-pill badge-success mb-1">Diverifikasi Pembimbing Lapang</span>';
+                            echo '<span class="badge badge-pill badge-info mb-1">Diverifikasi Dosen Pembimbing</span>';
                           } else {
                             echo '<span class="badge badge-pill badge-danger mb-1">Ditolak</span>';
                           } ?>

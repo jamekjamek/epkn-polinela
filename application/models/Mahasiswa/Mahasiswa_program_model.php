@@ -82,4 +82,10 @@ class Mahasiswa_program_model extends CI_Model
   {
     return $this->db->query("SELECT registration.group_id, registration.group_status FROM registration JOIN student ON student.id = registration.student_id WHERE student.npm = '" . $this->session->userdata('user') . "'");
   }
+  
+  public function delete($data)
+  {
+    $this->db->delete($this->table, ['id' => $data]);
+    return $this->db->affected_rows();
+  }
 }
