@@ -212,6 +212,7 @@ $route['mahasiswa/daily/log/detail']                = 'mahasiswa_daily/logDetail
 $route['mahasiswa/daily/log/edit/(:any)/edit']      = 'mahasiswa_daily/logUpdate/$1/edit';
 
 $route['mahasiswa/daily/check_point']               = 'mahasiswa_daily/checkPoint';
+$route['mahasiswa/daily/check_point/delete/(:any)']               = 'mahasiswa_daily/deleteCheckPoint/$1';
 $route['mahasiswa/daily/check_point/add']           = 'mahasiswa_daily/checkPointCreate';
 
 $route['mahasiswa/profile']                         = 'mahasiswa_profile';

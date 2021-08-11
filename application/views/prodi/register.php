@@ -32,10 +32,10 @@
                 <h3 class="text-uppercase"><?= $title; ?></h3>
               </div>
 
-              <div class="btn-group">
-                <a href="<?= base_url('pdf/dosenpembimbing/' . $prodi); ?>" class="btn btn-info" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Dosen Pembimbing</a>
-                <a href="<?= site_url('pdf/pembimbinglapang/' . $prodi) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Pembimbing Lapang</a>
-              </div>
+              <!--<div class="btn-group">-->
+              <!--  <a href="<?= base_url('pdf/dosenpembimbing/' . $prodi); ?>" class="btn btn-info" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Dosen Pembimbing</a>-->
+              <!--  <a href="<?= site_url('pdf/pembimbinglapang/' . $prodi) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Pembimbing Lapang</a>-->
+              <!--</div>-->
             </div>
           </div>
           <div class="card-body">

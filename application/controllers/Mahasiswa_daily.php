@@ -169,7 +169,24 @@ class Mahasiswa_daily extends CI_Controller
       redirect($this->redirectCheckPoint);
     }
   }
-
+  
+  public function deleteCheckPoint($id)
+  {
+    $decodeId   = decodeEncrypt($id);
+    $program    = $this->Daily->getCheckPointById($decodeId);
+    if ($program) {
+      $deleteprogram    = $this->Daily->deleteCheckPoint($decodeId);
+      if ($deleteprogram > 0) {
+        $this->session->set_flashdata('success', 'Data berhasil di hapus');
+      } else {
+        $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+      }
+    } else {
+      $this->session->set_flashdata('error', 'Data yang anda masukan tidak ada');
+    }
+    redirect($this->redirectCheckPoint);
+  }
+  
   // validation
   private function _validation($type = '')
   {

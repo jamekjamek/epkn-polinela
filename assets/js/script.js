@@ -141,7 +141,7 @@ $(document).ready(function () {
 		Swal.fire({
 			icon: 'error',
 			title: 'Maaf...',
-			text: `Menu ini belum bisa di akses, silahkan ${text} terlebih dahulu!`
+			text: `Menu ini belum bisa di akses, silahkan ${text}.`
 		});
 	}
 

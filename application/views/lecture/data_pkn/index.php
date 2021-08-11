@@ -78,7 +78,11 @@
                         } ?>
                       </td>
                       <td>
-                        <?php if ($supervision) : ?>
+                        <?php 
+                        $this->load->model('Lecture/Lecture_report_model', 'Report');
+                        $supervision = $this->Report->reportCheckByGroup($row->group_id);
+                        if (@$supervision->registration_group_id) :
+                        ?>
                           <a href="<?= base_url('dosen/data_pkn/assessment/' . encodeEncrypt($row->id)) ?>" class="btn btn-success"><i class="ik ik-check-square" title="Penilaian PKN"></i><span>Penilaian</span></a>
                         <?php else : ?>
                           <button type="button" class="btn btn-success assesment"><i class="ik ik-check-square" title="Penilaian PKN"></i><span>Penilaian</span></button>

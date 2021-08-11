@@ -12,7 +12,7 @@ class Kaprodi_recap_model extends CI_Model
 
   public function getData($prodi)
   {
-    return $this->db->query("SELECT registration.id, registration.group_id, company.name as company_name, company.pic, districts.name as district, regency.name as regency, province.name as province, registration.start_date, registration.finish_date, registration.status, student.fullname, student.npm, student.status as student_status, prodi.name as prodi_name, lecture.nip, lecture.name as lecture_name, academic_year.name as academic_year, registration.file, registration.youtube_link, registration.pushed FROM registration JOIN company ON company.id = registration.company_id JOIN regency ON regency.id = company.regency_id JOIN districts ON districts.id = company.districts_id JOIN province ON province.id = company.province_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN lecture ON lecture.id = registration.lecture_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$prodi'");
+    return $this->db->query("SELECT registration.id, registration.group_id, company.name as company_name, company.pic, districts.name as district, regency.name as regency, province.name as province, registration.start_date, registration.finish_date, registration.status, student.fullname, student.npm, student.status as student_status, prodi.name as prodi_name, lecture.nip, lecture.name as lecture_name, academic_year.name as academic_year, registration.file, registration.youtube_link, registration.pushed FROM registration JOIN company ON company.id = registration.company_id JOIN regency ON regency.id = company.regency_id JOIN districts ON districts.id = company.districts_id JOIN province ON province.id = company.province_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN lecture ON lecture.id = registration.lecture_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$prodi'");
   }
 
   public function getDataLecturer($prodi)
@@ -47,7 +47,7 @@ class Kaprodi_recap_model extends CI_Model
 
   public function getDailyLogByStudent($prodi)
   {
-    return $this->db->query("SELECT daily_log.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM daily_log JOIN registration ON registration.id = daily_log.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$prodi' GROUP BY student.id");
+    return $this->db->query("SELECT daily_log.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM daily_log JOIN registration ON registration.id = daily_log.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$prodi' GROUP BY student.id");
   }
 
   public function getDailyLogByRegistration($data)
@@ -62,7 +62,7 @@ class Kaprodi_recap_model extends CI_Model
 
   public function getAttendanceByStudent($data)
   {
-    return $this->db->query("SELECT check_point.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM check_point JOIN registration ON registration.id = check_point.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$data' GROUP BY student.id");
+    return $this->db->query("SELECT check_point.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM check_point JOIN registration ON registration.id = check_point.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$data' GROUP BY student.id");
   }
 
   public function getAttendanceByRegistration($data)
@@ -82,7 +82,7 @@ class Kaprodi_recap_model extends CI_Model
 
   public function getSupervisionReportByGroup($prodi)
   {
-    return $this->db->query("SELECT registration.prodi_id, prodi.name as prodi_name, lecture.name as lecture_name, company.name as company_name, supervision_report.*, academic_year.name as academic_year FROM supervision_report RIGHT JOIN registration ON registration.group_id = supervision_report.registration_group_id JOIN lecture ON lecture.id = registration.lecture_id JOIN prodi ON prodi.id = lecture.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$prodi' GROUP BY supervision_report.registration_group_id");
+    return $this->db->query("SELECT registration.prodi_id, prodi.name as prodi_name, lecture.name as lecture_name, company.name as company_name, supervision_report.*, academic_year.name as academic_year FROM supervision_report RIGHT JOIN registration ON registration.group_id = supervision_report.registration_group_id RIGHT JOIN lecture ON lecture.id = registration.lecture_id RIGHT JOIN prodi ON prodi.id = lecture.prodi_id RIGHT JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE lecture.prodi_id = '$prodi' GROUP BY registration.company_id");
   }
 
   public function getSupervisionReportById($id)

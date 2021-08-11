@@ -77,6 +77,7 @@
                       <th>Kehadiran</th>
                       <th>Keterangan</th>
                       <th>Validasi Pembimbing Lapang</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,7 +92,10 @@
                         <td><?= $cp->attendance ?></td>
                         <td><?= $cp->note ?></td>
                         <td>
-                          <?= ($cp->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
+                            <?= ($cp->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-icon btn-danger delete-attendance" data-id="<?= encodeEncrypt($cp->id) ?>"><i class=" ik ik-trash"></i></button>
                         </td>
                       </tr>
                     <?php endforeach ?>

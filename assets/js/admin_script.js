@@ -29,7 +29,7 @@ $(document).ready(function () {
 		deleteQuestion(url, "Yakin akan menghapus data ini ??");
 	}
 	
-	function buttonClickDeleteProgram(route, id) {
+	function buttonClickDeleteByStudent(route, id) {
 		var url = base_url + "mahasiswa/" + route + "/delete/" + id;
 		deleteQuestion(url, "Yakin akan menghapus data ini ??");
 	}
@@ -130,7 +130,12 @@ $(document).ready(function () {
 	
 	$(document).on("click", ".delete-program", function () {
 		var id = $(this).data("id");
-		buttonClickDeleteProgram("program", id);
+		buttonClickDeleteByStudent("program", id);
+	});
+	
+	$(document).on("click", ".delete-attendance", function () {
+		var id = $(this).data("id");
+		buttonClickDeleteByStudent("daily/check_point", id);
 	});
 
 	$(document).on("click", ".delete-registration", function () {

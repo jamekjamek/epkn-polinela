@@ -23,7 +23,7 @@ class Dashboard_model extends CI_Model
     if ($this->session->userdata('role') == 'Dosen') {
       $query = $this->db->query("SELECT COUNT(DISTINCT registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.lecture_id = '$id' AND academic_year.status = 1 GROUP BY registration.lecture_id");
     } else if ($this->session->userdata('role') == 'Prodi') {
-      $query = $this->db->query("SELECT COUNT(DISTINCT registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.prodi_id = '$id' AND academic_year.status = 1 GROUP BY registration.company_id");
+      $query = $this->db->query("SELECT COUNT(DISTINCT registration.company_id) as location_count FROM registration JOIN company On company.id=registration.company_id JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE company.prodi_id = '$id' AND academic_year.status = 1 GROUP BY registration.company_id");
     } else {
       $query = $this->db->select('COUNT(*) as location_count')
         ->from($this->tableCompany)
@@ -44,7 +44,7 @@ class Dashboard_model extends CI_Model
     } elseif ($this->session->userdata('role') == 'Dosen') {
       $query = $this->db->query("SELECT COUNT(registration.lecture_id) as registration_count FROM registration JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.lecture_id = '$id' AND academic_year.status = 1");
     } elseif ($this->session->userdata('role') == 'Prodi') {
-      $query = $this->db->query("SELECT COUNT(registration.lecture_id) as registration_count FROM registration JOIN lecture ON lecture.id=registration.lecture_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE registration.prodi_id = '$id' AND academic_year.status = 1");
+      $query = $this->db->query("SELECT COUNT(registration.student_id) as registration_count FROM registration JOIN student ON student.id=registration.student_id JOIN academic_year ON academic_year.id=registration.academic_year_id WHERE student.prodi_id = '$id' AND academic_year.status = 1");
     } else {
       $query = $this->db->select('COUNT(registration.id ) as registration_count')
         ->from($this->tableRegistration)

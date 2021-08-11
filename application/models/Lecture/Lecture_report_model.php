@@ -60,6 +60,14 @@ class Lecture_report_model extends CI_Model
     $this->db->join($this->tableLecture, 'lecture.id=registration.lecture_id');
     return $this->db->get_where($this->tableReportSupervision, ['lecture.nip' => $this->session->userdata('user')])->row();
   }
+  
+  public function reportCheckByGroup($group)
+  {
+    $this->db->select('supervision_report.id, supervision_report.registration_group_id');
+    $this->db->join($this->tableRegistration, 'registration.group_id=supervision_report.registration_group_id');
+    $this->db->join($this->tableLecture, 'lecture.id=registration.lecture_id');
+    return $this->db->get_where($this->tableReportSupervision, ['supervision_report.registration_group_id' => $group])->row();
+  }
 
   public function listReception()
   {

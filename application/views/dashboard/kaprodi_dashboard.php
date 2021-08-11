@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row clearfix">
-      <?php $this->load->view('dashboard/counting') ?>
+      <?php $this->load->view('dashboard/counting_prodi') ?>
     </div>
 
     <div class="row">

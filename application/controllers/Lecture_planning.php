@@ -49,21 +49,26 @@ class Lecture_planning extends CI_Controller
 
   public function verification($id)
   {
-    $approval = $this->input->post('approval');
-    $planning = $this->input->post('planning');
-    $this->db->trans_start();
-    for ($i = 0; $i < count($approval); $i++) {
-      $data = [
-        'approval'  => $approval[$i]
-      ];
-      $update =  $this->Plannings->update($data, ['id' => $planning[$i]]);
-    }
-    $this->db->trans_complete();
-    if ($update > 0) {
-      $this->session->set_flashdata('success', 'Data berhasil disimpan');
+    if ($this->input->post('planning') == NULL) {
+        redirect($this->redirecUrl . '/detail/' . $id);
     } else {
-      $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+        $approval = $this->input->post('approval');
+        $planning = $this->input->post('planning');
+        $this->db->trans_start();
+        for ($i = 0; $i < count($approval); $i++) {
+          $data = [
+            'approval'  => $approval[$i]
+          ];
+          $update =  $this->Plannings->update($data, ['id' => $planning[$i]]);
+        }
+        $this->db->trans_complete();
+        if ($update > 0) {
+          $this->session->set_flashdata('success', 'Data berhasil disimpan');
+        } else {
+          $this->session->set_flashdata('error', 'Server sedang sibuk, silahkan coba lagi');
+        }
+        redirect($this->redirecUrl . '/detail/' . $id);
     }
-    redirect($this->redirecUrl . '/detail/' . $id);
+    
   }
 }
