@@ -64,7 +64,6 @@ $route['admin/master/lecture/import']               = 'admin_lecture/import'; //
 $route['admin/master/lecture/importlecture']        = 'admin_lecture/importlecture'; //action
 $route['admin/master/lecture/export']               = 'admin_lecture/export'; //action
 
-
 //COMPANY
 $route['admin/master/village']                      = 'admin_village';
 $route['admin/master/village/add']                  = 'admin_village/create';
@@ -74,7 +73,6 @@ $route['admin/master/village/delete/(:any)']        = 'admin_village/delete/$1';
 $route['admin/master/village/import']               = 'admin_village/import';
 $route['admin/master/village/importvillage']        = 'admin_village/importvillage'; //action
 $route['admin/master/village/export']               = 'admin_village/export';
-
 
 //REGISTRATIONS
 $route['admin/registrations']                                   = 'admin_registrations';
@@ -95,8 +93,6 @@ $route['admin/registrations/import']                            = 'admin_registr
 $route['admin/registration/importregistration']                 = 'admin_registrations/importregistration';
 $route['admin/registration/delete/(:any)']                      = 'admin_registrations/delete/$1';
 $route['admin/registration/delete_at_detail/(:any)']                      = 'admin_registrations/deleteAtDetail/$1';
-
-
 
 //ADMIN CONFIG
 $route['config/getprodi']                           = 'admin_config/getprodi';
@@ -153,13 +149,11 @@ $route['admin/master/head-of-program-study']        = 'Admin_head_program_study'
 $route['admin/master/head-of-program-study/add']    = 'Admin_head_program_study/create';
 $route['admin/master/head-of-program-study/update'] = 'Admin_head_program_study/update';
 
-
 $route['admin/master/users']                        = 'Admin_users';
 $route['admin/master/users/update/(:any)/(:any)']   = 'Admin_users/update/$1/$2';
 
 $route['admin/master/pkn']                          = 'Admin_pkn';
 $route['admin/master/pkn/(:any)']                   = 'Admin_pkn/index/$1';
-
 
 //GUIDEBOOK
 $route['admin/guidebook']                           = 'admin_guidebook';
@@ -169,7 +163,6 @@ $route['admin/guidebook/detail']                    = 'admin_guidebook/detail';
 // Kesediaan penerimaan
 $route['admin/report_reception']                    = 'Admin_report_reception';
 $route['admin/report_reception/detail/(:any)']      = 'Admin_report_reception/detail/$1';
-
 
 // PLANNING ATTACHMENT
 $route['admin/master/planning_attachment']          = 'admin_planning_attachment';
@@ -192,7 +185,6 @@ $route['admin/recap/status_pkn']                    = 'admin_recap/statusPkn';
 $route['admin/recap/status_pkn/(:any)']             = 'admin_recap/statusPKL/$1';
 $route['admin/recap/scoring']                       = 'admin_recap/scoring';
 $route['admin/recap/video']                         = 'admin_recap/video';
-
 
 /* ================================== STUDENT ROLE ================================== */
 
@@ -225,10 +217,7 @@ $route['mahasiswa/data_pkn/upload/update/(:any)']   = 'mahasiswa_data_pkn/upload
 
 $route['mahasiswa/quesioner']                       = 'quesioner';
 
-
-
 /* ================================== PRODI ROLE ================================== */
-
 
 //KAPRODI
 //  Add List Routes Prodi here
@@ -248,7 +237,6 @@ $route['prodi/status_pkn']                    = 'kaprodi_recap/statusPkn';
 $route['prodi/status_pkn/(:any)']             = 'kaprodi_recap/statusPKL/$1';
 $route['prodi/scoring']                       = 'kaprodi_recap/scoring';
 $route['prodi/video']                         = 'recap_controller/video';
-
 
 /* ================================== LECTURE ROLE ================================== */
 
@@ -287,7 +275,6 @@ $route['dosen/activity/attendance/academic_year/(:any)']  = 'lecture_activity/at
 
 $route['dosen/quesioner']                           = 'quesioner';
 
-
 /* ================================= SUPERVISOR ROLE ================================= */
 
 $route['supervisor/dashboard']                      = 'supervisor_dashboard';
@@ -317,9 +304,7 @@ $route['supervisor/report_reception/cancel/(:any)'] = 'supervisor_report/cancel/
 $route['supervisor/quesioner']                      = 'supervisor_quesioner';
 $route['supervisor/quesioner/add']                  = 'supervisor_quesioner/insert';
 $route['supervisor/quesioner/(:any)/edit']          = 'supervisor_quesioner/$1/edit';
-
 $route['supervisor/quesioner']                      = 'quesioner';
-
 
 /* ================================== PUDIR ROLE ================================== */
 
@@ -327,13 +312,44 @@ $route['pudir/dashboard']                           = 'pudir_dashboard';
 $route['pudir/pkn']                                 = 'pudir_pkl';
 $route['pudir/pkn/(:any)']                          = 'pudir_pkl/index/$1';
 
-
 /* ================================== KETUPLAK ROLE ================================== */
 
 $route['ketuplak/dashboard']                        = 'ketuplak_dashboard';
 $route['ketuplak/pkn']                              = 'ketuplak_pkl';
 $route['ketuplak/pkn/(:any)']                       = 'ketuplak_pkl/index/$1';
+$route['ketuplak/recap/registrations']              = 'ketuplak_recap/registration';
+$route['ketuplak/recap/advisers']                   = 'ketuplak_recap/adviser';
+$route['ketuplak/recap/advisers/academic/(:any)']   = 'ketuplak_recap/adviser/$1';
+$route['ketuplak/recap/supervisor']                 = 'ketuplak_recap/supervisor';
+$route['ketuplak/recap/supervisor/academic/(:any)'] = 'ketuplak_recap/supervisor/$1';
+$route['ketuplak/recap/daily_log']                  = 'ketuplak_recap/dailyLog';
+$route['ketuplak/recap/daily_log/detail/(:any)']    = 'ketuplak_recap/dailyLogDetail/$1';
+$route['ketuplak/recap/daily_log/detail_more']      = 'ketuplak_recap/dailyLogDetailMore';
+$route['ketuplak/recap/attendance']                 = 'ketuplak_recap/attendance';
+$route['ketuplak/recap/attendance/detail/(:any)']   = 'ketuplak_recap/attendanceDetail/$1';
+$route['ketuplak/recap/supervision_report']         = 'ketuplak_recap/supervisionReport';
+$route['ketuplak/recap/supervision_report/detail']  = 'ketuplak_recap/supervisionReportDetail';
+$route['ketuplak/recap/scoring']                    = 'ketuplak_recap/scoring';
 
+/* ================================== MAJOR ROLE ================================== */
+
+$route['major/dashboard']                           = 'major_dashboard';
+$route['major/pkn']                                 = 'major_pkl';
+$route['major/pkn/(:any)']                          = 'major_pkl/index/$1';
+$route['major/registrations']                       = 'major_recap/registration';
+$route['major/advisers']                            = 'major_recap/adviser';
+$route['major/supervisor']                          = 'major_recap/supervisor';
+$route['major/daily_log']                           = 'major_recap/dailyLog';
+$route['major/daily_log/detail/(:any)']             = 'major_recap/dailyLogDetail/$1';
+$route['major/daily_log/detail_more']               = 'major_recap/dailyLogDetailMore';
+$route['major/attendance']                          = 'major_recap/attendance';
+$route['major/attendance/detail/(:any)']            = 'major_recap/attendanceDetail/$1';
+$route['major/supervision_report']                  = 'major_recap/supervisionReport';
+$route['major/supervision_report/detail']           = 'major_recap/supervisionReportDetail';
+$route['major/status_pkn']                          = 'major_recap/statusPkn';
+$route['major/status_pkn/(:any)']                   = 'major_recap/statusPKL/$1';
+$route['major/scoring']                             = 'major_recap/scoring';
+$route['major/video']                               = 'recap_controller/video';
 
 $route['test'] = 'admin_registrations/generatedata';
 $route['generateMhs/(:num)'] = 'admin_registrations/generateMhs/$1';

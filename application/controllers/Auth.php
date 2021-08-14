@@ -86,7 +86,7 @@ class Auth extends CI_Controller
 
   public function logout()
   {
-      
+
     date_default_timezone_set("ASIA/JAKARTA");
     $date = array('last_login' => date('Y-m-d H:i:s'));
     $username = $this->session->userdata('user');
@@ -147,6 +147,13 @@ class Auth extends CI_Controller
     if ($ceKemail->num_rows() > 0) {
       $dataUser    =  $ceKemail->row();
       if (password_verify($password, $dataUser->password)) {
+        if ($dataUser->name == 'Prodi') {
+          $this->load->model('Kaprodi/Pkl_Prodi_Model', 'Prodi');
+          if (!$this->Prodi->getByEmailCheckStatusKaprodi($dataUser->username)) {
+            $this->session->set_flashdata('errorpassword', 'Password yang anda masukan salah');
+            return redirect('/auth');
+          }
+        }
         $this->session->set_userdata('username', $dataUser);
         $this->session->set_userdata('role', $dataUser->name);
         $this->session->set_userdata('user', $dataUser->username);
@@ -205,8 +212,9 @@ class Auth extends CI_Controller
       }
     }
   }
-  
-  public function login_page() {
-      $this->load->view('auth/new_index');
+
+  public function login_page()
+  {
+    $this->load->view('auth/new_index');
   }
 }

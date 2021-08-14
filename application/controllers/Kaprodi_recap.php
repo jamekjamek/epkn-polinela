@@ -20,7 +20,8 @@ class Kaprodi_recap extends CI_Controller
       'title'  => 'Kelompok PKN',
       'desc'   => 'Berfungsi untuk melihat data Kelompok PKN',
       'group'  => $group,
-      'prodi'  => $prodi->id
+      'prodi'  => $prodi->id,
+      'role'   => $this->role
     ];
     $page = '/prodi/register';
     pageBackend($this->role, $page, $data);
@@ -34,6 +35,7 @@ class Kaprodi_recap extends CI_Controller
       'title'       => 'Dosen Pembimbing PKN',
       'desc'        => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
       'lecturers'   => $lecturers,
+      'role'        => $this->role
     ];
     $page = '/prodi/adviser';
     pageBackend($this->role, $page, $data);
@@ -46,7 +48,8 @@ class Kaprodi_recap extends CI_Controller
     $data = [
       'title'       => 'Pembimbing Lapang PKN',
       'desc'        => 'Berfungsi untuk melihat Data Pembimbing Lapang PKN',
-      'supervisors' => $supervisors
+      'supervisors' => $supervisors,
+      'role'        => $this->role
     ];
     $page = '/prodi/supervisor';
     pageBackend($this->role, $page, $data);
@@ -60,6 +63,7 @@ class Kaprodi_recap extends CI_Controller
       'title'       => 'Jurnal Harian PKN',
       'desc'        => 'Berfungsi untuk melihat data jurnal harian PKN',
       'students'    => $students,
+      'role'        => $this->role
     ];
     $page = '/prodi/daily_log';
     pageBackend($this->role, $page, $data);
@@ -74,6 +78,7 @@ class Kaprodi_recap extends CI_Controller
       'desc'      => 'Berfungsi untuk melihat detail jurnal harian PKN',
       'details'   => $details,
       'row'       => $row,
+      'role'      => $this->role
     ];
     $page = '/prodi/daily_log_detail';
     pageBackend($this->role, $page, $data);
@@ -114,6 +119,7 @@ class Kaprodi_recap extends CI_Controller
       'title'       => 'Absensi Mahasiswa PKN',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
       'students'    => $students,
+      'role'        => $this->role
     ];
     $page = '/prodi/attendance';
     pageBackend($this->role, $page, $data);
@@ -128,6 +134,7 @@ class Kaprodi_recap extends CI_Controller
       'desc'      => 'Berfungsi untuk melihat detail absensi harian mahasiswa',
       'details'   => $details,
       'row'       => $row,
+      'role'      => $this->role
     ];
     $page = '/prodi/attendance_detail';
     pageBackend($this->role, $page, $data);
@@ -141,6 +148,7 @@ class Kaprodi_recap extends CI_Controller
       'title'     => 'Laporan Supervisi PKN',
       'desc'      => 'Berfungsi untuk melihat laporan supervisi',
       'groups'    => $groups,
+      'role'      => $this->role
     ];
     $page = '/prodi/supervision_report';
     pageBackend($this->role, $page, $data);
@@ -211,7 +219,8 @@ class Kaprodi_recap extends CI_Controller
       'desc'        => 'Berfungsi untuk melihat nilai akhir PKN',
       'scores'      => $scoreData,
       'row'         => $row,
-      'prodi'  => $prodi->id
+      'prodi'       => $prodi->id,
+      'role'        => $this->role
     ];
     $page = '/prodi/scoring';
     pageBackend($this->role, $page, $data);
@@ -225,6 +234,7 @@ class Kaprodi_recap extends CI_Controller
       'title'       => 'Data Laporan dan Video PKN',
       'desc'        => 'Berfungsi untuk melihat Data laporan dan video PKN',
       'data'        => $lecturers,
+      'role'        => $this->role
     ];
     $page = '/prodi/status_pkn';
     pageBackend($this->role, $page, $data);

@@ -23,11 +23,6 @@
         </div>
       </div>
     </div>
-    <?php if ($this->session->flashdata('success')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('success') ?>" data-type="success"></div>
-    <?php elseif ($this->session->flashdata('error')) : ?>
-      <div class="flashdata" data-flashdata=" <?= $this->session->flashdata('error') ?>" data-type="error"></div>
-    <?php endif; ?>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -55,7 +50,7 @@
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
-                          <a href="<?= base_url('admin/recap/status_pkn'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                          <a href="<?= base_url($role . '/recap/status_pkn'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
                         <?php endif; ?>
                       </div>
                     </div>

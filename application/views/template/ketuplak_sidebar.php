@@ -20,6 +20,24 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
           <a href=" <?= site_url('ketuplak/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKL</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'advisers' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/advisers') ?>"><i class="fa fa-users-cog"></i><span>Dosen Pembimbing</span></a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'supervisor' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/supervisor') ?>"><i class="fa fa-users"></i><span>Pembimbing Lapang</span></a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'daily_log' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/daily_log') ?>"><i class="fa fa-file"></i><span>Jurnal Harian</span></a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'attendance' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/attendance') ?>"><i class="fa fa-clock"></i>Kehadiran</a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'supervision_report' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/supervision_report') ?>"><i class=" fa fa-clipboard"></i>Laporan Supervisi</a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'scoring' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/scoring') ?>"><i class="fa fa-graduation-cap"></i>Nilai PKN</a>
+        </div>
       </nav>
     </div>
   </div>

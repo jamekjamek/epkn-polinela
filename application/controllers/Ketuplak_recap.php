@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin_recap extends CI_Controller
+class Ketuplak_recap extends CI_Controller
 {
   public function __construct()
   {
     parent::__construct();
     $this->load->model('Admin/Admin_recap_model', 'Recap');
     $this->load->model('Admin/Admin_config_model', 'Config');
-    $this->role = 'admin';
-    cek_login('Admin');
+    $this->role = 'ketuplak';
+    cek_login('Ketuplak');
   }
 
   public function adviser($academic_year_id = null)
@@ -128,7 +128,7 @@ class Admin_recap extends CI_Controller
 
   public function supervisionReport()
   {
-    $prodi      = $this->input->get('prodi');
+    $prodi        = $this->input->get('prodi');
     $groups     = $this->Recap->getSupervisionReportByGroup($prodi)->result();
     $data = [
       'title'     => 'Laporan Supervisi PKN',
