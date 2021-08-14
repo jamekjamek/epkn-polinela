@@ -17,8 +17,11 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= base_url('major/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
+          <a href=" <?= site_url('major/profile') ?>"><i class="ik ik-user"></i><span>Profil</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
-          <a href=" <?= site_url('major/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKL</span></a>
+          <a href=" <?= site_url('major/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKN</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'registrations' ? 'active' : '') ?>">
           <a href="<?= base_url('major/registrations') ?>"><i class="fa fa-users-cog"></i><span>Kelompok PKN</span></a>

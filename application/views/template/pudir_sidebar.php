@@ -17,6 +17,9 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('pudir/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
+          <a href=" <?= site_url('pudir/profile') ?>"><i class="ik ik-user"></i><span>Profil</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
           <a href=" <?= site_url('pudir/pkn') ?>"><i class="ik ik-activity"></i><span>Rekap PKN</span></a>
         </div>

@@ -310,6 +310,7 @@ $route['supervisor/quesioner']                      = 'quesioner';
 /* ================================== PUDIR ROLE ================================== */
 
 $route['pudir/dashboard']                           = 'pudir_dashboard';
+$route['pudir/profile']                             = 'pudir_profile';
 $route['pudir/pkn']                                 = 'pudir_pkl';
 $route['pudir/pkn/(:any)']                          = 'pudir_pkl/index/$1';
 $route['pudir/recap/advisers']                   = 'pudir_recap/adviser';
@@ -329,6 +330,7 @@ $route['pudir/recap/status_pkn/(:any)']          = 'pudir_recap/statusPKL/$1';
 /* ================================== KETUPLAK ROLE ================================== */
 
 $route['ketuplak/dashboard']                        = 'ketuplak_dashboard';
+$route['ketuplak/profile']                          = 'ketuplak_profile';
 $route['ketuplak/pkn']                              = 'ketuplak_pkl';
 $route['ketuplak/pkn/(:any)']                       = 'ketuplak_pkl/index/$1';
 $route['ketuplak/recap/registrations']              = 'ketuplak_recap/registration';
@@ -350,6 +352,7 @@ $route['ketuplak/recap/status_pkn/(:any)']          = 'ketuplak_recap/statusPKL/
 /* ================================== MAJOR ROLE ================================== */
 
 $route['major/dashboard']                           = 'major_dashboard';
+$route['major/profile']                             = 'major_profile';
 $route['major/pkn']                                 = 'major_pkl';
 $route['major/pkn/(:any)']                          = 'major_pkl/index/$1';
 $route['major/registrations']                       = 'major_recap/registration';
@@ -357,11 +360,11 @@ $route['major/advisers']                            = 'major_recap/adviser';
 $route['major/supervisor']                          = 'major_recap/supervisor';
 $route['major/daily_log']                           = 'major_recap/dailyLog';
 $route['major/daily_log/detail/(:any)']             = 'major_recap/dailyLogDetail/$1';
-$route['sekjur/daily_log/detail_more']               = 'major_recap/dailyLogDetailMore';
+$route['sekjur/daily_log/detail_more']              = 'major_recap/dailyLogDetailMore';
 $route['major/attendance']                          = 'major_recap/attendance';
 $route['major/attendance/detail/(:any)']            = 'major_recap/attendanceDetail/$1';
 $route['major/supervision_report']                  = 'major_recap/supervisionReport';
-$route['sekjur/supervision_report/detail']           = 'major_recap/supervisionReportDetail';
+$route['sekjur/supervision_report/detail']          = 'major_recap/supervisionReportDetail';
 $route['major/status_pkn']                          = 'major_recap/statusPkn';
 $route['major/status_pkn/(:any)']                   = 'major_recap/statusPKL/$1';
 $route['major/scoring']                             = 'major_recap/scoring';

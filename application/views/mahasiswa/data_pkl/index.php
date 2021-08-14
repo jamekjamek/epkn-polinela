@@ -56,7 +56,7 @@
               echo '<small class="text-mute">Silahkan upload laporan PKL anda untuk dapat melihat nilai</small>';
             } else if ($query && @$detail->degree == 'D4') { ?>
               <div class="table-responsive">
-                <table class="table table-hover" style="padding: 20px;">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
                       <th rowspan="2">#</th>
@@ -94,41 +94,7 @@
               </div>
             <?php } else { ?>
               <div class="table-responsive">
-                <table class="table table-hover" style="padding: 20px;">
-                  <thead>
-                    <tr>
-                      <th rowspan="2">#</th>
-                      <th rowspan="2">Dosen Pembimbing</th>
-                      <th rowspan="2">Lokasi</th>
-                      <th colspan="5" class="text-center">Nilai</th>
-                      <th rowspan="2" class="text-center">Status Kelulusan</th>
-                    </tr>
-                    <tr>
-                      <td>Supervisi</td>
-                      <td>Bimbingan</td>
-                      <td>Ujian</td>
-                      <td>Pembimbing Lapang</td>
-                      <td>Nilai Akhir</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <?php if ($detail) : ?>
-                          <button class="btn btn-warning" data-toggle="modal" data-target="#download"><i class="ik ik-download-cloud"></i> <span>Export</span></button>
-                        <?php endif ?>
-                      </td>
-                      <td><?= @$detail->lecture_name ?></td>
-                      <td><?= @$detail->company_name ?></td>
-                      <td><?= @$detail->supervision_value ?></td>
-                      <td><?= @$detail->lecture_value ?></td>
-                      <td><?= @$detail->final_score_value ?></td>
-                      <td><?= @$detail->supervisor_value ?></td>
-                      <td><?= @$detail->result_final_score ?> <?= @$detail->HM ?></td>
-                      <td><?= @$detail->student_status ?></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <h5>Nilai belum ada</h5>
               </div>
             <?php } ?>
           </div>
