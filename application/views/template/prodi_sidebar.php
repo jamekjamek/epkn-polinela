@@ -17,6 +17,9 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('prodi/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
+          <a href=" <?= site_url('prodi/profile') ?>"><i class="ik ik-user"></i><span>Profil</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'registrations' ? 'active' : '') ?>">
           <a href="<?= base_url('prodi/registrations') ?>"><i class="fa fa-users-cog"></i><span>Kelompok PKN</span></a>
         </div>

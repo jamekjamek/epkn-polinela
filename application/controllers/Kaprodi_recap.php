@@ -8,62 +8,41 @@ class Kaprodi_recap extends CI_Controller
     parent::__construct();
     $this->load->model('Kaprodi/Kaprodi_recap_model', 'Recap');
     $this->load->model('Kaprodi/Pkl_Prodi_Model', 'Prodi');
-    $this->role = 'Prodi';
+    $this->load->model('Major/Major_config_model', 'Config');
+    $this->role = 'prodi';
     cek_login('Prodi');
+
+    $this->academic = $this->Config->getDataAcademicYear();
   }
 
   public function registration()
   {
+    $period    = $this->input->get('periode');
     $prodi     = $this->Prodi->getByEmail($this->session->user);
-    $group     = $this->Recap->getData($prodi->id)->result();
+    $group     = $this->Recap->getData($prodi->id, $period)->result();
     $data = [
-      'title'  => 'Kelompok PKN',
-      'desc'   => 'Berfungsi untuk melihat data Kelompok PKN',
-      'group'  => $group,
-      'prodi'  => $prodi->id,
-      'role'   => $this->role
+      'title'       => 'Kelompok PKN',
+      'desc'        => 'Berfungsi untuk melihat data Kelompok PKN',
+      'group'       => $group,
+      'prodi'       => $prodi->id,
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/prodi/register';
     pageBackend($this->role, $page, $data);
   }
 
-  public function adviser()
-  {
-    $prodi      = $this->Prodi->getByEmail($this->session->user);
-    $lecturers  = $this->Recap->getDataLecturer($prodi->id)->result();
-    $data = [
-      'title'       => 'Dosen Pembimbing PKN',
-      'desc'        => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
-      'lecturers'   => $lecturers,
-      'role'        => $this->role
-    ];
-    $page = '/prodi/adviser';
-    pageBackend($this->role, $page, $data);
-  }
-
-  public function supervisor()
-  {
-    $prodi        = $this->Prodi->getByEmail($this->session->user);
-    $supervisors  = $this->Recap->getDataSupervisor($prodi->id)->result();
-    $data = [
-      'title'       => 'Pembimbing Lapang PKN',
-      'desc'        => 'Berfungsi untuk melihat Data Pembimbing Lapang PKN',
-      'supervisors' => $supervisors,
-      'role'        => $this->role
-    ];
-    $page = '/prodi/supervisor';
-    pageBackend($this->role, $page, $data);
-  }
-
   public function dailyLog()
   {
+    $period     = $this->input->get('periode');
     $prodi      = $this->Prodi->getByEmail($this->session->user);
-    $students   = $this->Recap->getDailyLogByStudent($prodi->id)->result();
+    $students   = $this->Recap->getDailyLogByStudent($prodi->id, $period)->result();
     $data = [
       'title'       => 'Jurnal Harian PKN',
       'desc'        => 'Berfungsi untuk melihat data jurnal harian PKN',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/prodi/daily_log';
     pageBackend($this->role, $page, $data);
@@ -113,13 +92,15 @@ class Kaprodi_recap extends CI_Controller
 
   public function attendance()
   {
+    $period     = $this->input->get('periode');
     $prodi      = $this->Prodi->getByEmail($this->session->user);
-    $students   = $this->Recap->getAttendanceByStudent($prodi->id)->result();
+    $students   = $this->Recap->getAttendanceByStudent($prodi->id, $period)->result();
     $data = [
       'title'       => 'Absensi Mahasiswa PKN',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/prodi/attendance';
     pageBackend($this->role, $page, $data);
@@ -142,13 +123,15 @@ class Kaprodi_recap extends CI_Controller
 
   public function supervisionReport()
   {
+    $period   = $this->input->get('periode');
     $prodi    = $this->Prodi->getByEmail($this->session->user);
-    $groups   = $this->Recap->getSupervisionReportByGroup($prodi->id)->result();
+    $groups   = $this->Recap->getSupervisionReportByGroup($prodi->id, $period)->result();
     $data = [
-      'title'     => 'Laporan Supervisi PKN',
-      'desc'      => 'Berfungsi untuk melihat laporan supervisi',
-      'groups'    => $groups,
-      'role'      => $this->role
+      'title'       => 'Laporan Supervisi PKN',
+      'desc'        => 'Berfungsi untuk melihat laporan supervisi',
+      'groups'      => $groups,
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/prodi/supervision_report';
     pageBackend($this->role, $page, $data);
@@ -211,16 +194,18 @@ class Kaprodi_recap extends CI_Controller
 
   public function scoring()
   {
-    $prodi        = $this->Prodi->getByEmail($this->session->user);
-    $scoreData    = $this->Recap->getScoringBy($prodi->id)->result();
-    $row          = $this->Recap->getScoringBy($prodi->id)->row();
+    $period     = $this->input->get('periode');
+    $prodi      = $this->Prodi->getByEmail($this->session->user);
+    $scoreData  = $this->Recap->getScoringBy($prodi->id, $period)->result();
+    $row        = $this->Recap->getScoringBy($prodi->id, $period)->row();
     $data = [
       'title'       => 'Nilai Akhir PKN',
       'desc'        => 'Berfungsi untuk melihat nilai akhir PKN',
       'scores'      => $scoreData,
       'row'         => $row,
       'prodi'       => $prodi->id,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/prodi/scoring';
     pageBackend($this->role, $page, $data);
@@ -228,8 +213,9 @@ class Kaprodi_recap extends CI_Controller
 
   public function statusPkn()
   {
-    $prodi = $this->Prodi->getByEmail($this->session->user);
-    $lecturers    = $this->Recap->getDataStatusPkn($prodi)->result();
+    $period     = $this->input->get('periode');
+    $prodi      = $this->Prodi->getByEmail($this->session->user);
+    $lecturers  = $this->Recap->getDataStatusPkn($prodi->id, $period)->result();
     $data = [
       'title'       => 'Data Laporan dan Video PKN',
       'desc'        => 'Berfungsi untuk melihat Data laporan dan video PKN',

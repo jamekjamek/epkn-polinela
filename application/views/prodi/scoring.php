@@ -35,44 +35,73 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Mahasiswa</th>
-                    <th>Dosen Pembimbing</th>
-                    <th>Lokasi</th>
-                    <th>Supervisi</th>
-                    <th>Bimbingan</th>
-                    <th>Ujian</th>
-                    <th>Pembimbing Lapangan</th>
-                    <th>Nilai Akhir</th>
-                    <th>Status Kelulusan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i = 1;
-                  foreach ($scores as $data_score) : ?>
-                    <tr>
-                      <td><?= $i++ ?></td>
-                      <td>
-                        <strong><?= $data_score->npm ?></strong> <br>
-                        <?= $data_score->fullname ?>
-                      </td>
-                      <td><?= $data_score->lecture_name ?></td>
-                      <td><?= $data_score->company_name ?></td>
-                      <td><?= $data_score->supervision_value ?></td>
-                      <td> <?= $data_score->lecture_value ?></td>
-                      <td> <?= $data_score->final_score_value ?></td>
-                      <td> <?= $data_score->supervisor_value ?></td>
-                      <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
-                      <td> <?= $data_score->student_status ?></td>
-                    </tr>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-sm-12">
+                <form action="" method="GET">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="prodi">Pilih Tahun Akademik</label>
+                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
+                          <option></option>
+                          <?php foreach ($allPeriode as $periode) : ?>
+                            <option value="<?= $periode->id; ?>"> <?= $periode->name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
+                        <?php if ($this->input->get('periode')) : ?>
+                          <a href="<?= base_url($role . '/scoring'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+            <?php if ($this->input->get('periode')) : ?>
+              <div class="table-responsive">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Mahasiswa</th>
+                      <th>Dosen Pembimbing</th>
+                      <th>Lokasi</th>
+                      <th>Supervisi</th>
+                      <th>Bimbingan</th>
+                      <th>Ujian</th>
+                      <th>Pembimbing Lapangan</th>
+                      <th>Nilai Akhir</th>
+                      <th>Status Kelulusan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1;
+                    foreach ($scores as $data_score) : ?>
+                      <tr>
+                        <td><?= $i++ ?></td>
+                        <td>
+                          <strong><?= $data_score->npm ?></strong> <br>
+                          <?= $data_score->fullname ?>
+                        </td>
+                        <td><?= $data_score->lecture_name ?></td>
+                        <td><?= $data_score->company_name ?></td>
+                        <td><?= $data_score->supervision_value ?></td>
+                        <td> <?= $data_score->lecture_value ?></td>
+                        <td> <?= $data_score->final_score_value ?></td>
+                        <td> <?= $data_score->supervisor_value ?></td>
+                        <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
+                        <td> <?= $data_score->student_status ?></td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php endif ?>
           </div>
         </div>
       </div>

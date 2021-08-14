@@ -31,72 +31,96 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
               </div>
-
-              <!--<div class="btn-group">-->
-              <!--  <a href="<?= base_url('pdf/dosenpembimbing/' . $prodi); ?>" class="btn btn-info" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Dosen Pembimbing</a>-->
-              <!--  <a href="<?= site_url('pdf/pembimbinglapang/' . $prodi) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i>Export Pembimbing Lapang</a>-->
-              <!--</div>-->
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Periode</th>
-                    <th>Mahasiswa</th>
-                    <th>Pembimbing</th>
-                    <th>Lokasi</th>
-                    <th>Berkas</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $i = 1;
-                  foreach ($group as $row) :
-                  ?>
-                    <tr>
-                      <td><?= $i; ?></td>
-                      <td>
-                        <strong><?= $row->academic_year; ?> </strong><br>
-                        Pelaksanaan : <?= date('d-m-Y', strtotime($row->start_date)) ?> s.d <?= date('d-m-Y', strtotime($row->finish_date)) ?>
-                      </td>
-                      <td>
-                        <strong><?= $row->npm; ?></strong>
-                        <br>
-                        <?= $row->fullname; ?> <br>
-                        <strong><?= $row->status; ?></strong> Kelompok
-                      </td>
-                      <td>
-                        Dosen : <br>
-                        <strong><?= $row->nip; ?></strong>
-                        <br>
-                        <?= $row->lecture_name; ?>
-                        <hr>
-                        Pembimbing Lapang : <br>
-                        <?= $row->pic; ?>
-                      </td>
-                      <td><?= $row->company_name; ?></td>
-                      <td>
-                        <?php if ($row->file) : ?>
-                          <div class="btn-group">
-                            <a href="<?= base_url('assets/uploads/laporan/' . $row->file) ?>" class="btn btn-outline-success"><i class="fa fa-file-pdf"></i></a>
-                            <button class="btn btn-outline-danger view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($row->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="video"><i class="ik ik-youtube"></i></button>
-                          </div>
-                        <?php else : ?>
-                          <div class="btn-group">
-                            <a href="#" class="btn btn-outline-success disabled"><i class="fa fa-file-pdf"></i></a>
-                            <button class="btn btn-outline-danger view-video disabled"><i class="ik ik-youtube"></i></button>
-                          </div>
-                        <?php endif ?>
-                      </td>
-                    </tr>
-                  <?php $i++;
-                  endforeach; ?>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-sm-12">
+                <form action="" method="GET">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="prodi">Pilih Tahun Akademik</label>
+                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
+                          <option></option>
+                          <?php foreach ($allPeriode as $periode) : ?>
+                            <option value="<?= $periode->id; ?>"> <?= $periode->name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
+                        <?php if ($this->input->get('periode')) : ?>
+                          <a href="<?= base_url($role . '/registrations'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+            <?php if ($this->input->get('periode')) : ?>
+              <div class="table-responsive">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Periode</th>
+                      <th>Mahasiswa</th>
+                      <th>Pembimbing</th>
+                      <th>Lokasi</th>
+                      <th>Berkas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($group as $row) :
+                    ?>
+                      <tr>
+                        <td><?= $i; ?></td>
+                        <td>
+                          <strong><?= $row->academic_year; ?> </strong><br>
+                          Pelaksanaan : <?= date('d-m-Y', strtotime($row->start_date)) ?> s.d <?= date('d-m-Y', strtotime($row->finish_date)) ?>
+                        </td>
+                        <td>
+                          <strong><?= $row->npm; ?></strong>
+                          <br>
+                          <?= $row->fullname; ?> <br>
+                          <strong><?= $row->status; ?></strong> Kelompok
+                        </td>
+                        <td>
+                          Dosen : <br>
+                          <strong><?= $row->nip; ?></strong>
+                          <br>
+                          <?= $row->lecture_name; ?>
+                          <hr>
+                          Pembimbing Lapang : <br>
+                          <?= $row->pic; ?>
+                        </td>
+                        <td><?= $row->company_name; ?></td>
+                        <td>
+                          <?php if ($row->file) : ?>
+                            <div class="btn-group">
+                              <a href="<?= base_url('assets/uploads/laporan/' . $row->file) ?>" class="btn btn-outline-success"><i class="fa fa-file-pdf"></i></a>
+                              <button class="btn btn-outline-danger view-video" data-toggle="modal" data-target="#view-video" data-log="<?= encodeEncrypt($row->id); ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="video"><i class="ik ik-youtube"></i></button>
+                            </div>
+                          <?php else : ?>
+                            <div class="btn-group">
+                              <a href="#" class="btn btn-outline-success disabled"><i class="fa fa-file-pdf"></i></a>
+                              <button class="btn btn-outline-danger view-video disabled"><i class="ik ik-youtube"></i></button>
+                            </div>
+                          <?php endif ?>
+                        </td>
+                      </tr>
+                    <?php $i++;
+                    endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php endif ?>
           </div>
         </div>
       </div>

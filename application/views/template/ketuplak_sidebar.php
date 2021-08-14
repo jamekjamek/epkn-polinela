@@ -18,7 +18,7 @@
           <a href=" <?= site_url('ketuplak/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
-          <a href=" <?= site_url('ketuplak/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKL</span></a>
+          <a href=" <?= site_url('ketuplak/pkn') ?>"><i class="ik ik-activity"></i><span>Rekap PKN</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'advisers' ? 'active' : '') ?>">
           <a href="<?= base_url('ketuplak/recap/advisers') ?>"><i class="fa fa-users-cog"></i><span>Dosen Pembimbing</span></a>
@@ -34,6 +34,9 @@
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'supervision_report' ? 'active' : '') ?>">
           <a href="<?= base_url('ketuplak/recap/supervision_report') ?>"><i class=" fa fa-clipboard"></i>Laporan Supervisi</a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(3) === 'status_pkn' ? 'active' : '') ?>">
+          <a href="<?= base_url('ketuplak/recap/status_pkn') ?>"><i class="fa fa-receipt"></i><span>Status PKN</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'scoring' ? 'active' : '') ?>">
           <a href="<?= base_url('ketuplak/recap/scoring') ?>"><i class="fa fa-graduation-cap"></i>Nilai PKN</a>

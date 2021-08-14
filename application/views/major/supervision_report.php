@@ -29,7 +29,7 @@
           <div class="card-header d-block">
             <div class="d-flex flex-grow-1 min-width-zero card-content">
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                <h3 class="text-uppercase"><?= $title; ?> <strong> <?= @$row->prodi_name; ?></strong></h3>
+                <h3 class="text-uppercase"><?= $title; ?></h3>
               </div>
             </div>
           </div>
@@ -61,8 +61,7 @@
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
-                          <a href="<?= base_url($role . '/recap/scoring'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $this->input->get('prodi')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
+                          <a href="<?= base_url($role . '/supervision_report'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -76,41 +75,74 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Mahasiswa</th>
-                      <th>Dosen Pembimbing</th>
-                      <th>Lokasi</th>
-                      <th>Supervisi</th>
-                      <th>Bimbingan</th>
-                      <th>Ujian</th>
-                      <th>Pembimbing Lapangan</th>
-                      <th>Nilai Akhir</th>
-                      <th>Status Kelulusan</th>
+                      <th>Periode</th>
+                      <th>Program Studi</th>
+                      <th>Perusahaan</th>
+                      <th>Dosen</th>
+                      <th>Waktu Supervisi</th>
+                      <th>Detail</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1;
-                    foreach ($scores as $data_score) : ?>
+                    <?php
+                    $i = 1;
+                    foreach ($groups as $group) :
+                    ?>
                       <tr>
-                        <td><?= $i++ ?></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $group->academic_year; ?></td>
+                        <td><?= $group->prodi_name; ?></td>
+                        <td><?= $group->company_name; ?></td>
+                        <td><?= $group->lecture_name; ?></td>
                         <td>
-                          <strong><?= $data_score->npm ?></strong> <br>
-                          <?= $data_score->fullname ?>
+                          <?php if ($group->time) {
+                            echo $group->time;
+                          } else {
+                            echo '<small class="text-mute">Belum melakukan supervisi</small>';
+                          }
+                          ?>
                         </td>
-                        <td><?= $data_score->lecture_name ?></td>
-                        <td><?= $data_score->company_name ?></td>
-                        <td><?= $data_score->supervision_value ?></td>
-                        <td> <?= $data_score->lecture_value ?></td>
-                        <td> <?= $data_score->final_score_value ?></td>
-                        <td> <?= $data_score->supervisor_value ?></td>
-                        <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
-                        <td> <?= $data_score->student_status ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <?php if ($group->id) : ?>
+                              <button type="button" class="btn btn-outline-info modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $group->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="supervision_report/detail">DETAIL</button>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success">EXPORT</a>
+                            <?php else : ?>
+                              <button type="button" class="btn btn-outline-info disabled">DETAIL</button>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success disabled">EXPORT</a>
+                            <?php endif ?>
+                          </div>
+                        </td>
                       </tr>
-                    <?php endforeach ?>
+                    <?php $i++;
+                    endforeach; ?>
                   </tbody>
                 </table>
               </div>
-            <?php endif; ?>
+            <?php endif ?>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalLogIdAll" tabindex="-1" role="dialog" aria-labelledby="modalLogIdLabelAll" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg mt-0 mb-0" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLogIdLabelAll">Detail</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="table-responsive">
+              <table class="table table-hover logIdResultAll">
+
+              </table>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

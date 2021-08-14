@@ -51,6 +51,17 @@
                         </select>
                       </div>
                     </div>
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <label for="prodi">Pilih Tahun Akademik</label>
+                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
+                          <option></option>
+                          <?php foreach ($allPeriode as $periode) : ?>
+                            <option value="<?= $periode->id; ?>"> <?= $periode->name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
                     <div class="col-sm-4">
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
@@ -93,7 +104,7 @@
                         <td><?= $student->company_name; ?></td>
                         <td>
                           <div class="btn-group">
-                            <a href="<?= site_url('admin/recap/attendance/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
+                            <a href="<?= site_url($role . '/recap/attendance/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
                             <a href="<?= site_url('pdf/kehadiran/' . $student->registration_id) ?>" class="btn btn-outline-success">EXPORT</a>
                           </div>
                         </td>

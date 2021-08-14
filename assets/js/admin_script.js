@@ -28,7 +28,7 @@ $(document).ready(function () {
 		var url = base_url + "admin/master/" + route + "/delete/" + id;
 		deleteQuestion(url, "Yakin akan menghapus data ini ??");
 	}
-	
+
 	function buttonClickDeleteByStudent(route, id) {
 		var url = base_url + "mahasiswa/" + route + "/delete/" + id;
 		deleteQuestion(url, "Yakin akan menghapus data ini ??");
@@ -115,6 +115,10 @@ $(document).ready(function () {
 		placeholder: "Cari nama jurusan",
 	});
 
+	$(".get-periode-pkl").select2({
+		placeholder: "Cari tahun ajaran",
+	});
+
 	$(document).on("click", ".delete-ps", function () {
 		var id = $(this).data("id");
 		buttonClickDelete("prodi", id);
@@ -127,12 +131,12 @@ $(document).ready(function () {
 		var id = $(this).data("id");
 		buttonClickDelete("student", id);
 	});
-	
+
 	$(document).on("click", ".delete-program", function () {
 		var id = $(this).data("id");
 		buttonClickDeleteByStudent("program", id);
 	});
-	
+
 	$(document).on("click", ".delete-attendance", function () {
 		var id = $(this).data("id");
 		buttonClickDeleteByStudent("daily/check_point", id);
@@ -187,6 +191,15 @@ $(document).ready(function () {
 	$("#academicyearketuplak").on("change", function () {
 		var id = $(this).val();
 		document.location.href = `${base_url}ketuplak/pkn/${id}`
+	});
+
+	$("#academicyearmajor").select2({
+		placeholder: "Cari tahun akademik"
+	});
+
+	$("#academicyearmajor").on("change", function () {
+		var id = $(this).val();
+		document.location.href = `${base_url}major/pkn/${id}`
 	});
 
 	$(document).on("click", ".deleteletterconfig", function () {

@@ -34,44 +34,73 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Periode</th>
-                    <th>Mahasiswa</th>
-                    <th>Program Studi</th>
-                    <th>Lokasi PKN</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $i = 1;
-                  foreach ($students as $student) :
-                  ?>
-                    <tr>
-                      <td><?= $i; ?></td>
-                      <td><?= $student->academic_year; ?></td>
-                      <td>
-                        <strong><?= $student->npm; ?></strong> <br>
-                        <?= $student->fullname; ?>
-                      </td>
-                      <td><?= $student->prodi_name; ?></td>
-                      <td><?= $student->company_name; ?></td>
-                      <td>
-                        <div class="btn-group">
-                          <a href="<?= site_url('prodi/daily_log/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
-                          <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($student->registration_id)) ?>" target="_blank" class="btn btn-outline-success">Export</a>
-                        </div>
-                      </td>
-                    </tr>
-                  <?php $i++;
-                  endforeach; ?>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-sm-12">
+                <form action="" method="GET">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="prodi">Pilih Tahun Akademik</label>
+                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
+                          <option></option>
+                          <?php foreach ($allPeriode as $periode) : ?>
+                            <option value="<?= $periode->id; ?>"> <?= $periode->name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
+                        <?php if ($this->input->get('periode')) : ?>
+                          <a href="<?= base_url($role . '/daily_log'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+            <?php if ($this->input->get('periode')) : ?>
+              <div class="table-responsive">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Periode</th>
+                      <th>Mahasiswa</th>
+                      <th>Program Studi</th>
+                      <th>Lokasi PKN</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($students as $student) :
+                    ?>
+                      <tr>
+                        <td><?= $i; ?></td>
+                        <td><?= $student->academic_year; ?></td>
+                        <td>
+                          <strong><?= $student->npm; ?></strong> <br>
+                          <?= $student->fullname; ?>
+                        </td>
+                        <td><?= $student->prodi_name; ?></td>
+                        <td><?= $student->company_name; ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <a href="<?= site_url('prodi/daily_log/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
+                            <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($student->registration_id)) ?>" target="_blank" class="btn btn-outline-success">Export</a>
+                          </div>
+                        </td>
+                      </tr>
+                    <?php $i++;
+                    endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php endif ?>
           </div>
         </div>
       </div>

@@ -10,62 +10,41 @@ class Major_recap extends CI_Controller
     $this->load->model('Major/Major_config_model', 'Config');
     $this->role = 'Sekjur';
     cek_login('Sekjur');
+
+    // get academic year
+    $this->academic = $this->Config->getDataAcademicYear();
   }
 
   public function registration()
   {
     $prodi     = $this->input->get('prodi');
-    $group     = $this->Recap->getData($prodi)->result();
+    $period    = $this->input->get('periode');
+    $group     = $this->Recap->getData($prodi, $period)->result();
     $data = [
-      'title'  => 'Kelompok PKN',
-      'desc'   => 'Berfungsi untuk melihat data Kelompok PKN',
-      'group'  => $group,
-      'prodi'  => $prodi->id,
-      'role'   => $this->role
+      'title'       => 'Kelompok PKN',
+      'desc'        => 'Berfungsi untuk melihat data Kelompok PKN',
+      'group'       => $group,
+      'prodi'       => $prodi,
+      'role'        => 'major',
+      'allPeriode'  => $this->academic
     ];
-    $page = '/prodi/register';
-    pageBackend($this->role, $page, $data);
-  }
-
-  public function adviser()
-  {
-    $prodi      = $this->Config->getByEmail($this->session->user);
-    $lecturers  = $this->Recap->getDataLecturer($prodi->id)->result();
-    $data = [
-      'title'       => 'Dosen Pembimbing PKN',
-      'desc'        => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
-      'lecturers'   => $lecturers,
-      'role'        => $this->role
-    ];
-    $page = '/prodi/adviser';
-    pageBackend($this->role, $page, $data);
-  }
-
-  public function supervisor()
-  {
-    $prodi        = $this->Config->getByEmail($this->session->user);
-    $supervisors  = $this->Recap->getDataSupervisor($prodi->id)->result();
-    $data = [
-      'title'       => 'Pembimbing Lapang PKN',
-      'desc'        => 'Berfungsi untuk melihat Data Pembimbing Lapang PKN',
-      'supervisors' => $supervisors,
-      'role'        => $this->role
-    ];
-    $page = '/prodi/supervisor';
+    $page = '/major/register';
     pageBackend($this->role, $page, $data);
   }
 
   public function dailyLog()
   {
-    $prodi      = $this->Config->getByEmail($this->session->user);
-    $students   = $this->Recap->getDailyLogByStudent($prodi->id)->result();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $students   = $this->Recap->getDailyLogByStudent($prodi, $period)->result();
     $data = [
       'title'       => 'Jurnal Harian PKN',
       'desc'        => 'Berfungsi untuk melihat data jurnal harian PKN',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => 'major',
+      'allPeriode'  => $this->academic
     ];
-    $page = '/prodi/daily_log';
+    $page = '/major/daily_log';
     pageBackend($this->role, $page, $data);
   }
 
@@ -78,9 +57,9 @@ class Major_recap extends CI_Controller
       'desc'      => 'Berfungsi untuk melihat detail jurnal harian PKN',
       'details'   => $details,
       'row'       => $row,
-      'role'      => $this->role
+      'role'      => 'major',
     ];
-    $page = '/prodi/daily_log_detail';
+    $page = '/major/daily_log_detail';
     pageBackend($this->role, $page, $data);
   }
 
@@ -113,15 +92,17 @@ class Major_recap extends CI_Controller
 
   public function attendance()
   {
-    $prodi      = $this->Config->getByEmail($this->session->user);
-    $students   = $this->Recap->getAttendanceByStudent($prodi->id)->result();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $students   = $this->Recap->getAttendanceByStudent($prodi,  $period)->result();
     $data = [
       'title'       => 'Absensi Mahasiswa PKN',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => 'major',
+      'allPeriode'  => $this->academic
     ];
-    $page = '/prodi/attendance';
+    $page = '/major/attendance';
     pageBackend($this->role, $page, $data);
   }
 
@@ -134,24 +115,26 @@ class Major_recap extends CI_Controller
       'desc'      => 'Berfungsi untuk melihat detail absensi harian mahasiswa',
       'details'   => $details,
       'row'       => $row,
-      'role'      => $this->role
+      'role'      => 'major',
     ];
-    $page = '/prodi/attendance_detail';
+    $page = '/major/attendance_detail';
     pageBackend($this->role, $page, $data);
   }
 
   public function supervisionReport()
   {
-    $prodi    = $this->Config->getByEmail($this->session->user);
-    $groups   = $this->Recap->getSupervisionReportByGroup($prodi->id)->result();
+    $prodi    = $this->input->get('prodi');
+    $period   = $this->input->get('periode');
+    $groups   = $this->Recap->getSupervisionReportByGroup($prodi, $period)->result();
     $data = [
-      'title'     => 'Laporan Supervisi PKN',
-      'desc'      => 'Berfungsi untuk melihat laporan supervisi',
-      'groups'    => $groups,
-      'role'      => $this->role,
-      'role'      => $this->role
+      'title'       => 'Laporan Supervisi PKN',
+      'desc'        => 'Berfungsi untuk melihat laporan supervisi',
+      'groups'      => $groups,
+      'role'        => $this->role,
+      'role'        => 'major',
+      'allPeriode'  => $this->academic
     ];
-    $page = '/prodi/supervision_report';
+    $page = '/major/supervision_report';
     pageBackend($this->role, $page, $data);
   }
 
@@ -212,18 +195,20 @@ class Major_recap extends CI_Controller
 
   public function scoring()
   {
-    $prodi        = $this->Config->getByEmail($this->session->user);
-    $scoreData    = $this->Recap->getScoringBy($prodi->id)->result();
-    $row          = $this->Recap->getScoringBy($prodi->id)->row();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $scoreData  = $this->Recap->getScoringBy($prodi, $period)->result();
+    $row        = $this->Recap->getScoringBy($prodi, $period)->row();
     $data = [
       'title'       => 'Nilai Akhir PKN',
       'desc'        => 'Berfungsi untuk melihat nilai akhir PKN',
       'scores'      => $scoreData,
       'row'         => $row,
-      'prodi'       => $prodi->id,
-      'role'        => $this->role
+      'prodi'       => $prodi,
+      'role'        => 'major',
+      'allPeriode'  => $this->academic
     ];
-    $page = '/prodi/scoring';
+    $page = '/major/scoring';
     pageBackend($this->role, $page, $data);
   }
 
@@ -235,9 +220,9 @@ class Major_recap extends CI_Controller
       'title'       => 'Data Laporan dan Video PKN',
       'desc'        => 'Berfungsi untuk melihat Data laporan dan video PKN',
       'data'        => $lecturers,
-      'role'        => $this->role
+      'role'        => 'major',
     ];
-    $page = '/prodi/status_pkn';
+    $page = '/major/status_pkn';
     pageBackend($this->role, $page, $data);
   }
 

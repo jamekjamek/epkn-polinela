@@ -222,6 +222,7 @@ $route['mahasiswa/quesioner']                       = 'quesioner';
 //KAPRODI
 //  Add List Routes Prodi here
 $route['prodi/dashboard']                     = 'kaprodi_dashboard/index';
+$route['prodi/profile']                       = 'kaprodi_profile';
 
 $route['prodi/registrations']                 = 'kaprodi_recap/registration';
 $route['prodi/advisers']                      = 'kaprodi_recap/adviser';
@@ -311,7 +312,20 @@ $route['supervisor/quesioner']                      = 'quesioner';
 $route['pudir/dashboard']                           = 'pudir_dashboard';
 $route['pudir/pkn']                                 = 'pudir_pkl';
 $route['pudir/pkn/(:any)']                          = 'pudir_pkl/index/$1';
-
+$route['pudir/recap/advisers']                   = 'pudir_recap/adviser';
+$route['pudir/recap/advisers/academic/(:any)']   = 'pudir_recap/adviser/$1';
+$route['pudir/recap/supervisor']                 = 'pudir_recap/supervisor';
+$route['pudir/recap/supervisor/academic/(:any)'] = 'pudir_recap/supervisor/$1';
+$route['pudir/recap/daily_log']                  = 'pudir_recap/dailyLog';
+$route['pudir/recap/daily_log/detail/(:any)']    = 'pudir_recap/dailyLogDetail/$1';
+$route['pudir/recap/daily_log/detail_more']      = 'pudir_recap/dailyLogDetailMore';
+$route['pudir/recap/attendance']                 = 'pudir_recap/attendance';
+$route['pudir/recap/attendance/detail/(:any)']   = 'pudir_recap/attendanceDetail/$1';
+$route['pudir/recap/supervision_report']         = 'pudir_recap/supervisionReport';
+$route['pudir/recap/supervision_report/detail']  = 'pudir_recap/supervisionReportDetail';
+$route['pudir/recap/scoring']                    = 'pudir_recap/scoring';
+$route['pudir/recap/status_pkn']                 = 'pudir_recap/statusPkn';
+$route['pudir/recap/status_pkn/(:any)']          = 'pudir_recap/statusPKL/$1';
 /* ================================== KETUPLAK ROLE ================================== */
 
 $route['ketuplak/dashboard']                        = 'ketuplak_dashboard';
@@ -330,6 +344,8 @@ $route['ketuplak/recap/attendance/detail/(:any)']   = 'ketuplak_recap/attendance
 $route['ketuplak/recap/supervision_report']         = 'ketuplak_recap/supervisionReport';
 $route['ketuplak/recap/supervision_report/detail']  = 'ketuplak_recap/supervisionReportDetail';
 $route['ketuplak/recap/scoring']                    = 'ketuplak_recap/scoring';
+$route['ketuplak/recap/status_pkn']                 = 'ketuplak_recap/statusPkn';
+$route['ketuplak/recap/status_pkn/(:any)']          = 'ketuplak_recap/statusPKL/$1';
 
 /* ================================== MAJOR ROLE ================================== */
 
@@ -341,11 +357,11 @@ $route['major/advisers']                            = 'major_recap/adviser';
 $route['major/supervisor']                          = 'major_recap/supervisor';
 $route['major/daily_log']                           = 'major_recap/dailyLog';
 $route['major/daily_log/detail/(:any)']             = 'major_recap/dailyLogDetail/$1';
-$route['major/daily_log/detail_more']               = 'major_recap/dailyLogDetailMore';
+$route['sekjur/daily_log/detail_more']               = 'major_recap/dailyLogDetailMore';
 $route['major/attendance']                          = 'major_recap/attendance';
 $route['major/attendance/detail/(:any)']            = 'major_recap/attendanceDetail/$1';
 $route['major/supervision_report']                  = 'major_recap/supervisionReport';
-$route['major/supervision_report/detail']           = 'major_recap/supervisionReportDetail';
+$route['sekjur/supervision_report/detail']           = 'major_recap/supervisionReportDetail';
 $route['major/status_pkn']                          = 'major_recap/statusPkn';
 $route['major/status_pkn/(:any)']                   = 'major_recap/statusPKL/$1';
 $route['major/scoring']                             = 'major_recap/scoring';

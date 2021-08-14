@@ -1,19 +1,21 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Ketuplak_pkl extends CI_Controller
+class Major_pkl extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Admin/Admin_config_model', 'Config');
-        $this->role         = 'ketuplak';
-        $this->redirect     = 'ketuplak/pkl';
-        cek_login('Ketuplak');
+        $this->load->model('Major/Major_config_model', 'Major');
+        $this->login    = $this->Major->getDataByProdi(['major.email' => $this->session->userdata()['username']->username]);
+        $this->role         = 'sekjur';
+        $this->redirect     = 'major/pkl';
+        cek_login('Sekjur');
     }
 
     public function index()
     {
-        $major      = $this->Config->getAllMajor()->result();
+        $major      = $this->login->result();
         $academic   = $this->Config->getDataAcademicYear()->result();
         $data       = [
             'title'         => 'Data PKN',
@@ -21,8 +23,7 @@ class Ketuplak_pkl extends CI_Controller
             'academicyear'  => $academic,
             'majors'        => $major
         ];
-
-        $page = '/ketuplak/pkl/index';
+        $page = '/major/pkl/index';
         pageBackend($this->role, $page, $data);
     }
 }

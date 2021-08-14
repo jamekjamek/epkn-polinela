@@ -35,7 +35,7 @@
 
                   <div class="form-group">
                     <label for="academicyearketuplak">Tahun Akademik</label>
-                    <select class="form-control" id="academicyearketuplak" style="width:100%" required name="academic">
+                    <select class="form-control" id="academicyearmajor" style="width:100%" required name="academic">
                       <option></option>
                       <?php foreach ($academicyear as $academic) : ?>
                         <option value="<?= $academic->id ?>"><?= $academic->name ?></option>
@@ -81,7 +81,7 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $major->prodi ?></td>
+                      <td><?= $major->prodi_name ?></td>
                       <td><?= $sumStudent ?></td>
                       <td><?= $sumDiterima; ?></td>
                       <td><?= $sumGraduated; ?></td>

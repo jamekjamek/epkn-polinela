@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin_recap extends CI_Controller
+class Pudir_recap extends CI_Controller
 {
   public function __construct()
   {
     parent::__construct();
     $this->load->model('Admin/Admin_recap_model', 'Recap');
     $this->load->model('Admin/Admin_config_model', 'Config');
-    $this->role = 'admin';
-    cek_login('Admin');
+    $this->role = 'pudir';
+    cek_login('Pudir');
 
     $this->academic = $this->Config->getDataAcademicYear()->result();
   }
@@ -22,7 +22,7 @@ class Admin_recap extends CI_Controller
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk melihat Data Dosen Pembimbing PKN',
       'lecturers'     => $lecturers,
-      'role'          => $this->role,
+      'role'          => $this->role
     ];
     $page = '/admin/recap/adviser';
     pageBackend($this->role, $page, $data);
@@ -54,7 +54,6 @@ class Admin_recap extends CI_Controller
       'students'    => $students,
       'role'        => $this->role,
       'allPeriode'  => $this->academic
-
     ];
     $page = '/admin/recap/daily_log';
     pageBackend($this->role, $page, $data);
@@ -106,7 +105,7 @@ class Admin_recap extends CI_Controller
   {
     $prodi     = $this->input->get('prodi');
     $period    = $this->input->get('periode');
-    $students     = $this->Recap->getAttendanceByStudent($prodi, $period)->result();
+    $students  = $this->Recap->getAttendanceByStudent($prodi, $period)->result();
     $data = [
       'title'       => 'Absensi Mahasiswa PKL',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
@@ -222,10 +221,10 @@ class Admin_recap extends CI_Controller
 
   public function scoring()
   {
-    $prodi     = $this->input->get('prodi');
-    $period    = $this->input->get('periode');
-    $scoreData = $this->Recap->getScoringBy($prodi, $period)->result();
-    $row       = $this->Recap->getScoringBy($prodi, $period)->row();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $scoreData  = $this->Recap->getScoringBy($prodi, $period)->result();
+    $row        = $this->Recap->getScoringBy($prodi, $period)->row();
     $data = [
       'title'       => 'Nilai Akhir PKN',
       'desc'        => 'Berfungsi untuk melihat nilai akhir PKN',

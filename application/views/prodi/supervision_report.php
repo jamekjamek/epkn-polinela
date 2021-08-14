@@ -34,55 +34,84 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table id="simpletable" class="table table-hover" style="padding: 20px;">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Periode</th>
-                    <th>Program Studi</th>
-                    <th>Perusahaan</th>
-                    <th>Dosen</th>
-                    <th>Waktu Supervisi</th>
-                    <th>Detail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $i = 1;
-                  foreach ($groups as $group) :
-                  ?>
-                    <tr>
-                      <td><?= $i; ?></td>
-                      <td><?= $group->academic_year; ?></td>
-                      <td><?= $group->prodi_name; ?></td>
-                      <td><?= $group->company_name; ?></td>
-                      <td><?= $group->lecture_name; ?></td>
-                      <td>
-                        <?php if ($group->time) {
-                          echo $group->time;
-                        } else {
-                          echo '<small class="text-mute">Belum melakukan supervisi</small>';
-                        }
-                        ?>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <?php if ($group->id) : ?>
-                            <button type="button" class="btn btn-outline-info modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $group->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="supervision_report/detail">DETAIL</button>
-                            <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success">EXPORT</a>
-                          <?php else : ?>
-                            <button type="button" class="btn btn-outline-info disabled">DETAIL</button>
-                            <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success disabled">EXPORT</a>
-                          <?php endif ?>
-                        </div>
-                      </td>
-                    </tr>
-                  <?php $i++;
-                  endforeach; ?>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-sm-12">
+                <form action="" method="GET">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="prodi">Pilih Tahun Akademik</label>
+                        <select class="get-periode-pkl form-control <?= form_error('prodi') ? 'is-invalid' : ''; ?>" name="periode" id="periode" style="width: 100%" required>
+                          <option></option>
+                          <?php foreach ($allPeriode as $periode) : ?>
+                            <option value="<?= $periode->id; ?>"> <?= $periode->name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
+                        <?php if ($this->input->get('periode')) : ?>
+                          <a href="<?= base_url($role . '/supervision_report'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+            <?php if ($this->input->get('periode')) : ?>
+              <div class="table-responsive">
+                <table id="simpletable" class="table table-hover" style="padding: 20px;">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Periode</th>
+                      <th>Program Studi</th>
+                      <th>Perusahaan</th>
+                      <th>Dosen</th>
+                      <th>Waktu Supervisi</th>
+                      <th>Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($groups as $group) :
+                    ?>
+                      <tr>
+                        <td><?= $i; ?></td>
+                        <td><?= $group->academic_year; ?></td>
+                        <td><?= $group->prodi_name; ?></td>
+                        <td><?= $group->company_name; ?></td>
+                        <td><?= $group->lecture_name; ?></td>
+                        <td>
+                          <?php if ($group->time) {
+                            echo $group->time;
+                          } else {
+                            echo '<small class="text-mute">Belum melakukan supervisi</small>';
+                          }
+                          ?>
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                            <?php if ($group->id) : ?>
+                              <button type="button" class="btn btn-outline-info modalLogIdAll" data-toggle="modal" data-target="#modalLogIdAll" data-log="<?= $group->id; ?>" data-role="<?= $this->session->userdata('role') ?>" data-menu="supervision_report/detail">DETAIL</button>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success">EXPORT</a>
+                            <?php else : ?>
+                              <button type="button" class="btn btn-outline-info disabled">DETAIL</button>
+                              <a href="<?= site_url('pdf/laporansupervisipkn/' . encodeEncrypt($group->id)) ?>" class="btn btn-outline-success disabled">EXPORT</a>
+                            <?php endif ?>
+                          </div>
+                        </td>
+                      </tr>
+                    <?php $i++;
+                    endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php endif ?>
           </div>
         </div>
       </div>

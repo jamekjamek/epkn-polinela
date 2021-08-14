@@ -23,7 +23,6 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -35,8 +34,8 @@
                   <br>
 
                   <div class="form-group">
-                    <label for="academicyearpudir">Tahun Akademik</label>
-                    <select class="form-control" id="academicyearpudir" style="width:100%" required name="academic">
+                    <label for="academicyearketuplak">Tahun Akademik</label>
+                    <select class="form-control" id="academicyearketuplak" style="width:100%" required name="academic">
                       <option></option>
                       <?php foreach ($academicyear as $academic) : ?>
                         <option value="<?= $academic->id ?>"><?= $academic->name ?></option>
@@ -44,7 +43,7 @@
                     </select>
                   </div>
                   <?php if ($this->uri->segment(3)) : ?>
-                    <a class="btn btn-info" href="<?= base_url('pudir/pkl'); ?>">Reset</a>
+                    <a class="btn btn-info" href="<?= base_url('major/pkn'); ?>">Reset</a>
                   <?php endif; ?>
                 </div>
               </div>
@@ -56,14 +55,11 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID</th>
-                    <th>Jurusan</th>
                     <th>Program Studi</th>
                     <th>Jumlah Mahasiswa</th>
-                    <th>Jumlah Diterima</th>
-                    <th>Jumlah Dalam Proses</th>
-                    <th>Jumlah Mahasiswa Lulus</th>
-                    <th>Presentase Diterima</th>
+                    <th>Jumlah Ditempatkan</th>
+                    <th>Jumlah Lulus</th>
+                    <th>Presentase Lulus</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,18 +81,15 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $major->id ?></td>
-                      <td><?= $major->name ?></td>
                       <td><?= $major->prodi ?></td>
                       <td><?= $sumStudent ?></td>
                       <td><?= $sumDiterima; ?></td>
-                      <td><?= $sumDalamProses; ?></td>
                       <td><?= $sumGraduated; ?></td>
                       <td>
                         <?php if ($sumDiterima === 0) : ?>
                           0 %
                         <?php else : ?>
-                          <?= number_format(($sumDiterima / $sumStudent),2) * 100 . ' %'; ?>
+                          <?= number_format(($sumGraduated / $sumStudent), 2) * 100 . ' %'; ?>
                         <?php endif; ?>
                       </td>
                     </tr>

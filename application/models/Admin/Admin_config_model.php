@@ -48,9 +48,6 @@ class Admin_config_model extends CI_Model
     return $this->db->get($this->tableMajor);
   }
 
-
-
-
   //SELECT 2 AJAX
   public function getProdiBy($input, $majorEmail = null) //getprodi atau major
   {

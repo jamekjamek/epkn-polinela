@@ -7,6 +7,8 @@ class Pkl_Prodi_Model extends CI_Model
   {
     parent::__construct();
     $this->table = 'prodi';
+    $this->tableKaprodi = 'head_of_study_program';
+    $this->tableLecture = 'lecture';
   }
 
   public function getByEmail($email)

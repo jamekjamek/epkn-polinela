@@ -15,7 +15,6 @@ class Admin_pkn extends CI_Controller
 
     public function index()
     {
-
         $major      = $this->PKL->getAllMajor()->result();
         $academic   = $this->Config->getDataAcademicYear()->result();
         $data       = [

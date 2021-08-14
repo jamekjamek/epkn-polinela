@@ -17,6 +17,9 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= base_url('major/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'pkn' ? 'active' : '') ?>">
+          <a href=" <?= site_url('major/pkn') ?>"><i class="ik ik-activity"></i><span>Data PKL</span></a>
+        </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'registrations' ? 'active' : '') ?>">
           <a href="<?= base_url('major/registrations') ?>"><i class="fa fa-users-cog"></i><span>Kelompok PKN</span></a>
         </div>
@@ -24,13 +27,13 @@
           <a href="<?= base_url('major/daily_log') ?>"><i class="fa fa-file"></i><span>Jurnal Harian</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'attendance' ? 'active' : '') ?>">
-          <a href="<?= base_url('major/attendance') ?>"><i class="fa fa-clock"></i>Kehadiran</a>
+          <a href="<?= base_url('major/attendance') ?>"><i class="fa fa-clock"></i><span>Kehadiran</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'supervision_report' ? 'active' : '') ?>">
-          <a href="<?= base_url('major/supervision_report') ?>"><i class=" fa fa-clipboard"></i>Laporan Supervisi</a>
+          <a href="<?= base_url('major/supervision_report') ?>"><i class=" fa fa-clipboard"></i><span>Laporan Supervisi</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'scoring' ? 'active' : '') ?>">
-          <a href="<?= base_url('major/scoring') ?>"><i class="fa fa-graduation-cap"></i>Nilai PKN</a>
+          <a href="<?= base_url('major/scoring') ?>"><i class="fa fa-graduation-cap"></i><span>Nilai PKN</span></a>
         </div>
       </nav>
     </div>

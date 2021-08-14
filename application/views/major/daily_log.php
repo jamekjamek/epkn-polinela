@@ -29,7 +29,7 @@
           <div class="card-header d-block">
             <div class="d-flex flex-grow-1 min-width-zero card-content">
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                <h3 class="text-uppercase"><?= $title; ?> <strong> <?= @$row->prodi_name; ?></strong></h3>
+                <h3 class="text-uppercase"><?= $title; ?></h3>
               </div>
             </div>
           </div>
@@ -61,8 +61,7 @@
                       <div class="btn-group">
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
-                          <a href="<?= base_url($role . '/recap/scoring'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $this->input->get('prodi')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
+                          <a href="<?= base_url($role . '/daily_log'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -76,40 +75,40 @@
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>Periode</th>
                       <th>Mahasiswa</th>
-                      <th>Dosen Pembimbing</th>
-                      <th>Lokasi</th>
-                      <th>Supervisi</th>
-                      <th>Bimbingan</th>
-                      <th>Ujian</th>
-                      <th>Pembimbing Lapangan</th>
-                      <th>Nilai Akhir</th>
-                      <th>Status Kelulusan</th>
+                      <th>Program Studi</th>
+                      <th>Lokasi PKN</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1;
-                    foreach ($scores as $data_score) : ?>
+                    <?php
+                    $i = 1;
+                    foreach ($students as $student) :
+                    ?>
                       <tr>
-                        <td><?= $i++ ?></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $student->academic_year; ?></td>
                         <td>
-                          <strong><?= $data_score->npm ?></strong> <br>
-                          <?= $data_score->fullname ?>
+                          <strong><?= $student->npm; ?></strong> <br>
+                          <?= $student->fullname; ?>
                         </td>
-                        <td><?= $data_score->lecture_name ?></td>
-                        <td><?= $data_score->company_name ?></td>
-                        <td><?= $data_score->supervision_value ?></td>
-                        <td> <?= $data_score->lecture_value ?></td>
-                        <td> <?= $data_score->final_score_value ?></td>
-                        <td> <?= $data_score->supervisor_value ?></td>
-                        <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
-                        <td> <?= $data_score->student_status ?></td>
+                        <td><?= $student->prodi_name; ?></td>
+                        <td><?= $student->company_name; ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <a href="<?= site_url($role . '/daily_log/detail/' . $student->registration_id) ?>" class="btn btn-outline-secondary">DETAIL</a>
+                            <a href="<?= site_url('pdf/lembarisianpkn/' . encodeEncrypt($student->registration_id)) ?>" target="_blank" class="btn btn-outline-success">Export</a>
+                          </div>
+                        </td>
                       </tr>
-                    <?php endforeach ?>
+                    <?php $i++;
+                    endforeach; ?>
                   </tbody>
                 </table>
               </div>
-            <?php endif; ?>
+            <?php endif ?>
           </div>
         </div>
       </div>

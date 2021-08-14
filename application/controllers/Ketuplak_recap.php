@@ -10,6 +10,8 @@ class Ketuplak_recap extends CI_Controller
     $this->load->model('Admin/Admin_config_model', 'Config');
     $this->role = 'ketuplak';
     cek_login('Ketuplak');
+
+    $this->academic = $this->Config->getDataAcademicYear()->result();
   }
 
   public function adviser($academic_year_id = null)
@@ -43,13 +45,15 @@ class Ketuplak_recap extends CI_Controller
 
   public function dailyLog()
   {
-    $prodi        = $this->input->get('prodi');
-    $students     = $this->Recap->getDailyLogByStudent($prodi)->result();
+    $prodi     = $this->input->get('prodi');
+    $period    = $this->input->get('periode');
+    $students  = $this->Recap->getDailyLogByStudent($prodi, $period)->result();
     $data = [
       'title'       => 'Jurnal Harian PKN',
       'desc'        => 'Berfungsi untuk melihat data jurnal harian PKN',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/admin/recap/daily_log';
     pageBackend($this->role, $page, $data);
@@ -99,13 +103,15 @@ class Ketuplak_recap extends CI_Controller
 
   public function attendance()
   {
-    $prodi        = $this->input->get('prodi');
-    $students     = $this->Recap->getAttendanceByStudent($prodi)->result();
+    $prodi     = $this->input->get('prodi');
+    $period    = $this->input->get('periode');
+    $students  = $this->Recap->getAttendanceByStudent($prodi, $period)->result();
     $data = [
       'title'       => 'Absensi Mahasiswa PKL',
       'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
       'students'    => $students,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/admin/recap/attendance';
     pageBackend($this->role, $page, $data);
@@ -128,13 +134,15 @@ class Ketuplak_recap extends CI_Controller
 
   public function supervisionReport()
   {
-    $prodi        = $this->input->get('prodi');
-    $groups     = $this->Recap->getSupervisionReportByGroup($prodi)->result();
+    $prodi     = $this->input->get('prodi');
+    $period    = $this->input->get('periode');
+    $groups    = $this->Recap->getSupervisionReportByGroup($prodi, $period)->result();
     $data = [
-      'title'     => 'Laporan Supervisi PKN',
-      'desc'      => 'Berfungsi untuk melihat laporan supervisi',
-      'groups'    => $groups,
-      'role'      => $this->role
+      'title'       => 'Laporan Supervisi PKN',
+      'desc'        => 'Berfungsi untuk melihat laporan supervisi',
+      'groups'      => $groups,
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/admin/recap/supervision_report';
     pageBackend($this->role, $page, $data);
@@ -213,15 +221,17 @@ class Ketuplak_recap extends CI_Controller
 
   public function scoring()
   {
-    $prodi        = $this->input->get('prodi');
-    $scoreData    = $this->Recap->getScoringBy($prodi)->result();
-    $row          = $this->Recap->getScoringBy($prodi)->row();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $scoreData  = $this->Recap->getScoringBy($prodi, $period)->result();
+    $row        = $this->Recap->getScoringBy($prodi, $period)->row();
     $data = [
       'title'       => 'Nilai Akhir PKN',
       'desc'        => 'Berfungsi untuk melihat nilai akhir PKN',
       'scores'      => $scoreData,
       'row'         => $row,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/admin/recap/scoring';
     pageBackend($this->role, $page, $data);
@@ -229,13 +239,15 @@ class Ketuplak_recap extends CI_Controller
 
   public function statusPkn()
   {
-    $prodi        = $this->input->get('prodi');
-    $lecturers    = $this->Recap->getDataStatusPkn($prodi)->result();
+    $prodi      = $this->input->get('prodi');
+    $period     = $this->input->get('periode');
+    $lecturers  = $this->Recap->getDataStatusPkn($prodi, $period)->result();
     $data = [
       'title'       => 'Data Laporan dan Video PKN',
       'desc'        => 'Berfungsi untuk melihat Data laporan dan video PKN',
       'data'        => $lecturers,
-      'role'        => $this->role
+      'role'        => $this->role,
+      'allPeriode'  => $this->academic
     ];
     $page = '/admin/recap/status_pkn';
     pageBackend($this->role, $page, $data);
