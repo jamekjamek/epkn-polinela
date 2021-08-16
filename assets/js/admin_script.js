@@ -115,6 +115,10 @@ $(document).ready(function () {
 		placeholder: "Cari nama jurusan",
 	});
 
+	$("#get-days").select2({
+		placeholder: "Cari hari",
+	});
+
 	$(".get-periode-pkl").select2({
 		placeholder: "Cari tahun ajaran",
 	});
