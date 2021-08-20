@@ -13,7 +13,7 @@ class Admin_pkn extends CI_Controller
         cek_login('Admin');
     }
 
-    public function index()
+    public function index($academic_year = null)
     {
         $major      = $this->PKL->getAllMajor()->result();
         $academic   = $this->Config->getDataAcademicYear()->result();

@@ -62,7 +62,7 @@
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
                           <a href="<?= base_url($role . '/scoring'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/nilaiakhirpkl?prodi=' . $prodi) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-download-cloud"></i>Export</a>
+                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $prodi) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-download-cloud"></i>Export</a>
                         <?php endif; ?>
                       </div>
                     </div>

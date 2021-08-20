@@ -85,6 +85,7 @@
                         <div class="btn-group" role="group">
                           <button type="button" class="btn btn-warning modalLogId" data-toggle="modal" data-target="#modalLogId" data-log="<?= $log->id; ?>"><i class="ik ik-eye"></i><span>Detail</span></button>
                           <a href="<?= site_url('mahasiswa/daily/log/edit/' . $this->encrypt->encode($log->id, keyencrypt()) . '/edit') ?>" class="btn btn-success"><i class="ik ik-edit"></i><span>Edit</span></a>
+
                         </div>
                       </td>
                     </tr>

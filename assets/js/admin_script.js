@@ -114,11 +114,11 @@ $(document).ready(function () {
 	$(".get-major").select2({
 		placeholder: "Cari nama jurusan",
 	});
-
-	$("#get-days").select2({
+    
+    $("#get-days").select2({
 		placeholder: "Cari hari",
 	});
-
+	
 	$(".get-periode-pkl").select2({
 		placeholder: "Cari tahun ajaran",
 	});

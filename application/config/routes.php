@@ -13,6 +13,7 @@ $route['auth/changedefault']                        = 'auth/changepasswordfromde
 
 //ADMIN
 $route['admin/dashboard']                           = 'admin_dashboard/index';
+$route['admin/changepassword']                      = 'admin_dashboard/changePassword';
 
 //KONFIGURASI
 //ACADEMIC YEAR

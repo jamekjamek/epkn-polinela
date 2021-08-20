@@ -59,6 +59,9 @@
             <a href="<?= base_url('admin/recap/scoring') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'scoring' ? 'active' : '') ?>">Nilai PKN</a>
           </div>
         </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'changepassword' ? 'active' : '') ?>">
+					<a href=" <?= site_url('admin/changepassword') ?>"><i class="fa fa-key"></i><span>Ubah Password</span></a>
+				</div>
       </nav>
     </div>
   </div>

@@ -66,7 +66,7 @@
         <td style="height: 18px; text-align:center">1</td>
         <td style="height: 18px; padding-left:10px">Pembimbing Lapangan
         </td>
-        <td style="height: 18px;text-align:center">40</td>
+        <td style="height: 18px;text-align:center">55</td>
         <td style="height: 18px; text-align:center">
           <?= $finalScore->supervisor_value ?>
         </td>
@@ -78,7 +78,7 @@
         <td style="height: 18px; text-align:center">2</td>
         <td style="height: 18px; padding-left:10px">Dosen Pendamping
         </td>
-        <td style="height: 18px;text-align:center">35</td>
+        <td style="height: 18px;text-align:center">25</td>
         <td style="height: 18px; text-align:center">
           <?= $finalScore->lecture_value ?>
         </td>
@@ -89,7 +89,7 @@
       <tr>
         <td style="height: 18px; text-align:center">3</td>
         <td style="height: 18px; padding-left:10px">Ujian</td>
-        <td style="height: 18px;text-align:center">25</td>
+        <td style="height: 18px;text-align:center">20</td>
         <td style="height: 18px; text-align:center">
           <?= $finalScore->final_score_value ?>
         </td>

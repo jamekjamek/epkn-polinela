@@ -5,11 +5,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn' => '',
-	'hostname' => 'mipdevp.com',
-	'username' => 'mipdevpc_user_pklpolinela',
-	'password' => '123Daftar@@',
-	'database' => 'mipdevpc_pknpolinela',
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'username' => 'pembelaj_pknuser',
+	'password' => ';KAF=,Cl2Gr*',
+	'database' => 'pembelaj_pkn',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

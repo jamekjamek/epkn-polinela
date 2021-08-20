@@ -32,27 +32,6 @@ class Lecture_report_model extends CI_Model
     $query .= " GROUP BY `registration`.`group_id`";
     return $this->db->query($query);
   }
-  // public function getSupervisionReport($academic_year_id = null, $id = null)
-  // {
-  //   $this->_joinSupervisonReport();
-  //   $this->db->where('lecture.nip', $this->session->userdata('user'));
-  //   if ($academic_year_id) {
-  //     $this->db->where('academic_year.id', $academic_year_id);
-  //   } else {
-  //     $this->db->where('academic_year.status', 1);
-  //   }
-  //   $this->db->group_by(['registration.group_id']);
-  //   return $this->db->get($this->tableReportSupervision);
-  // }
-
-  private function _joinSupervisonReport()
-  {
-    $this->db->select('registration.id registration_id,registration.group_id, registration.pushed, company.name company_name, COUNT(registration.group_id) as studentcount, supervision_report.*');
-    $this->db->join($this->tableRegistration, 'registration.group_id = supervision_report.registration_group_id', 'RIGHT');
-    $this->db->join($this->tableCompany, 'company.id=registration.company_id');
-    $this->db->join($this->tableAcademicYear, 'academic_year.id=registration.academic_year_id');
-    $this->db->join($this->tableLecture, 'lecture.id=registration.lecture_id');
-  }
 
   public function insertSupervisonReport($data, $id = null)
   {

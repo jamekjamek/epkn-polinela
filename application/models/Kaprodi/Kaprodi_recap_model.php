@@ -114,7 +114,7 @@ class Kaprodi_recap_model extends CI_Model
     JOIN lecture ON lecture.id = head_of_study_program.lecture_id
     JOIN registration ON registration.id = v_final_score.registration_id
     JOIN academic_year ON academic_year.id = registration.academic_year_id
-    WHERE prodi.id = '$prodi' AND registration.academic_year_id = '$period'");
+    WHERE prodi.id = '$prodi' AND registration.academic_year_id = '$period' AND registration.file IS NOT NULL");
   }
 
   public function getProdiBy($prodi)
