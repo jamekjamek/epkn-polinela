@@ -17,7 +17,7 @@ $guidebook = $this->db->query("SELECT * FROM guidebook WHERE status = 1")->row()
       </div>
     </div>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Halo <strong><?= $showName['pic'] ?>!</strong> Selamat datang di aplikasi E-PKN.
+      <?= (@$showName['pic'] != null ? 'Halo ' . @$showName["pic"] . '</strong> Selamat datang di aplikasi E-PKN' : 'Halo Selamat datang di Aplikasi E-PKN Politenik Negeri Lampung, silahkan update profil anda terlebih dahulu di halaman <strong><a href="' . site_url('supervisor/profile') . '">Profil</a></strong>') ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <i class="ik ik-x"></i>
       </button>
