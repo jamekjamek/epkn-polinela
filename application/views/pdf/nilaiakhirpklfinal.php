@@ -57,13 +57,13 @@
           <tr>
             <td><?= $i++ ?></td>
             <td><?= $data_score->fullname ?></td>
-            <td><?= $data_score->npm ?></td>
-            <td><?= $data_score->supervisor_value ?></td>
-            <td><?= $data_score->supervision_value ?></td>
-            <td><?= $data_score->lecture_value ?></td>
-            <td><?= $data_score->final_score_value ?></td>
-            <td><?= number_format($data_score->result_final_score, 2) ?></td>
-            <td><?= $data_score->HM ?></td>
+            <td style="text-align: center;"><?= $data_score->npm ?></td>
+            <td style="text-align: center;"><?= $data_score->supervisor_value ?></td>
+            <td style="text-align: center;"><?= $data_score->supervision_value ?></td>
+            <td style="text-align: center;"><?= $data_score->lecture_value ?></td>
+            <td style="text-align: center;"><?= $data_score->final_score_value ?></td>
+            <td style="text-align: center;"><?= number_format($data_score->result_final_score, 2) ?></td>
+            <td style="text-align: center;"><?= $data_score->HM ?></td>
           </tr>
         <?php endforeach; ?>
       <?php else : ?>

@@ -18,7 +18,7 @@ class Lecture_data_pkn extends CI_Controller
       'title'         => 'Data PKN',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data PKN',
-      'dataPkl'       => $this->DataPkl->listForScore($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
     //   'supervision'   => $this->Report->reportCheck()
     ];
     $page = '/lecture/data_pkn/index';

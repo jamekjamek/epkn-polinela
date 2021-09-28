@@ -19,7 +19,7 @@ class Lecture_activity extends CI_Controller
       'title'         => 'Data Log Harian Mahasiswa',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data log harian mahasiswa',
-      'dataPkl'       => $this->DataPkl->listByStudent($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
     ];
     $page = '/lecture/activity/daily_log';
     pageBackend($this->role, $page, $data);
@@ -44,7 +44,7 @@ class Lecture_activity extends CI_Controller
       'title'         => 'Data Kehadiran Mahasiswa',
       'academicyear'  => $academic_year_id,
       'desc'          => 'Berfungsi untuk menampilkan data kehadiran mahasiswa',
-      'dataPkl'       => $this->DataPkl->listByStudent($academic_year_id)->result(),
+      'dataPkl'       => $this->DataPkl->list($academic_year_id)->result(),
     ];
     $page = '/lecture/activity/attendance';
     pageBackend($this->role, $page, $data);

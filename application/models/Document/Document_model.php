@@ -173,7 +173,7 @@ class Document_model extends CI_Model
 
   public function getSupervisionValue($id)
   {
-    return $this->db->query("SELECT supervision_value.*, student.fullname, student.npm, prodi.name as prodi_name, major.name as major_name, supervision_report.time, company.name as company_name, lecture.name as lecture_name, lecture.nip FROM supervision_value JOIN registration ON registration.id = supervision_value.registration_id JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN major ON major.id = prodi.major_id JOIN company on company.id = registration.company_id JOIN supervision_report ON supervision_report.registration_group_id = registration.group_id WHERE supervision_value.registration_id = '$id'");
+    return $this->db->query("SELECT supervision_value.*, student.fullname, student.npm, prodi.name as prodi_name, major.name as major_name, supervision_report.time, company.name as company_name, lecture.name as lecture_name, lecture.nip FROM supervision_value JOIN registration ON registration.id = supervision_value.registration_id JOIN lecture ON lecture.id = registration.lecture_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN major ON major.id = prodi.major_id JOIN company on company.id = registration.company_id JOIN supervision_report ON supervision_report.registration_group_id = registration.group_id WHERE supervision_value.registration_id = '$id'");
   }
 
   public function getStudentData($id)

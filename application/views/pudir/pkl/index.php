@@ -68,12 +68,12 @@
                     $uri = $this->uri->segment(3);
                     if ($uri) {
                       $sumStudent         = $this->db->get_where('student', ['prodi_id' => $major->prodi_id, 'academic_year_id' => $uri])->num_rows();
-                      $sumDiterima        = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE student.prodi_id = '" . $major->prodi_id . "' AND registration.academic_year_id = '$uri'")->row();
+                      $sumDiterima        = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE student.prodi_id = '".$major->prodi_id."' AND registration.academic_year_id = '$uri'")->row();
                       $sumDalamProses     = $this->db->get_where('registration', ['group_status' => 'dalam_proses_penerimaan', 'prodi_id' => $major->prodi_id, 'academic_year_id' => $uri])->num_rows();
                       $sumGraduated     = $this->db->get_where('student', ['status' => 'graduated', 'prodi_id' => $major->prodi_id, 'academic_year_id' => $uri])->num_rows();
                     } else {
                       $sumStudent         = $this->db->get_where('student', ['prodi_id' => $major->prodi_id])->num_rows();
-                      $sumDiterima        = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE student.prodi_id = '" . $major->prodi_id . "'")->row();
+                      $sumDiterima        = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE student.prodi_id = '".$major->prodi_id."'")->row();
                       $sumDalamProses     = $this->db->get_where('registration', ['group_status' => 'dalam_proses_penerimaan', 'prodi_id' => $major->prodi_id])->num_rows();
                       $sumGraduated     = $this->db->get_where('student', ['status' => 'graduated', 'prodi_id' => $major->prodi_id])->num_rows();
                     }
@@ -94,32 +94,32 @@
                     </tr>
                   <?php endforeach; ?>
                 </tbody>
-                <?php
+                <?php 
                 $uri = $this->uri->segment(3);
-                if ($uri) {
-                  $allStudent = $this->db->query("SELECT COUNT(id) as all_student FROM `student` where academic_year_id = '$uri'")->row();
-                  $sumAllDiterima = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE registration.academic_year_id = '$uri'")->row();
-                  $sumAllGraduated = $this->db->query("SELECT COUNT(id) as all_graduated FROM `student` where academic_year_id = '$uri' AND status = 'graduated'")->row();
-                } else {
-                  $allStudent = $this->db->query("SELECT COUNT(id) as all_student FROM `student`")->row();
-                  $sumAllDiterima = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id")->row();
-                  $sumAllGraduated = $this->db->query("SELECT COUNT(id) as all_graduated FROM `student` where academic_year_id = '$uri' AND status = 'graduated'")->row();
-                }
+                    if ($uri) {
+                    $allStudent = $this->db->query("SELECT COUNT(id) as all_student FROM `student` where academic_year_id = '$uri'")->row();
+                    $sumAllDiterima = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id WHERE registration.academic_year_id = '$uri'")->row();
+                    $sumAllGraduated = $this->db->query("SELECT COUNT(id) as all_graduated FROM `student` where academic_year_id = '$uri' AND status = 'graduated'")->row();
+                    } else{
+                        $allStudent = $this->db->query("SELECT COUNT(id) as all_student FROM `student`")->row();
+                         $sumAllDiterima = $this->db->query("SELECT count(*) as sumDiterima  FROM `student` JOIN registration on registration.student_id = student.id")->row();
+                         $sumAllGraduated = $this->db->query("SELECT COUNT(id) as all_graduated FROM `student` where academic_year_id = '$uri' AND status = 'graduated'")->row();
+                    }
                 ?>
                 <tfoot>
-                  <tr>
-                    <th colspan="2" class="text-right">Total</th>
-                    <th class="text-center"><?= $allStudent->all_student ?></td>
-                    <th class="text-center"><?= $sumAllDiterima->sumDiterima ?></th>
-                    <th class="text-center"><?= $sumAllGraduated->all_graduated ?></th>
-                    <th class="text-center">
-                      <?php if ($sumAllDiterima->sumDiterima === 0) : ?>
-                        0 %
-                      <?php else : ?>
-                        <?= number_format(($sumAllGraduated->all_graduated / $allStudent->all_student), 2) * 100 . ' %'; ?>
-                      <?php endif; ?>
-                    </th>
-                  </tr>
+                    <tr>
+                        <th colspan="2" class="text-right">Total</th>
+                        <th class="text-center"><?= $allStudent->all_student ?></td>
+                        <th class="text-center"><?=$sumAllDiterima->sumDiterima ?></th>
+                        <th class="text-center"><?=$sumAllGraduated->all_graduated ?></th>
+                        <th class="text-center">
+                            <?php if ($sumAllDiterima->sumDiterima === 0) : ?>
+                                0 %
+                            <?php else : ?>
+                                <?= number_format(($sumAllGraduated->all_graduated / $allStudent->all_student), 2) * 100 . ' %'; ?>
+                            <?php endif; ?>
+                        </th>
+                    </tr>
                 </tfoot>
               </table>
             </div>

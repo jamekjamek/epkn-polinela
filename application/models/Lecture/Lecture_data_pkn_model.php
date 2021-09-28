@@ -32,6 +32,7 @@ class Lecture_data_pkn_model extends CI_Model
     } else {
       $this->db->where('f.status', 1);
     }
+    
     $this->db->group_by('a.group_id');
     $this->db->group_by('a.id');
     return $this->db->get($this->table . ' a');

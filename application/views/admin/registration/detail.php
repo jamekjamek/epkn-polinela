@@ -97,7 +97,7 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">Tambah Anggota</button>
             </div>
             <hr />
-            <div class="dt-responsive">
+            <div class="table-responsive">
               <table id="simpletable" class="table table-hover" style="padding: 20px;">
                 <thead>
                   <tr>

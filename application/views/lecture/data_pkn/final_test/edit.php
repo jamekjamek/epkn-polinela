@@ -90,7 +90,7 @@
               </div>
               <div class="form-group">
                 <label class="form-control-label" for="nama_kelas">Total Nilai</label>
-                <input type=text name="total" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="">
+                <input type=text name="total" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly="" value="<?= $testScore->nilai_total ?>">
               </div>
             </div>
           </div>

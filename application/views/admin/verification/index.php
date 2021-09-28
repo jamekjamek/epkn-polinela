@@ -65,7 +65,7 @@
               </div>
             </div>
             <?php if ($this->input->get('prodi')) : ?>
-              <div class="dt-responsive">
+              <div class="table-responsive">
                 <table class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>

@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="dt-responsive">
+            <div class="table-responsive">
               <table id="simpletable" class="table table-hover" style="padding: 20px;">
                 <thead>
                   <tr>
