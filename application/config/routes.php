@@ -187,6 +187,11 @@ $route['admin/recap/status_pkn/(:any)']             = 'admin_recap/statusPKL/$1'
 $route['admin/recap/scoring']                       = 'admin_recap/scoring';
 $route['admin/recap/video']                         = 'admin_recap/video';
 
+$route['admin/excel/dosenpembimbing']               = 'admin_recap/exceldosenpembimbing';
+$route['admin/excel/dosenpembimbing/(:any)']        = 'admin_recap/exceldosenpembimbing/$1';
+$route['admin/excel/pembimbinglapang']               = 'admin_recap/excelpembimbinglapang';
+$route['admin/excel/pembimbinglapang/(:any)']        = 'admin_recap/excelpembimbinglapang/$1';
+
 /* ================================== STUDENT ROLE ================================== */
 
 $route['mahasiswa/dashboard']                       = 'mahasiswa_dashboard';

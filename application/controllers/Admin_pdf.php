@@ -465,7 +465,7 @@ class Admin_pdf extends CI_Controller
     }
     $mpdf->Output('12.Lembar Isian PKN.pdf', 'I');
   }
-  
+
   public function permohonanpenggunaanapp()
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
@@ -483,12 +483,12 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->Image('assets/img/ttd/ttd_pudir1.png', 0, 0, 210, 297, 'png', '', true, false);
     $mpdf->WriteHTML($body);
-    
+
     $pagecount = $mpdf->SetSourceFile('assets/uploads/Lampiran_Penggunaan_App_E_PKN.pdf');
-    for ($i=1; $i<=($pagecount); $i++) {
-        $mpdf->AddPage();
-        $import_page = $mpdf->ImportPage($i);
-        $mpdf->UseTemplate($import_page);
+    for ($i = 1; $i <= ($pagecount); $i++) {
+      $mpdf->AddPage();
+      $import_page = $mpdf->ImportPage($i);
+      $mpdf->UseTemplate($import_page);
     }
     $mpdf->Output('Permohonan_Penggunaan_Aplikasi_E_PKN.pdf', 'I');
   }

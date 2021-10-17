@@ -39,7 +39,8 @@
                   </select>
                 </div>
                 <div class="col-3">
-                  <a href="<?= site_url('pdf/pembimbinglapang/' . $this->uri->segment(5)) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export</a>
+                  <a href="<?= site_url('pdf/pembimbinglapang/' . $this->uri->segment(5)) ?>" class="btn btn-danger" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export PDF</a>
+                  <a href="<?= site_url('admin/excel/pembimbinglapang/' . $this->uri->segment(5)) ?>" class="btn btn-success" style="margin-top: 30px;"><i class="ik ik-pdf"></i> Export Excel</a>
                 </div>
               </div>
             </div>
