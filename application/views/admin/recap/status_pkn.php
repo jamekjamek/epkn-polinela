@@ -77,9 +77,10 @@
                     <tr>
                       <th>No</th>
                       <th>Periode PKN</th>
-                      <th>Mahasiswa</th>
+                      <th>Nama Mahasiswa</th>
+                      <th>NPM</th>
                       <th>Program Studi</th>
-                      <th>Berkas</th>
+                      <th>Laporan & Video</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -90,11 +91,8 @@
                       <tr>
                         <td><?= $i; ?></td>
                         <td><?= $row->academic_year; ?></td>
-                        <td>
-                          <strong><?= $row->npm; ?></strong>
-                          <br>
-                          <?= $row->fullname; ?>
-                        </td>
+                        <td><?= $row->fullname; ?></td>
+                        <td><?= $row->npm; ?></td>
                         <td><?= $row->prodi_name; ?></td>
                         <td>
                           <?php if ($row->file) : ?>

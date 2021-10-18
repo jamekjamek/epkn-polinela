@@ -20,8 +20,8 @@ class Supervisor_data_pkl_model extends CI_Model
   {
     $this->_join();
     $this->db->where('e.username', $this->session->userdata('user'));
-    $this->db->where('c.status', 'active');
-    $this->db->or_where('c.status', 'graduated');
+    $where  = "(c.status = 'active' OR c.status = 'graduated')";
+    $this->db->where($where);
     return $this->db->get($this->table . ' a');
   }
 
@@ -40,8 +40,8 @@ class Supervisor_data_pkl_model extends CI_Model
     $this->db->where('a.status', 'Ketua');
     $this->db->group_by('a.group_id');
     $this->db->group_by('a.id');
-    $this->db->where('c.status', 'active');
-    $this->db->or_where('c.status', 'graduated');
+    $where  = "(c.status = 'active' OR c.status = 'graduated')";
+    $this->db->where($where);
     return $this->db->get($this->table . ' a');
   }
 
@@ -50,8 +50,8 @@ class Supervisor_data_pkl_model extends CI_Model
   {
     $this->_join();
     $this->db->where('e.username', $this->session->userdata('user'));
-    $this->db->where('c.status', 'active');
-    $this->db->or_where('c.status', 'graduated');
+    $where  = "(c.status = 'active' OR c.status = 'graduated')";
+    $this->db->where($where);
     $this->db->group_by('a.id');
     return $this->db->get($this->table . ' a');
   }

@@ -14,12 +14,26 @@
 </head>
 
 <body>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <!-- <htmlpageheader> -->
+  <table style="width: 100%; height: 59px;" border="0">
+    <tbody>
+      <tr>
+        <td style="width: 23%;" align="center">
+          <img src="<?= base_url('assets/img/logo/logo-new.png') ?>" alt="" width="100" height="100" />
+        </td>
+        <td style="text-align: center;">
+          <p></p>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>KEMENTRIAN PENDIDIKAN, KEBUDAYAAN</b></span></h4>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>RISET, DAN TEKNOLOGI</b></span></h4>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>POLITEKNIK NEGERI LAMPUNG</b></span></h4>
+          <span style="text-align: center;"><span style="font-family: Times New Roman;">Jl. Soekarno Hatta Rajabasa Bandar Lampung</span></span>
+          <p style="text-align: center;"><span style="font-family: Times New Roman;">Telepon (0721) 703995 Faksimili (0721) 787309<br></span><span style="font-family: Times New Roman;">laman : www.polinela.ac.id</span></p>
+          <p></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr style="height: 2px;background-color:black" />
   <p style="text-align: center;">
     <strong style="font-size:18px">DAFTAR HADIR PRATIK KERJA NYATA (PKN)</strong>
     <br>
@@ -63,12 +77,12 @@
             <td style="text-align: center;"><?= date('d F Y', strtotime($attends->created_at)) ?></td>
             <td style="text-align: center;"><?= $attends->attendance ?></td>
             <td><?= $attends->note ?></td>
-            <td><?php  if($attends->validation == 1) {
-                echo 'Diverifkasi';
-            } else {
-                echo 'Belum Diverifikasi';
-            }
-            ?></td>
+            <td style="text-align: center;"><?php if ($attends->validation == 1) {
+                                              echo 'Diverifkasi';
+                                            } else {
+                                              echo 'Belum Diverifikasi';
+                                            }
+                                            ?></td>
           </tr>
         <?php endforeach ?>
       <?php else : ?>
@@ -82,14 +96,36 @@
       <?php endif; ?>
     </tbody>
   </table>
-
+  <p></p>
+  <table style="border-collapse: collapse; width:30%; height: 144px; padding:20px" border="1">
+    <thead>
+      <tr>
+        <th width="20%">Kehadiran</th>
+        <th width="10%">Jumlah</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if ($count->num_rows() > 0) : ?>
+        <?php $i = 1;
+        foreach ($count->result() as $c) : ?>
+          <tr>
+            <td style="text-align: center;"><?= $c->attendance ?></td>
+            <td style="text-align: center;"><?= $c->att_recap ?></td>
+          </tr>
+        <?php endforeach ?>
+      <?php else : ?>
+        <tr style="height: 18px;">
+          <td style="height: 50px; text-align:center" colspan="4">
+            <strong>
+              Data Masih Kosong
+            </strong>
+          </td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
   </p>
   <p style="padding-left: 400px;"></p>
-  <p style="padding-left: 400px;">&nbsp;</p>
-  <p style="padding-left: 400px;">&nbsp;</p>
-  <p style="padding-left: 400px;"></p>
-  <p style="padding-left: 400px;"></p>
-  <div style="padding-left: 440px;">&nbsp;</div>
   </div>
 
 <?php

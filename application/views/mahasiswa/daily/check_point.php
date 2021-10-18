@@ -36,8 +36,8 @@
           </div>
           <div class="card-body">
             <ul>
-              <li>Untuk absensi di lakukan pada hari pelaksanaan PKN</li>
-              <li>Tanggal absensi menyesuikan pada saat membuat kehadiran, apabila pada tanggal tertentu tidak melakukan absensi maka di anggap tidak hadir/tidak ada keterangan</li>
+              <li>Untuk kehadiran di lakukan pada hari pelaksanaan PKN</li>
+              <li>Tanggal kehadiran menyesuikan pada saat membuat kehadiran, apabila pada tanggal tertentu tidak melakukan kehadiran maka di anggap tidak hadir/tidak ada keterangan</li>
             </ul>
           </div>
         </div>
@@ -51,18 +51,18 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?></h3>
                 <div class="btn-group">
-                <?php if ($btnCheck != null) {
-                  $dateNow = date('Y-m-d');
-                  $dateCurrent = date('Y-m-d', strtotime($btnCheck['created_at']));
-                }
-                if ($btnCheck != null && $dateCurrent == $dateNow) {
-                } else { ?>
-                  <?php if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
+                  <?php if ($btnCheck != null) {
+                    $dateNow = date('Y-m-d');
+                    $dateCurrent = date('Y-m-d', strtotime($btnCheck['created_at']));
+                  }
+                  if ($btnCheck != null && $dateCurrent == $dateNow) {
+                  } else { ?>
+                    <?php if ($isCheck != null && $isCheck->group_status == 'diterima') : ?>
                       <a href="<?= site_url('mahasiswa/daily/check_point/add') ?>" class="btn btn-primary"><i class="ik ik-plus-square"></i>Tambah Data</a>
-                  <?php endif ?>
-                <?php } ?>
-                    <a href="<?= site_url('pdf/kehadiran/' . $isCheck->id) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
-                    </div>
+                    <?php endif ?>
+                  <?php } ?>
+                  <a href="<?= site_url('pdf/kehadiran/' . $isCheck->id) ?>" target="_blank" class="btn btn-success"><i class="ik ik-download-cloud"></i>Export</a>
+                </div>
               </div>
             </div>
             <div class="card-body">
@@ -92,10 +92,10 @@
                         <td><?= $cp->attendance ?></td>
                         <td><?= $cp->note ?></td>
                         <td>
-                            <?= ($cp->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
+                          <?= ($cp->validation == 0 ? '<span class="badge badge-pill badge-warning mb-1">Belum Diverikasi</span>' : '<span class="badge badge-pill badge-success mb-1">Sudah Diverifikasi</span>') ?>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-icon btn-danger delete-attendance" data-id="<?= encodeEncrypt($cp->id) ?>"><i class=" ik ik-trash"></i></button>
+                          <?= ($cp->validation == 0 ? '<a href="' . site_url("mahasiswa/daily/check_point/edit/" . encodeEncrypt($cp->id)) . '" class="btn btn-icon btn-success"><i class=" ik ik-edit"></i></a>' : '') ?>
                         </td>
                       </tr>
                     <?php endforeach ?>

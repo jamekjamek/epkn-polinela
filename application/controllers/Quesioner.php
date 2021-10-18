@@ -13,8 +13,10 @@ class Quesioner extends CI_Controller
     $page = '/quesioner/index';
     if ($this->session->userdata('role') == 'Mahasiswa') {
       pageBackend('Mahasiswa', $page, $data);
-    } else {
+    } else if ($this->session->userdata('role') == 'Supervisor') {
       pageBackend('Supervisor', $page, $data);
+    } else if ($this->session->userdata('role') == 'Dosen') {
+      pageBackend('Dosen', $page, $data);
     }
   }
 }

@@ -62,7 +62,7 @@
                         <button type="submit" class="btn btn-primary" style="margin-top: 30px;"><i class="ik ik-plus-square"></i>Cari</button>
                         <?php if ($this->input->get('prodi')) : ?>
                           <a href="<?= base_url($role . '/recap/scoring'); ?>" class="btn btn-danger" style="margin-top: 30px;">Reset</a>
-                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $this->input->get('prodi')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
+                          <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $this->input->get('prodi') . '&periode=' . $this->input->get('periode')) ?>" class="btn btn-success" style="margin-top: 30px;">Export</a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -75,16 +75,16 @@
                 <table id="simpletable" class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Mahasiswa</th>
-                      <th>Dosen Pembimbing</th>
-                      <th>Lokasi</th>
-                      <th>Supervisi</th>
-                      <th>Bimbingan</th>
-                      <th>Ujian</th>
-                      <th>Pembimbing Lapangan</th>
-                      <th>Nilai Akhir</th>
-                      <th>Status Kelulusan</th>
+                      <th class="text-center">No</th>
+                      <th class="text-center">Nama Mahasiswa</th>
+                      <th class="text-center">NPM</th>
+                      <th class="text-center">Supervisi</th>
+                      <th class="text-center">Bimbingan</th>
+                      <th class="text-center">Ujian</th>
+                      <th class="text-center">Pembimbing Lapangan</th>
+                      <th class="text-center">Nilai Akhir</th>
+                      <th class="text-center">Huruf Mutu</th>
+                      <th class="text-center">Status Kelulusan</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,18 +92,15 @@
                     foreach ($scores as $data_score) : ?>
                       <tr>
                         <td><?= $i++ ?></td>
-                        <td>
-                          <strong><?= $data_score->npm ?></strong> <br>
-                          <?= $data_score->fullname ?>
-                        </td>
-                        <td><?= $data_score->lecture_name ?></td>
-                        <td><?= $data_score->company_name ?></td>
-                        <td><?= $data_score->supervision_value ?></td>
-                        <td> <?= $data_score->lecture_value ?></td>
-                        <td> <?= $data_score->final_score_value ?></td>
-                        <td> <?= $data_score->supervisor_value ?></td>
-                        <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
-                        <td> <?= $data_score->student_status ?></td>
+                        <td><?= $data_score->fullname ?></td>
+                        <td class="text-center"><?= $data_score->npm ?></td>
+                        <td class="text-center"><?= $data_score->supervision_value ?></td>
+                        <td class="text-center"> <?= $data_score->lecture_value ?></td>
+                        <td class="text-center"> <?= $data_score->final_score_value ?></td>
+                        <td class="text-center"> <?= $data_score->supervisor_value ?></td>
+                        <td class="text-center"> <?= number_format($data_score->result_final_score, 2) ?></td>
+                        <td class="text-center"><?= $data_score->HM ?></td>
+                        <td class="text-center"> <?= $data_score->student_status ?></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>

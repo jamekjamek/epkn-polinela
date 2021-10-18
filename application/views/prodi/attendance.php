@@ -68,7 +68,8 @@
                     <tr>
                       <th>No</th>
                       <th>Periode</th>
-                      <th>Mahasiswa</th>
+                      <th>Nama Mahasiswa</th>
+                      <th>NPM</th>
                       <th>Program Studi</th>
                       <th>Lokasi PKN</th>
                       <th>Aksi</th>
@@ -82,10 +83,8 @@
                       <tr>
                         <td><?= $i; ?></td>
                         <td><?= $student->academic_year; ?></td>
-                        <td>
-                          <strong><?= $student->npm; ?></strong> <br>
-                          <?= $student->fullname; ?>
-                        </td>
+                        <td><?= $student->fullname; ?></td>
+                        <td><?= $student->npm; ?></td>
                         <td><?= $student->prodi_name; ?></td>
                         <td><?= $student->company_name; ?></td>
                         <td>

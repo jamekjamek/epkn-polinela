@@ -62,7 +62,7 @@ class Kaprodi_recap_model extends CI_Model
 
   public function getAttendanceByStudent($prodi, $period)
   {
-    return $this->db->query("SELECT check_point.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM check_point JOIN registration ON registration.id = check_point.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$period'  AND registration.academic_year_id = '$period' GROUP BY student.id");
+    return $this->db->query("SELECT check_point.*, academic_year.name as academic_year, student.fullname, student.npm, prodi.name as prodi_name, company.name as company_name FROM check_point JOIN registration ON registration.id = check_point.registration_id JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN company ON company.id = registration.company_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$prodi'  AND registration.academic_year_id = '$period' GROUP BY student.id");
   }
 
   public function getAttendanceByRegistration($data)

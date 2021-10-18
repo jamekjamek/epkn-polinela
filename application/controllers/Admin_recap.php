@@ -108,8 +108,8 @@ class Admin_recap extends CI_Controller
     $period    = $this->input->get('periode');
     $students     = $this->Recap->getAttendanceByStudent($prodi, $period)->result();
     $data = [
-      'title'       => 'Absensi Mahasiswa PKL',
-      'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
+      'title'       => 'Kehadiran Mahasiswa PKN',
+      'desc'        => 'Berfungsi untuk melihat data kehadiran harian mahasiswa',
       'students'    => $students,
       'role'        => $this->role,
       'allPeriode'  => $this->academic
@@ -123,8 +123,8 @@ class Admin_recap extends CI_Controller
     $details      = $this->Recap->getAttendanceByRegistration($id)->result();
     $row          = $this->Recap->getAttendanceByRegistration($id)->row();
     $data = [
-      'title'     => 'Absensi Mahasiswa PKN',
-      'desc'      => 'Berfungsi untuk melihat detail absensi harian mahasiswa',
+      'title'     => 'Kehadiran Mahasiswa PKN',
+      'desc'      => 'Berfungsi untuk melihat detail kehadiran harian mahasiswa',
       'details'   => $details,
       'row'       => $row,
       'role'      => $this->role
@@ -242,7 +242,7 @@ class Admin_recap extends CI_Controller
   {
     $prodi      = $this->input->get('prodi');
     $period     = $this->input->get('periode');
-    $lecturers  = $this->Recap->getDataStatusPkn($prodi, $period)->result();
+    $lecturers  = $this->Recap->getDataStatusPknNew($prodi, $period)->result();
     $data = [
       'title'       => 'Data Laporan dan Video PKN',
       'desc'        => 'Berfungsi untuk melihat Data laporan dan video PKN',

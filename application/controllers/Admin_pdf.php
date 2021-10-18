@@ -379,17 +379,16 @@ class Admin_pdf extends CI_Controller
   public function kehadiran($id)
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 9]);
-    $dataHeader         = [];
-    $header             = $this->load->view('pdf/header', $dataHeader, true);
-    $mpdf->SetHTMLHeader($header);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
     $attends     = $this->Recap->getAttendanceByRegistrationWithPeriod($id);
     $attend      = $this->Recap->getAttendanceByRegistrationGroup($id)->row();
+    $count       = $this->Documents->getAttendanceByRegistrationCount($id);
     $data               = [
       'row'         => $attend,
       'attendances' => $attends,
+      'count'       => $count,
     ];
     $view           = $this->load->view('pdf/kehadiran', $data, TRUE);
     $mpdf->SetProtection(array('print'));
@@ -401,17 +400,15 @@ class Admin_pdf extends CI_Controller
 
   public function nilaiakhirpkl()
   {
-    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 10]);
-    $dataHeader         = [];
-    $header             = $this->load->view('pdf/header', $dataHeader, true);
-    $mpdf->SetHTMLHeader($header);
+    $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P', 'default_font_size' => 10, 'setAutoBottomMargin' => 'stretch']);
     $footer             =
       '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jRWlSapnKSh27jOWiQMx-ZVfS89ybLRCEN7va4k_NMV90roL11mN1-56y72O6_0I8GQ&usqp=CAU" alt="" style="width: 60px; height:80px">';
     $mpdf->SetHTMLFooter($footer);
     $prodi        = $this->input->get('prodi');
+    $period       = $this->input->get('periode');
     $getProdi     = $this->Recap->getProdiBy($prodi)->row();
-    $scoreData    = $this->Recap->getScoringBy($prodi);
-    $row          = $this->Recap->getScoringBy($prodi)->row();
+    $scoreData    = $this->Recap->getScoringBy($prodi, $period);
+    $row          = $this->Recap->getScoringBy($prodi, $period)->row();
     $data = [
       'prodi'         => $getProdi,
       'data'          => $scoreData,
@@ -465,7 +462,7 @@ class Admin_pdf extends CI_Controller
     }
     $mpdf->Output('12.Lembar Isian PKN.pdf', 'I');
   }
-  
+
   public function permohonanpenggunaanapp()
   {
     $mpdf               = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
@@ -483,12 +480,12 @@ class Admin_pdf extends CI_Controller
     $mpdf->SetDisplayMode('fullpage');
     $mpdf->Image('assets/img/ttd/ttd_pudir1.png', 0, 0, 210, 297, 'png', '', true, false);
     $mpdf->WriteHTML($body);
-    
+
     $pagecount = $mpdf->SetSourceFile('assets/uploads/Lampiran_Penggunaan_App_E_PKN.pdf');
-    for ($i=1; $i<=($pagecount); $i++) {
-        $mpdf->AddPage();
-        $import_page = $mpdf->ImportPage($i);
-        $mpdf->UseTemplate($import_page);
+    for ($i = 1; $i <= ($pagecount); $i++) {
+      $mpdf->AddPage();
+      $import_page = $mpdf->ImportPage($i);
+      $mpdf->UseTemplate($import_page);
     }
     $mpdf->Output('Permohonan_Penggunaan_Aplikasi_E_PKN.pdf', 'I');
   }

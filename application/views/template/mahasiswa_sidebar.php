@@ -40,7 +40,7 @@
               <a href=" <?= site_url('mahasiswa/daily/log') ?>"><i class="ik ik-activity"></i><span>Jurnal Harian</span></a>
             </div>
             <div class="nav-item <?= ($this->uri->segment(3) === 'check_point' ? 'active' : '') ?>">
-              <a href=" <?= site_url('mahasiswa/daily/check_point') ?>"><i class="ik ik-paperclip"></i><span>Absensi</span></a>
+              <a href=" <?= site_url('mahasiswa/daily/check_point') ?>"><i class="ik ik-paperclip"></i><span>Kehadiran</span></a>
             </div>
             <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' ? 'active' : '') ?>">
               <a href=" <?= site_url('mahasiswa/data_pkn') ?>"><i class="ik ik-airplay"></i><span>Laporan & Nilai PKN</span></a>

@@ -67,40 +67,36 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Periode</th>
-                      <th>Mahasiswa</th>
-                      <th>Pembimbing</th>
+                      <th>Nama Mahasiswa</th>
+                      <th>NPM</th>
+                      <th>Status</th>
+                      <th>Dosen Pembimbing</th>
+                      <th>Pembimbing Lapang</th>
                       <th>Lokasi</th>
-                      <th>Berkas</th>
+                      <th>Laporan & Video</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                     $i = 1;
                     foreach ($group as $row) :
+                      $districToLower = strtolower($row->district);
+                      $regencyToLower = strtolower($row->regency);
                     ?>
                       <tr>
                         <td><?= $i; ?></td>
+                        <td><?= $row->fullname; ?></td>
+                        <td><?= $row->npm; ?></td>
+                        <td><?= $row->status; ?></td>
                         <td>
-                          <strong><?= $row->academic_year; ?> </strong><br>
-                          Pelaksanaan : <?= date('d-m-Y', strtotime($row->start_date)) ?> s.d <?= date('d-m-Y', strtotime($row->finish_date)) ?>
-                        </td>
-                        <td>
-                          <strong><?= $row->npm; ?></strong>
-                          <br>
-                          <?= $row->fullname; ?> <br>
-                          <strong><?= $row->status; ?></strong> Kelompok
-                        </td>
-                        <td>
-                          Dosen : <br>
                           <strong><?= $row->nip; ?></strong>
                           <br>
                           <?= $row->lecture_name; ?>
-                          <hr>
-                          Pembimbing Lapang : <br>
-                          <?= $row->pic; ?>
                         </td>
-                        <td><?= $row->company_name; ?></td>
+                        <td><?= $row->pic; ?></td>
+                        <td>
+                          <?= $row->company_name; ?>, <?= ucwords($districToLower) ?>, <?= ucwords($regencyToLower) ?>
+                        </td>
                         <td>
                           <?php if ($row->file) : ?>
                             <div class="btn-group">

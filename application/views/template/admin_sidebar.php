@@ -36,6 +36,7 @@
             <a href="<?= base_url('admin/master/head-of-program-study') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'head-of-program-study' ? 'active' : '') ?>">Ketua Program Studi</a>
             <a href="<?= base_url('admin/master/village') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'village' ? 'active' : '') ?>">Desa</a>
             <a href="<?= base_url('admin/master/users') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'users' ? 'active' : '') ?>">Data User</a>
+            <a href="<?= base_url('admin/master/quesioner') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'quesioner' ? 'active' : '') ?>">Quesioner Link</a>
           </div>
         </div>
         <div class="nav-item <?= ($uri  === 'registrations' ? 'active' : '') ?>">
@@ -55,13 +56,13 @@
             <a href="<?= base_url('admin/recap/daily_log') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'daily_log' ? 'active' : '') ?>">Jurnal Harian</a>
             <a href="<?= base_url('admin/recap/attendance') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'attendance' ? 'active' : '') ?>">Kehadiran</a>
             <a href="<?= base_url('admin/recap/supervision_report') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'supervision_report' ? 'active' : '') ?>">Laporan Supervisi</a>
-            <a href="<?= base_url('admin/recap/status_pkn') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'status_pkn' ? 'active' : '') ?>">Status PKN</a>
+            <a href="<?= base_url('admin/recap/status_pkn') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'status_pkn' ? 'active' : '') ?>">Laporan dan Video PKN</a>
             <a href="<?= base_url('admin/recap/scoring') ?>" class="menu-item <?= ($this->uri->segment(3)  === 'scoring' ? 'active' : '') ?>">Nilai PKN</a>
           </div>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'changepassword' ? 'active' : '') ?>">
-					<a href=" <?= site_url('admin/changepassword') ?>"><i class="fa fa-key"></i><span>Ubah Password</span></a>
-				</div>
+          <a href=" <?= site_url('admin/changepassword') ?>"><i class="fa fa-key"></i><span>Ubah Password</span></a>
+        </div>
       </nav>
     </div>
   </div>

@@ -121,7 +121,7 @@ class Admin_recap_model extends CI_Model
     return $this->db->get($this->tableMajor . ' a');
   }
 
-  public function getScoringBy($prodi)
+  public function getScoringBy($prodi, $period)
   {
     return $this->db->query("SELECT supervision_value.nilai_total as supervision_value, v_final_score.supervisor_value,v_final_score.lecture_value,v_final_score.final_score_value, v_final_score_result_with_hm.*, CASE
     WHEN v_final_score_result_with_hm.HM = 'E' THEN 'Tidak Lulus'
@@ -138,7 +138,7 @@ class Admin_recap_model extends CI_Model
     JOIN lecture ON lecture.id = head_of_study_program.lecture_id
     JOIN registration ON registration.id = v_final_score.registration_id
     JOIN academic_year ON academic_year.id = registration.academic_year_id
-    WHERE prodi.id = '$prodi'");
+    WHERE prodi.id = '$prodi' AND registration.academic_year_id = '$period' AND registration.file IS NOT NULL");
   }
 
   public function getProdiBy($prodi)
@@ -154,5 +154,10 @@ class Admin_recap_model extends CI_Model
   public function getDataStatusPkn($id)
   {
     return $this->db->query("SELECT academic_year.name as academic_year, registration.id,registration.file,registration.youtube_link,student.fullname,student.npm,prodi.name as prodi_name FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = registration.prodi_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE registration.prodi_id = '$id'");
+  }
+
+  public function getDataStatusPknNew($prodi, $period)
+  {
+    return $this->db->query("SELECT academic_year.name as academic_year, registration.id,registration.file,registration.youtube_link,student.fullname,student.npm,prodi.name as prodi_name FROM registration JOIN student ON student.id = registration.student_id JOIN prodi ON prodi.id = student.prodi_id JOIN academic_year ON academic_year.id = registration.academic_year_id WHERE student.prodi_id = '$prodi' AND registration.academic_year_id = '$period'");
   }
 }

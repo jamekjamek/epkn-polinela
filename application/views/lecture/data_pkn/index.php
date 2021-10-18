@@ -50,9 +50,12 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Mahasiswa</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>NPM</th>
+                    <th>Status</th>
                     <th>Lokasi PKN</th>
                     <th>Nilai Akhir</th>
+                    <th>Huruf Mutu</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -63,22 +66,26 @@
                   ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td>
-                        <strong> <?= $row->npm ?></strong>
-                        <br>
-                        <?= $row->fullname ?> -
-                        <?= $row->status ?>
-                      </td>
+                      <td> <?= $row->fullname ?></td>
+                      <td><?= $row->npm ?></td>
+                      <td><?= $row->status ?></td>
                       <td><?= $row->company_name; ?></td>
                       <td>
-                        <?php if($row->score) {
-                            echo $row->score . ' ('. $row->HM.')';
+                        <?php if ($row->score) {
+                          echo number_format($row->score, 2);
                         } else {
-                            echo '<small class="text-muted">Nilai belum diinput</small>';
+                          echo '<small class="text-muted">Nilai belum diinput</small>';
                         } ?>
                       </td>
                       <td>
-                        <?php 
+                        <?php if ($row->HM) {
+                          echo $row->HM;
+                        } else {
+                          echo '<small class="text-muted">Nilai belum diinput</small>';
+                        } ?>
+                      </td>
+                      <td>
+                        <?php
                         $this->load->model('Lecture/Lecture_report_model', 'Report');
                         $supervision = $this->Report->reportCheckByGroup($row->group_id);
                         if (@$supervision->registration_group_id) :

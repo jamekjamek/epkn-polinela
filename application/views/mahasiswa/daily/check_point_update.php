@@ -31,8 +31,7 @@
           </div>
           <div class="card-body">
             <ul>
-              <li>Untuk kehadiran di lakukan pada hari pelaksanaan PKN</li>
-              <li>Tanggal kehadiran menyesuikan pada saat membuat kehadiran, apabila pada tanggal tertentu tidak melakukan input kehadrian maka di anggap tidak hadir/tidak ada keterangan</li>
+              <li>Untuk perubahan kehadiran hanya dapat lakukan pada hari pelaksanaan PKN</li>
             </ul>
           </div>
         </div>
@@ -46,7 +45,6 @@
           </div>
           <div class="card-body">
             <form action="" method="POST">
-              <input type="hidden" name="registration_id" id="registration_id" value="<?= $isCheck['id'] ?>">
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group has-error">
@@ -65,19 +63,19 @@
                 <div class="col-md-4" id="time_in" style="display: none;">
                   <div class="form-group has-error">
                     <label for="time_in">Jam Masuk</label>
-                    <input type="time" class="form-control" id="time_in" placeholder="Jam masuk" name="time_in">
+                    <input type="time" class="form-control" id="time_in" placeholder="Jam masuk" name="time_in" value="<?= $attendance->time_in ?>">
                   </div>
                 </div>
                 <div class="col-md-4" id="time_out" style="display: none;">
                   <div class="form-group has-error">
                     <label for="time_out">Jam Selesai</label>
-                    <input type="time" class="form-control" id="time_out" placeholder="Jam selesai" name="time_out">
+                    <input type="time" class="form-control" id="time_out" placeholder="Jam selesai" name="time_out" value="<?= $attendance->time_in ?>">
                   </div>
                 </div>
                 <div class="col-md-4" id="note" style="display: none;">
                   <div class="form-group has-error">
                     <label for="note">Keterangan</label>
-                    <input type="text" class="form-control" id="note" placeholder="Keterangan" name="note">
+                    <input type="text" class="form-control" id="note" placeholder="Keterangan" name="note" value="<?= $attendance->note ?>">
                   </div>
                 </div>
               </div>

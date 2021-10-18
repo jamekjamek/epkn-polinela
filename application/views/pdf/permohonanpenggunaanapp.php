@@ -15,25 +15,25 @@
 
 <body>
   <!-- <htmlpageheader> -->
-<table style="width: 100%; height: 59px;" border="0">
+  <table style="width: 100%; height: 59px;" border="0">
     <tbody>
-        <tr>
-            <td style="width: 23%;" align="center">
-                <img src="<?= base_url('assets/img/logo/logo-new.png') ?>" alt="" width="100" height="100" />
-            </td>
-            <td style="text-align: center;">
-                <p></p>
-                <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>KEMENTRIAN PENDIDIKAN, KEBUDAYAAN</b></span></h4>
-                <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>RISET, DAN TEKNOLOGI</b></span></h4>
-                <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>POLITEKNIK NEGERI LAMPUNG</b></span></h4>
-                <span style="text-align: center;"><span style="font-family: Times New Roman;">Jl. Soekarno Hatta Rajabasa Bandar Lampung</span></span>
-                <p style="text-align: center;"><span style="font-family: Times New Roman;">Telepon (0721) 703995 Faksimili (0721) 787309<br></span><span style="font-family: Times New Roman;">laman : www.polinela.ac.id</span></p>
-                <p></p>
-            </td>
-        </tr>
+      <tr>
+        <td style="width: 23%;" align="center">
+          <img src="<?= base_url('assets/img/logo/logo-new.png') ?>" alt="" width="100" height="100" />
+        </td>
+        <td style="text-align: center;">
+          <p></p>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>KEMENTRIAN PENDIDIKAN, KEBUDAYAAN</b></span></h4>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>RISET, DAN TEKNOLOGI</b></span></h4>
+          <h4 style="text-align: center;"><span style="font-family: Times New Roman;"><b>POLITEKNIK NEGERI LAMPUNG</b></span></h4>
+          <span style="text-align: center;"><span style="font-family: Times New Roman;">Jl. Soekarno Hatta Rajabasa Bandar Lampung</span></span>
+          <p style="text-align: center;"><span style="font-family: Times New Roman;">Telepon (0721) 703995 Faksimili (0721) 787309<br></span><span style="font-family: Times New Roman;">laman : www.polinela.ac.id</span></p>
+          <p></p>
+        </td>
+      </tr>
     </tbody>
-</table>
-<hr style="height: 2px;background-color:black" />
+  </table>
+  <hr style="height: 2px;background-color:black" />
   <table style="width: 100%; height: 59px;" border="0">
     <tbody>
       <tr>
@@ -90,22 +90,22 @@
     <br>
   </p>
   <div style="text-align:justify;text-justify: inter-word;">
-      <p>
-          Kami ucapkan terima kasih kepada Bapak/Ibu yang telah bersedia menjadi Pembimbing Lapang Bagi Mahasiswa/i kami yang melaksanakan Praktik Kerja Nyata (PKN) di wilayah Bapak/Ibu.
-      </p>
-      <p>
-          Dalam rangka untuk memudahkan administrasi kegiatan PKN mahasiswa/i kami, mohon kiranya Bapak/Ibu berkenan untuk menggunakan aplikasi E-PKN (petunjuk penggunaan terlampir).  Aplikasi E-PKN dapat Bapak/Ibu akses di <strong><span style="color:blue">pembelajaran.polinela.ac.id.</span></strong>  Login aplikasi E-PKN dapat Bapak/Ibu gunkan untuk memverifikasi kehadiran mahasiswa, memverikasi jurnal harian mahasiswa, dan memberikan nilai ke mahasiswa.  Berikut kami sertakan username dan password untuk login di aplikasi tersebut.  Username dan password setelah login bersifat rahasia dan kami harapkan tidak diberikan ke mahasiswa.
-      </p>
+    <p>
+      Kami ucapkan terima kasih kepada Bapak/Ibu yang telah bersedia menjadi Pembimbing Lapang Bagi Mahasiswa/i kami yang melaksanakan Praktik Kerja Nyata (PKN) di wilayah Bapak/Ibu.
+    </p>
+    <p>
+      Dalam rangka untuk memudahkan administrasi kegiatan PKN mahasiswa/i kami, mohon kiranya Bapak/Ibu berkenan untuk menggunakan aplikasi E-PKN (petunjuk penggunaan terlampir). Aplikasi E-PKN dapat Bapak/Ibu akses di <strong><span style="color:blue">pembelajaran.polinela.ac.id.</span></strong> Login aplikasi E-PKN dapat Bapak/Ibu gunkan untuk memverifikasi kehadiran mahasiswa, memverikasi jurnal harian mahasiswa, dan memberikan nilai ke mahasiswa. Berikut kami sertakan username dan password untuk login di aplikasi tersebut. Username dan password setelah login bersifat rahasia dan kami harapkan tidak diberikan ke mahasiswa.
+    </p>
   </div>
   <table>
-      <tr>
-          <td width="20%">Username</td>
-          <td>: <?= @$row->username ?></td>
-      </tr>
-      <tr>
-          <td>Password (Default)</td>
-          <td>: 123456</td>
-      </tr>
+    <tr>
+      <td width="20%">Username</td>
+      <td>: <?= @$row->username ?></td>
+    </tr>
+    <tr>
+      <td>Password (Default)</td>
+      <td>: 123456</td>
+    </tr>
   </table>
 
   <p>
@@ -116,7 +116,7 @@
   <div>
     <br>
     <br>
-    <div style="padding-left: 400px;">
+    <p style="padding-left: 400px;">
       <span>
         a.n Direktur
       </span>
@@ -124,18 +124,18 @@
       <span>
         Pembantu Direktur I,
       </span>
-      <br>
-      <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
-      <br>
+
+    </p>
+    <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" style="padding-left: 320px; padding-top:-50px; padding-bottom:-40px" />
+    <p style="padding-left: 400px;">
       <span>
         Dwi Puji Hartono
       </span>
       <br>
       <span>
-
-        NIP <span style="font-weight: 400;">197602202000031002</span>
+        NIP 197602202000031002
       </span>
-    </div>
+    </p>
   </div>
 </body>
 

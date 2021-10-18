@@ -159,6 +159,7 @@ class Mahasiswa_daily extends CI_Controller
         'time_in'         => $this->input->post('time_in'),
         'time_out'        => $this->input->post('time_out'),
         'attendance'      => $this->input->post('attendance'),
+        'note'            => $this->input->post('note'),
       ];
       $insert     = $this->Daily->insertCP($dataInsert);
       if ($insert > 0) {
@@ -169,7 +170,42 @@ class Mahasiswa_daily extends CI_Controller
       redirect($this->redirectCheckPoint);
     }
   }
-  
+
+  public function updateCheckPoint($id)
+  {
+    $decodeId   = decodeEncrypt($id);
+    $attendance    = $this->Daily->getCheckPointById($decodeId);
+    $this->_validation('check_point');
+    if ($attendance) {
+      if ($this->form_validation->run() === false) {
+        $data = [
+          'title'         => 'Ubah Data Kehadiran',
+          'desc'          => 'Berfungsi untuk merubah data kehadiran',
+          'attendance'    => $attendance,
+        ];
+        $page = '/mahasiswa/daily/check_point_update';
+        pageBackend($this->role, $page, $data);
+      } else {
+        $dataUpdate = [
+          'time_in'         => $this->input->post('time_in'),
+          'time_out'        => $this->input->post('time_out'),
+          'attendance'      => $this->input->post('attendance'),
+          'note'            => $this->input->post('note'),
+        ];
+        $update     = $this->Daily->updateCP($dataUpdate, $decodeId);
+        if ($update > 0) {
+          $this->session->set_flashdata('success', 'Data berhasil di rubah');
+        } else {
+          $this->session->set_flashdata('error', 'Server Data User Sedang sibuk, silahkan coba lagi');
+        }
+        redirect($this->redirectCheckPoint);
+      }
+    } else {
+      $this->session->set_flashdata('error', 'Data yang anda masukan tidak ada');
+      redirect($this->redirect);
+    }
+  }
+
   public function deleteCheckPoint($id)
   {
     $decodeId   = decodeEncrypt($id);
@@ -186,7 +222,7 @@ class Mahasiswa_daily extends CI_Controller
     }
     redirect($this->redirectCheckPoint);
   }
-  
+
   // validation
   private function _validation($type = '')
   {

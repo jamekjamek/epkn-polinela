@@ -17,7 +17,7 @@
         <div class="nav-item <?= ($this->uri->segment(2) === 'dashboard' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/dashboard') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
         </div>
-         <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
+        <div class="nav-item <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/profile') ?>"><i class="ik ik-user"></i><span>Profil</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'planning' ? 'active' : '') ?>">
@@ -34,6 +34,9 @@
         </div>
         <div class="nav-item <?= ($this->uri->segment(2) === 'data_pkn' || $this->uri->segment(3) === 'assessment' ? 'active' : '') ?>">
           <a href=" <?= site_url('dosen/data_pkn') ?>"><i class="ik ik-trending-up"></i><span>Penilaian</span></a>
+        </div>
+        <div class="nav-item <?= ($this->uri->segment(2) === 'quesioner' ? 'active' : '') ?>">
+          <a href=" <?= site_url('dosen/quesioner') ?>"><i class="ik ik-file-text"></i><span>Quesioner</span></a>
         </div>
       </nav>
     </div>

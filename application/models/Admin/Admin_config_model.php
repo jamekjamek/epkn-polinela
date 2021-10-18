@@ -200,7 +200,7 @@ class Admin_config_model extends CI_Model
   {
     return $this->db->query("SELECT head_of_study_program.id as head_of_sp_id, lecture.name as lecture_name, prodi.id as prodi_id FROM head_of_study_program JOIN lecture ON lecture.id = head_of_study_program.lecture_id JOIN prodi ON prodi.id = head_of_study_program.prodi_id WHERE prodi.id = '$id'");
   }
-  
+
   public function getyByUsernameAdmin()
   {
     return $this->db->query("SELECT user.id as user_id,user.username, user.password FROM user WHERE user.username = '" . $this->session->userdata('user') . "'")->row();
@@ -211,5 +211,10 @@ class Admin_config_model extends CI_Model
     $this->db->set('updated_at', date('Y-m-d H:i:s'));
     $this->db->update($this->tableUser, $data, ['id' => $data['id']]);
     return $this->db->affected_rows();
+  }
+
+  public function getRole()
+  {
+    return $this->db->get('role');
   }
 }

@@ -39,7 +39,7 @@
           <a href="<?= base_url('pudir/recap/supervision_report') ?>"><i class=" fa fa-clipboard"></i>Laporan Supervisi</a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'status_pkn' ? 'active' : '') ?>">
-          <a href="<?= base_url('pudir/recap/status_pkn') ?>"><i class="fa fa-receipt"></i><span>Status PKN</span></a>
+          <a href="<?= base_url('pudir/recap/status_pkn') ?>"><i class="fa fa-receipt"></i><span>Laporan dan Video PKN</span></a>
         </div>
         <div class="nav-item <?= ($this->uri->segment(3) === 'scoring' ? 'active' : '') ?>">
           <a href="<?= base_url('pudir/recap/scoring') ?>"><i class="fa fa-graduation-cap"></i>Nilai PKN</a>

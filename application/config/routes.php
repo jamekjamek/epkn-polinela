@@ -156,6 +156,10 @@ $route['admin/master/users/update/(:any)/(:any)']   = 'Admin_users/update/$1/$2'
 $route['admin/master/pkn']                          = 'Admin_pkn';
 $route['admin/master/pkn/(:any)']                   = 'Admin_pkn/index/$1';
 
+$route['admin/master/quesioner']                   = 'Admin_quesioner';
+$route['admin/master/quesioner/add']               = 'Admin_quesioner/create';
+$route['admin/master/quesioner/edit/(:any)']       = 'Admin_quesioner/update/$1';
+
 //GUIDEBOOK
 $route['admin/guidebook']                           = 'admin_guidebook';
 $route['admin/guidebook/add']                       = 'admin_guidebook/create';
@@ -205,8 +209,9 @@ $route['mahasiswa/daily/log/detail']                = 'mahasiswa_daily/logDetail
 $route['mahasiswa/daily/log/edit/(:any)/edit']      = 'mahasiswa_daily/logUpdate/$1/edit';
 
 $route['mahasiswa/daily/check_point']               = 'mahasiswa_daily/checkPoint';
-$route['mahasiswa/daily/check_point/delete/(:any)']               = 'mahasiswa_daily/deleteCheckPoint/$1';
 $route['mahasiswa/daily/check_point/add']           = 'mahasiswa_daily/checkPointCreate';
+$route['mahasiswa/daily/check_point/edit/(:any)']   = 'mahasiswa_daily/updateCheckPoint/$1';
+$route['mahasiswa/daily/check_point/delete/(:any)'] = 'mahasiswa_daily/deleteCheckPoint/$1';
 
 $route['mahasiswa/profile']                         = 'mahasiswa_profile';
 

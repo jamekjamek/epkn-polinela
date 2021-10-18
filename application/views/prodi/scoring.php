@@ -31,7 +31,7 @@
               <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                 <h3 class="text-uppercase"><?= $title; ?> <strong> <?= @$row->prodi_name; ?></strong></h3>
               </div>
-              <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $prodi) ?>" class="btn btn-success mt-3"><i class="ik ik-download-cloud"></i>Export</a>
+              <a href="<?= site_url('pdf/nilaiakhirpkn?prodi=' . $prodi . '&periode=' . $this->input->get('periode')) ?>" class="btn btn-success mt-3"><i class="ik ik-download-cloud"></i>Export</a>
             </div>
           </div>
           <div class="card-body">
@@ -67,16 +67,16 @@
                 <table id="simpletable" class="table table-hover" style="padding: 20px;">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Mahasiswa</th>
-                      <th>Dosen Pembimbing</th>
-                      <th>Lokasi</th>
-                      <th>Supervisi</th>
-                      <th>Bimbingan</th>
-                      <th>Ujian</th>
-                      <th>Pembimbing Lapangan</th>
-                      <th>Nilai Akhir</th>
-                      <th>Status Kelulusan</th>
+                      <th class="text-center">No</th>
+                      <th class="text-center">Nama Mahasiswa</th>
+                      <th class="text-center">NPM</th>
+                      <th class="text-center">Supervisi</th>
+                      <th class="text-center">Bimbingan</th>
+                      <th class="text-center">Ujian</th>
+                      <th class="text-center">Pembimbing Lapangan</th>
+                      <th class="text-center">Nilai Akhir</th>
+                      <th class="text-center">Huruf Mutu</th>
+                      <th class="text-center">Status Kelulusan</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,18 +84,15 @@
                     foreach ($scores as $data_score) : ?>
                       <tr>
                         <td><?= $i++ ?></td>
-                        <td>
-                          <strong><?= $data_score->npm ?></strong> <br>
-                          <?= $data_score->fullname ?>
-                        </td>
-                        <td><?= $data_score->lecture_name ?></td>
-                        <td><?= $data_score->company_name ?></td>
-                        <td><?= $data_score->supervision_value ?></td>
-                        <td> <?= $data_score->lecture_value ?></td>
-                        <td> <?= $data_score->final_score_value ?></td>
-                        <td> <?= $data_score->supervisor_value ?></td>
-                        <td> <?= $data_score->result_final_score . ' ' . $data_score->HM ?></td>
-                        <td> <?= $data_score->student_status ?></td>
+                        <td><?= $data_score->fullname ?></td>
+                        <td class="text-center"><?= $data_score->npm ?></td>
+                        <td class="text-center"><?= $data_score->supervision_value ?></td>
+                        <td class="text-center"> <?= $data_score->lecture_value ?></td>
+                        <td class="text-center"> <?= $data_score->final_score_value ?></td>
+                        <td class="text-center"> <?= $data_score->supervisor_value ?></td>
+                        <td class="text-center"> <?= number_format($data_score->result_final_score, 2) ?></td>
+                        <td class="text-center"><?= $data_score->HM ?></td>
+                        <td class="text-center"> <?= $data_score->student_status ?></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>

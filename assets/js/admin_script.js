@@ -114,11 +114,15 @@ $(document).ready(function () {
 	$(".get-major").select2({
 		placeholder: "Cari nama jurusan",
 	});
-    
-    $("#get-days").select2({
+
+	$(".get-role-quesioner").select2({
+		placeholder: "Cari role",
+	});
+
+	$("#get-days").select2({
 		placeholder: "Cari hari",
 	});
-	
+
 	$(".get-periode-pkl").select2({
 		placeholder: "Cari tahun ajaran",
 	});
@@ -229,8 +233,8 @@ $(document).ready(function () {
 					.find(".form-control")
 					.val(
 						$(this)
-						.val()
-						.replace(/C:\\fakepath\\/i, "")
+							.val()
+							.replace(/C:\\fakepath\\/i, "")
 					);
 			});
 		});

@@ -96,8 +96,8 @@ class Major_recap extends CI_Controller
     $period     = $this->input->get('periode');
     $students   = $this->Recap->getAttendanceByStudent($prodi,  $period)->result();
     $data = [
-      'title'       => 'Absensi Mahasiswa PKN',
-      'desc'        => 'Berfungsi untuk melihat data absensi harian mahasiswa',
+      'title'       => 'Kehadiran Mahasiswa PKN',
+      'desc'        => 'Berfungsi untuk melihat data kehadiran harian mahasiswa',
       'students'    => $students,
       'role'        => 'major',
       'allPeriode'  => $this->academic
@@ -111,8 +111,8 @@ class Major_recap extends CI_Controller
     $details      = $this->Recap->getAttendanceByRegistration($id)->result();
     $row          = $this->Recap->getAttendanceByRegistration($id)->row();
     $data = [
-      'title'     => 'Absensi Mahasiswa PKN',
-      'desc'      => 'Berfungsi untuk melihat detail absensi harian mahasiswa',
+      'title'     => 'Kehadiran Mahasiswa PKN',
+      'desc'      => 'Berfungsi untuk melihat detail kehadiran harian mahasiswa',
       'details'   => $details,
       'row'       => $row,
       'role'      => 'major',

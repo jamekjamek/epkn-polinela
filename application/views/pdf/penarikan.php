@@ -104,9 +104,26 @@
       Demikian permohonan kami, atas bantuan dan kerajasamanya diucapkan terimakasih.
     </p>
   </div>
-  <p style="padding-left: 400px;">a.n Direktur <br>Pembantu Direktur I,</p>
-  <img style="padding-left: 400px;" src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" />
-  <p style="padding-left: 400px;">Dwi Puji Hartono <br>NIP <span style="font-weight: 400;">197602202000031002</span></p>
+  <p style="padding-left: 400px;">
+    <span>
+      a.n Direktur
+    </span>
+    <br>
+    <span>
+      Pembantu Direktur I,
+    </span>
+
+  </p>
+  <img src="<?= base_url('assets/img/ttd/ttd_cap_pudir.png') ?>" width="160" style="padding-left: 320px; padding-top:-50px; padding-bottom:-40px" />
+  <p style="padding-left: 400px;">
+    <span>
+      Dwi Puji Hartono
+    </span>
+    <br>
+    <span>
+      NIP 197602202000031002
+    </span>
+  </p>
 
 </body>
 
