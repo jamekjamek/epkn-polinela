@@ -28,6 +28,22 @@ class Admin_recap extends CI_Controller
     pageBackend($this->role, $page, $data);
   }
 
+  public function exceldosenpembimbing($academic = null)
+  {
+    $data = [
+      'lecturers'   => $this->Recap->getDataLecturer($academic),
+    ];
+    $this->load->view('excel/dosenpembimbing', $data);
+  }
+
+  public function excelpembimbinglapang($academic = null)
+  {
+    $data               = [
+      'supervisors' => $this->Recap->getDataSupervisor($academic),
+    ];
+    $this->load->view('excel/pembimbinglapang', $data);
+  }
+
   public function supervisor($academic_year_id = null)
   {
     $prodi        = $this->input->get('prodi');

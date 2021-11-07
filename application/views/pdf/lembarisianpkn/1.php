@@ -22,12 +22,12 @@
         <br>
         <br>
         <?php if ($cover) : ?>
-        <p style="text-align: center; font-size:18px; font-weight:bold; text-transform:uppercase">
-            PROGRAM STUDI <br><?= $cover->prodi_name ?>
-        </p>
-        <p style="text-align: center; font-size:18px; font-weight:bold; text-transform:uppercase">
-            JURUSAN <br><?= $cover->major_name ?>
-        </p>
+            <p style="text-align: center; font-size:18px; font-weight:bold; text-transform:uppercase">
+                PROGRAM STUDI <br><?= $cover->prodi_name ?>
+            </p>
+            <p style="text-align: center; font-size:18px; font-weight:bold; text-transform:uppercase">
+                JURUSAN <br><?= $cover->major_name ?>
+            </p>
             <br>
 
             <p style="text-align: center; font-size:18px; font-weight:bold">
