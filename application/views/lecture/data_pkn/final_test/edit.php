@@ -85,7 +85,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type=text name="jumlah_3" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' required="" value="<?= $testScore->nilaitertimbang_3 ?>">
+                <input type=text name="jumlah_3" class="form-control" onchange='tryNumberFormat(this.form.thirdBox);' readonly value="<?= $testScore->nilaitertimbang_3 ?>">
                 <small class="text-mute font-italic">Kemampuan Argumentasi (50%)</small>
               </div>
               <div class="form-group">
